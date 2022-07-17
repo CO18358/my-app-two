@@ -1,0 +1,22 @@
+<div class="container" *ngIf="titles && titles.length; else spinner">
+
+    <div class="search">
+        <mat-form-field appearance="outline" color="warn">
+            <mat-label>Search Anime</mat-label>
+            <input matInput [formControl]="form">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <div class="btn-group">
+        <button class="btn" *ngFor="let title of filteredTitles | async" (click)="showQuote(title)">
+            {{title}}
+        </button>
+    </div>
+</div>
+
+<ng-template #spinner>
+    <div class="loader">
+        <mat-spinner color="accent"></mat-spinner>
+    </div>
+</ng-template>

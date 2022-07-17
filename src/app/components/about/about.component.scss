@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+.about {
+
+    .title {
+        margin-top: 4%;
+        font-size: 1.6rem;
+        text-align: center;
+        font-family: "Lora", serif;
+    }
+
+    .list {
+        width: 50vw;
+        height: 50vh;
+        border: solid ;
+        margin: 2% auto;
+        display: flex;
+        flex-flow: column wrap;
+        padding: 20px;
+
+        .listitem {
+            width: fit-content;
+            .list-icon {
+                color: #b83131;
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<div class="about">
+    <h1 class="title">The Project includes the following: </h1>
+    <mat-list role="list" class="list">
+        <mat-list-item class="listitem" role="listitem" *ngFor="let title of titles">
+            <mat-icon mat-list-icon class="list-icon">bookmark</mat-icon>
+            <div mat-line>{{title}}</div>
+        </mat-list-item>
+    </mat-list>
+</div>
