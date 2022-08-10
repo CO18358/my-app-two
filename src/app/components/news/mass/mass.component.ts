@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { NewsLanguage, NewSortKeys, NewsSource } from 'src/app/models/news';
-import { NewsService } from 'src/app/services/news.service';
+import { NewsService } from 'src/app/services/news/news.service';
 
 @Component({
   selector: 'app-mass',
@@ -12,9 +12,9 @@ export class MassComponent implements OnInit {
 
   articles!: any[]
   sources!: NewsSource[]
-  
+
   query = 'Bitcoin'
-  
+
   orderBy = NewSortKeys;
   sortBy = this.orderBy[0]
 
@@ -30,7 +30,7 @@ export class MassComponent implements OnInit {
   }
 
   async searchMassNews() {
-    const articles:any = await lastValueFrom(this.newsService.getMassNews(this.query.trim(), this.sortBy))
+    const articles: any = await lastValueFrom(this.newsService.getMassNews(this.query.trim(), this.sortBy))
     this.articles = articles.articles;
     this.saveData("massNews", this.articles)
   }
@@ -51,8 +51,8 @@ export class MassComponent implements OnInit {
     const res = localStorage.getItem(key);
     if (res && res !== null) {
       this.articles = JSON.parse(res);
-      
-    } else if (key=="sources") {
+
+    } else if (key == "sources") {
       this.fetchSources()
     } else {
       this.searchMassNews()

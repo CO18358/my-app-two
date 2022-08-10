@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { NewsCategories, NewsCountries, NewsLanguage } from 'src/app/models/news';
-import { NewsService } from 'src/app/services/news.service';
+import { NewsService } from 'src/app/services/news/news.service';
 
 @Component({
   selector: 'app-headlines',
@@ -45,7 +45,7 @@ export class HeadlinesComponent implements OnInit {
     const res = localStorage.getItem(key);
     if (res && res !== null) {
       this.articles = JSON.parse(res);
-      
+
     } else {
       this.searchHeadlines()
     }

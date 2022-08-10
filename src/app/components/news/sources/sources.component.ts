@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { NewsCategories, NewsCountries, NewsLanguage, NewsSource } from 'src/app/models/news';
-import { NewsService } from 'src/app/services/news.service';
+import { NewsService } from 'src/app/services/news/news.service';
 
 @Component({
   selector: 'app-sources',
@@ -55,7 +55,7 @@ export class SourcesComponent implements OnInit {
 
   filterSources() {
     this.filteredSources = this.sources.filter((source: NewsSource) => {
-      return ((!this.selectedCtg || source.category == this.selectedCtg) && (!this.selectedCty || source.country == this.selectedCty) && (!this.selectedLng || source.language)) 
+      return ((!this.selectedCtg || source.category == this.selectedCtg) && (!this.selectedCty || source.country == this.selectedCty) && (!this.selectedLng || source.language))
     })
   }
 

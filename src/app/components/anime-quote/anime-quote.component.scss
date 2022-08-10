@@ -16,6 +16,7 @@
     width: 80%;
     margin-bottom: -1rem;
   }
+
   background: #131313;
 
 }
@@ -38,7 +39,7 @@
     color: #4b78d2;
     transition: 0.25s;
 
-    &:hover,  &:focus {
+    &:hover {
       border-color: #f3f049;
       color: #cbc772;
       box-shadow: 0 0.5rem 0.5rem -0.4rem #f3f049;

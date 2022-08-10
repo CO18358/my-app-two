@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { lastValueFrom, Observable } from 'rxjs';
 import { AnimeQuote } from 'src/app/models/interfaces';
-import { AnimeQuotesService } from 'src/app/services/anime-quotes.service';
+import { AnimeQuotesService } from 'src/app/services/anime-quotes/anime-quotes.service';
 import { ShowQuoteComponent } from './show-quote/show-quote.component';
 import { map, startWith } from 'rxjs/operators';
 
@@ -44,8 +44,10 @@ export class AnimeQuoteComponent implements OnInit {
     }
     const quotes: AnimeQuote[] = await lastValueFrom(request)
     const quote = quotes[Math.floor(Math.random() * quotes.length)];
-    this.dialog.open(ShowQuoteComponent, { data: quote,
-    maxHeight: "75vh"})
+    this.dialog.open(ShowQuoteComponent, {
+      data: quote,
+      maxHeight: "75vh"
+    })
   }
 
   private _filter(value: string): string[] {

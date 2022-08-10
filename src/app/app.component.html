@@ -3,13 +3,13 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span class="spacer"></span>
-  <span class="menu-title" [routerLink]="'/'">My App</span>
+  <span class="menu-title" [routerLink]="'/about'">My App</span>
   <span class="spacer"></span>
-  <button mat-icon-button>
-    <mat-icon>favorite</mat-icon>
+  <button mat-flat-button *ngIf="!this.authService.isLoggedIn" routerLink="/">
+    Login
   </button>
-  <button mat-icon-button>
-    <mat-icon>share</mat-icon>
+  <button mat-flat-button (click)="logout()" *ngIf="this.authService.isLoggedIn" routerLink="/">
+    Logout
   </button>
 </mat-toolbar>
 
@@ -19,7 +19,7 @@
 
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="'/anime-quote'"> Anime Quotes </a>
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="'/news'"> News </a>
-      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="'/create-contact'"> Create Contact </a>
+      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="'/resume'"> Resume </a>
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="'/activities'"> Activities </a>
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="'/create-activity'"> Create Activity </a>
 

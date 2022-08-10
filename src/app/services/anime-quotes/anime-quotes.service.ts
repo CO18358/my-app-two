@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AnimeQuote } from '../models/interfaces';
+import { AnimeQuote } from 'src/app/models/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class AnimeQuotesService {
   titlesUrl = 'https://animechan.vercel.app/api/available/anime';
   randomUrl = 'https://animechan.vercel.app/api/quotes'
   quoteUrl = 'https://animechan.vercel.app/api/quotes/anime?title='
-  
+
   constructor(
     private http: HttpClient
   ) { }
