@@ -1,0 +1,11 @@
+<mat-stepper [linear]="false" class="stepper">
+    <mat-step label="Client's Details" [completed]="form1?.isCompleted ? true : false">
+        <app-client-details></app-client-details>
+    </mat-step>
+    <mat-step label="Order Details" [completed]="form2?.isCompleted ? true : false">
+        <app-orders></app-orders>
+    </mat-step>
+    <mat-step label="Verify"></mat-step>
+    <mat-step label="Remarks"></mat-step>
+    <!-- <mat-step label="Fifth"></mat-step> -->
+</mat-stepper>

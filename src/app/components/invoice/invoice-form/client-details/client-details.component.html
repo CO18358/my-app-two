@@ -1,0 +1,90 @@
+<div class="container">
+    <form class="form" [formGroup]="form">
+        <p>
+            <mat-form-field appearance="outline" color="primary">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" type="text">
+                <mat-error *ngIf="form.controls['name'].hasError('required')">
+                    Name is required
+                </mat-error>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline" color="primary">
+                <mat-label>Address</mat-label>
+                <input matInput type="text" formControlName="address">
+                <mat-error *ngIf="form.controls['address'].hasError('required')">
+                    Address is required
+                </mat-error>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline" color="primary">
+                <mat-label>Country</mat-label>
+                <input matInput type="text" formControlName="country" [matAutocomplete]="countries">
+                <mat-autocomplete #countries="matAutocomplete">
+                    <mat-option class="option-bg" *ngFor="let option of filteredCountryList | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="form.controls['country'].hasError('required')">
+                    Country is required
+                </mat-error>
+                <mat-error
+                    *ngIf="!form.controls['country'].hasError('required') && form.controls['country'].hasError('invalid')">
+                    Invalid Country Name
+                </mat-error>
+            </mat-form-field>
+        </p>
+        <p class="multi">
+            <mat-form-field class="static" appearance="outline" color="primary">
+                <mat-label>Postal Code</mat-label>
+                <input matInput disabled [value]="postalCode || '' ">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" color="primary">
+                <mat-label>Postal Code</mat-label>
+                <input matInput type="text" formControlName="pincode" minlength="4" maxlength="6">
+                <mat-error *ngIf="form.controls['pincode'].hasError('required')">
+                    Postal Code is required
+                </mat-error>
+                <mat-error *ngIf="form.controls['pincode'].hasError('pattern')">
+                    Invalid Postal Code
+                </mat-error>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline" color="primary">
+                <mat-label>Email</mat-label>
+                <input matInput type="text" formControlName="email">
+                <mat-error *ngIf="form.controls['email'].hasError('required')">
+                    Email is required
+                </mat-error>
+                <mat-error *ngIf="form.controls['email'].hasError('email')">
+                    Invalid Email
+                </mat-error>
+            </mat-form-field>
+        </p>
+        <p class="multi">
+            <mat-form-field class="static" appearance="outline" color="primary">
+                <mat-label>Calling Code</mat-label>
+                <input matInput disabled [value]="callingCode || '' ">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" color="primary">
+                <mat-label>Contact No.</mat-label>
+                <input matInput type="text" formControlName="contact" minlength="6" maxlength="14">
+                <mat-error *ngIf="form.controls['contact'].hasError('required')">
+                    Contact Number is required
+                </mat-error>
+                <mat-error *ngIf="form.controls['contact'].hasError('pattern')">
+                    Invalid Contact Number
+                </mat-error>
+            </mat-form-field>
+        </p>
+    </form>
+    <div class="step-actions">
+        <button class="step-btn" mat-raised-button color="accent" matStepperNext (click)="save()">Save &
+            Proceed</button>
+    </div>
+</div>

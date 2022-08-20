@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   news_api_key: "f7d949acf53644f08c53339dc46bf87a",
   auth_endpoint: 'http://localhost:3000/api',
+  invoice_endpoint: 'http://localhost:3000/invoice',
 };
 
 /*

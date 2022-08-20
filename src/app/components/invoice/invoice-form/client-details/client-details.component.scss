@@ -1,0 +1,40 @@
+.container {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+
+        p {
+            width: 80%;
+            display: flex;
+            margin: 0;
+
+            mat-form-field {
+                width: 100%;
+
+            }
+        }
+
+        .multi {
+
+            .static {
+                width: fit-content;
+                margin-right: 12px;
+                text-align: center;
+            }
+        }
+    }
+
+    .step-actions {
+        display: flex;
+        flex-direction: row-reverse;
+        padding: 0 10%;
+    }
+}

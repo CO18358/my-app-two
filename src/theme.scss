@@ -13,6 +13,12 @@ $dark-app-theme: mat-dark-theme((color: (primary: mat-palette($mat-amber),
 
 @include angular-material-theme($light-app-theme);
 
+
 .dark-theme {
+
+        mat-option {
+                background-color: #131313;
+        }
+
         @include angular-material-color($dark-app-theme);
 }

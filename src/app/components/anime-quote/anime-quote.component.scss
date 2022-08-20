@@ -3,7 +3,6 @@
   height: calc(100vh - 4rem);
   align-items: center;
   justify-content: center;
-  background: #131313;
 }
 
 .search {
@@ -16,9 +15,6 @@
     width: 80%;
     margin-bottom: -1rem;
   }
-
-  background: #131313;
-
 }
 
 .btn-group {
@@ -27,7 +23,6 @@
   text-align: center;
   justify-content: center;
   flex-flow: row wrap;
-  background: #131313;
 
   .btn {
     background: none;

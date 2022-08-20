@@ -20,6 +20,11 @@ const routes: Routes = [
     loadChildren: () => import('./components/news/news.module').then(m => m.NewsModule)
   },
   {
+    path: "invoice",
+    loadChildren: () => import('./components/invoice/invoice.module').then(m => m.InvoiceModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'

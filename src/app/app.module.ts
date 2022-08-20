@@ -13,10 +13,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { AuthInterceptor } from './services/auth/authconfig.interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,

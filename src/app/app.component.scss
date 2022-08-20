@@ -18,11 +18,15 @@
 
 }
 
-.sidenav {
-    width: 16%;
-    padding-left: 1rem;
-}
+.container {
+    background-color: #131313;
 
-.content-container {
-    min-height: calc(100vh - 4rem);
+    .sidenav {
+        width: 16%;
+        padding-left: 1rem;
+    }
+
+    .content-container {
+        min-height: calc(100vh - 4rem);
+    }
 }
