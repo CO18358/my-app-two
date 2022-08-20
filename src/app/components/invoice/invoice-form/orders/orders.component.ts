@@ -36,8 +36,8 @@ export class OrdersComponent implements OnInit {
       description: [''],
       price: ['', Validators.required],
       quantity: ['1', Validators.required],
-      discount: ['0', Validators.required],
-      tax: ['0', Validators.required],
+      discount: ['', Validators.required],
+      tax: ['', Validators.required],
     })
     return formObj
   }
@@ -55,6 +55,8 @@ export class OrdersComponent implements OnInit {
   save() {
     if (this.form.valid) {
       this.invoiceService.setClientOrder(this.form.value.items)
+    } else {
+      this.invoiceService.clearOrders()
     }
   }
 

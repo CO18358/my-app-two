@@ -5,7 +5,8 @@
     <mat-step label="Order Details" [completed]="form2?.isCompleted ? true : false">
         <app-orders></app-orders>
     </mat-step>
-    <mat-step label="Verify"></mat-step>
+    <mat-step label="Verify" *ngIf="ordersReceived()">
+        <app-preview></app-preview>
+    </mat-step>
     <mat-step label="Remarks"></mat-step>
-    <!-- <mat-step label="Fifth"></mat-step> -->
 </mat-stepper>

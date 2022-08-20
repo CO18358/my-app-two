@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    .table {
+        width: 80%;
+    }
+}

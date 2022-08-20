@@ -18,6 +18,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
 import { ClientDetailsComponent } from './invoice-form/client-details/client-details.component';
 import { OrdersComponent } from './invoice-form/orders/orders.component';
+import { PreviewComponent } from './invoice-form/preview/preview.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { OrdersComponent } from './invoice-form/orders/orders.component';
     InvoiceFormComponent,
     ClientDetailsComponent,
     OrdersComponent,
+    PreviewComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +43,7 @@ import { OrdersComponent } from './invoice-form/orders/orders.component';
     MatStepperModule,
     MatAutocompleteModule,
     MatSelectModule,
+    MatTableModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       progressBar: true,

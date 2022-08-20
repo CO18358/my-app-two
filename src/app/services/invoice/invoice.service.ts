@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { InvoiceCompany } from 'src/app/models/interfaces';
+import { InvoiceCompany, Item } from 'src/app/models/interfaces';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class InvoiceService {
   endpoint: string = environment.invoice_endpoint;
   company: any = {};
   clientAddress: any = {};
-  clientOrder: any[] = [];
+  clientOrder: Item[] = [];
   constructor(
     private http: HttpClient,
     public router: Router,
@@ -66,8 +66,10 @@ export class InvoiceService {
       order.subtotal = this.subtotal(order)
       return order
     });
-    console.log(this.clientOrder);
+  }
 
+  clearOrders() {
+    this.clientOrder = [];
   }
 
 

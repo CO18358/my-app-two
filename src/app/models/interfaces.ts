@@ -32,3 +32,13 @@ export interface InvoiceCompanyResponse {
     email: string,
     contact: string
 }
+
+export interface Item {
+    name: string,
+    description: string,
+    price: string,
+    quantity: string,
+    discount: string,
+    tax: string,
+    subtotal: number
+}
