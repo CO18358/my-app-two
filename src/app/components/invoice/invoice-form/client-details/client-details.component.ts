@@ -59,7 +59,7 @@ export class ClientDetailsComponent implements OnInit {
     const data: InvoiceCompany = this.form.value;
     data.pincode = this.postalCode + "-" + data.pincode;
     data.contact = this.callingCode + "-" + data.contact;
-    this.invoiceService.clientAddress = data;
+    this.invoiceService.address = data;
   }
 
   private _filter(value: string): string[] {

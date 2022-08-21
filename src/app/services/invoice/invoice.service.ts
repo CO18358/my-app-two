@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { InvoiceCompany, Item } from 'src/app/models/interfaces';
+import { InvoiceCompany, InvoiceContent, Item } from 'src/app/models/interfaces';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,8 +12,14 @@ export class InvoiceService {
 
   endpoint: string = environment.invoice_endpoint;
   company: any = {};
-  clientAddress: any = {};
-  clientOrder: Item[] = [];
+
+  inv_data: InvoiceContent = {
+    address: {}, orders: [], t_n_c: '', notes: ''
+  };
+  address!: any;
+  orders!: Item[];
+  remark!: any;
+
   constructor(
     private http: HttpClient,
     public router: Router,
@@ -61,17 +67,25 @@ export class InvoiceService {
     })
   }
 
-  setClientOrder(orders: any[]) {
-    this.clientOrder = orders.map(order => {
+  setClientOrder(items: any[]) {
+    this.clearOrders();
+    this.orders = items.map(order => {
       order.subtotal = this.subtotal(order)
-      return order
+      return order;
     });
   }
 
   clearOrders() {
-    this.clientOrder = [];
+    this.orders = [];
   }
 
+  uploadInvoice() {
+    this.inv_data.address = this.address;
+    this.inv_data.orders = this.orders;
+    this.inv_data.t_n_c = this.remark.t_n_c;
+    this.inv_data.notes = this.remark.notes;
+    // API POST CALL
+  }
 
   subtotal(order: any) {
     const price = parseInt(order.price);

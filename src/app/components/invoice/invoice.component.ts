@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { InvoiceCompanyResponse, User } from 'src/app/models/interfaces';
+import { InvoiceCompany, User } from 'src/app/models/interfaces';
 import { CountryDataService } from 'src/app/services/invoice/country-data.service';
 import { InvoiceService } from 'src/app/services/invoice/invoice.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
@@ -15,10 +15,10 @@ export class InvoiceComponent implements OnInit {
   isRegistered!: boolean;
   companyFormTitle!: string;
   updateForm!: boolean;
-  companyId = ''
+  companyId!: string;
 
   currentUser!: User;
-  company!: InvoiceCompanyResponse;
+  company!: InvoiceCompany;
 
   showForm: boolean = true;
 
@@ -57,7 +57,7 @@ export class InvoiceComponent implements OnInit {
         this.isRegistered = false;
         this.companyFormTitle = "Update Current Details";
         this.updateForm = true;
-        this.companyId = this.company._id;
+        this.companyId = this.company._id || '';
       }
     })
   }

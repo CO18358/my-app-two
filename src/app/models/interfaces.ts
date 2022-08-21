@@ -13,18 +13,8 @@ export interface AnimeQuote {
 }
 
 export interface InvoiceCompany {
+    _id?: string,
     user_id?: string,
-    name: string,
-    address: string,
-    country: string,
-    pincode: string,
-    email: string,
-    contact: string
-}
-
-export interface InvoiceCompanyResponse {
-    _id: string,
-    user_id: string,
     name: string,
     address: string,
     country: string,
@@ -41,4 +31,11 @@ export interface Item {
     discount: string,
     tax: string,
     subtotal: number
+}
+
+export interface InvoiceContent {
+    address: any,
+    orders: Item[],
+    notes: string,
+    t_n_c: string
 }

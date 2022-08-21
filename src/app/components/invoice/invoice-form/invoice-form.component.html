@@ -1,4 +1,4 @@
-<mat-stepper [linear]="false" class="stepper">
+<mat-stepper [linear]="true" class="stepper">
     <mat-step label="Client's Details" [completed]="form1?.isCompleted ? true : false">
         <app-client-details></app-client-details>
     </mat-step>
@@ -8,5 +8,7 @@
     <mat-step label="Verify" *ngIf="ordersReceived()">
         <app-preview></app-preview>
     </mat-step>
-    <mat-step label="Remarks"></mat-step>
+    <mat-step label="Remarks">
+        <app-remarks></app-remarks>
+    </mat-step>
 </mat-stepper>

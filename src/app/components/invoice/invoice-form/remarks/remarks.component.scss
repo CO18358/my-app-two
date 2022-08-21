@@ -1,0 +1,36 @@
+.container {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    .form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        width: 80%;
+        flex-wrap: wrap;
+
+        p {
+            display: flex;
+            width: 100%;
+            margin: 0 12px;
+
+            mat-form-field {
+                width: 100%;
+
+            }
+        }
+    }
+
+    .step-actions {
+        display: flex;
+        flex-direction: row;
+        padding: 2% 10%;
+
+        .spacer {
+            flex: 1 1 auto;
+        }
+    }
+}

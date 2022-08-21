@@ -18,8 +18,7 @@ export class PreviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.items = this.invoiceService.clientOrder;
-    console.log(this.items);
+    this.items = this.invoiceService.orders;
   }
 
   getTotalValue() {

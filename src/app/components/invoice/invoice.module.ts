@@ -20,6 +20,7 @@ import { ClientDetailsComponent } from './invoice-form/client-details/client-det
 import { OrdersComponent } from './invoice-form/orders/orders.component';
 import { PreviewComponent } from './invoice-form/preview/preview.component';
 import { MatTableModule } from '@angular/material/table';
+import { RemarksComponent } from './invoice-form/remarks/remarks.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatTableModule } from '@angular/material/table';
     ClientDetailsComponent,
     OrdersComponent,
     PreviewComponent,
+    RemarksComponent,
   ],
   imports: [
     CommonModule,

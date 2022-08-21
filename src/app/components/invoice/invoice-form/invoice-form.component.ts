@@ -23,7 +23,7 @@ export class InvoiceFormComponent implements OnInit {
   }
 
   ordersReceived(): boolean {
-    return (this.invoiceService.clientOrder && this.invoiceService.clientOrder.length) ? true : false;
+    return (this.invoiceService.orders && this.invoiceService.orders.length) ? true : false;
   }
 
 }
