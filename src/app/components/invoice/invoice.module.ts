@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTableModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       progressBar: true,

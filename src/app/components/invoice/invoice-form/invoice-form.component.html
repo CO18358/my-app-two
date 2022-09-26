@@ -169,18 +169,45 @@
       </mat-expansion-panel-header>
 
       <div class="order">
-        <h2>Upload a JSON File</h2>
+        <h3>
+          Upload (JSON or CSV) File
+          {{ selectedFile ? ": " + selectedFile.name : "" }}
+        </h3>
         <input
           class="file-upload"
           type="file"
           (change)="onFileChanged($event)"
+          accept=".csv, .json"
           #fileInput
         />
-        <button mat-raised-button color="warn" (click)="fileInput.click()">
-          <mat-icon>attachment</mat-icon>
+        <button mat-raised-button color="accent" (click)="fileInput.click()">
+          <mat-icon>description</mat-icon>
           Select File
         </button>
       </div>
+      <!-- <p class="note">
+        Table Headers: Name, Price, Quantity, Discount *, Tax *
+      </p> -->
+      <hr />
+      <table
+        *ngIf="showOrders"
+        mat-table
+        [dataSource]="ordersData"
+        class="orders-table mat-elevation-z8"
+      >
+        <ng-container
+          *ngFor="let column of columns"
+          matColumnDef="{{ column }}"
+        >
+          <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element[column] }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns"></tr>
+      </table>
 
       <mat-action-row>
         <button mat-raised-button color="primary" (click)="prevStep()">

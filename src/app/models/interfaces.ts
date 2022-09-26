@@ -25,10 +25,8 @@ export interface InvoiceCompany {
 
 export interface Item {
   name: string;
-  description?: string;
   price: string;
   quantity: string;
   discount?: string;
   tax?: string;
-  subtotal: number;
 }

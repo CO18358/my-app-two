@@ -6,9 +6,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { lastValueFrom } from 'rxjs';
 import { REGEX } from 'src/app/models/constants';
 import { InvoiceService } from 'src/app/services/invoice/invoice.service';
+import { Utils } from 'src/app/shared/utilties';
 
 @Component({
   selector: 'app-invoice-form',
@@ -18,7 +20,8 @@ import { InvoiceService } from 'src/app/services/invoice/invoice.service';
 export class InvoiceFormComponent implements OnInit {
   constructor(
     private invoiceService: InvoiceService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {}
   step = 2;
 
@@ -44,7 +47,10 @@ export class InvoiceFormComponent implements OnInit {
 
   clientData!: any;
   companyData!: any;
+
   ordersData!: any;
+  columns!: string[];
+  showOrders = false;
 
   selectedFile: any;
 
@@ -74,11 +80,28 @@ export class InvoiceFormComponent implements OnInit {
 
   onFileChanged(event: any) {
     this.selectedFile = event.target.files[0];
-    console.log(event, this.selectedFile);
     const fileReader = new FileReader();
     fileReader.readAsText(this.selectedFile, 'UTF-8');
     fileReader.onload = () => {
-      console.log(JSON.parse(fileReader.result as string));
+      switch (this.selectedFile.type) {
+        case 'application/json': {
+          this.ordersData = JSON.parse(fileReader.result as string);
+          console.log(this.ordersData);
+          this.columns = Object.keys(this.ordersData[0]);
+          this.showOrders = true;
+          break;
+        }
+        case 'text/csv': {
+          this.ordersData = Utils.csvToArray(fileReader.result as string);
+          console.log(this.ordersData);
+          this.columns = Object.keys(this.ordersData[0]);
+          this.showOrders = true;
+          break;
+        }
+        default: {
+          this.toastr.error('Please upload another file', 'Invalid File Type');
+        }
+      }
     };
     fileReader.onerror = (error) => {
       console.log(error);

@@ -28,13 +28,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    h2 {
+    h3 {
       margin: 0;
     }
 
     .file-upload {
       display: none;
     }
+  }
+  .note {
+    margin: 12px 0;
+    color: greenyellow;
+  }
+  .orders-table {
+    width: 100%;
   }
 }
 
