@@ -1,4 +1,43 @@
-.stepper {
-    background-color: #131313;
-    margin: 1rem;
+.container {
+  padding: 3em;
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .multi {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      align-items: center;
+      flex-wrap: wrap;
+      p {
+        flex: 1 1 auto;
+        margin: 0;
+        mat-form-field {
+          width: 100%;
+        }
+      }
+      margin-bottom: -8px;
+    }
+  }
+  .order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h2 {
+      margin: 0;
+    }
+
+    .file-upload {
+      display: none;
+    }
+  }
+}
+
+::ng-deep .mat-expansion-panel {
+  background-color: #232323 !important;
 }

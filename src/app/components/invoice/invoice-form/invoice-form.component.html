@@ -1,14 +1,217 @@
-<mat-stepper [linear]="true" class="stepper">
-    <mat-step label="Client's Details" [completed]="form1?.isCompleted ? true : false">
-        <app-client-details></app-client-details>
-    </mat-step>
-    <mat-step label="Order Details" [completed]="form2?.isCompleted ? true : false">
-        <app-orders></app-orders>
-    </mat-step>
-    <mat-step label="Verify" *ngIf="ordersReceived()">
-        <app-preview></app-preview>
-    </mat-step>
-    <mat-step label="Remarks">
-        <app-remarks></app-remarks>
-    </mat-step>
-</mat-stepper>
+<div class="container">
+  <mat-accordion class="accordian" multi>
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="section-title">
+          Company Information
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form class="form" [formGroup]="companyForm">
+        <div class="multi">
+          <p>
+            <mat-form-field appearance="outline" color="primary">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name" type="text" />
+              <mat-error
+                *ngIf="companyForm.controls['name'].hasError('required')"
+              >
+                Name is required
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" color="primary">
+              <mat-label>Address</mat-label>
+              <input matInput type="text" formControlName="address" />
+              <mat-error
+                *ngIf="companyForm.controls['address'].hasError('required')"
+              >
+                Address is required
+              </mat-error>
+            </mat-form-field>
+          </p>
+        </div>
+
+        <div class="multi">
+          <p>
+            <mat-form-field appearance="outline" color="primary">
+              <mat-label>Email</mat-label>
+              <input matInput type="text" formControlName="email" />
+              <mat-error
+                *ngIf="companyForm.controls['email'].hasError('required')"
+              >
+                Email is required
+              </mat-error>
+              <mat-error
+                *ngIf="companyForm.controls['email'].hasError('email')"
+              >
+                Invalid Email
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" color="primary">
+              <mat-label>Contact No.</mat-label>
+              <input matInput type="text" formControlName="contact" />
+              <mat-error
+                *ngIf="companyForm.controls['contact'].hasError('required')"
+              >
+                Contact Number is required
+              </mat-error>
+              <mat-error
+                *ngIf="companyForm.controls['contact'].hasError('pattern')"
+              >
+                Invalid Contact Number
+              </mat-error>
+            </mat-form-field>
+          </p>
+        </div>
+      </form>
+      <mat-action-row>
+        <button
+          mat-raised-button
+          color="accent"
+          [disabled]="companyForm.invalid"
+          (click)="saveCompanyDetail()"
+        >
+          Next
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="section-title">
+          Customer Information
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <form class="form" [formGroup]="customerForm">
+        <div class="multi">
+          <p>
+            <mat-form-field appearance="outline" color="primary">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name" type="text" />
+              <mat-error
+                *ngIf="customerForm.controls['name'].hasError('required')"
+              >
+                Name is required
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" color="primary">
+              <mat-label>Address</mat-label>
+              <input matInput type="text" formControlName="address" />
+              <mat-error
+                *ngIf="customerForm.controls['address'].hasError('required')"
+              >
+                Address is required
+              </mat-error>
+            </mat-form-field>
+          </p>
+        </div>
+
+        <div class="multi">
+          <p>
+            <mat-form-field appearance="outline" color="primary">
+              <mat-label>Email</mat-label>
+              <input matInput type="text" formControlName="email" />
+              <mat-error
+                *ngIf="customerForm.controls['email'].hasError('required')"
+              >
+                Email is required
+              </mat-error>
+              <mat-error
+                *ngIf="customerForm.controls['email'].hasError('email')"
+              >
+                Invalid Email
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" color="primary">
+              <mat-label>Contact No.</mat-label>
+              <input matInput type="text" formControlName="contact" />
+              <mat-error
+                *ngIf="customerForm.controls['contact'].hasError('required')"
+              >
+                Contact Number is required
+              </mat-error>
+              <mat-error
+                *ngIf="customerForm.controls['contact'].hasError('pattern')"
+              >
+                Invalid Contact Number
+              </mat-error>
+            </mat-form-field>
+          </p>
+        </div>
+      </form>
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="prevStep()">
+          Previous
+        </button>
+        <button
+          mat-raised-button
+          color="accent"
+          [disabled]="customerForm.invalid"
+          (click)="saveCustomerDetail()"
+        >
+          Next
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Orders </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="order">
+        <h2>Upload a JSON File</h2>
+        <input
+          class="file-upload"
+          type="file"
+          (change)="onFileChanged($event)"
+          #fileInput
+        />
+        <button mat-raised-button color="warn" (click)="fileInput.click()">
+          <mat-icon>attachment</mat-icon>
+          Select File
+        </button>
+      </div>
+
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="prevStep()">
+          Previous
+        </button>
+        <button mat-raised-button color="accent">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Day of the trip </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          (focus)="picker.open()"
+          readonly
+        />
+      </mat-form-field>
+      <mat-datepicker #picker></mat-datepicker>
+
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="prevStep()">
+          Previous
+        </button>
+        <button mat-raised-button color="accent">Generate</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

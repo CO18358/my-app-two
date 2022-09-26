@@ -1,55 +1,49 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/interfaces';
+import { Utils } from 'src/app/shared/utilties';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class AuthService {
-
-  endpoint: string = environment.auth_endpoint;
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser: any = {};
 
-  constructor(
-    private http: HttpClient,
-    public router: Router,
-    private toastr: ToastrService
-  ) { }
+  constructor(public router: Router, private toastr: ToastrService) {}
 
   // Sign-up
   signUp(user: User) {
-    const api = `${this.endpoint}/register-user`;
-    return this.http.post<any>(api, user);
+    console.log(user);
+    try {
+      localStorage.setItem(user.email, JSON.stringify(user));
+      return true;
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
   }
 
   // Sign-in
   signIn(user: User) {
-    return this.http
-      .post<any>(`${this.endpoint}/signin`, user)
-      .subscribe({
-        next: (res: any) => {
-          localStorage.setItem('access_token', res.token);
-          this.getUserProfile(res._id).subscribe((res) => {
-            this.currentUser = res;
-            localStorage.setItem('user', JSON.stringify(this.currentUser));
-            // console.log(this.currentUser);
-            this.toastr.success(`Welcome ${this.currentUser.name}`)
-            this.router.navigate(['about/']);
-          });
-        },
-        error: (err) => { this.toastr.error(err.error.message) }
-      });
-  }
-
-  getToken() {
-    return localStorage.getItem('access_token');
+    console.log(user);
+    const userExists = localStorage.getItem(user.email);
+    if (!userExists)
+      this.toastr.error('Invalid Credentials', 'Please Try Again');
+    else {
+      const _user: User = JSON.parse(userExists);
+      if (user.email == _user.email && user.password == _user.password) {
+        this.currentUser = _user;
+        localStorage.setItem('access_token', _user.user_id);
+        this.toastr.success(`Welcome ${this.currentUser.name}`);
+        console.log(this.currentUser);
+        this.router.navigate(['about/']);
+      } else {
+        this.toastr.error('Invalid Credentials', 'Please Try Again');
+      }
+    }
   }
 
   get isLoggedIn(): boolean {
@@ -59,19 +53,9 @@ export class AuthService {
 
   doLogout() {
     const removeToken = localStorage.removeItem('access_token');
+    this.currentUser = {};
     if (removeToken == null) {
       this.router.navigate(['login/']);
     }
   }
-
-  // User profile
-  getUserProfile(id: any): Observable<any> {
-    const api = `${this.endpoint}/user-profile/${id}`;
-    return this.http.get(api, { headers: this.headers }).pipe(
-      map((res) => {
-        return res || {};
-      })
-    );
-  }
-
 }

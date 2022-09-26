@@ -11,26 +11,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatStepperModule } from '@angular/material/stepper';
 import { InvoiceFormComponent } from './invoice-form/invoice-form.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
-import { ClientDetailsComponent } from './invoice-form/client-details/client-details.component';
-import { OrdersComponent } from './invoice-form/orders/orders.component';
-import { PreviewComponent } from './invoice-form/preview/preview.component';
-import { MatTableModule } from '@angular/material/table';
-import { RemarksComponent } from './invoice-form/remarks/remarks.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     InvoiceComponent,
     RegisterCompanyComponent,
     InvoiceFormComponent,
-    ClientDetailsComponent,
-    OrdersComponent,
-    PreviewComponent,
-    RemarksComponent,
   ],
   imports: [
     CommonModule,
@@ -42,16 +35,17 @@ import { RemarksComponent } from './invoice-form/remarks/remarks.component';
     ReactiveFormsModule,
     MatIconModule,
     MatDialogModule,
-    MatStepperModule,
     MatAutocompleteModule,
     MatSelectModule,
-    MatTableModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       progressBar: true,
       positionClass: 'toast-bottom-right',
-      tapToDismiss: true
-    })
-  ]
+      tapToDismiss: true,
+    }),
+  ],
 })
-export class InvoiceModule { }
+export class InvoiceModule {}

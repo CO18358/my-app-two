@@ -11,16 +11,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { AuthInterceptor } from './services/auth/authconfig.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ConfirmDialogComponent,
-  ],
+  declarations: [AppComponent, ConfirmDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,14 +32,10 @@ import { MatDialogModule } from '@angular/material/dialog';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
       tapToDismiss: true,
-      progressBar: true
-    })
+      progressBar: true,
+    }),
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
