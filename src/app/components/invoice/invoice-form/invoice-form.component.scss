@@ -1,50 +1,92 @@
 .container {
   padding: 3em;
-  .form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .multi {
+  .panel-container {
+    padding: 0 2em;
+    .form {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: center;
-      gap: 12px;
-      width: 100%;
       align-items: center;
-      flex-wrap: wrap;
-      p {
-        flex: 1 1 auto;
+
+      .multi {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+        align-items: center;
+        flex-wrap: wrap;
+        p {
+          flex: 1 1 auto;
+          margin: 0;
+          mat-form-field {
+            width: 100%;
+          }
+        }
+        margin-bottom: -8px;
+      }
+    }
+    .order {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h3 {
         margin: 0;
-        mat-form-field {
-          width: 100%;
+      }
+      .file-upload {
+        display: none;
+      }
+    }
+    .orders-table {
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+    }
+    .bill-id {
+      font-size: 1rem;
+      text-align: end;
+    }
+    .dates {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      .date {
+        flex: 1;
+        max-width: 320px;
+        .title {
+          margin-bottom: -8px;
+          color: white;
+          text-align: center;
+          font-size: 1rem;
         }
       }
-      margin-bottom: -8px;
     }
-  }
-  .order {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    h3 {
-      margin: 0;
+    .form-field {
+      display: flex;
+      align-items: center;
+      margin-top: 12px;
+      .label {
+        margin: 0;
+      }
+      .spacer {
+        flex: 1 1 auto;
+      }
     }
-
-    .file-upload {
-      display: none;
+    .form-end {
+      margin-bottom: 8px;
     }
-  }
-  .note {
-    margin: 12px 0;
-    color: greenyellow;
-  }
-  .orders-table {
-    width: 100%;
+    .foot-notes {
+      width: 100%;
+    }
   }
 }
 
 ::ng-deep .mat-expansion-panel {
   background-color: #232323 !important;
+}
+::ng-deep .mat-table,
+.mat-card {
+  background-color: #333 !important;
 }

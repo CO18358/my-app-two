@@ -1,48 +1,39 @@
 .invoice {
-    // display: flex;
-    // justify-content: center;
-    min-height: calc(100vh - 4rem);
+  min-height: calc(100vh - 4rem);
 
-    .dashboard-header {
-        display: flex;
-        justify-content: center;
+  .dashboard-header {
+    display: flex;
+    justify-content: center;
 
-        .header {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            margin: 12px;
-            border-radius: 8px;
-            border: 1px solid seashell;
-            height: fit-content;
-            min-width: 800px;
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      margin: 12px;
+      border-radius: 8px;
+      border: 1px solid seashell;
+      height: fit-content;
+      flex: 1;
 
-            .title {
-                margin: 0;
-            }
+      .title {
+        margin: 0;
+      }
 
-            .spacer {
-                flex: 1 1 auto
-            }
+      .spacer {
+        flex: 1 1 auto;
+      }
 
-            .action {
-                margin: 0 4px;
-            }
-        }
+      .action {
+        margin: 0 4px;
+      }
     }
-
-    // .add-invoice {
-    //     position: absolute;
-    //     bottom: 0;
-    //     right: 0;
-    //     padding: 40px;
-    // }
+  }
 }
 
 .loader {
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    align-items: center;
-    min-height: calc(100vh - 4rem);
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+  min-height: calc(100vh - 4rem);
 }

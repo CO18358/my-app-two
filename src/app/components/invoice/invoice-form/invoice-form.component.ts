@@ -1,13 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { lastValueFrom } from 'rxjs';
 import { REGEX } from 'src/app/models/constants';
 import { InvoiceService } from 'src/app/services/invoice/invoice.service';
 import { Utils } from 'src/app/shared/utilties';
@@ -18,12 +16,7 @@ import { Utils } from 'src/app/shared/utilties';
   styleUrls: ['./invoice-form.component.scss'],
 })
 export class InvoiceFormComponent implements OnInit {
-  constructor(
-    private invoiceService: InvoiceService,
-    private fb: FormBuilder,
-    private toastr: ToastrService
-  ) {}
-  step = 2;
+  step = 0;
 
   customerForm: FormGroup = this.fb.group({
     name: ['', [Validators.required]],
@@ -34,6 +27,7 @@ export class InvoiceFormComponent implements OnInit {
       [Validators.required, Validators.pattern(REGEX.mobileNumber)],
     ],
   });
+  clientData!: any;
 
   companyForm: FormGroup = this.fb.group({
     name: ['', [Validators.required]],
@@ -44,17 +38,63 @@ export class InvoiceFormComponent implements OnInit {
       [Validators.required, Validators.pattern(REGEX.mobileNumber)],
     ],
   });
-
-  clientData!: any;
   companyData!: any;
 
+  selectedFile: any;
   ordersData!: any;
   columns!: string[];
   showOrders = false;
 
-  selectedFile: any;
+  bill_id = Utils.randomString();
+  gen_date!: Date;
+  due_date!: Date;
 
-  ngOnInit(): void {}
+  billForm: FormGroup = this.fb.group({
+    subtotal: ['', [Validators.required]],
+    discount: [''],
+    tax: [''],
+    shipping: [''],
+    notes: [''],
+    terms: [''],
+  });
+  billData!: any;
+
+  subtotal: number = 0;
+  discount: number = 0;
+  tax: number = 0;
+  shipping: number = 0;
+  total: number = 0;
+
+  constructor(
+    private invoiceService: InvoiceService,
+    private fb: FormBuilder,
+    private toastr: ToastrService
+  ) {}
+
+  ngOnInit(): void {
+    this.billForm.get('subtotal')?.valueChanges.subscribe((res) => {
+      this.subtotal = res;
+      this.calculate();
+    });
+    this.billForm.get('discount')?.valueChanges.subscribe((res) => {
+      this.discount = res / 100;
+      this.calculate();
+    });
+    this.billForm.get('tax')?.valueChanges.subscribe((res) => {
+      this.tax = res / 100;
+      this.calculate();
+    });
+    this.billForm.get('shipping')?.valueChanges.subscribe((res) => {
+      this.shipping = res;
+      this.calculate();
+    });
+  }
+
+  calculate() {
+    const discounted = this.subtotal - this.subtotal * this.discount;
+    const taxed = discounted + discounted * this.tax;
+    this.total = taxed + this.shipping;
+  }
 
   setStep(index: number) {
     this.step = index;
@@ -64,17 +104,37 @@ export class InvoiceFormComponent implements OnInit {
     this.step--;
   }
 
+  saveCompanyDetail() {
+    if (this.companyForm.valid) {
+      this.companyData = this.companyForm.value;
+      this.step++;
+    }
+  }
   saveCustomerDetail() {
     if (this.customerForm.valid) {
       this.clientData = this.customerForm.value;
       this.step++;
     }
   }
+  saveOrders() {
+    this.ordersData && this.ordersData.length && this.step++;
+  }
+  finalizeBill() {
+    if (this.billForm.valid) {
+      this.billData = this.billForm.value;
+      this.billData.id = this.bill_id;
+      this.billData.gen_date = this.gen_date;
+      this.billData.due_date = this.due_date;
+      console.log('Company: ', this.companyData);
+      console.log('Client: ', this.clientData);
+      console.log('Orders: ', this.ordersData);
+      console.log('BillData : ', this.billData);
+    }
+  }
 
-  saveCompanyDetail() {
-    if (this.companyForm.valid) {
-      this.companyData = this.companyForm.value;
-      this.step++;
+  checkDate() {
+    if (this.gen_date > this.due_date) {
+      this.due_date = this.gen_date;
     }
   }
 

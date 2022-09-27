@@ -9,14 +9,6 @@
     <div class="header">
       <h3 class="title">{{ "Create New Form" }}</h3>
       <span class="spacer"></span>
-      <!-- <button
-        class="action"
-        mat-icon-button
-        color="primary"
-        (click)="editCompanyDetails()"
-      >
-        <mat-icon>edit</mat-icon>
-      </button> -->
       <button
         class="action"
         mat-icon-button
@@ -29,12 +21,3 @@
   </div>
   <app-invoice-form *ngIf="showForm"></app-invoice-form>
 </div>
-
-<!-- <div class="invoice" *ngIf="isRegistered === false">
-  <app-register-company
-    [title]="companyFormTitle"
-    [mode]="updateForm"
-    [id]="companyId"
-  >
-  </app-register-company>
-</div> -->
