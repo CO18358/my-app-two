@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { REGEX } from 'src/app/models/constants';
+import { CountryDataService } from 'src/app/services/invoice/country-data.service';
 import { InvoiceService } from 'src/app/services/invoice/invoice.service';
 import { Utils } from 'src/app/shared/utilties';
 
@@ -48,7 +44,6 @@ export class InvoiceFormComponent implements OnInit {
   bill_id = Utils.randomString();
   gen_date!: Date;
   due_date!: Date;
-
   billForm: FormGroup = this.fb.group({
     subtotal: ['', [Validators.required]],
     discount: [''],
@@ -57,16 +52,16 @@ export class InvoiceFormComponent implements OnInit {
     notes: [''],
     terms: [''],
   });
-  billData!: any;
-
   subtotal: number = 0;
   discount: number = 0;
   tax: number = 0;
   shipping: number = 0;
   total: number = 0;
+  billData!: any;
 
   constructor(
     private invoiceService: InvoiceService,
+    private countryService: CountryDataService,
     private fb: FormBuilder,
     private toastr: ToastrService
   ) {}
@@ -77,12 +72,16 @@ export class InvoiceFormComponent implements OnInit {
       this.calculate();
     });
     this.billForm.get('discount')?.valueChanges.subscribe((res) => {
-      this.discount = res / 100;
-      this.calculate();
+      if (res >= 0 && res <= 100) {
+        this.discount = res / 100;
+        this.calculate();
+      }
     });
     this.billForm.get('tax')?.valueChanges.subscribe((res) => {
-      this.tax = res / 100;
-      this.calculate();
+      if (res >= 0 && res <= 100) {
+        this.tax = res / 100;
+        this.calculate();
+      }
     });
     this.billForm.get('shipping')?.valueChanges.subscribe((res) => {
       this.shipping = res;
@@ -123,6 +122,7 @@ export class InvoiceFormComponent implements OnInit {
     if (this.billForm.valid) {
       this.billData = this.billForm.value;
       this.billData.id = this.bill_id;
+      this.billData.total = this.total;
       this.billData.gen_date = this.gen_date;
       this.billData.due_date = this.due_date;
       console.log('Company: ', this.companyData);
@@ -146,14 +146,12 @@ export class InvoiceFormComponent implements OnInit {
       switch (this.selectedFile.type) {
         case 'application/json': {
           this.ordersData = JSON.parse(fileReader.result as string);
-          console.log(this.ordersData);
           this.columns = Object.keys(this.ordersData[0]);
           this.showOrders = true;
           break;
         }
         case 'text/csv': {
           this.ordersData = Utils.csvToArray(fileReader.result as string);
-          console.log(this.ordersData);
           this.columns = Object.keys(this.ordersData[0]);
           this.showOrders = true;
           break;
