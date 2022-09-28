@@ -123,12 +123,24 @@ export class InvoiceFormComponent implements OnInit {
       this.billData = this.billForm.value;
       this.billData.id = this.bill_id;
       this.billData.total = this.total;
-      this.billData.gen_date = this.gen_date;
-      this.billData.due_date = this.due_date;
-      console.log('Company: ', this.companyData);
-      console.log('Client: ', this.clientData);
-      console.log('Orders: ', this.ordersData);
-      console.log('BillData : ', this.billData);
+      this.billData.gen_date = this.gen_date.toLocaleDateString('en-us', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+      this.billData.due_date = this.due_date.toLocaleDateString('en-us', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+      this.invoiceService.createPdf(
+        this.clientData,
+        this.companyData,
+        this.ordersData,
+        this.billData
+      );
     }
   }
 

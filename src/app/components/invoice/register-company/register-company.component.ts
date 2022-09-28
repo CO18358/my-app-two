@@ -88,11 +88,11 @@ export class RegisterCompanyComponent implements OnInit {
     data.contact = this.callingCode + ' ' + data.contact;
     data._id = 'comp_id_' + Utils.numId();
 
-    if (this.mode) {
-      this.invoiceService.updateCompany(this.id, data);
-    } else {
-      this.invoiceService.registerCompany(data);
-    }
+    // if (this.mode) {
+    //   this.invoiceService.updateCompany(this.id, data);
+    // } else {
+    //   this.invoiceService.registerCompany(data);
+    // }
   }
 
   private _filter(value: string): string[] {
