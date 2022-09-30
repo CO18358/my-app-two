@@ -32,6 +32,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'link-preview',
+    loadChildren: () =>
+      import('./components/link-preview/link-preview.module').then(
+        (m) => m.LinkPreviewModule
+      ),
+  },
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full',

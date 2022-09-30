@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   news_api_key: 'f7d949acf53644f08c53339dc46bf87a',
+  link_preview_api_key: 'd0790a832c49777dc1a05f08dedeb3cc',
+  omdb_api: 'http://www.omdbapi.com/?apikey=d75da1be&',
 };
 
 /*
