@@ -4,18 +4,6 @@
   </button>
   <span class="spacer"></span>
   <span class="menu-title" [routerLink]="'/about'">My App</span>
-  <span class="spacer"></span>
-  <button mat-flat-button *ngIf="!this.authService.isLoggedIn" routerLink="/">
-    Login
-  </button>
-  <button
-    mat-flat-button
-    (click)="logout()"
-    *ngIf="this.authService.isLoggedIn"
-    routerLink="/"
-  >
-    Logout
-  </button>
 </mat-toolbar>
 
 <mat-sidenav-container class="container">
