@@ -12,7 +12,7 @@ export class MovieDatabaseComponent implements OnInit {
   pageQuery!: string;
   result!: any[];
   show!: any;
-
+  showHome: boolean = true;
   pages!: number;
   current = 1;
 
@@ -37,11 +37,20 @@ export class MovieDatabaseComponent implements OnInit {
         } else {
           this.toastr.error('No Results Found. Try Again');
         }
-        console.log(value);
       });
     } else {
       this.toastr.error("Value can't be empty");
     }
+  }
+
+  lookup(id: string) {
+    this.omdbService.findById(id).subscribe({
+      next: (value) => {
+        this.show = value;
+        this.showHome = false;
+      },
+      error: (e) => console.log(e),
+    });
   }
 
   next() {
@@ -54,7 +63,6 @@ export class MovieDatabaseComponent implements OnInit {
             this.result = value.Search;
             this.pages =
               Math.floor(+value.totalResults / this.result.length) + 1;
-            console.log(value);
           },
           error: (e) => console.log(e),
         });
@@ -71,20 +79,17 @@ export class MovieDatabaseComponent implements OnInit {
             this.result = value.Search;
             this.pages =
               Math.floor(+value.totalResults / this.result.length) + 1;
-            console.log(value);
           },
           error: (e) => console.log(e),
         });
     }
   }
 
-  lookup(id: string) {
-    this.omdbService.findById(id).subscribe({
-      next: (value) => {
-        this.show = value;
-        console.log(value);
-      },
-      error: (e) => console.log(e),
-    });
+  rating(value: string, imdb: boolean = false) {
+    return imdb ? parseFloat(value) * 10 : parseFloat(value);
+  }
+
+  return() {
+    this.showHome = true;
   }
 }

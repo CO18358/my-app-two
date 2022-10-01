@@ -1,28 +1,76 @@
 <div class="container">
-  <div class="search-box">
-    <mat-form-field appearance="legacy" color="accent">
-      <mat-label>Enter Title</mat-label>
-      <input matInput [(ngModel)]="query" />
-    </mat-form-field>
-    <button mat-raised-button color="primary" (click)="search()">
-      <mat-icon matPrefix>search</mat-icon>
-      Search
-    </button>
-  </div>
+  <div *ngIf="showHome; else showDetails">
+    <div class="search-box">
+      <mat-form-field appearance="legacy" color="accent">
+        <mat-label>Enter Title</mat-label>
+        <input matInput [(ngModel)]="query" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="search()">
+        <mat-icon matPrefix>search</mat-icon>
+        Search
+      </button>
+    </div>
 
+    <div class="gallery" *ngIf="result">
+      <div *ngFor="let movie of result">
+        <mat-card class="movie-card" (click)="lookup(movie.imdbID)">
+          <img
+            #img
+            class="poster"
+            [src]="movie.Poster"
+            alt=""
+            (error)="img.src = '/assets/not_found.png'"
+          />
+          <div class="card-content">
+            <p class="title">{{ movie.Title | trimText: 30 }}</p>
+            <p class="subtitle">
+              {{ movie.Year + " • " + movie.Type | uppercase }}
+            </p>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="navigate">
+      <button mat-icon-button matPrefix (click)="previous()">
+        <mat-icon>keyboard_double_arrow_left</mat-icon>
+      </button>
+      <p>{{ current + " / " + pages }}</p>
+      <button mat-icon-button matPrefix (click)="next()">
+        <mat-icon> keyboard_double_arrow_right </mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #showDetails>
   <div class="movie-box" *ngIf="show">
     <div class="main">
-      <img
-        #img
-        class="poster"
-        [src]="show.Poster"
-        alt=""
-        (error)="img.src = '/assets/not_found.png'"
-      />
-      <div class="content">
-        <h1 class="title text-right">
+      <div class="left-content">
+        <img
+          #img
+          class="poster"
+          [src]="show.Poster"
+          alt=""
+          (error)="img.src = '/assets/not_found.png'"
+        />
+        <div *ngFor="let score of show.Ratings; let i = index">
+          <p class="rating">{{ score.Source }}</p>
+          <mat-progress-bar
+            mode="determinate"
+            [color]="i == 1 ? 'warn' : i == 2 ? 'accent' : 'primary'"
+            [value]="!i ? rating(score.Value, true) : rating(score.Value)"
+          ></mat-progress-bar>
+        </div>
+        <span class="spacer"></span>
+        <button mat-raised-button class="home" (click)="return()">
+          <mat-icon matPrefix>home</mat-icon>
+        </button>
+      </div>
+      <div class="right-content">
+        <p class="title text-right">
           {{ show.Title + " (" + show.Year + ")" }}
-        </h1>
+        </p>
         <div class="space-between">
           <p class="heading">{{ show.imdbRating + " | " + show.Rated }}</p>
           <p class="heading">{{ show.Runtime + " | " + show.Country }}</p>
@@ -42,11 +90,15 @@
           <div class="key text-center entry">Release Date</div>
           <div class="value text-center entry">{{ show.Released }}</div>
         </div>
+        <div class="space-between" *ngIf="show.Type == 'series'">
+          <div class="key text-center entry">Seasons</div>
+          <div class="value text-center entry">{{ show.totalSeasons }}</div>
+        </div>
         <div class="space-between">
           <div class="key text-center entry">Actors</div>
           <div class="value text-center entry">{{ show.Actors }}</div>
         </div>
-        <div class="space-between">
+        <div class="space-between" *ngIf="show.Type == 'series'">
           <div class="key text-center entry">Director</div>
           <div class="value text-center entry">{{ show.Director }}</div>
         </div>
@@ -54,7 +106,7 @@
           <div class="key text-center entry">Writers</div>
           <div class="value text-center entry">{{ show.Writer }}</div>
         </div>
-        <div class="space-between">
+        <div class="space-between" *ngIf="show.Type == 'movie'">
           <div class="key text-center entry">Box Office</div>
           <div class="value text-center entry">{{ show.BoxOffice }}</div>
         </div>
@@ -65,36 +117,4 @@
       </div>
     </div>
   </div>
-
-  <div class="gallery" *ngIf="result">
-    <div *ngFor="let movie of result">
-      <mat-card class="movie-card" (click)="lookup(movie.imdbID)">
-        <img
-          #img
-          class="poster"
-          [src]="movie.Poster"
-          alt=""
-          (error)="img.src = '/assets/not_found.png'"
-        />
-        <div class="card-content">
-          <p class="title">{{ movie.Title | trimText: 30 }}</p>
-          <p class="subtitle">
-            {{ movie.Year + " • " + movie.Type | uppercase }}
-          </p>
-        </div>
-      </mat-card>
-    </div>
-  </div>
-
-  <div class="navigate">
-    <button mat-icon-button matPrefix (click)="previous()">
-      <mat-icon>keyboard_double_arrow_left</mat-icon>
-    </button>
-    <p>{{ current + " / " + pages }}</p>
-    <button mat-icon-button matPrefix (click)="next()">
-      <mat-icon> keyboard_double_arrow_right </mat-icon>
-    </button>
-  </div>
-
-  <!-- <pre>{{ result | json }}</pre> -->
-</div>
+</ng-template>

@@ -1,10 +1,11 @@
 .container {
   padding: 2em;
   width: 100%;
-  height: calc(100vh - 4rem);
+  min-height: calc(100vh - 4rem);
   background: url("https://images.unsplash.com/photo-1593062096033-9a26b09da705?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d29yayUyMGRlc2t8ZW58MHx8MHx8&w=1000&q=80")
     no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   .accordian {
     .panel {
       width: 75vw;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { LinkPreviewService } from 'src/app/services/link-preview/link-preview.service';
 
 @Component({
@@ -9,7 +10,10 @@ import { LinkPreviewService } from 'src/app/services/link-preview/link-preview.s
 export class LinkPreviewComponent implements OnInit {
   url = '';
   result!: any;
-  constructor(private linkPreview: LinkPreviewService) {}
+  constructor(
+    private linkPreview: LinkPreviewService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -19,7 +23,9 @@ export class LinkPreviewComponent implements OnInit {
         next: (value) => {
           this.result = value;
         },
-        error: (e) => console.log(e),
+        error: (e) => {
+          this.toastr.error("That didn't work. Try a Different URL.");
+        },
       });
     }
   }

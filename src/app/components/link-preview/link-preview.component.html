@@ -10,7 +10,7 @@
     </button>
   </div>
 
-  <div *ngIf="result">
+  <div *ngIf="result && result.url">
     <mat-card class="result">
       <mat-card-header>
         <mat-card-title>{{ result.title }} </mat-card-title>

@@ -46,14 +46,26 @@
     .main {
       display: flex;
       gap: 16px;
-
-      .poster {
+      .left-content {
         display: flex;
-        height: 25em;
-        margin: 8px auto;
-        object-fit: cover;
+        flex-direction: column;
+        .poster {
+          display: flex;
+          height: 25em;
+          margin: 8px auto;
+          object-fit: cover;
+        }
+        .rating {
+          margin: 0.5em 0;
+        }
+        .home {
+          width: 100%;
+          border-radius: 8px;
+          background: #129cd6;
+          color: black;
+        }
       }
-      .content {
+      .right-content {
         margin-top: 8px;
         .title {
           font-size: 2rem;
@@ -138,4 +150,8 @@
   padding: 12px;
   background: rgb(0, 0, 0, 0.4);
   border: 1px solid;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
