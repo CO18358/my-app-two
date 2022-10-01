@@ -34,8 +34,15 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'movie-db',
+    loadChildren: () =>
+      import('./components/movie-database/movie-database.module').then(
+        (m) => m.MovieDatabaseModule
+      ),
+  },
+  {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/about',
     pathMatch: 'full',
   },
 ];

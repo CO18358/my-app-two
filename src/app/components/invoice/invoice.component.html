@@ -1,6 +1,10 @@
 <div class="container">
   <mat-accordion class="accordian" multi>
-    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
+    <mat-expansion-panel
+      class="panel"
+      [expanded]="step === 0"
+      (opened)="setStep(0)"
+    >
       <mat-expansion-panel-header>
         <mat-panel-title class="section-title">
           Company Information
@@ -72,6 +76,7 @@
       </div>
       <mat-action-row>
         <button
+          class="action-btn"
           mat-raised-button
           color="accent"
           [disabled]="companyForm.invalid"
@@ -83,6 +88,7 @@
     </mat-expansion-panel>
 
     <mat-expansion-panel
+      class="panel"
       *ngIf="companyData"
       [expanded]="step === 1"
       (opened)="setStep(1)"
@@ -157,10 +163,16 @@
         </form>
       </div>
       <mat-action-row>
-        <button mat-raised-button color="primary" (click)="prevStep()">
+        <button
+          class="action-btn"
+          mat-raised-button
+          color="primary"
+          (click)="prevStep()"
+        >
           Previous
         </button>
         <button
+          class="action-btn"
           mat-raised-button
           color="accent"
           [disabled]="customerForm.invalid"
@@ -172,6 +184,7 @@
     </mat-expansion-panel>
 
     <mat-expansion-panel
+      class="panel"
       *ngIf="clientData"
       [expanded]="step === 2"
       (opened)="setStep(2)"
@@ -221,10 +234,16 @@
       </div>
 
       <mat-action-row>
-        <button mat-raised-button color="primary" (click)="prevStep()">
+        <button
+          class="action-btn"
+          mat-raised-button
+          color="primary"
+          (click)="prevStep()"
+        >
           Previous
         </button>
         <button
+          class="action-btn"
           mat-raised-button
           color="accent"
           [disabled]="!ordersData"
@@ -236,6 +255,7 @@
     </mat-expansion-panel>
 
     <mat-expansion-panel
+      class="panel"
       *ngIf="ordersData"
       [expanded]="step === 3"
       (opened)="setStep(3)"
@@ -342,10 +362,16 @@
       </div>
 
       <mat-action-row>
-        <button mat-raised-button color="primary" (click)="prevStep()">
+        <button
+          class="action-btn"
+          mat-raised-button
+          color="primary"
+          (click)="prevStep()"
+        >
           Previous
         </button>
         <button
+          class="action-btn"
           mat-raised-button
           color="accent"
           [disabled]="billForm.invalid || !total"

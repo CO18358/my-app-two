@@ -5,6 +5,16 @@
   justify-content: center;
 }
 
+.container {
+  width: 100vw;
+  height: calc(100vh-rem);
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://wallpapersmug.com/download/3840x2160/515b46/anime-beast-goku-dark.jpg")
+      no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .search {
   width: 100%;
   display: flex;
@@ -31,7 +41,7 @@
     line-height: 1;
     margin: 0.5rem;
     padding: 1rem;
-    color: #4b78d2;
+    color: #4b62d2;
     transition: 0.25s;
 
     &:hover {
@@ -41,5 +51,4 @@
       transform: translateY(-0.25rem);
     }
   }
-
 }

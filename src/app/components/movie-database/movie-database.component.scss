@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif&display=swap");
+
+.container {
+  width: 100%;
+  height: calc(100vh - 4rem);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: auto;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("https://wallpaperaccess.com/full/3257696.png") no-repeat;
+  background-size: cover;
+
+  .search-box {
+    width: 80%;
+    margin: 2em auto;
+    padding: 1em 2em;
+    border-radius: 0.8em;
+    background: rgb(255 255 255 / 14%);
+    backdrop-filter: blur(2px);
+    box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+
+    mat-form-field {
+      flex: 1;
+    }
+    button {
+      font-family: "PT Serif", serif;
+    }
+  }
+
+  .movie-box {
+    width: 80%;
+    margin: 2em auto;
+    padding: 1em 2em;
+    border-radius: 0.8em;
+    background: rgb(255 255 255 / 14%);
+    backdrop-filter: blur(2px);
+    box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
+    font-family: "PT Serif", serif;
+
+    .main {
+      display: flex;
+      gap: 16px;
+
+      .poster {
+        display: flex;
+        height: 25em;
+        margin: 8px auto;
+        object-fit: cover;
+      }
+      .content {
+        margin-top: 8px;
+        .title {
+          font-size: 2rem;
+          line-height: 36px;
+        }
+        .heading {
+          font-size: 1.2rem;
+        }
+
+        .plot {
+          padding: 1em 0;
+          font-size: 1rem;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+
+  .gallery {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    gap: 1rem;
+    padding: 1rem;
+    width: 90%;
+    margin: auto;
+    justify-content: flex-start;
+    font-family: "EB Garamond", serif;
+
+    .movie-card {
+      flex: 1 1 auto;
+      background: linear-gradient(to right, #414345, #232526);
+      color: white;
+
+      .poster {
+        display: flex;
+        height: 25em;
+        margin: auto;
+        object-fit: cover;
+        margin: auto;
+      }
+      .card-content {
+        margin-top: 0.5em;
+        p {
+          margin: 0;
+        }
+      }
+      &:hover {
+        box-shadow: 0px 0px 4px 4px rgba(191, 191, 191);
+        transition: all 0.2s ease-out;
+        transform: translateY(-5px);
+      }
+    }
+  }
+  .navigate {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+}
+
+.text-right {
+  text-align: right;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.key {
+  flex: 1;
+}
+.value {
+  flex: 2;
+}
+.entry {
+  padding: 12px;
+  background: rgb(0, 0, 0, 0.4);
+  border: 1px solid;
+}
