@@ -41,6 +41,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'horoscope',
+    loadChildren: () =>
+      import('./components/horoscope/horoscope.module').then(
+        (m) => m.HoroscopeModule
+      ),
+  },
+  {
     path: '',
     redirectTo: '/about',
     pathMatch: 'full',

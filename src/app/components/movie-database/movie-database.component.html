@@ -35,7 +35,7 @@
       <button mat-icon-button matPrefix (click)="previous()">
         <mat-icon>keyboard_double_arrow_left</mat-icon>
       </button>
-      <p>{{ current + " / " + pages }}</p>
+      <p>{{ "Page " + current + " of " + pages }}</p>
       <button mat-icon-button matPrefix (click)="next()">
         <mat-icon> keyboard_double_arrow_right </mat-icon>
       </button>
@@ -76,7 +76,7 @@
           <p class="heading">{{ show.Runtime + " | " + show.Country }}</p>
         </div>
 
-        <p class="plot">{{ show.Plot }}</p>
+        <p class="plot entry">{{ show.Plot }}</p>
 
         <div class="space-between">
           <div class="key text-center entry">Genre</div>

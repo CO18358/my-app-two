@@ -10,50 +10,50 @@ import { map, startWith } from 'rxjs/operators';
 @Component({
   selector: 'app-anime-quote',
   templateUrl: './anime-quote.component.html',
-  styleUrls: ['./anime-quote.component.scss']
+  styleUrls: ['./anime-quote.component.scss'],
 })
 export class AnimeQuoteComponent implements OnInit {
-
   titles: string[] = [];
   form = new FormControl();
-  filteredTitles!: Observable<string[]>
+  filteredTitles!: Observable<string[]>;
 
   constructor(
     private quoteService: AnimeQuotesService,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   async ngOnInit() {
     await this.getAnimeList();
     this.filteredTitles = this.form.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || '')),
+      map((value) => this._filter(value || ''))
     );
   }
 
   async getAnimeList() {
-    const titles = await lastValueFrom(this.quoteService.animeListUrl())
+    const titles = await lastValueFrom(this.quoteService.animeListUrl());
     this.titles = titles.sort().filter((title: string) => title);
-    this.titles.unshift("Random")
+    this.titles.unshift('Random');
   }
 
   async showQuote(name: string) {
-    let request = this.quoteService.animeQuotesUrl(name)
-    if (name == "Random") {
-      request = this.quoteService.randomQoutesUrl()
+    let request = this.quoteService.animeQuotesUrl(name);
+    if (name == 'Random') {
+      request = this.quoteService.randomQoutesUrl();
     }
-    const quotes: AnimeQuote[] = await lastValueFrom(request)
+    const quotes: AnimeQuote[] = await lastValueFrom(request);
     const quote = quotes[Math.floor(Math.random() * quotes.length)];
     this.dialog.open(ShowQuoteComponent, {
       data: quote,
-      maxHeight: "75vh"
-    })
+      maxHeight: '75vh',
+    });
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.titles.filter(option => option.toLowerCase().includes(filterValue));
+    return this.titles.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
   }
-
 }

@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="search-box">
+    <mat-form-field appearance="legacy">
+      <mat-label>Zodiac Sign</mat-label>
+      <mat-select [(ngModel)]="querySign">
+        <mat-option *ngFor="let sign of signs" [value]="sign.zodiacName">
+          <div class="option">
+            <img [src]="sign.icon" alt="" matPrefix />
+            <p>
+              {{ sign.zodiacName | uppercase }}
+            </p>
+          </div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Day</mat-label>
+      <mat-select [(ngModel)]="queryDay">
+        <mat-option *ngFor="let day of days" [value]="day">
+          {{ day | uppercase }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-flat-button (click)="checkHoroscope()">View Horoscope</button>
+  </div>
+
+  <div class="card" *ngIf="result.horoscope">
+    <div class="left-panel">
+      <img
+        [src]="'/assets/zodiac/' + result.signData.zodiacName + '.png'"
+        alt=""
+      />
+      <br /><br />
+      <div class="caption">
+        <p class="content" [style.color]="result.signData.color">Element</p>
+        <p class="content text-right">{{ result.signData.element }}</p>
+      </div>
+      <div class="caption">
+        <p class="content" [style.color]="result.signData.color">Mood</p>
+        <p class="content text-right">{{ result.horoscope.mood }}</p>
+      </div>
+      <div class="caption">
+        <p class="content" [style.color]="result.signData.color">
+          Compatibility
+        </p>
+        <p class="content text-right">{{ result.horoscope.compatibility }}</p>
+      </div>
+      <div class="caption">
+        <p class="content" [style.color]="result.signData.color">Lucky Time</p>
+        <p class="content text-right">{{ result.horoscope.lucky_time }}</p>
+      </div>
+      <div class="caption">
+        <p class="content" [style.color]="result.signData.color">
+          Lucky Number
+        </p>
+        <p class="content text-right">{{ result.horoscope.lucky_number }}</p>
+      </div>
+      <div class="caption">
+        <p class="content" [style.color]="result.signData.color">Lucky Color</p>
+        <p class="content text-right">
+          {{ result.horoscope.color }}
+        </p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <p class="title text-right" [style.color]="result.signData.color">
+        {{
+          result.signData.zodiacName + " | " + result.signData.symbol
+            | uppercase
+        }}
+      </p>
+      <div class="caption">
+        <p class="subtitle" [style.color]="result.signData.color">
+          {{ "Date - " + result.horoscope.current_date }}
+        </p>
+        <p class="subtitle">{{ result.horoscope.date_range }}</p>
+      </div>
+      <br />
+      <p class="title" [style.color]="result.signData.color">HOROSCOPE</p>
+      <p class="content">{{ result.horoscope.description }}</p>
+      <br />
+      <p class="title" [style.color]="result.signData.color">ABOUT SIGN</p>
+      <span class="content">{{
+        showFullText
+          ? result.signData.description
+          : (result.signData.description | trimText: 900)
+      }}</span>
+      <span
+        class="link"
+        [style.color]="result.signData.color"
+        (click)="showFullText = !showFullText"
+        >{{ showFullText ? "Read Less" : "Read More" }}</span
+      >
+    </div>
+  </div>
+</div>

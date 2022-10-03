@@ -33,7 +33,7 @@ export class MovieDatabaseComponent implements OnInit {
           this.pageQuery = this.query;
           this.result = value.Search;
           this.current = 1;
-          this.pages = Math.floor(+value.totalResults / this.result.length) + 1;
+          this.pages = Math.ceil(+value.totalResults / this.result.length);
         } else {
           this.toastr.error('No Results Found. Try Again');
         }
@@ -61,8 +61,7 @@ export class MovieDatabaseComponent implements OnInit {
         .subscribe({
           next: (value: any) => {
             this.result = value.Search;
-            this.pages =
-              Math.floor(+value.totalResults / this.result.length) + 1;
+            this.pages = Math.ceil(+value.totalResults / this.result.length);
           },
           error: (e) => console.log(e),
         });
@@ -77,8 +76,7 @@ export class MovieDatabaseComponent implements OnInit {
         .subscribe({
           next: (value: any) => {
             this.result = value.Search;
-            this.pages =
-              Math.floor(+value.totalResults / this.result.length) + 1;
+            this.pages = Math.ceil(+value.totalResults / this.result.length);
           },
           error: (e) => console.log(e),
         });

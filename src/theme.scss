@@ -26,6 +26,18 @@ $dark-app-theme: mat-dark-theme(
 .dark-theme {
   mat-option {
     background-color: #131313;
+    .option {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 8px;
+      img {
+        width: 32px;
+      }
+      p {
+        margin: 0;
+      }
+    }
   }
 
   @include angular-material-color($dark-app-theme);

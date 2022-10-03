@@ -30,3 +30,8 @@ export interface Item {
   discount?: string;
   tax?: string;
 }
+
+export interface Horoscope {
+  horoscope: any;
+  signData: any;
+}
