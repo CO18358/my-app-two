@@ -28,7 +28,6 @@ export class HoroscopeComponent implements OnInit {
         next: (value) => {
           this.result.horoscope = value;
           this.getSignDetails(this.querySign);
-          console.log(this.result);
         },
         error: (e) => {
           console.log(e);
