@@ -48,6 +48,10 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'fitness',
+    loadChildren: () => import('./components/fitness/fitness.module').then(m => m.FitnessModule),
+  },
+  {
     path: '',
     redirectTo: '/about',
     pathMatch: 'full',
@@ -58,4 +62,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
