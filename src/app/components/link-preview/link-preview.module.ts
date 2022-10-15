@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
 @NgModule({
   declarations: [LinkPreviewComponent],
   imports: [
@@ -20,6 +21,7 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    TitlebarModule
   ],
 })
-export class LinkPreviewModule {}
+export class LinkPreviewModule { }

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { TrimTextModule } from 'src/app/shared/trim-text/trim-text.module';
+import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
 
 @NgModule({
   declarations: [HoroscopeComponent],
@@ -19,6 +20,7 @@ import { TrimTextModule } from 'src/app/shared/trim-text/trim-text.module';
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    TitlebarModule,
   ],
 })
-export class HoroscopeModule {}
+export class HoroscopeModule { }

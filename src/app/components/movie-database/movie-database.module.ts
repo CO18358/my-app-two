@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { TrimTextModule } from 'src/app/shared/trim-text/trim-text.module';
+import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
 
 @NgModule({
   declarations: [MovieDatabaseComponent],
@@ -27,6 +28,7 @@ import { TrimTextModule } from 'src/app/shared/trim-text/trim-text.module';
     MatCardModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+    TitlebarModule
   ],
 })
-export class MovieDatabaseModule {}
+export class MovieDatabaseModule { }

@@ -1,10 +1,7 @@
+<app-titlebar title="invoice generator"></app-titlebar>
 <div class="container">
   <mat-accordion class="accordian" multi>
-    <mat-expansion-panel
-      class="panel"
-      [expanded]="step === 0"
-      (opened)="setStep(0)"
-    >
+    <mat-expansion-panel class="panel" [expanded]="step === 0" (opened)="setStep(0)">
       <mat-expansion-panel-header>
         <mat-panel-title class="section-title">
           Company Information
@@ -18,9 +15,7 @@
               <mat-form-field appearance="outline" color="primary">
                 <mat-label>Name</mat-label>
                 <input matInput formControlName="name" type="text" />
-                <mat-error
-                  *ngIf="companyForm.controls['name'].hasError('required')"
-                >
+                <mat-error *ngIf="companyForm.controls['name'].hasError('required')">
                   Name is required
                 </mat-error>
               </mat-form-field>
@@ -29,9 +24,7 @@
               <mat-form-field appearance="outline" color="primary">
                 <mat-label>Address</mat-label>
                 <input matInput type="text" formControlName="address" />
-                <mat-error
-                  *ngIf="companyForm.controls['address'].hasError('required')"
-                >
+                <mat-error *ngIf="companyForm.controls['address'].hasError('required')">
                   Address is required
                 </mat-error>
               </mat-form-field>
@@ -43,14 +36,10 @@
               <mat-form-field appearance="outline" color="primary">
                 <mat-label>Email</mat-label>
                 <input matInput type="text" formControlName="email" />
-                <mat-error
-                  *ngIf="companyForm.controls['email'].hasError('required')"
-                >
+                <mat-error *ngIf="companyForm.controls['email'].hasError('required')">
                   Email is required
                 </mat-error>
-                <mat-error
-                  *ngIf="companyForm.controls['email'].hasError('email')"
-                >
+                <mat-error *ngIf="companyForm.controls['email'].hasError('email')">
                   Invalid Email
                 </mat-error>
               </mat-form-field>
@@ -59,14 +48,10 @@
               <mat-form-field appearance="outline" color="primary">
                 <mat-label>Contact No.</mat-label>
                 <input matInput type="text" formControlName="contact" />
-                <mat-error
-                  *ngIf="companyForm.controls['contact'].hasError('required')"
-                >
+                <mat-error *ngIf="companyForm.controls['contact'].hasError('required')">
                   Contact Number is required
                 </mat-error>
-                <mat-error
-                  *ngIf="companyForm.controls['contact'].hasError('pattern')"
-                >
+                <mat-error *ngIf="companyForm.controls['contact'].hasError('pattern')">
                   Invalid Contact Number
                 </mat-error>
               </mat-form-field>
@@ -75,24 +60,14 @@
         </form>
       </div>
       <mat-action-row>
-        <button
-          class="action-btn"
-          mat-raised-button
-          color="accent"
-          [disabled]="companyForm.invalid"
-          (click)="saveCompanyDetail()"
-        >
+        <button class="action-btn" mat-raised-button color="accent" [disabled]="companyForm.invalid"
+          (click)="saveCompanyDetail()">
           Next
         </button>
       </mat-action-row>
     </mat-expansion-panel>
 
-    <mat-expansion-panel
-      class="panel"
-      *ngIf="companyData"
-      [expanded]="step === 1"
-      (opened)="setStep(1)"
-    >
+    <mat-expansion-panel class="panel" *ngIf="companyData" [expanded]="step === 1" (opened)="setStep(1)">
       <mat-expansion-panel-header>
         <mat-panel-title class="section-title">
           Customer Information
@@ -106,9 +81,7 @@
               <mat-form-field appearance="outline" color="primary">
                 <mat-label>Name</mat-label>
                 <input matInput formControlName="name" type="text" />
-                <mat-error
-                  *ngIf="customerForm.controls['name'].hasError('required')"
-                >
+                <mat-error *ngIf="customerForm.controls['name'].hasError('required')">
                   Name is required
                 </mat-error>
               </mat-form-field>
@@ -117,9 +90,7 @@
               <mat-form-field appearance="outline" color="primary">
                 <mat-label>Address</mat-label>
                 <input matInput type="text" formControlName="address" />
-                <mat-error
-                  *ngIf="customerForm.controls['address'].hasError('required')"
-                >
+                <mat-error *ngIf="customerForm.controls['address'].hasError('required')">
                   Address is required
                 </mat-error>
               </mat-form-field>
@@ -131,14 +102,10 @@
               <mat-form-field appearance="outline" color="primary">
                 <mat-label>Email</mat-label>
                 <input matInput type="text" formControlName="email" />
-                <mat-error
-                  *ngIf="customerForm.controls['email'].hasError('required')"
-                >
+                <mat-error *ngIf="customerForm.controls['email'].hasError('required')">
                   Email is required
                 </mat-error>
-                <mat-error
-                  *ngIf="customerForm.controls['email'].hasError('email')"
-                >
+                <mat-error *ngIf="customerForm.controls['email'].hasError('email')">
                   Invalid Email
                 </mat-error>
               </mat-form-field>
@@ -147,14 +114,10 @@
               <mat-form-field appearance="outline" color="primary">
                 <mat-label>Contact No.</mat-label>
                 <input matInput type="text" formControlName="contact" />
-                <mat-error
-                  *ngIf="customerForm.controls['contact'].hasError('required')"
-                >
+                <mat-error *ngIf="customerForm.controls['contact'].hasError('required')">
                   Contact Number is required
                 </mat-error>
-                <mat-error
-                  *ngIf="customerForm.controls['contact'].hasError('pattern')"
-                >
+                <mat-error *ngIf="customerForm.controls['contact'].hasError('pattern')">
                   Invalid Contact Number
                 </mat-error>
               </mat-form-field>
@@ -163,32 +126,17 @@
         </form>
       </div>
       <mat-action-row>
-        <button
-          class="action-btn"
-          mat-raised-button
-          color="primary"
-          (click)="prevStep()"
-        >
+        <button class="action-btn" mat-raised-button color="primary" (click)="prevStep()">
           Previous
         </button>
-        <button
-          class="action-btn"
-          mat-raised-button
-          color="accent"
-          [disabled]="customerForm.invalid"
-          (click)="saveCustomerDetail()"
-        >
+        <button class="action-btn" mat-raised-button color="accent" [disabled]="customerForm.invalid"
+          (click)="saveCustomerDetail()">
           Next
         </button>
       </mat-action-row>
     </mat-expansion-panel>
 
-    <mat-expansion-panel
-      class="panel"
-      *ngIf="clientData"
-      [expanded]="step === 2"
-      (opened)="setStep(2)"
-    >
+    <mat-expansion-panel class="panel" *ngIf="clientData" [expanded]="step === 2" (opened)="setStep(2)">
       <mat-expansion-panel-header>
         <mat-panel-title> Orders </mat-panel-title>
       </mat-expansion-panel-header>
@@ -199,29 +147,15 @@
             Upload (JSON or CSV) File
             {{ selectedFile ? ": " + selectedFile.name : "" }}
           </h3>
-          <input
-            class="file-upload"
-            type="file"
-            (change)="onFileChanged($event)"
-            accept=".csv, .json"
-            #fileInput
-          />
+          <input class="file-upload" type="file" (change)="onFileChanged($event)" accept=".csv, .json" #fileInput />
           <button mat-raised-button color="accent" (click)="fileInput.click()">
             <mat-icon>description</mat-icon>
             Select File
           </button>
         </div>
         <hr style="margin-bottom: 12px" />
-        <table
-          *ngIf="showOrders"
-          mat-table
-          [dataSource]="ordersData"
-          class="orders-table mat-elevation-z8"
-        >
-          <ng-container
-            *ngFor="let column of columns"
-            matColumnDef="{{ column }}"
-          >
+        <table *ngIf="showOrders" mat-table [dataSource]="ordersData" class="orders-table mat-elevation-z8">
+          <ng-container *ngFor="let column of columns" matColumnDef="{{ column }}">
             <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
             <td mat-cell *matCellDef="let element">
               {{ element[column] }}
@@ -234,32 +168,16 @@
       </div>
 
       <mat-action-row>
-        <button
-          class="action-btn"
-          mat-raised-button
-          color="primary"
-          (click)="prevStep()"
-        >
+        <button class="action-btn" mat-raised-button color="primary" (click)="prevStep()">
           Previous
         </button>
-        <button
-          class="action-btn"
-          mat-raised-button
-          color="accent"
-          [disabled]="!ordersData"
-          (click)="saveOrders()"
-        >
+        <button class="action-btn" mat-raised-button color="accent" [disabled]="!ordersData" (click)="saveOrders()">
           Next
         </button>
       </mat-action-row>
     </mat-expansion-panel>
 
-    <mat-expansion-panel
-      class="panel"
-      *ngIf="ordersData"
-      [expanded]="step === 3"
-      (opened)="setStep(3)"
-    >
+    <mat-expansion-panel class="panel" *ngIf="ordersData" [expanded]="step === 3" (opened)="setStep(3)">
       <mat-expansion-panel-header>
         <mat-panel-title> Bill Details </mat-panel-title>
       </mat-expansion-panel-header>
@@ -269,17 +187,11 @@
         <div class="dates">
           <mat-card class="date">
             <mat-card-subtitle class="title">Issue Date</mat-card-subtitle>
-            <mat-calendar
-              [(selected)]="gen_date"
-              (selectedChange)="checkDate()"
-            ></mat-calendar>
+            <mat-calendar [(selected)]="gen_date" (selectedChange)="checkDate()"></mat-calendar>
           </mat-card>
           <mat-card class="date">
             <mat-card-subtitle class="title">Due Date</mat-card-subtitle>
-            <mat-calendar
-              [(selected)]="due_date"
-              [minDate]="gen_date"
-            ></mat-calendar>
+            <mat-calendar [(selected)]="due_date" [minDate]="gen_date"></mat-calendar>
           </mat-card>
         </div>
         <form [formGroup]="billForm">
@@ -287,54 +199,29 @@
             <h2 class="label">Subtotal:</h2>
             <span class="spacer"></span>
             <mat-form-field appearance="legacy">
-              <input
-                matInput
-                formControlName="subtotal"
-                type="number"
-                min="0"
-              />
-              <mat-error
-                *ngIf="billForm.controls['subtotal'].hasError('required')"
-                >Field can't be empty</mat-error
-              >
+              <input matInput formControlName="subtotal" type="number" min="0" />
+              <mat-error *ngIf="billForm.controls['subtotal'].hasError('required')">Field can't be empty</mat-error>
             </mat-form-field>
           </div>
           <div class="form-field">
             <h2 class="label">Tax:</h2>
             <span class="spacer"></span>
             <mat-form-field appearance="legacy">
-              <input
-                matInput
-                formControlName="tax"
-                type="number"
-                min="0"
-                max="100"
-              />
+              <input matInput formControlName="tax" type="number" min="0" max="100" />
             </mat-form-field>
           </div>
           <div class="form-field">
             <h2 class="label">Discount:</h2>
             <span class="spacer"></span>
             <mat-form-field appearance="legacy">
-              <input
-                matInput
-                formControlName="discount"
-                type="number"
-                min="0"
-                max="100"
-              />
+              <input matInput formControlName="discount" type="number" min="0" max="100" />
             </mat-form-field>
           </div>
           <div class="form-field">
             <h2 class="label">Shipping Charges:</h2>
             <span class="spacer"></span>
             <mat-form-field appearance="legacy">
-              <input
-                matInput
-                formControlName="shipping"
-                type="number"
-                min="0"
-              />
+              <input matInput formControlName="shipping" type="number" min="0" />
             </mat-form-field>
           </div>
           <div class="form-field form-end">
@@ -342,19 +229,11 @@
             <span class="spacer"></span>
             <h2 class="label">{{ "₹ " + total }}</h2>
           </div>
-          <mat-form-field
-            class="foot-notes"
-            appearance="outline"
-            color="primary"
-          >
+          <mat-form-field class="foot-notes" appearance="outline" color="primary">
             <mat-label>Footer Notes</mat-label>
             <input matInput formControlName="notes" type="text" />
           </mat-form-field>
-          <mat-form-field
-            class="foot-notes"
-            appearance="outline"
-            color="primary"
-          >
+          <mat-form-field class="foot-notes" appearance="outline" color="primary">
             <mat-label>Terms & Conditions</mat-label>
             <input matInput type="text" formControlName="terms" />
           </mat-form-field>
@@ -362,21 +241,11 @@
       </div>
 
       <mat-action-row>
-        <button
-          class="action-btn"
-          mat-raised-button
-          color="primary"
-          (click)="prevStep()"
-        >
+        <button class="action-btn" mat-raised-button color="primary" (click)="prevStep()">
           Previous
         </button>
-        <button
-          class="action-btn"
-          mat-raised-button
-          color="accent"
-          [disabled]="billForm.invalid || !total"
-          (click)="finalizeBill()"
-        >
+        <button class="action-btn" mat-raised-button color="accent" [disabled]="billForm.invalid || !total"
+          (click)="finalizeBill()">
           Generate
         </button>
       </mat-action-row>

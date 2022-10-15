@@ -1,3 +1,4 @@
+<app-titlebar title="find a movie"></app-titlebar>
 <div class="container">
   <div *ngIf="showHome; else showDetails">
     <div class="search-box">
@@ -14,13 +15,7 @@
     <div class="gallery" *ngIf="result">
       <div *ngFor="let movie of result">
         <mat-card class="movie-card" (click)="lookup(movie.imdbID)">
-          <img
-            #img
-            class="poster"
-            [src]="movie.Poster"
-            alt=""
-            (error)="img.src = '/assets/not_found.png'"
-          />
+          <img #img class="poster" [src]="movie.Poster" alt="" (error)="img.src = '/assets/not_found.png'" />
           <div class="card-content">
             <p class="title">{{ movie.Title | trimText: 30 }}</p>
             <p class="subtitle">
@@ -47,20 +42,11 @@
   <div class="movie-box" *ngIf="show">
     <div class="main">
       <div class="left-content">
-        <img
-          #img
-          class="poster"
-          [src]="show.Poster"
-          alt=""
-          (error)="img.src = '/assets/not_found.png'"
-        />
+        <img #img class="poster" [src]="show.Poster" alt="" (error)="img.src = '/assets/not_found.png'" />
         <div *ngFor="let score of show.Ratings; let i = index">
           <p class="rating">{{ score.Source }}</p>
-          <mat-progress-bar
-            mode="determinate"
-            [color]="i == 1 ? 'warn' : i == 2 ? 'accent' : 'primary'"
-            [value]="!i ? rating(score.Value, true) : rating(score.Value)"
-          ></mat-progress-bar>
+          <mat-progress-bar mode="determinate" [color]="i == 1 ? 'warn' : i == 2 ? 'accent' : 'primary'"
+            [value]="!i ? rating(score.Value, true) : rating(score.Value)"></mat-progress-bar>
         </div>
         <span class="spacer"></span>
         <button mat-raised-button class="home" (click)="return()">

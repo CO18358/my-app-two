@@ -1,3 +1,4 @@
+<app-titlebar title="IP lookup"></app-titlebar>
 <div class="container">
   <div class="search-box">
     <mat-form-field appearance="legacy" color="accent">
@@ -15,21 +16,15 @@
       <mat-card-header>
         <mat-card-title>{{ result.title }} </mat-card-title>
       </mat-card-header>
-      <img
-        *ngIf="result.image"
-        mat-card-image
-        class="card-image"
-        [src]="result.image"
-        alt=""
-      />
+      <img *ngIf="result.image" mat-card-image class="card-image" [src]="result.image" alt="" />
       <mat-card-content class="content">
         <p>{{ result.description }}</p>
       </mat-card-content>
       <mat-card-actions align="end">
         <a mat-flat-button color="primary" [href]="result.url" target="_blank">
           <mat-icon matPrefix>open_in_new</mat-icon>
-          Visit Website</a
-        >
+          Visit Website
+        </a>
       </mat-card-actions>
     </mat-card>
   </div>

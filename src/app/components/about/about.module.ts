@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AboutRoutingModule } from './about-routing.module';
 import { AboutComponent } from './about.component';
-import { MatListModule } from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
-
+import { MatCardModule } from '@angular/material/card';
+import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
 
 @NgModule({
   declarations: [
@@ -14,8 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     AboutRoutingModule,
-    MatListModule,
-    MatIconModule
+    MatCardModule,
+    TitlebarModule
   ]
 })
 export class AboutModule { }

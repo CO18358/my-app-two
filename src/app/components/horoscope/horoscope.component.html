@@ -1,3 +1,4 @@
+<app-titlebar title="horoscope"></app-titlebar>
 <div class="container">
   <div class="search-box">
     <mat-form-field appearance="legacy">
@@ -27,10 +28,7 @@
 
   <div class="card" *ngIf="result.horoscope">
     <div class="left-panel">
-      <img
-        [src]="'/assets/zodiac/' + result.signData.zodiacName + '.png'"
-        alt=""
-      />
+      <img [src]="'/assets/zodiac/' + result.signData.zodiacName + '.png'" alt="" />
       <br /><br />
       <div class="caption">
         <p class="content" [style.color]="result.signData.color">Element</p>
@@ -66,8 +64,8 @@
     <div class="right-panel">
       <p class="title text-right" [style.color]="result.signData.color">
         {{
-          result.signData.zodiacName + " | " + result.signData.symbol
-            | uppercase
+        result.signData.zodiacName + " | " + result.signData.symbol
+        | uppercase
         }}
       </p>
       <div class="caption">
@@ -83,15 +81,11 @@
       <p class="title" [style.color]="result.signData.color">ABOUT SIGN</p>
       <span class="content">{{
         showFullText
-          ? result.signData.description
-          : (result.signData.description | trimText: 900)
-      }}</span>
-      <span
-        class="link"
-        [style.color]="result.signData.color"
-        (click)="showFullText = !showFullText"
-        >{{ showFullText ? "Read Less" : "Read More" }}</span
-      >
+        ? result.signData.description
+        : (result.signData.description | trimText: 900)
+        }}</span>
+      <span class="link" [style.color]="result.signData.color" (click)="showFullText = !showFullText">{{ showFullText ?
+        "Read Less" : "Read More" }}</span>
     </div>
   </div>
 </div>

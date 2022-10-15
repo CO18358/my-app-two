@@ -15,6 +15,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
 
 @NgModule({
   declarations: [InvoiceComponent],
@@ -32,6 +33,7 @@ import { MatCardModule } from '@angular/material/card';
     MatNativeDateModule,
     MatTableModule,
     MatCardModule,
+    TitlebarModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       progressBar: true,
@@ -40,4 +42,4 @@ import { MatCardModule } from '@angular/material/card';
     }),
   ],
 })
-export class InvoiceModule {}
+export class InvoiceModule { }

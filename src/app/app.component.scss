@@ -1,31 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500&family=Noto+Serif:ital@1&display=swap");
-
-.menu {
-  height: 4rem;
-  background: #6722dd;
-  backdrop-filter: blur(2px);
-  color: white;
-
-  .menu-title {
-    font-family: "Noto Serif", serif;
-    font-weight: 500;
-    font-size: 1.2rem;
-  }
-
-  .spacer {
-    flex: 1 1 auto;
-  }
-}
-
 .container {
   background-color: #131313;
-
-  .sidenav {
-    width: 16%;
-    padding-left: 1rem;
-  }
-
-  .content-container {
-    min-height: calc(100vh - 4rem);
-  }
+  min-height: 100vh;
+  width: 100vw;
+  color: white;
 }
