@@ -28,6 +28,18 @@ export class CryptoTrackerComponent implements OnInit {
       value: 'inr',
       symbol: '₹',
     },
+    {
+      value: 'btc',
+      symbol: '₿',
+    },
+    {
+      value: 'eth',
+      symbol: 'Ξ',
+    },
+    {
+      value: 'ltc',
+      symbol: 'Ł',
+    },
   ];
   curr = this.vsCurrencies[0];
   sizes = [50, 100, 150, 200, 250];
