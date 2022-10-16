@@ -1,7 +1,7 @@
 <app-titlebar title="cryptocurrency tracker"></app-titlebar>
 <div class="container">
 
-  <div class="coins-list">
+  <div class="coins-list" *ngIf="!showCoin; else coinInfo">
     <div class="menu">
       <mat-form-field class="filter" appearance="legacy">
         <mat-label>Filter Coins</mat-label>
@@ -45,19 +45,48 @@
         <span> Change </span>
         <span> Market Cap </span>
       </div>
-      <div class="row" *ngFor="let coin of coinList">
+      <div class="row" *ngFor="let coin of coinList" (click)="getCoinInfo(coin.id)">
         <span><img class="icon" [src]="coin.thumb" alt=""></span>
         <span> {{coin.name}} </span>
         <span class="symbol"> {{coin.symbol | uppercase}} </span>
         <span class="price"> {{curr.symbol + " " + coin.price}} </span>
         <span> {{coin.volume}} </span>
-        <span class="up" [class.down]="roundUp(coin.priceChange)>0"> {{roundUp(coin.priceChange) + " %"}} </span>
+        <span class="up" [class.down]="roundUp(coin.priceChange)<0"> {{roundUp(coin.priceChange) + " %"}} </span>
         <span class="price"> {{curr.symbol + " " + coin.mktCap}} </span>
       </div>
     </div>
   </div>
 
 </div>
+
+<ng-template #coinInfo>
+  <div class="coin-details" *ngIf="!showSpinner; else loader">
+    <div class="coin-info">
+      <div class="image">
+        <img class="coin-image" [src]="coinData.image" alt="">
+        <h1 class="coin-name">{{(coinData.name + " | " + coinData.symbol)|uppercase}}</h1>
+        <div class="tags">
+          <h2 class="rank">Rank: #{{coinData.rank}}</h2>
+          <span class="spacer"></span>
+          <mat-icon class="up">thumb_up</mat-icon>
+          <h3 class="up rank">{{coinData.upVotes + " %"}}</h3>
+          <mat-icon class="down">thumb_down</mat-icon>
+          <h3 class="down rank">{{coinData.downVotes + " %"}}</h3>
+        </div>
+      </div>
+      <div class="description" [innerHtml]="coinData.description"></div>
+    </div>
+
+    <div class="tags tags-margin">
+      <button mat-button class="action" (click)="home()">
+        <mat-icon matPrefix>home</mat-icon>Go Back
+      </button>
+      <a mat-button class="action" [href]="coinData.url" target="_blank">
+        <mat-icon matPrefix>home</mat-icon>Visit {{coinData.name}}
+      </a>
+    </div>
+  </div>
+</ng-template>
 
 <ng-template #loader>
   <div class="spinner">

@@ -9,6 +9,7 @@ import { CryptoService } from 'src/app/services/crypto/crypto.service';
 })
 export class CryptoTrackerComponent implements OnInit {
   showSpinner!: boolean;
+  showCoin!: boolean;
 
   vsCurrencies = [
     {
@@ -57,13 +58,12 @@ export class CryptoTrackerComponent implements OnInit {
 
   coinId = 'bitcoin';
 
-  coinInfo!: CoinInfo;
+  coinData!: CoinInfo;
 
   constructor(private cryptoService: CryptoService) {}
 
   ngOnInit() {
     this.getCoinList();
-    this.getCoinInfo();
   }
 
   getCoinList() {
@@ -81,10 +81,19 @@ export class CryptoTrackerComponent implements OnInit {
       });
   }
 
-  getCoinInfo() {
+  getCoinInfo(coinId: string) {
+    this.showSpinner = true;
+    this.showCoin = true;
     this.cryptoService
-      .getCoinInfo(this.coinId)
-      .subscribe((res) => (this.coinInfo = res));
+      .getCoinInfo(coinId)
+      .subscribe((res) => (this.coinData = res));
+    setTimeout(() => {
+      this.showSpinner = false;
+    }, 2000);
+  }
+
+  home() {
+    this.showCoin = false;
   }
 
   roundUp(value: string): number {
