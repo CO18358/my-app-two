@@ -35,3 +35,26 @@ export interface Horoscope {
   horoscope: any;
   signData: any;
 }
+
+export interface CoinData {
+  id: string;
+  name: string;
+  symbol: string;
+  thumb?: string;
+  price: string;
+  priceChange: string;
+  mktCap: string;
+  volume: string;
+}
+
+export interface CoinInfo {
+  id: string;
+  name: string;
+  symbol: string;
+  description: string;
+  url?: string;
+  image: string;
+  upVotes?: string;
+  downVotes?: string;
+  rank?: string;
+}

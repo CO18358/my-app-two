@@ -13,10 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
 
 @NgModule({
-  declarations: [
-    AnimeQuoteComponent,
-    ShowQuoteComponent
-  ],
+  declarations: [AnimeQuoteComponent, ShowQuoteComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -27,7 +24,7 @@ import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    TitlebarModule
-  ]
+    TitlebarModule,
+  ],
 })
-export class AnimeQuoteModule { }
+export class AnimeQuoteModule {}

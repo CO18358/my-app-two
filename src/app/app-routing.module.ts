@@ -49,7 +49,17 @@ const routes: Routes = [
   },
   {
     path: 'fitness',
-    loadChildren: () => import('./components/fitness/fitness.module').then(m => m.FitnessModule),
+    loadChildren: () =>
+      import('./components/fitness/fitness.module').then(
+        (m) => m.FitnessModule
+      ),
+  },
+  {
+    path: 'crypto',
+    loadChildren: () =>
+      import('./components/crypto-tracker/crypto-tracker.module').then(
+        (m) => m.CryptoTrackerModule
+      ),
   },
   {
     path: '',
@@ -62,4 +72,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
