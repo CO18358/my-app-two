@@ -5,7 +5,7 @@
     <div class="menu">
       <mat-form-field class="filter" appearance="legacy">
         <mat-label>Filter Coins</mat-label>
-        <input type="text" matInput [(ngModel)]="filter">
+        <input type="text" matInput [formControl]="filter">
       </mat-form-field>
       <mat-form-field appearance="legacy">
         <mat-label>Set Currency</mat-label>
@@ -45,7 +45,7 @@
         <span> Change </span>
         <span> Market Cap </span>
       </div>
-      <div class="row" *ngFor="let coin of coinList" (click)="getCoinInfo(coin.id)">
+      <div class="row" *ngFor="let coin of filteredCoins | async" (click)="getCoinInfo(coin.id)">
         <span><img class="icon" [src]="coin.thumb" alt=""></span>
         <span> {{coin.name}} </span>
         <span class="symbol"> {{coin.symbol | uppercase}} </span>

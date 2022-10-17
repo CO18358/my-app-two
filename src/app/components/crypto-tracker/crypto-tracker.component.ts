@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { map, Observable, startWith } from 'rxjs';
 import { CoinData, CoinInfo } from 'src/app/models/interfaces';
 import { CryptoService } from 'src/app/services/crypto/crypto.service';
 
@@ -64,7 +66,6 @@ export class CryptoTrackerComponent implements OnInit {
     },
   ];
   orderBy = this.orders[0];
-  filter!: string;
 
   coinList!: CoinData[];
 
@@ -72,10 +73,17 @@ export class CryptoTrackerComponent implements OnInit {
 
   coinData!: CoinInfo;
 
+  filter = new FormControl();
+  filteredCoins!: Observable<CoinData[]>;
+
   constructor(private cryptoService: CryptoService) {}
 
   ngOnInit() {
     this.getCoinList();
+    this.filteredCoins = this.filter.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filter(value || ''))
+    );
   }
 
   getCoinList() {
@@ -122,5 +130,13 @@ export class CryptoTrackerComponent implements OnInit {
   nextPage() {
     this.pageNum++;
     this.getCoinList();
+  }
+
+  private _filter(value: string): CoinData[] {
+    const filterValue = value.toLowerCase();
+
+    return this.coinList.filter((coin) =>
+      coin.name.toLowerCase().includes(filterValue)
+    );
   }
 }

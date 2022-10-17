@@ -66,6 +66,13 @@ const routes: Routes = [
     redirectTo: '/about',
     pathMatch: 'full',
   },
+  {
+    path: 'cookbook',
+    loadChildren: () =>
+      import('./components/cookbook/cookbook.module').then(
+        (m) => m.CookbookModule
+      ),
+  },
 ];
 
 @NgModule({

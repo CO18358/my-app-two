@@ -43,6 +43,11 @@ export class AboutComponent implements OnInit {
       url: '/crypto',
       image: '/assets/thumbnails/crypto.png',
     },
+    {
+      title: 'Minified Cookbook',
+      url: '/cookbook',
+      image: '/assets/thumbnails/cookbook.png',
+    },
   ];
 
   constructor() {}
