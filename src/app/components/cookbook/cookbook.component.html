@@ -1,2 +1,31 @@
 <app-titlebar title="minified cookbook"></app-titlebar>
-<div class="container"></div>
+<div class="container">
+  <div [ngSwitch]="view">
+
+    <div class="section" *ngSwitchCase="viewModes.dishes">
+      <div class="header">
+        <h1 class="title">{{view|uppercase}}</h1>
+      </div>
+      <h2 class="result">{{dishes.count}} Results Found</h2>
+      <div class="main">
+        <div class="dish" *ngFor="let dish of dishes.recipes">
+          <img class="thumb" [src]="dish.image_url" alt="">
+          <div class="tag">
+            <h1 class="name">{{dish.title}}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" *ngSwitchCase="viewModes.recipe">Recipe</div>
+
+    <div class="section" *ngSwitchDefault>
+      <div class="header">
+        <h1 class="title">{{view|uppercase}}</h1>
+      </div>
+      <div class="main">
+        <h4 class="option" *ngFor="let item of ingredients" (click)="getDishes(item)">{{item | titlecase}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
