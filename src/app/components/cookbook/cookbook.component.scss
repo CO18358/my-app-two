@@ -15,12 +15,13 @@
   .section {
     margin: 4rem;
     .header {
-      padding: 20px;
+      padding: 4px 16px;
       border-left: solid 5px #dc3232;
       .title {
         font-family: "Abel", sans-serif;
         font-size: 4rem;
         margin: 0%;
+        line-height: 1;
       }
     }
     .result {
@@ -31,36 +32,120 @@
       display: flex;
       flex-wrap: wrap;
       margin: 2em 0;
-      justify-content: space-between;
-      gap: 16px 24px;
+      justify-content: flex-start;
+      gap: 24px;
       .option {
         font-family: "Abel", sans-serif;
         font-size: 1.2rem;
-        // margin: 0;
+        margin: 0;
         &:hover,
         &:active {
           color: #dc3232;
           text-decoration: underline black;
           font-weight: 600;
+          cursor: pointer;
         }
       }
       .dish {
-        width: 20%;
+        max-width: 20%;
         background-color: white;
+        color: black;
         border-radius: 12px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
           0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        transition: 0.8s;
         .thumb {
           width: 100%;
-          border-radius: 12px;
+          border-radius: 12px 12px 0 0;
         }
         .tag {
           text-align: center;
           padding: 10px;
           .name {
             font-family: "Abel", sans-serif;
-            color: black;
+            margin: 0;
           }
+        }
+        &:hover,
+        &:active {
+          background-color: black;
+          color: white;
+          cursor: pointer;
+        }
+      }
+    }
+    .dishes {
+      justify-content: space-evenly;
+    }
+    .recipe {
+      display: flex;
+      margin: 2em;
+      justify-content: space-between;
+      .image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        img {
+          border-radius: 24px;
+        }
+      }
+      .data {
+        flex: 1;
+        padding: 16px;
+        font-family: "Abel", sans-serif;
+        .publisher {
+          background: rgba(0, 0, 0, 0.5);
+          line-height: 1;
+          border: 1px solid;
+          padding: 0.5rem;
+          border-radius: 0.5rem;
+          a {
+            color: #fd2b2b;
+            font-size: 2rem;
+            text-decoration: none;
+            font-style: italic;
+            font-weight: bold;
+          }
+        }
+        .sub-header {
+          padding: 1em;
+          font-size: 1.5rem;
+        }
+        .sub-point {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+          font-size: 1.2rem;
+          margin: 0.2rem 2rem;
+        }
+        .source {
+          display: flex;
+          justify-content: end;
+          a {
+            color: wheat;
+            font-size: 1.5rem;
+            margin: 1rem;
+            font-style: italic;
+            text-decoration: none;
+            &:hover,
+            &:active {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+    .navigate {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      h2 {
+        font-family: "Abel", sans-serif;
+        margin: 0;
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
         }
       }
     }

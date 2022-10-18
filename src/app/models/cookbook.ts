@@ -1,5 +1,4 @@
 export const INGREDIENTS = [
-  '',
   'carrot',
   'broccoli',
   'asparagus',

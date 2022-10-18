@@ -4,20 +4,54 @@
 
     <div class="section" *ngSwitchCase="viewModes.dishes">
       <div class="header">
-        <h1 class="title">{{view|uppercase}}</h1>
+        <h1 class="title">{{query + " " + view|uppercase}}</h1>
       </div>
-      <h2 class="result">{{dishes.count}} Results Found</h2>
-      <div class="main">
-        <div class="dish" *ngFor="let dish of dishes.recipes">
+      <h2 class="result"> Found <strong>{{dishes.count}}</strong> recipes for "{{query}}"</h2>
+      <div class="main dishes">
+        <div class="dish" *ngFor="let dish of dishes.recipes" (click)="getRecipe(dish.recipe_id)">
           <img class="thumb" [src]="dish.image_url" alt="">
           <div class="tag">
             <h1 class="name">{{dish.title}}</h1>
           </div>
         </div>
       </div>
+      <div class="navigate" (click)="view=viewModes.category">
+        <mat-icon matPrefix>keyboard_backspace</mat-icon>
+        <h2>
+          Back to Categories
+        </h2>
+      </div>
     </div>
 
-    <div class="section" *ngSwitchCase="viewModes.recipe">Recipe</div>
+    <div class="section" *ngSwitchCase="viewModes.recipe">
+      <div class="header">
+        <h1 class="title">{{recipe.title|uppercase}}</h1>
+      </div>
+      <div class="recipe">
+        <div class="image">
+          <img [src]="recipe.image_url" alt="">
+        </div>
+        <div class="data">
+          <div class="publisher">
+            <a [href]="recipe.publisher_url" target="_blank">Published By {{recipe.publisher}}</a>
+          </div>
+          <div class="sub-header">Ingredients Used</div>
+          <div class="sub-point" *ngFor="let ing of recipe.ingredients">
+            <mat-icon>bakery_dining</mat-icon>
+            <span>{{ing}}</span>
+          </div>
+          <div class="source">
+            <a [href]="recipe.source_url">View Recipe</a>
+          </div>
+        </div>
+      </div>
+      <div class="navigate" (click)="view=viewModes.dishes">
+        <mat-icon matPrefix>keyboard_backspace</mat-icon>
+        <h2>
+          Back to Dishes
+        </h2>
+      </div>
+    </div>
 
     <div class="section" *ngSwitchDefault>
       <div class="header">
