@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
   apps = [
-    {
-      title: 'Anime Quotes',
-      url: '/anime-quote',
-      image: '/assets/thumbnails/anime-quote.png',
-    },
+    // {
+    //   title: 'Anime Quotes',
+    //   url: '/anime-quote',
+    //   image: '/assets/thumbnails/anime-quote.png',
+    // },
     { title: 'World News', url: '/news', image: '/assets/thumbnails/news.png' },
     {
       title: 'Invoice Generator',
@@ -47,6 +47,11 @@ export class AboutComponent implements OnInit {
       title: 'Minified Cookbook',
       url: '/cookbook',
       image: '/assets/thumbnails/cookbook.png',
+    },
+    {
+      title: 'Realtime Weather',
+      url: '/weather',
+      image: '/assets/thumbnails/weather.png',
     },
   ];
 

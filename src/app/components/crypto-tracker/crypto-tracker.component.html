@@ -63,7 +63,9 @@
   <div class="coin-details" *ngIf="!showSpinner; else loader">
     <div class="coin-info">
       <div class="image">
-        <img class="coin-image" [src]="coinData.image" alt="">
+        <a [href]="coinData.url" target="_blank">
+          <img class="coin-image" [src]="coinData.image" alt="">
+        </a>
         <h1 class="coin-name">{{(coinData.name + " | " + coinData.symbol)|uppercase}}</h1>
         <div class="tags">
           <h2 class="rank">Rank: #{{coinData.rank}}</h2>
@@ -81,9 +83,6 @@
       <button mat-button class="action" (click)="home()">
         <mat-icon matPrefix>home</mat-icon>Go Back
       </button>
-      <a mat-button class="action" [href]="coinData.url" target="_blank">
-        <mat-icon matPrefix>home</mat-icon>Visit {{coinData.name}}
-      </a>
     </div>
   </div>
 </ng-template>

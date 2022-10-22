@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+
+.loader {
+  display: flex;
+  height: calc(100vh - 4em);
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  height: calc(100vh - 5em);
+  margin: 0;
+  box-sizing: border-box;
+  overflow: auto;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("https://wallpapercave.com/wp/qQa5Pd7.jpg") no-repeat center;
+  background-size: cover;
+
+  .location {
+    .search {
+      width: 50%;
+      margin: 2em auto;
+      padding: 1em 2em;
+      border-radius: 0.8em;
+      background: rgb(255 255 255 / 10%);
+      backdrop-filter: blur(2px);
+      box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+
+      .query {
+        flex: 1;
+      }
+    }
+    .result {
+      display: flex;
+      flex-wrap: wrap;
+      width: 60%;
+      margin: auto;
+      justify-content: center;
+      padding: 2em 0;
+      .area {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 0.8em 0;
+        width: 33%;
+        font-family: "Staatliches", cursive;
+        &:hover,
+        &:active {
+          background-color: rgba(196, 26, 170, 0.6);
+          border: solid;
+          border-radius: 1rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

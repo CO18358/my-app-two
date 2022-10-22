@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { TrimTextModule } from 'src/app/shared/trim-text/trim-text.module';
 import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [HoroscopeComponent],
@@ -21,6 +22,7 @@ import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
     MatSelectModule,
     MatButtonModule,
     TitlebarModule,
+    MatProgressSpinnerModule,
   ],
 })
-export class HoroscopeModule { }
+export class HoroscopeModule {}

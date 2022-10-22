@@ -1,0 +1,25 @@
+<app-titlebar title="realtime weather"></app-titlebar>
+<div class="container">
+  <div class="location">
+    <div class="search">
+      <mat-form-field class="query" appearance="legacy">
+        <mat-label>Enter Title</mat-label>
+        <input matInput [(ngModel)]="location" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="searchLocation()">
+        <mat-icon matSuffix>location_on</mat-icon>
+        Find Location
+      </button>
+    </div>
+    <div class="result" *ngIf="locationResult&&locationResult.length && !showWeather">
+      <div class="area" *ngFor="let res of locationResult" (click)="weather(res.id)"> {{res.name }}</div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #spinner>
+  <div class="loader">
+    <mat-spinner color="warn"></mat-spinner>
+  </div>
+</ng-template>

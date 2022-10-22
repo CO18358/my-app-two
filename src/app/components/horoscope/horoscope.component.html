@@ -24,7 +24,7 @@
     </mat-form-field>
   </div>
 
-  <div class="card" *ngIf="result.horoscope">
+  <div class="card" *ngIf="result.horoscope; else spinner">
     <div class="left-panel">
       <img [src]="'/assets/zodiac/' + result.signData.zodiacName + '.png'" alt="" />
       <br /><br />
@@ -87,3 +87,10 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #spinner>
+  <div class="loader">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+</ng-template>

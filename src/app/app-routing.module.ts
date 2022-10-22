@@ -73,6 +73,13 @@ const routes: Routes = [
         (m) => m.CookbookModule
       ),
   },
+  {
+    path: 'weather',
+    loadChildren: () =>
+      import('./components/weather/weather.module').then(
+        (m) => m.WeatherModule
+      ),
+  },
 ];
 
 @NgModule({
