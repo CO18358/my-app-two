@@ -3,7 +3,7 @@
   <div class="location">
     <div class="search">
       <mat-form-field class="query" appearance="legacy">
-        <mat-label>Enter Title</mat-label>
+        <mat-label>Enter Location</mat-label>
         <input matInput [(ngModel)]="location" />
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="searchLocation()">
@@ -11,12 +11,68 @@
         Find Location
       </button>
     </div>
-    <div class="result" *ngIf="locationResult&&locationResult.length && !showWeather">
-      <div class="area" *ngFor="let res of locationResult" (click)="weather(res.id)"> {{res.name }}</div>
+    <div *ngIf="!showWeather;else weatherPanel">
+      <div class="result" *ngIf="locationResult&&locationResult.length">
+        <div class="area" *ngFor="let res of locationResult" (click)="weather(res.id)"> {{res.name }}</div>
+      </div>
     </div>
   </div>
 </div>
 
+<ng-template #weatherPanel>
+  <div class="weather-panel">
+    <div class="current-weather">
+      <div class="main">
+        <div class="date">{{currentWeather.time|date:'MMM dd, yyyy | HH:mm'}}</div>
+        <div class="temperature">{{currentWeather.temperature}}°</div>
+        <div class="date"> {{setLocation.name + ', ' + setLocation.country + ' | ' + currentWeather.symbolPhrase |
+          titlecase}}</div>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <img src="/assets/weather/thermometer.png" alt="" class="icon">
+          <div class="label">Feels Like | {{currentWeather.feelsLikeTemp}}°</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/humidity.png" alt="" class="icon">
+          <div class="label">Humidity | {{currentWeather.relHumidity}}%</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/dew.png" alt="" class="icon">
+          <div class="label">Dew Point | {{currentWeather.dewPoint}}°</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/wind.png" alt="" class="icon">
+          <div class="label">Wind | {{currentWeather.windSpeed + ' kmph ' + currentWeather.windDirString}}</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/precipitation.png" alt="" class="icon">
+          <div class="label">Precipitation | {{currentWeather.precipProb}}%</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/cloudiness.png" alt="" class="icon">
+          <div class="label">Cloudiness | {{currentWeather.cloudiness}}%</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/thunder.png" alt="" class="icon">
+          <div class="label">Thunder | {{currentWeather.thunderProb}}%</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/ultraviolet.png" alt="" class="icon">
+          <div class="label">UV Index | {{currentWeather.uvIndex}}</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/pressure.png" alt="" class="icon">
+          <div class="label">Pressure | {{currentWeather.pressure}} hPa</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/visibility.png" alt="" class="icon">
+          <div class="label">visibility | {{currentWeather.visibility}} metres</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
 
 <ng-template #spinner>
   <div class="loader">

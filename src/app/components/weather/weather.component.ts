@@ -9,7 +9,10 @@ import { WeatherService } from 'src/app/services/weather/weather.service';
 export class WeatherComponent implements OnInit {
   location: string = '';
   locationResult!: any[];
+
   showWeather!: boolean;
+
+  setLocation!: any;
   currentWeather!: any;
   hourSeries!: any[];
   daySeries!: any[];
@@ -29,6 +32,7 @@ export class WeatherComponent implements OnInit {
   weather(id: number) {
     this.weatherService.getWeather(id).subscribe((res) => {
       console.log(res);
+      this.setLocation = res.location;
       this.currentWeather = res.current;
       this.hourSeries = res.hourly;
       this.daySeries = res.daily;

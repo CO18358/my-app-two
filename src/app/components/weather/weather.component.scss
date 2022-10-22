@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Concert+One&family=Khula&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arima+Madurai&family=Concert+One&family=Khula&display=swap");
 
 .loader {
   display: flex;
@@ -54,6 +56,63 @@
           border: solid;
           border-radius: 1rem;
           cursor: pointer;
+        }
+      }
+    }
+    .weather-panel {
+      width: 80%;
+      margin: auto;
+      justify-content: center;
+      .current-weather {
+        width: 100%;
+        display: flex;
+        background-color: #f3f3f3;
+        color: #27334e;
+        border-radius: 2rem;
+        .main {
+          padding: 3em;
+          background-color: #dcdcdc;
+          text-align: center;
+          font-family: "Concert One", cursive;
+          line-height: 1;
+          border-radius: 2rem 0 0 2rem;
+          width: 25%;
+          .temperature {
+            font-weight: bold;
+            font-size: 8rem;
+          }
+          .date {
+            font-size: 1.6rem;
+          }
+        }
+        .stats {
+          display: flex;
+          flex-wrap: wrap;
+          font-family: "Arima Madurai", cursive;
+          font-weight: 600;
+          gap: 20px;
+          align-items: center;
+          width: 75%;
+          padding: 1em;
+          .stat {
+            line-height: 1;
+            display: flex;
+            min-width: 30%;
+            height: 2rem;
+            padding: 0.4em;
+            border-radius: 0.5rem;
+            align-items: center;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+              rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+            .icon {
+              height: 100%;
+              object-fit: contain;
+            }
+            .label {
+              font-size: 1.2rem;
+              margin: 0 0.5em;
+            }
+          }
         }
       }
     }

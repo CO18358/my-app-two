@@ -26,12 +26,31 @@ export class WeatherService {
       );
   }
 
-  private currentWeather(locationId: number) {
+  private locationInfo(locationId: number) {
     return this.http
-      .get(
-        `${this.baseUrl}/current/${locationId}?alt=0&tempunit=C&windunit=KMH&tz=Europe%2FLondon&lang=en`,
-        { headers: this.headers }
-      )
+      .get(`${this.baseUrl}/location/${locationId}`, {
+        headers: this.headers,
+      })
+      .pipe(
+        map((res: any) => {
+          return { name: res.name, country: res.country };
+        })
+      );
+  }
+
+  private currentWeather(locationId: number) {
+    const params = {
+      alt: '0',
+      tempunit: 'C',
+      windunit: 'KMH',
+      tz: 'Asia/Kolkata',
+      lang: 'en',
+    };
+    return this.http
+      .get(`${this.baseUrl}/current/${locationId}`, {
+        headers: this.headers,
+        params,
+      })
       .pipe(
         map((res: any) => {
           return res.current;
@@ -40,11 +59,20 @@ export class WeatherService {
   }
 
   private hourlyWeather(locationId: number) {
+    const params = {
+      alt: '0',
+      tempunit: 'C',
+      windunit: 'KMH',
+      tz: 'Asia/Kolkata',
+      periods: '12',
+      dataset: 'full',
+      history: '0',
+    };
     return this.http
-      .get(
-        `${this.baseUrl}/forecast/hourly/${locationId}?alt=0&tempunit=C&windunit=MS&tz=Europe%2FLondon&periods=12&dataset=full&history=0`,
-        { headers: this.headers }
-      )
+      .get(`${this.baseUrl}/forecast/hourly/${locationId}`, {
+        headers: this.headers,
+        params,
+      })
       .pipe(
         map((res: any) => {
           return res.forecast as any[];
@@ -53,11 +81,18 @@ export class WeatherService {
   }
 
   private dailyWeather(locationId: number) {
+    const params = {
+      alt: '0',
+      tempunit: 'C',
+      windunit: 'KMH',
+      periods: '12',
+      dataset: 'full',
+    };
     return this.http
-      .get(
-        `${this.baseUrl}/forecast/daily/${locationId}?alt=0&tempunit=C&windunit=MS&periods=12&dataset=full`,
-        { headers: this.headers }
-      )
+      .get(`${this.baseUrl}/forecast/daily/${locationId}`, {
+        headers: this.headers,
+        params,
+      })
       .pipe(
         map((res: any) => {
           return res.forecast as any[];
@@ -67,6 +102,7 @@ export class WeatherService {
 
   getWeather(locationId: number) {
     return forkJoin({
+      location: this.locationInfo(locationId),
       current: this.currentWeather(locationId),
       hourly: this.hourlyWeather(locationId),
       daily: this.dailyWeather(locationId),
