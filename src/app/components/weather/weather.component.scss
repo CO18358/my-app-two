@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Concert+One&family=Khula&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Arima+Madurai&family=Concert+One&family=Khula&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital@1&display=swap");
 
 .loader {
   display: flex;
@@ -111,6 +112,77 @@
             .label {
               font-size: 1.2rem;
               margin: 0 0.5em;
+            }
+          }
+        }
+      }
+      .main-label {
+        text-align: center;
+        padding: 1em;
+        line-height: 1;
+        font-family: "Averia Serif Libre", cursive;
+        font-size: 2.5rem;
+      }
+      .hour-view {
+        display: flex;
+        overflow-x: scroll;
+        justify-content: space-between;
+        column-gap: 16px;
+
+        .hour-card {
+          color: #27334e;
+          min-width: 23%;
+          .hour-main {
+            background-color: #fafafa;
+            border-radius: 1.5em 1.5em 0 0;
+            padding: 1em;
+            text-align: center;
+            font-family: "Concert One", cursive;
+            line-height: 1;
+            .temperature {
+              font-weight: bold;
+              font-size: 4rem;
+            }
+            .time {
+              font-size: 1.6rem;
+            }
+          }
+          .hour-stats {
+            background-color: #bcbcbc;
+            font-family: "Arima Madurai", cursive;
+            border-radius: 0 0 1.5em 1.5em;
+            font-weight: 500;
+            padding: 0.5em;
+            .hour-stat {
+              display: flex;
+              height: 1.5rem;
+              padding: 0.5em;
+              margin: 0.5em;
+              background-color: #fafafa;
+              line-height: 1;
+              border-radius: 0.5rem;
+              align-items: center;
+              box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+                rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+              .label {
+                font-size: 1rem;
+                margin: 0 0.4em;
+                font-weight: 600;
+              }
+              .icon {
+                height: 100%;
+                object-fit: contain;
+              }
+            }
+          }
+          &:hover,
+          &:active {
+            cursor: pointer;
+            .hour-main,
+            .hour-stats > .hour-stat {
+              transition: all 0.5s ease-out;
+              color: #fafafa;
+              background-color: #363636;
             }
           }
         }

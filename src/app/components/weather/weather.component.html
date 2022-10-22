@@ -71,6 +71,33 @@
         </div>
       </div>
     </div>
+    <div class="main-label">Upcoming Hours</div>
+    <div class=" hour-view">
+      <div class="hour-card" *ngFor="let hour of hourSeries" (click)="currentWeather=hour">
+        <div class="hour-main">
+          <div class="time">{{hour.time|date:'shortTime'}} | {{hour.symbolPhrase}}</div>
+          <div class="temperature">{{hour.temperature}}°</div>
+        </div>
+        <div class="hour-stats">
+          <div class="hour-stat">
+            <img src="/assets/weather/thermometer.png" alt="" class="icon">
+            <div class="label">Feels Like | {{hour.feelsLikeTemp}}°</div>
+          </div>
+          <div class="hour-stat">
+            <img src="/assets/weather/humidity.png" alt="" class="icon">
+            <div class="label">Humidity | {{hour.relHumidity}}%</div>
+          </div>
+          <div class="hour-stat">
+            <img src="/assets/weather/wind.png" alt="" class="icon">
+            <div class="label">Wind | {{hour.windSpeed + ' kmph ' + hour.windDirString}}</div>
+          </div>
+          <div class="hour-stat">
+            <img src="/assets/weather/precipitation.png" alt="" class="icon">
+            <div class="label">Precipitation | {{hour.precipProb}}% {{hour.precipType}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </ng-template>
 
