@@ -13,16 +13,13 @@ export class ExercisesService {
   constructor(private http: HttpClient) {}
 
   getExercises(
-    type?: string,
-    muscle?: string,
-    difficulty?: string,
-    offset?: number
+    name: string,
+    type: string,
+    muscle: string,
+    difficulty: string,
+    offset: number
   ) {
-    const params = new HttpParams();
-    type && params.append('type', type);
-    muscle && params.append('muscle', muscle);
-    difficulty && params.append('offset', difficulty);
-    offset && params.append('offset', offset);
+    const params = { name, type, muscle, difficulty, offset: offset * 10 };
 
     return this.http.get(this.baseUrl, { headers: this.headers, params }).pipe(
       map((res) => {

@@ -51,6 +51,8 @@
         padding: 0.8em 0;
         width: 33%;
         font-family: "Staatliches", cursive;
+        text-shadow: 3px 0px 7px rgba(43, 43, 43, 0.8),
+          -3px 0px 7px rgba(85, 85, 85, 0.8), 0px 4px 7px rgba(16, 16, 16, 0.8);
         &:hover,
         &:active {
           background-color: rgba(196, 26, 170, 0.6);

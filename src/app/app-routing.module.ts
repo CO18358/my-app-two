@@ -80,6 +80,13 @@ const routes: Routes = [
         (m) => m.WeatherModule
       ),
   },
+  {
+    path: 'exercises',
+    loadChildren: () =>
+      import('./components/exercises/exercises.module').then(
+        (m) => m.ExercisesModule
+      ),
+  },
 ];
 
 @NgModule({

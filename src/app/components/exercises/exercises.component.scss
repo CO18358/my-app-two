@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Graduate&family=Rubik&family=Yatra+One&family=Boogaloo&display=swap");
+
+.loader {
+  display: flex;
+  height: calc(100vh - 6em);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Boogaloo", cursive;
+  font-size: 2rem;
+  line-height: 1;
+  gap: 8px;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: auto;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("https://wallpaperaccess.com/full/7791624.jpg") no-repeat center;
+  background-size: cover;
+
+  .menu {
+    width: 90%;
+    margin: 1em auto;
+    padding: 0.5em 1em;
+    border-radius: 0.8em;
+    background: rgb(255 255 255 / 10%);
+    backdrop-filter: blur(2px);
+    box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+
+    .search {
+      flex: 1;
+    }
+  }
+
+  .page-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Boogaloo", cursive;
+    font-size: 1.2rem;
+  }
+
+  .exercises {
+    display: flex;
+    padding: 1em 2em;
+    gap: 24px;
+    flex-wrap: wrap;
+    width: 92%;
+    margin: auto;
+    .exercise {
+      max-width: calc(50% - 24px);
+      border-radius: 1em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: solid;
+      .title {
+        margin: 0.5em;
+        line-height: 1;
+        text-align: end;
+        font-family: "Graduate", cursive;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+      .description {
+        text-align: justify;
+        margin: 1em;
+        font-family: "Rubik", sans-serif;
+        font-size: 1rem;
+      }
+      .tags {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 1em;
+        flex-wrap: wrap;
+        font-family: "Yatra One", cursive;
+        .tag {
+          padding: 0.5em 1em;
+          border-radius: 1em;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

@@ -21,7 +21,23 @@ export namespace Utils {
     return arr;
   }
 
-  export const randomColor = () => {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
-  };
+  export function randomColor() {
+    let color;
+    do {
+      color = Math.floor(Math.random() * 16777215).toString(16);
+    } while (color.length < 6);
+
+    let red = parseInt(color.substring(0, 2), 16);
+    let green = parseInt(color.substring(2, 4), 16);
+    let blue = parseInt(color.substring(4, 6), 16);
+    let brightness = red * 0.299 + green * 0.587 + blue * 0.114;
+
+    if (brightness > 160) {
+      return { backgroundColor: '#' + color, color: '#000' };
+    } else
+      return {
+        backgroundColor: '#' + color,
+        color: '#fff',
+      };
+  }
 }

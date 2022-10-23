@@ -55,6 +55,11 @@ export class AboutComponent implements OnInit {
       url: '/weather',
       image: '/assets/thumbnails/weather.png',
     },
+    {
+      title: 'Exercise Suggestions',
+      url: '/exercises',
+      image: '/assets/thumbnails/exercises.png',
+    },
   ];
 
   constructor() {}
