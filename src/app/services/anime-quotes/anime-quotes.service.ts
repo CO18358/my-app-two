@@ -1,31 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AnimeQuote } from 'src/app/models/interfaces';
+import { AnimeQuote } from 'src/app/helpers/interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AnimeQuotesService {
-
   titlesUrl = 'https://animechan.vercel.app/api/available/anime';
-  randomUrl = 'https://animechan.vercel.app/api/quotes'
-  quoteUrl = 'https://animechan.vercel.app/api/quotes/anime?title='
+  randomUrl = 'https://animechan.vercel.app/api/quotes';
+  quoteUrl = 'https://animechan.vercel.app/api/quotes/anime?title=';
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   animeListUrl(): Observable<string[]> {
-    return this.http.get<string[]>(this.titlesUrl)
+    return this.http.get<string[]>(this.titlesUrl);
   }
 
   randomQoutesUrl(): Observable<AnimeQuote[]> {
-    return this.http.get<AnimeQuote[]>(this.randomUrl)
+    return this.http.get<AnimeQuote[]>(this.randomUrl);
   }
 
   animeQuotesUrl(title: string): Observable<AnimeQuote[]> {
-    const url = this.quoteUrl + title
-    return this.http.get<AnimeQuote[]>(url)
+    const url = this.quoteUrl + title;
+    return this.http.get<AnimeQuote[]>(url);
   }
 }

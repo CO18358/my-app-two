@@ -1,17 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AnimeQuote } from 'src/app/models/interfaces';
+import { AnimeQuote } from 'src/app/helpers/interfaces';
 
 @Component({
   selector: 'app-show-quote',
   templateUrl: './show-quote.component.html',
-  styleUrls: ['./show-quote.component.scss']
+  styleUrls: ['./show-quote.component.scss'],
 })
 export class ShowQuoteComponent implements OnInit {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: AnimeQuote) {}
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: AnimeQuote ) { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { forkJoin, map } from 'rxjs';
 export class WeatherService {
   baseUrl = 'https://foreca-weather.p.rapidapi.com';
   headers = new HttpHeaders({
-    'X-RapidAPI-Key': 'f7dbbc18bemsh20f020e3aa1ea26p150927jsn65638c41e927',
+    'X-RapidAPI-Key': environment.rapid_api_key,
     'X-RapidAPI-Host': 'foreca-weather.p.rapidapi.com',
   });
 

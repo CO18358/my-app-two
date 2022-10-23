@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
-import { CoinData, CoinInfo } from 'src/app/models/interfaces';
+import { CoinData, CoinInfo } from 'src/app/helpers/interfaces';
 
 @Injectable({
   providedIn: 'root',

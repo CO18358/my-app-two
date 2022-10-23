@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { lastValueFrom, Observable } from 'rxjs';
-import { AnimeQuote } from 'src/app/models/interfaces';
+import { AnimeQuote } from 'src/app/helpers/interfaces';
 import { AnimeQuotesService } from 'src/app/services/anime-quotes/anime-quotes.service';
 import { ShowQuoteComponent } from './show-quote/show-quote.component';
 import { map, startWith } from 'rxjs/operators';

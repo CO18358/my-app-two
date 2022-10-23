@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { REGEX } from 'src/app/models/constants';
+import { REGEX } from 'src/app/helpers/constants';
 import { CountryDataService } from 'src/app/services/invoice/country-data.service';
 import { InvoiceService } from 'src/app/services/invoice/invoice.service';
 import { Utils } from 'src/app/shared/utilties';

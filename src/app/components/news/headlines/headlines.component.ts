@@ -4,7 +4,7 @@ import {
   NewsCategories,
   NewsCountries,
   NewsLanguage,
-} from 'src/app/models/news';
+} from 'src/app/helpers/news';
 import { NewsService } from 'src/app/services/news/news.service';
 
 @Component({

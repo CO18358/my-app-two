@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { NewsLanguage, NewSortKeys, NewsSource } from 'src/app/models/news';
+import { NewsLanguage, NewSortKeys, NewsSource } from 'src/app/helpers/news';
 import { NewsService } from 'src/app/services/news/news.service';
 
 @Component({

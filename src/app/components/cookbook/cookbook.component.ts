@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { INGREDIENTS } from 'src/app/models/cookbook';
+import { INGREDIENTS } from 'src/app/helpers/cookbook';
 import { CookbookService } from 'src/app/services/cookbook/cookbook.service';
 
 @Component({
