@@ -7,7 +7,7 @@ import { WeatherService } from 'src/app/services/weather/weather.service';
   styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent implements OnInit {
-  location: string = '';
+  location: string = 'Chandigarh';
   locationResult!: any[];
 
   showWeather!: boolean;
@@ -20,6 +20,7 @@ export class WeatherComponent implements OnInit {
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
+    this.searchLocation();
     this.weather(101274746);
   }
   searchLocation() {

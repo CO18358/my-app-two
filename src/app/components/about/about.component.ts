@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
   apps = [
+    // Needs Reconstruction
+
     // {
     //   title: 'Anime Quotes',
     //   url: '/anime-quote',

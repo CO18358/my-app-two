@@ -2,9 +2,7 @@
 
 .container {
   width: 100%;
-  height: calc(100vh - 4em);
-  margin: 0;
-  padding: 0.5em 0;
+  height: 100vh;
   box-sizing: border-box;
   overflow: auto;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -35,7 +33,7 @@
     align-items: center;
     justify-content: center;
     font-family: "Montserrat", sans-serif;
-    height: 60vh;
+    height: calc(100vh - 4em);
     h1 {
       margin: 24px;
     }

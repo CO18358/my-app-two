@@ -1,18 +1,18 @@
-<app-titlebar title="realtime weather"></app-titlebar>
 <div class="container">
+  <app-titlebar title="realtime weather"></app-titlebar>
   <div class="location">
-    <div class="search">
-      <mat-form-field class="query" appearance="legacy">
-        <mat-label>Enter Location</mat-label>
-        <input matInput [(ngModel)]="location" />
-      </mat-form-field>
-      <button mat-raised-button color="primary" (click)="searchLocation()">
-        <mat-icon matSuffix>location_on</mat-icon>
-        Find Location
-      </button>
-    </div>
     <div *ngIf="!showWeather;else weatherPanel">
-      <div class="result" *ngIf="locationResult&&locationResult.length">
+      <div class="search">
+        <mat-form-field class="query" appearance="legacy">
+          <mat-label>Enter Location</mat-label>
+          <input matInput [(ngModel)]="location" />
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="searchLocation()">
+          <mat-icon matSuffix>location_on</mat-icon>
+          Find Location
+        </button>
+      </div>
+      <div class="result" *ngIf="locationResult&&locationResult.length; else noResults">
         <div class="area" *ngFor="let res of locationResult" (click)="weather(res.id)"> {{res.name }}</div>
       </div>
     </div>
@@ -22,7 +22,8 @@
 <ng-template #weatherPanel>
 
   <div class="weather-panel">
-    <div class="main-label">Weather Right Now</div>
+    <div class="navigate" (click)="showWeather = false">Go Back</div>
+    <!-- <div class="main-label">Weather Right Now</div> -->
     <div class="current-weather">
       <div class="main">
         <div class="date">{{currentWeather.time|date:'MMM dd, yyyy | HH:mm'}}</div>
@@ -165,6 +166,12 @@
         </div>
       </div>
     </div>
+  </div>
+</ng-template>
+
+<ng-template #noResults>
+  <div class="no-result">
+    <div>No Matching Results Found. Try Another Place.</div>
   </div>
 </ng-template>
 

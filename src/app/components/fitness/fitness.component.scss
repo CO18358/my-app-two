@@ -1,11 +1,10 @@
 .container {
   width: 100vw;
-  min-height: calc(100vh - 4em);
+  min-height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url("https://images.alphacoders.com/692/692039.jpg") no-repeat center;
   background-size: cover;
   background-attachment: fixed;
-  padding: 2em 0;
 
   .calculator {
     display: flex;

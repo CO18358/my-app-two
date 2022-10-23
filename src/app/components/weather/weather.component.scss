@@ -12,7 +12,7 @@
 
 .container {
   width: 100%;
-  height: calc(100vh - 5em);
+  height: 100vh;
   margin: 0;
   box-sizing: border-box;
   overflow: auto;
@@ -60,10 +60,29 @@
         }
       }
     }
+    .no-result {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50vh;
+      font-weight: 700;
+      font-size: 3rem;
+      font-family: "Arima Madurai", cursive;
+      text-shadow: 0 13.36px 8.896px #000000, 0 -2px 1px;
+    }
     .weather-panel {
       width: 80%;
       margin: auto;
       justify-content: center;
+      .navigate {
+        font-family: "Arima Madurai", cursive;
+        margin: 1em 0 0;
+        font-size: 1.2rem;
+        &:hover,
+        &:active {
+          text-decoration: underline;
+        }
+      }
       .current-weather {
         width: 100%;
         display: flex;
@@ -121,7 +140,7 @@
         line-height: 1;
         font-family: "Averia Serif Libre", cursive;
         font-size: 2.5rem;
-        margin: 1em;
+        margin: 0.5em;
       }
       .hour-view {
         display: flex;

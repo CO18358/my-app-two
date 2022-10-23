@@ -2,11 +2,9 @@
 
 .container {
   width: 100%;
-  height: calc(100vh - 4em);
-  margin: 0;
-  padding: 0.5em 0;
+  height: 100vh;
   box-sizing: border-box;
-  overflow: auto;
+  overflow: hidden;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://images.alphacoders.com/519/thumb-1920-519509.jpg") no-repeat
       center;
