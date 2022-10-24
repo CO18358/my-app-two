@@ -1,58 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amarante&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Germania+One&display=swap");
+
 .loader {
   display: flex;
-  height: calc(100vh - 4em);
+  height: calc(100vh - 6em);
   align-items: center;
   justify-content: center;
+  font-family: "Fira Sans Condensed", sans-serif;
+  flex-direction: column;
+  font-size: 1.5rem;
+  line-height: 1;
+  gap: 8px;
 }
 
 .container {
   width: 100vw;
-  height: calc(100vh-rem);
+  height: 100vh;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: auto;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("https://wallpapersmug.com/download/3840x2160/515b46/anime-beast-goku-dark.jpg")
       no-repeat;
   background-size: cover;
-  background-attachment: fixed;
-  padding: 2em 0;
-}
 
-.search-box {
-  width: 80%;
-  padding: 0.5em 2em;
-  border-radius: 2em;
-  background: rgb(255 255 255 / 14%);
-  backdrop-filter: blur(2px);
-  box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
-  display: flex;
-  margin: auto;
+  .search-box {
+    width: 72%;
+    padding: 0.5em 2em;
+    border-radius: 1em;
+    background: rgb(255 255 255 / 14%);
+    backdrop-filter: blur(2px);
+    box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
+    display: flex;
+    margin: auto;
+    gap: 20px;
 
-  mat-form-field {
-    flex: 1;
+    .search {
+      flex: 1;
+    }
   }
-}
 
-.btn-group {
-  padding: 32px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  flex-flow: row wrap;
+  .page-menu {
+    display: flex;
+    justify-content: center;
+    font-family: "Fira Sans Condensed", sans-serif;
+    align-items: center;
+    font-size: 1rem;
+  }
 
-  .btn {
-    background: none;
-    border: 2px solid;
-    font: inherit;
-    line-height: 1;
-    margin: 0.5rem;
-    padding: 1rem;
-    color: #4b62d2;
-    transition: 0.25s;
-
-    &:hover {
-      border-color: #f3f049;
-      color: #cbc772;
-      box-shadow: 0 0.5rem 0.5rem -0.4rem #f3f049;
-      transform: translateY(-0.25rem);
+  .quotes-container {
+    display: flex;
+    gap: 16px;
+    width: 90%;
+    margin: 1em auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    .card {
+      background: radial-gradient(#1fe4f5, #3fbafe);
+      border-radius: 1em;
+      width: calc(28% - 16px);
+      padding: 2em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      line-height: 1;
+      color: black;
+      .title {
+        font-size: 1.6rem;
+        font-family: "Bebas Neue", cursive;
+      }
+      .text {
+        font-size: 1rem;
+        text-align: center;
+        font-family: "Amarante", cursive;
+      }
+      .name {
+        font-style: italic;
+        font-size: 1.3rem;
+        text-align: end;
+        font-family: "Germania One", cursive;
+      }
     }
   }
 }
