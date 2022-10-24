@@ -58,3 +58,10 @@ export interface CoinInfo {
   downVotes?: string;
   rank?: string;
 }
+
+export interface Poem {
+  author: string;
+  title: string;
+  lines: string[];
+  linecount: number;
+}

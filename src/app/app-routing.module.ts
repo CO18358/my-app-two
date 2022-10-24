@@ -87,6 +87,11 @@ const routes: Routes = [
         (m) => m.ExercisesModule
       ),
   },
+  {
+    path: 'poetry',
+    loadChildren: () =>
+      import('./components/poetry/poetry.module').then((m) => m.PoetryModule),
+  },
 ];
 
 @NgModule({

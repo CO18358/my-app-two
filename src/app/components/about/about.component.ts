@@ -21,14 +21,14 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/invoice.png',
     },
     {
-      title: 'IP Lookup',
-      url: '/link-preview',
-      image: '/assets/thumbnails/ip-search.png',
+      title: 'Cryptocurrency Tracker',
+      url: '/crypto',
+      image: '/assets/thumbnails/crypto.png',
     },
     {
-      title: 'Watch a Movie',
-      url: '/movie-db',
-      image: '/assets/thumbnails/movie.png',
+      title: 'Exercise Suggestions',
+      url: '/exercises',
+      image: '/assets/thumbnails/exercises.png',
     },
     {
       title: 'Fitness Calculator',
@@ -41,9 +41,9 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/horoscope.png',
     },
     {
-      title: 'Cryptocurrency Tracker',
-      url: '/crypto',
-      image: '/assets/thumbnails/crypto.png',
+      title: 'Realtime Weather',
+      url: '/weather',
+      image: '/assets/thumbnails/weather.png',
     },
     {
       title: 'Minified Cookbook',
@@ -51,14 +51,19 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/cookbook.png',
     },
     {
-      title: 'Realtime Weather',
-      url: '/weather',
-      image: '/assets/thumbnails/weather.png',
+      title: 'Watch a Movie',
+      url: '/movie-db',
+      image: '/assets/thumbnails/movie.png',
     },
     {
-      title: 'Exercise Suggestions',
-      url: '/exercises',
-      image: '/assets/thumbnails/exercises.png',
+      title: 'IP Lookup',
+      url: '/link-preview',
+      image: '/assets/thumbnails/ip-search.png',
+    },
+    {
+      title: 'Poetry',
+      url: '/poetry',
+      image: '/assets/thumbnails/poetry.png',
     },
   ];
 
