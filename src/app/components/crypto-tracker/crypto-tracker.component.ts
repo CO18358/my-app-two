@@ -68,13 +68,18 @@ export class CryptoTrackerComponent implements OnInit {
   orderBy = this.orders[0];
 
   coinList!: CoinData[];
-
   coinId = 'bitcoin';
-
   coinData!: CoinInfo;
-
   filter = new FormControl();
   filteredCoins!: Observable<CoinData[]>;
+
+  currencyMenu: boolean = false;
+  symbolsList!: any[];
+  fromSymbol!: string;
+  toSymbol!: string;
+  amount!: number;
+  conversionResult!: number;
+  miniLoader: boolean = false;
 
   constructor(private cryptoService: CryptoService) {}
 
@@ -84,6 +89,17 @@ export class CryptoTrackerComponent implements OnInit {
       startWith(''),
       map((value) => this._filter(value || ''))
     );
+    this.cryptoService.getSymbols().subscribe((res) => {
+      this.symbolsList = res;
+    });
+  }
+
+  convert() {
+    this.cryptoService
+      .getExchangeRate(this.fromSymbol, this.toSymbol, this.amount)
+      .subscribe((res) => {
+        this.conversionResult = res;
+      });
   }
 
   getCoinList() {

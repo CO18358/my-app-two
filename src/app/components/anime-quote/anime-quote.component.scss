@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amarante&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Germania+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Coda&display=swap");
 
 .loader {
   display: flex;
@@ -53,14 +54,15 @@
   .quotes-container {
     display: flex;
     gap: 16px;
-    width: 90%;
+    width: 80%;
     margin: 1em auto;
-    flex-wrap: wrap;
-    justify-content: center;
+    overflow: scroll;
+    // flex-wrap: wrap;
+    // justify-content: center;
     .card {
       background: radial-gradient(#1fe4f5, #3fbafe);
       border-radius: 1em;
-      width: calc(28% - 16px);
+      min-width: 50%;
       padding: 2em;
       display: flex;
       flex-direction: column;
@@ -82,6 +84,51 @@
         font-size: 1.3rem;
         text-align: end;
         font-family: "Germania One", cursive;
+      }
+    }
+  }
+
+  .header {
+    font-family: "Coda", cursive;
+    line-height: 1;
+    font-size: 3rem;
+    border-left: solid greenyellow;
+    margin: 1.5rem auto;
+    width: 80%;
+    .text {
+      margin: 1rem;
+    }
+  }
+  .news-container {
+    width: 80%;
+    margin: 0 auto 1rem;
+    display: flex;
+    .left,
+    .right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .main {
+      flex: 8;
+      // background-color: #3fbafe;
+
+      background: radial-gradient(#c50e0e, #e81818);
+      border-radius: 1em;
+      min-width: 80%;
+      padding: 1em;
+      text-align: center;
+      .news {
+        line-height: 1;
+        color: white;
+        font-size: 1rem;
+        text-decoration: none;
+        &:hover,
+        &:active {
+          cursor: pointer;
+          text-decoration: underline;
+        }
       }
     }
   }

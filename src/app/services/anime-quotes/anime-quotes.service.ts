@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { AnimeQuote } from 'src/app/helpers/interfaces';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class AnimeQuotesService {
   titlesUrl = 'https://animechan.vercel.app/api/available/anime';
-
   baseUrl = 'https://animechan.vercel.app/api/quotes';
 
   constructor(private http: HttpClient) {}
@@ -37,5 +37,19 @@ export class AnimeQuotesService {
         return res;
       })
     );
+  }
+
+  news() {
+    const headers = {
+      'X-RapidAPI-Key': environment.rapid_api_key,
+      'X-RapidAPI-Host': 'anime-release.p.rapidapi.com',
+    };
+    return this.http
+      .get<any[]>('https://anime-release.p.rapidapi.com/anime', { headers })
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
   }
 }

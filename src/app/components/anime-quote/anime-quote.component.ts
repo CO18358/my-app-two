@@ -19,35 +19,46 @@ export class AnimeQuoteComponent implements OnInit {
 
   loader!: boolean;
   quotesArray!: AnimeQuote[];
+  news!: any[];
+  index = 0;
 
   constructor(private quoteService: AnimeQuotesService) {}
 
   ngOnInit() {
     this.random();
+    this.newsToday();
   }
 
   // async getAnimeList() {
   //   const titles = await lastValueFrom(this.quoteService.animeListUrl());
   // }
 
-  random() {
+  newsToday() {
     this.loader = true;
+    this.quoteService.news().subscribe((res) => {
+      this.news = res;
+      console.log(this.news);
+
+      this.loader = false;
+    });
+  }
+  random() {
     this.quoteService.randomQoutes(this.pageNum).subscribe((res) => {
       this.quotesArray = res;
-      console.log(this.quotesArray);
-      this.loader = false;
     });
   }
 
   search() {
-    if (this.query && this.query != '') this.loader = true;
-    this.quoteService
-      .search(this.option.value, this.query, this.pageNum)
-      .subscribe((res) => {
-        this.quotesArray = res;
-        console.log(this.quotesArray);
-        this.loader = false;
-      });
+    if (this.query && this.query != '') {
+      this.loader = true;
+      this.quoteService
+        .search(this.option.value, this.query, this.pageNum)
+        .subscribe((res) => {
+          this.quotesArray = res;
+          console.log(this.quotesArray);
+          this.loader = false;
+        });
+    }
   }
 
   prevPage() {

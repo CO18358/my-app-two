@@ -30,6 +30,22 @@
         <div class="name">-{{q.character}}-</div>
       </div>
     </div>
+    <div class="header">
+      <div class="text">LATEST ANIME NEWS</div>
+    </div>
+    <div class="news-container">
+      <div class="left">
+        <button mat-icon-button (click)="index=index-1" [disabled]="index == 0">
+          <mat-icon>navigate_before</mat-icon>
+        </button>
+      </div>
+      <div class="main"><a class="news" [href]="news[index].url" target="_blank">{{news[index].title}}</a></div>
+      <div class="right">
+        <button mat-icon-button (click)="index=index+1" [disabled]="index == news.length - 1">
+          <mat-icon>navigate_next</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
 
 </div>

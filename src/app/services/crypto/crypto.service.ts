@@ -11,6 +11,9 @@ export class CryptoService {
     'https://api.coingecko.com/api/v3/coins/markets?sparkline=false';
 
   coinDetailsUrl = 'https://api.coingecko.com/api/v3/coins';
+
+  symbolsUrl = 'https://api.exchangerate.host/symbols';
+  coversionUrl = 'https://api.exchangerate.host/convert';
   constructor(private http: HttpClient) {}
 
   getCoinsArray(
@@ -55,5 +58,21 @@ export class CryptoService {
         };
       })
     );
+  }
+
+  getSymbols() {
+    return this.http.get(this.symbolsUrl).pipe(
+      map((res: any) => {
+        return Object.keys(res.symbols).map((key) => {
+          return res.symbols[key];
+        }) as any[];
+      })
+    );
+  }
+
+  getExchangeRate(from: string, to: string, amount: number) {
+    return this.http
+      .get(`${this.coversionUrl}?from=${from}&to=${to}&amount=${amount}`)
+      .pipe(map((res: any) => res.result));
   }
 }
