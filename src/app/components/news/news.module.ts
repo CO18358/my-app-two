@@ -22,12 +22,13 @@ import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
     NewsComponent,
     SourcesComponent,
     HeadlinesComponent,
-    MassComponent
+    MassComponent,
   ],
   imports: [
     CommonModule,
     NewsRoutingModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -37,7 +38,7 @@ import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
     MatButtonModule,
     MatTabsModule,
     MatCardModule,
-    TitlebarModule
-  ]
+    TitlebarModule,
+  ],
 })
-export class NewsModule { }
+export class NewsModule {}

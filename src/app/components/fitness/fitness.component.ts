@@ -4,10 +4,9 @@ import { FitnessService } from 'src/app/services/fitness/fitness.service';
 @Component({
   selector: 'app-fitness',
   templateUrl: './fitness.component.html',
-  styleUrls: ['./fitness.component.scss']
+  styleUrls: ['./fitness.component.scss'],
 })
 export class FitnessComponent implements OnInit {
-
   genders = ['male', 'female'];
   gender = this.genders[0];
   age!: number;
@@ -18,7 +17,13 @@ export class FitnessComponent implements OnInit {
   hip: number | undefined;
   activities = ['sedentary', 'light', 'moderate', 'active', 'extreme'];
   activity = this.activities[0];
-  goals = ['balance', 'mildWeightLoss', 'mildWeightGain', 'heavyWeightLoss', 'heavyWeightGain'];
+  goals = [
+    'balance',
+    'mildWeightLoss',
+    'mildWeightGain',
+    'heavyWeightLoss',
+    'heavyWeightGain',
+  ];
   goal = this.goals[0];
 
   bmi = 0;
@@ -30,53 +35,82 @@ export class FitnessComponent implements OnInit {
 
   macro: any;
   macroKeys!: string[];
-  index = 0
+  index = 0;
 
-  constructor(public fitnessService: FitnessService) { }
+  constructor(public fitnessService: FitnessService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   sentenceCase(text: any) {
-    const result = text.replace(/([A-Z])/g, " $1");
+    const result = text.replace(/([A-Z])/g, ' $1');
     return result.charAt(0).toUpperCase() + result.slice(1);
   }
 
   basalMetablicRate() {
-    this.bmr = this.fitnessService.metabolicRate(this.gender, this.age, this.height, this.weight)
+    this.bmr = this.fitnessService.metabolicRate(
+      this.gender,
+      this.age,
+      this.height,
+      this.weight
+    );
   }
 
   bodyMassIndex() {
-    this.bmi = this.fitnessService.bodyMassIndex(this.height, this.weight)
+    this.bmi = this.fitnessService.bodyMassIndex(this.height, this.weight);
   }
 
   bodyFat() {
-    this.bfp = this.fitnessService.bodyFat(this.gender, this.height, this.weight, this.neck, this.waist, this.hip)
+    this.bfp = this.fitnessService.bodyFat(
+      this.gender,
+      this.height,
+      this.weight,
+      this.neck,
+      this.waist,
+      this.hip
+    );
   }
 
   bodyWeight() {
-    this.ibw = this.fitnessService.idealBodyWeight(this.gender, this.height)
+    this.ibw = this.fitnessService.idealBodyWeight(this.gender, this.height);
   }
 
   dailyEnergy() {
-    this.tdee = this.fitnessService.dailyEnergyExpenditure(this.gender, this.age, this.height, this.weight, this.activity)
+    this.tdee = this.fitnessService.dailyEnergyExpenditure(
+      this.gender,
+      this.age,
+      this.height,
+      this.weight,
+      this.activity
+    );
   }
 
   calories() {
-    this.calorie = this.fitnessService.calorieNeeds(this.gender, this.age, this.height, this.weight, this.activity)
+    this.calorie = this.fitnessService.calorieNeeds(
+      this.gender,
+      this.age,
+      this.height,
+      this.weight,
+      this.activity
+    );
   }
 
   macros() {
-    this.macro = this.fitnessService.macros(this.gender, this.age, this.height, this.weight, this.activity, this.goal);
-    this.macroKeys = Object.keys(this.macro)
+    this.macro = this.fitnessService.macros(
+      this.gender,
+      this.age,
+      this.height,
+      this.weight,
+      this.activity,
+      this.goal
+    );
+    this.macroKeys = Object.keys(this.macro);
   }
 
   indexUp() {
-    (this.index < this.macroKeys.length - 1) ? this.index++ : this.index = 0
+    this.index < this.macroKeys.length - 1 ? this.index++ : (this.index = 0);
   }
 
   indexDown() {
-    this.index > 0 ? this.index-- : this.index = this.macroKeys.length - 1
+    this.index > 0 ? this.index-- : (this.index = this.macroKeys.length - 1);
   }
-
 }

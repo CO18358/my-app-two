@@ -66,6 +66,32 @@ const routes: Routes = [
     redirectTo: '/about',
     pathMatch: 'full',
   },
+  {
+    path: 'cookbook',
+    loadChildren: () =>
+      import('./components/cookbook/cookbook.module').then(
+        (m) => m.CookbookModule
+      ),
+  },
+  {
+    path: 'weather',
+    loadChildren: () =>
+      import('./components/weather/weather.module').then(
+        (m) => m.WeatherModule
+      ),
+  },
+  {
+    path: 'exercises',
+    loadChildren: () =>
+      import('./components/exercises/exercises.module').then(
+        (m) => m.ExercisesModule
+      ),
+  },
+  {
+    path: 'poetry',
+    loadChildren: () =>
+      import('./components/poetry/poetry.module').then((m) => m.PoetryModule),
+  },
 ];
 
 @NgModule({

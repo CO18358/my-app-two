@@ -22,7 +22,7 @@ export class MovieDatabaseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.query = 'Avengers';
+    this.query = 'One Piece';
     this.search();
   }
 

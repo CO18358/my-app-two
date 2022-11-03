@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CoinData, CoinInfo } from 'src/app/models/interfaces';
+import { FormControl } from '@angular/forms';
+import { map, Observable, startWith } from 'rxjs';
+import { CoinData, CoinInfo } from 'src/app/helpers/interfaces';
 import { CryptoService } from 'src/app/services/crypto/crypto.service';
 
 @Component({
@@ -64,18 +66,40 @@ export class CryptoTrackerComponent implements OnInit {
     },
   ];
   orderBy = this.orders[0];
-  filter!: string;
 
   coinList!: CoinData[];
-
   coinId = 'bitcoin';
-
   coinData!: CoinInfo;
+  filter = new FormControl();
+  filteredCoins!: Observable<CoinData[]>;
+
+  currencyMenu: boolean = false;
+  symbolsList!: any[];
+  fromSymbol!: string;
+  toSymbol!: string;
+  amount!: number;
+  conversionResult!: number;
+  miniLoader: boolean = false;
 
   constructor(private cryptoService: CryptoService) {}
 
   ngOnInit() {
     this.getCoinList();
+    this.filteredCoins = this.filter.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filter(value || ''))
+    );
+    this.cryptoService.getSymbols().subscribe((res) => {
+      this.symbolsList = res;
+    });
+  }
+
+  convert() {
+    this.cryptoService
+      .getExchangeRate(this.fromSymbol, this.toSymbol, this.amount)
+      .subscribe((res) => {
+        this.conversionResult = res;
+      });
   }
 
   getCoinList() {
@@ -122,5 +146,13 @@ export class CryptoTrackerComponent implements OnInit {
   nextPage() {
     this.pageNum++;
     this.getCoinList();
+  }
+
+  private _filter(value: string): CoinData[] {
+    const filterValue = value.toLowerCase();
+
+    return this.coinList.filter((coin) =>
+      coin.name.toLowerCase().includes(filterValue)
+    );
   }
 }

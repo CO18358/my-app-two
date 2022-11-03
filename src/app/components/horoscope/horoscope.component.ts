@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Horoscope } from 'src/app/models/interfaces';
-import { ZODIAC_DATA } from 'src/app/models/zodiac_data';
+import { Horoscope } from 'src/app/helpers/interfaces';
+import { ZODIAC_DATA } from 'src/app/helpers/zodiac_data';
 import { HoroscopeService } from 'src/app/services/horoscope/horoscope.service';
 
 @Component({

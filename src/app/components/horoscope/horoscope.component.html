@@ -1,9 +1,9 @@
-<app-titlebar title="horoscope"></app-titlebar>
 <div class="container">
+  <app-titlebar title="horoscope"></app-titlebar>
   <div class="search-box">
     <mat-form-field appearance="legacy">
       <mat-label>Zodiac Sign</mat-label>
-      <mat-select [(ngModel)]="querySign">
+      <mat-select [(ngModel)]="querySign" (selectionChange)="checkHoroscope()">
         <mat-option *ngFor="let sign of signs" [value]="sign.zodiacName">
           <div class="option">
             <img [src]="sign.icon" alt="" matPrefix />
@@ -16,17 +16,15 @@
     </mat-form-field>
     <mat-form-field appearance="legacy">
       <mat-label>Day</mat-label>
-      <mat-select [(ngModel)]="queryDay">
+      <mat-select [(ngModel)]="queryDay" (selectionChange)="checkHoroscope()">
         <mat-option *ngFor="let day of days" [value]="day">
           {{ day | uppercase }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-
-    <button mat-flat-button (click)="checkHoroscope()">View Horoscope</button>
   </div>
 
-  <div class="card" *ngIf="result.horoscope">
+  <div class="card" *ngIf="result.horoscope; else spinner">
     <div class="left-panel">
       <img [src]="'/assets/zodiac/' + result.signData.zodiacName + '.png'" alt="" />
       <br /><br />
@@ -89,3 +87,10 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #spinner>
+  <div class="loader">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+</ng-template>

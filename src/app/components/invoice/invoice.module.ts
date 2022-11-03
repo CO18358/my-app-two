@@ -42,4 +42,4 @@ import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
     }),
   ],
 })
-export class InvoiceModule { }
+export class InvoiceModule {}

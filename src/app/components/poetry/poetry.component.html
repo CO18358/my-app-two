@@ -1,0 +1,38 @@
+<div class="container">
+  <app-titlebar title="Poetry"></app-titlebar>
+  <div class="poetry" *ngIf="!spinner; else loader">
+    <div class="menu">
+      <mat-tab-group mat-align-tabs="center" disablePagination="true">
+        <mat-tab label=" Authors">
+          <div class="author" [class.active]="author==poem.author" (click)="poemsByPoet(author)"
+            *ngFor="let author of authors">
+            {{author}}
+          </div>
+        </mat-tab>
+        <mat-tab label="Titles">
+          <div class="title" [class.active]="title.title==poem.title" (click)="poem=title" *ngFor="let title of titles">
+            {{title.title |
+            trimText:30}}
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <div class="poem">
+      <div *ngIf="!poemSpinner; else loader">
+        <div class="name">{{poem.title}}</div>
+        <div class="poet"> ~ {{poem.author}}</div>
+        <div class="lines">
+          <div class="line" *ngFor="let line of poem.lines">{{line}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #loader>
+  <div class="loader">
+    <mat-spinner color="accent"></mat-spinner>
+    <div>Loading ...</div>
+  </div>
+</ng-template>

@@ -1,11 +1,11 @@
-<app-titlebar title="cryptocurrency tracker"></app-titlebar>
 <div class="container">
+  <app-titlebar title="cryptocurrency tracker"></app-titlebar>
 
   <div class="coins-list" *ngIf="!showCoin; else coinInfo">
-    <div class="menu">
+    <div class="menu" *ngIf="!currencyMenu; else currencyWidget">
       <mat-form-field class="filter" appearance="legacy">
         <mat-label>Filter Coins</mat-label>
-        <input type="text" matInput [(ngModel)]="filter">
+        <input type="text" matInput [formControl]="filter">
       </mat-form-field>
       <mat-form-field appearance="legacy">
         <mat-label>Set Currency</mat-label>
@@ -33,6 +33,11 @@
       <button mat-icon-button (click)="nextPage()">
         <mat-icon>navigate_next</mat-icon>
       </button>
+      <button mat-icon-button (click)="currencyMenu=!currencyMenu">
+        <mat-icon>
+          keyboard_double_arrow_right
+        </mat-icon>
+      </button>
     </div>
 
     <div #list class="list-container" *ngIf="!showSpinner; else loader">
@@ -45,7 +50,7 @@
         <span> Change </span>
         <span> Market Cap </span>
       </div>
-      <div class="row" *ngFor="let coin of coinList" (click)="getCoinInfo(coin.id)">
+      <div class="row" *ngFor="let coin of filteredCoins | async" (click)="getCoinInfo(coin.id)">
         <span><img class="icon" [src]="coin.thumb" alt=""></span>
         <span> {{coin.name}} </span>
         <span class="symbol"> {{coin.symbol | uppercase}} </span>
@@ -59,11 +64,48 @@
 
 </div>
 
+<ng-template #currencyWidget>
+  <div class="menu">
+    <mat-form-field class="filter" appearance="legacy">
+      <mat-label>From</mat-label>
+      <mat-select [(ngModel)]="fromSymbol">
+        <mat-option *ngFor="let op of symbolsList" [value]="op.code">{{op.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="filter" appearance="legacy">
+      <mat-label>To</mat-label>
+      <mat-select [(ngModel)]="toSymbol">
+        <mat-option *ngFor="let op of symbolsList" [value]="op.code">{{op.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="filter" appearance="legacy">
+      <mat-label>Amount</mat-label>
+      <input type="number" matInput [(ngModel)]="amount">
+    </mat-form-field>
+
+    <button mat-mini-fab (click)="convert()">
+      <mat-icon>east</mat-icon>
+    </button>
+    <div>Amount: {{conversionResult}}</div>
+    <button mat-icon-button (click)="currencyMenu=!currencyMenu">
+      <mat-icon>
+        keyboard_double_arrow_left
+      </mat-icon>
+    </button>
+  </div>
+</ng-template>
+
 <ng-template #coinInfo>
   <div class="coin-details" *ngIf="!showSpinner; else loader">
     <div class="coin-info">
       <div class="image">
-        <img class="coin-image" [src]="coinData.image" alt="">
+        <a [href]="coinData.url" target="_blank">
+          <img class="coin-image" [src]="coinData.image" alt="">
+        </a>
         <h1 class="coin-name">{{(coinData.name + " | " + coinData.symbol)|uppercase}}</h1>
         <div class="tags">
           <h2 class="rank">Rank: #{{coinData.rank}}</h2>
@@ -81,9 +123,6 @@
       <button mat-button class="action" (click)="home()">
         <mat-icon matPrefix>home</mat-icon>Go Back
       </button>
-      <a mat-button class="action" [href]="coinData.url" target="_blank">
-        <mat-icon matPrefix>home</mat-icon>Visit {{coinData.name}}
-      </a>
     </div>
   </div>
 </ng-template>
