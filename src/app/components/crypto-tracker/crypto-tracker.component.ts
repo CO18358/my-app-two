@@ -77,7 +77,6 @@ export class CryptoTrackerComponent implements OnInit {
   symbolsList!: any[];
   fromSymbol!: string;
   toSymbol!: string;
-  amount!: number;
   conversionResult!: number;
   miniLoader: boolean = false;
 
@@ -96,7 +95,7 @@ export class CryptoTrackerComponent implements OnInit {
 
   convert() {
     this.cryptoService
-      .getExchangeRate(this.fromSymbol, this.toSymbol, this.amount)
+      .getExchangeRate(this.fromSymbol, this.toSymbol)
       .subscribe((res) => {
         this.conversionResult = res;
       });

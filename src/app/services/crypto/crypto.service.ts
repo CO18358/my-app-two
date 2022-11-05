@@ -70,9 +70,9 @@ export class CryptoService {
     );
   }
 
-  getExchangeRate(from: string, to: string, amount: number) {
+  getExchangeRate(from: string, to: string) {
     return this.http
-      .get(`${this.coversionUrl}?from=${from}&to=${to}&amount=${amount}`)
+      .get(`${this.coversionUrl}?from=${from}&to=${to}`)
       .pipe(map((res: any) => res.result));
   }
 }
