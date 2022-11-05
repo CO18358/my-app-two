@@ -38,7 +38,6 @@ export class AnimeQuoteComponent implements OnInit {
     this.quoteService.news().subscribe((res) => {
       this.news = res;
       console.log(this.news);
-
       this.loader = false;
     });
   }
