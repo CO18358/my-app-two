@@ -1,0 +1,82 @@
+.menu {
+  width: 80%;
+  margin: 1em auto;
+  padding: 1em 2em 0;
+  border-radius: 0.8em;
+  background: rgb(255 255 255 / 10%);
+  backdrop-filter: blur(2px);
+  box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+
+  .filter {
+    flex: 1;
+  }
+}
+
+.list-container {
+  max-width: 80%;
+  margin: auto;
+
+  .row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 4px 0;
+    padding: 12px;
+    span {
+      width: calc(100% / 7);
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.1rem;
+      margin: auto;
+      .icon {
+        width: 40%;
+      }
+    }
+    .price {
+      color: #eeea1b;
+    }
+    .symbol {
+      font-size: 0.8rem;
+    }
+    &:hover,
+    &:active {
+      background-color: rgba(5, 72, 149, 0.4);
+    }
+  }
+
+  .headings {
+    font-style: bold;
+    border: 2px solid;
+    background: rgb(0 0 0 / 60%);
+    backdrop-filter: blur(2px);
+    span {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    &:hover {
+      background: rgba(0, 0, 0, 0);
+    }
+  }
+}
+
+.spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  height: calc(100vh - 4em);
+  h1 {
+    margin: 24px;
+  }
+}
+
+.up {
+  color: #2fff7b;
+}
+.down {
+  color: #ef4040;
+}

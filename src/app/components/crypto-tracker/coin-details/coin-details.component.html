@@ -1,0 +1,28 @@
+<div class="coin-details" *ngIf="!showSpinner; else loader">
+  <div class="coin-info">
+    <div class="image">
+      <img [src]="coinData.image" alt="">
+      <a class="link" [href]="coinData.url" target="_blank">Visit {{coinData.name}}</a>
+    </div>
+    <div class="details">
+      <div class="coin-name">{{(coinData.name + " | " + coinData.symbol)|uppercase}}</div>
+      <div class="tags">
+        <div class="rank">Rank: #{{coinData.rank}}</div>
+        <span class="spacer"></span>
+        <mat-icon class="up">thumb_up</mat-icon>
+        <div class="up rank">{{coinData.upVotes + " %"}}</div>
+        <mat-icon class="down">thumb_down</mat-icon>
+        <div class="down rank">{{coinData.downVotes + " %"}}</div>
+      </div>
+      <div class="description" [innerHtml]="coinData.description"></div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loader>
+  <div class="spinner">
+    <mat-spinner color="warn"></mat-spinner>
+    <h1>Loading...</h1>
+  </div>
+</ng-template>
