@@ -17,7 +17,7 @@ export class CoinDetailsComponent implements OnInit {
     private router: Router
   ) {
     const coinId = this.route.snapshot.paramMap.get('coinId');
-    coinId ? this.getCoinInfo(coinId) : console.log(coinId);
+    coinId ? this.getCoinInfo(coinId) : this.router.navigate(['/crypto/coins']);
   }
 
   ngOnInit(): void {}
