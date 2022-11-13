@@ -1,31 +1,75 @@
 <div class="details" *ngIf="!showLoader">
   <div class="header">
-    <img [src]="gameDetails.thumbnail" alt="">
-    <div>
-      <div class="title"> {{gameDetails.title}} </div>
-      <div class="link"><a [href]="gameDetails.game_url" target="_blank">Visit {{gameDetails.title}}'s HomePage</a>
+    <img class="image" [src]="gameDetails.thumbnail" alt="">
+    <div class="title">
+      <div class="name"> {{gameDetails.title}} </div>
+      <div class="link">
+        <mat-icon>sports_esports</mat-icon>
+        <a [href]="gameDetails.game_url" target="_blank">
+          Visit {{gameDetails.title}}'s HomePage
+        </a>
       </div>
     </div>
   </div>
+  <div class="section-name"> Game Description </div>
   <div class="description">{{gameDetails.description}}</div>
-  <div class="metadata">
-    <div class="item">Genre : {{gameDetails.genre}}</div>
-    <div class="item">Platform : {{gameDetails.platform}}</div>
-    <div class="item">Released On : {{gameDetails.release_date}}</div>
-    <div class="item">Status : {{gameDetails.status}}</div>
-    <div class="item">Developer : {{gameDetails.developer}}</div>
-    <div class="item">Publisher : {{gameDetails.publisher}}</div>
+
+  <div class="table">
+    <div class="section">
+      <div class="section-name">Game Details</div>
+      <div class="table">
+        <div class="section key">Genre</div>
+        <div class="section key">{{gameDetails.genre}}</div>
+      </div>
+      <div class="table">
+        <div class="section key">Platform</div>
+        <div class="section key">{{gameDetails.platform}}</div>
+      </div>
+      <div class="table">
+        <div class="section key">Released On</div>
+        <div class="section key">{{gameDetails.release_date}}</div>
+      </div>
+      <div class="table">
+        <div class="section key">Status</div>
+        <div class="section key">{{gameDetails.status}}</div>
+      </div>
+      <div class="table">
+        <div class="section key">Developer</div>
+        <div class="section key">{{gameDetails.developer}}</div>
+      </div>
+      <div class="table">
+        <div class="section key">Publisher</div>
+        <div class="section key">{{gameDetails.publisher}}</div>
+      </div>
+    </div>
+    <div class="section" *ngIf="gameDetails.minimum_system_requirements">
+      <div class="section-name">Minimun System Requirements</div>
+      <div class="table">
+        <div class="section key">Operating System</div>
+        <div class="section key">{{gameDetails.minimum_system_requirements.os}}</div>
+      </div>
+      <div class="table">
+        <div class="section key">Processor</div>
+        <div class="section key">{{gameDetails.minimum_system_requirements.processor}}</div>
+      </div>
+      <div class="table">
+        <div class="section key">Memory</div>
+        <div class="section key">{{gameDetails.minimum_system_requirements.memory}}</div>
+      </div>
+      <div class="table">
+        <div class="section key">Graphics</div>
+        <div class="section key">{{gameDetails.minimum_system_requirements.graphics}}</div>
+      </div>
+      <div class="table">
+        <div class="section key">Storage Space</div>
+        <div class="section key">{{gameDetails.minimum_system_requirements.storage}}</div>
+      </div>
+    </div>
   </div>
-  <div class="specs" *ngIf="gameDetails.minimum_system_requirements">
-    <div class="name">Minimun System Specification Requirements</div>
-    <div class="spec">Operating System : {{gameDetails.minimum_system_requirements.os}}</div>
-    <div class="spec">Processor : {{gameDetails.minimum_system_requirements.processor}}</div>
-    <div class="spec">Memory : {{gameDetails.minimum_system_requirements.memory}}</div>
-    <div class="spec">Graphics : {{gameDetails.minimum_system_requirements.graphics}}</div>
-    <div class="spec">Storage Space : {{gameDetails.minimum_system_requirements.storage}}</div>
-  </div>
+
+  <div class="section-name">Gameplay Snapshots</div>
   <div class="screenshots">
-    <div *ngFor="let ss of gameDetails.screenshots">
+    <div class="snap" *ngFor="let ss of gameDetails.screenshots">
       <img [src]="ss.image" alt="">
     </div>
   </div>
