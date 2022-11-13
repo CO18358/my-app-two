@@ -45,12 +45,3 @@ export const GAME_TAGS = [
   'horror',
   'mmorts',
 ];
-
-export const GAMES_SORT_BY = [
-  'release-date',
-  'popularity',
-  'alphabetical',
-  'relevance',
-];
-
-export const GAME_PLATFORM = ['pc', 'browser', 'all'];

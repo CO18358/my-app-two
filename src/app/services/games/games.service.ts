@@ -30,7 +30,7 @@ export class GamesService {
 
   getGameById(id: number) {
     return this.http
-      .get<GameDetailsExtended>(`${this.baseUrl}/game?id=${id}`, {
+      .get<GameDetailsExtended>(`${this.baseUrl}game?id=${id}`, {
         headers: this.headers,
       })
       .pipe(

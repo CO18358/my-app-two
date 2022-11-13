@@ -1,0 +1,38 @@
+<div class="details" *ngIf="!showLoader">
+  <div class="header">
+    <img [src]="gameDetails.thumbnail" alt="">
+    <div>
+      <div class="title"> {{gameDetails.title}} </div>
+      <div class="link"><a [href]="gameDetails.game_url" target="_blank">Visit {{gameDetails.title}}'s HomePage</a>
+      </div>
+    </div>
+  </div>
+  <div class="description">{{gameDetails.description}}</div>
+  <div class="metadata">
+    <div class="item">Genre : {{gameDetails.genre}}</div>
+    <div class="item">Platform : {{gameDetails.platform}}</div>
+    <div class="item">Released On : {{gameDetails.release_date}}</div>
+    <div class="item">Status : {{gameDetails.status}}</div>
+    <div class="item">Developer : {{gameDetails.developer}}</div>
+    <div class="item">Publisher : {{gameDetails.publisher}}</div>
+  </div>
+  <div class="specs" *ngIf="gameDetails.minimum_system_requirements">
+    <div class="name">Minimun System Specification Requirements</div>
+    <div class="spec">Operating System : {{gameDetails.minimum_system_requirements.os}}</div>
+    <div class="spec">Processor : {{gameDetails.minimum_system_requirements.processor}}</div>
+    <div class="spec">Memory : {{gameDetails.minimum_system_requirements.memory}}</div>
+    <div class="spec">Graphics : {{gameDetails.minimum_system_requirements.graphics}}</div>
+    <div class="spec">Storage Space : {{gameDetails.minimum_system_requirements.storage}}</div>
+  </div>
+  <div class="screenshots">
+    <div *ngFor="let ss of gameDetails.screenshots">
+      <img [src]="ss.image" alt="">
+    </div>
+  </div>
+</div>
+<ng-template #loader>
+  <div class="spinner">
+    <mat-spinner color="warn"></mat-spinner>
+    <div>Loading...</div>
+  </div>
+</ng-template>

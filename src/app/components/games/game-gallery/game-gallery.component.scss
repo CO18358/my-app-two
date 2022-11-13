@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amarante&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap");
+.menu {
+  width: 50%;
+  margin: 1em auto 0;
+  padding: 1em 2em 0;
+  border-radius: 0.8em;
+  background: rgb(255 255 255 / 10%);
+  backdrop-filter: blur(2px);
+  box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  .filter {
+    flex: 1;
+  }
+}
+.content {
+  padding: 2em;
+  .games {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+
+    .card {
+      flex-basis: 49%;
+      width: 100%;
+      display: flex;
+      border-radius: 2em 1.5em 1.5em 2em;
+      color: black;
+      background-color: rgb(255 255 255 / 40%);
+      .image {
+        border-radius: 1.5em 0 0 1.5em;
+      }
+      .details {
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .title {
+          text-align: end;
+          font-size: 1.6rem;
+          font-weight: bold;
+          font-family: "Bungee Spice", cursive;
+          line-height: 1;
+        }
+        .description {
+          font-size: 1rem;
+          font-family: "Fira Sans Condensed", sans-serif;
+          text-align: justify;
+          line-height: 1;
+        }
+        .meta {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-family: "Amarante", cursive;
+        }
+      }
+      &:hover,
+      &:active {
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+          rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+          rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        background-color: rgb(255 255 255 / 80%);
+        cursor: pointer;
+        transition: 1s;
+        .description,
+        .meta {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+.loader {
+  display: flex;
+  height: calc(100vh - 6em);
+  align-items: center;
+  justify-content: center;
+  font-family: "Fira Sans Condensed", sans-serif;
+  flex-direction: column;
+  font-size: 1.5rem;
+  line-height: 1;
+  gap: 8px;
+}
