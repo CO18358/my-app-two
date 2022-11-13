@@ -92,6 +92,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/poetry/poetry.module').then((m) => m.PoetryModule),
   },
+  {
+    path: 'games',
+    loadChildren: () =>
+      import('./components/games/games.module').then((m) => m.GamesModule),
+  },
 ];
 
 @NgModule({

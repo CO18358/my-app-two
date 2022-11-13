@@ -1,0 +1,26 @@
+<div class="container">
+  <app-titlebar title="video games"></app-titlebar>
+  <div class="content" *ngIf="!showLoader; else spinner">
+    <div class="menu"></div>
+    <div class="page-nav"></div>
+    <div class="games">
+      <div class="card" *ngFor="let game of games">
+        <img class="image" [src]="game.thumbnail" [alt]="game.title">
+        <div class="details">
+          <div class="title">{{game.title}}</div>
+          <div class="description">{{game.short_description}}</div>
+          <div class="meta">
+            <div>Released On {{game.release_date}}</div>
+            <div>{{game.genre + " | " + game.platform}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #spinner>
+  <div class="loader">
+    <mat-spinner color="accent"></mat-spinner>
+    <div>Loading ...</div>
+  </div>
+</ng-template>

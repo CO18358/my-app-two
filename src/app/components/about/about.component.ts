@@ -12,7 +12,11 @@ export class AboutComponent implements OnInit {
       url: '/anime-quote',
       image: '/assets/thumbnails/anime-quote.png',
     },
-    { title: 'World News', url: '/news', image: '/assets/thumbnails/news.png' },
+    {
+      title: 'Video Games',
+      url: '/games',
+      image: '/assets/thumbnails/games.png',
+    },
     {
       title: 'Invoice Generator',
       url: '/invoice',
@@ -63,6 +67,7 @@ export class AboutComponent implements OnInit {
       url: '/poetry',
       image: '/assets/thumbnails/poetry.png',
     },
+    { title: 'World News', url: '/news', image: '/assets/thumbnails/news.png' },
   ];
 
   constructor() {}
