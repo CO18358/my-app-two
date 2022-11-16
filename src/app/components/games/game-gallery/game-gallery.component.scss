@@ -59,6 +59,9 @@
           justify-content: space-between;
           font-family: "Amarante", cursive;
         }
+        .link {
+          display: none;
+        }
       }
       &:hover,
       &:active {
@@ -67,10 +70,27 @@
           rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
         background-color: rgb(255 255 255 / 80%);
         cursor: pointer;
+        transform: translateY(-5px);
         transition: 1s;
-        .description,
-        .meta {
-          font-weight: bold;
+        .details {
+          .description {
+            font-weight: bold;
+          }
+          .meta {
+            display: none;
+          }
+          .link {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0.5em 0;
+            color: white;
+            background: black;
+            width: 64%;
+            font-family: "Amarante", cursive;
+            border-radius: 2em;
+            margin: 0 auto;
+          }
         }
       }
     }

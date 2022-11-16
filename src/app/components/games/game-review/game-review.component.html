@@ -67,7 +67,7 @@
     </div>
   </div>
 
-  <div class="section-name">Gameplay Snapshots</div>
+  <div class="section-name" *ngIf="gameDetails.screenshots.length">Gameplay Snapshots</div>
   <div class="screenshots">
     <div class="snap" *ngFor="let ss of gameDetails.screenshots">
       <img [src]="ss.image" alt="">
