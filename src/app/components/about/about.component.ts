@@ -48,7 +48,7 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/weather.png',
     },
     {
-      title: 'Minified Cookbook',
+      title: 'Cookbook',
       url: '/cookbook',
       image: '/assets/thumbnails/cookbook.png',
     },

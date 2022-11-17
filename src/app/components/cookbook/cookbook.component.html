@@ -1,65 +1,40 @@
 <div class="container">
-  <app-titlebar title="minified cookbook"></app-titlebar>
-  <div [ngSwitch]="view">
-
-    <div class="section" *ngSwitchCase="viewModes.dishes">
-      <div class="header">
-        <h1 class="title">{{query + " " + view|uppercase}}</h1>
-      </div>
-      <h2 class="result"> Found <strong>{{dishes.count}}</strong> recipes for "{{query}}"</h2>
-      <div class="main dishes">
-        <div class="dish" *ngFor="let dish of dishes.recipes" (click)="getRecipe(dish.recipe_id)">
-          <img class="thumb" [src]="dish.image_url" alt="">
-          <div class="tag">
-            <h1 class="name">{{dish.title}}</h1>
-          </div>
-        </div>
-      </div>
-      <div class="navigate" (click)="view=viewModes.category">
-        <mat-icon matPrefix>keyboard_backspace</mat-icon>
-        <h2>
-          Back to Categories
-        </h2>
-      </div>
+  <div class="nav-bar">
+    <button mat-icon-button (click)="home()">
+      <mat-icon>west</mat-icon>
+    </button>
+    <div class="title">COOKBOOK</div>
+    <span class="spacer"></span>
+    <div class="search">
+      <input class="input" placeholder="Search Dish" [(ngModel)]="query">
+      <button mat-icon-button (click)="search()">
+        <mat-icon matSuffix>search</mat-icon>
+      </button>
     </div>
-
-    <div class="section" *ngSwitchCase="viewModes.recipe">
-      <div class="header">
-        <h1 class="title">{{recipe.title|uppercase}}</h1>
+    <button mat-button class="menu-btn" (click)="category()">
+      <div class="button">
+        <mat-icon>category</mat-icon>
+        <div>Categories</div>
       </div>
-      <div class="recipe">
-        <div class="image">
-          <img [src]="recipe.image_url" alt="">
-        </div>
-        <div class="data">
-          <div class="publisher">
-            <a [href]="recipe.publisher_url" target="_blank">Published By {{recipe.publisher}}</a>
-          </div>
-          <div class="sub-header">Ingredients Used</div>
-          <div class="sub-point" *ngFor="let ing of recipe.ingredients">
-            <mat-icon>bakery_dining</mat-icon>
-            <span>{{ing}}</span>
-          </div>
-          <div class="source">
-            <a [href]="recipe.source_url">View Recipe</a>
-          </div>
-        </div>
+    </button>
+    <button mat-button class="menu-btn" (click)="ingredients()">
+      <div class="button">
+        <mat-icon>egg</mat-icon>
+        <div>Ingredients</div>
       </div>
-      <div class="navigate" (click)="view=viewModes.dishes">
-        <mat-icon matPrefix>keyboard_backspace</mat-icon>
-        <h2>
-          Back to Dishes
-        </h2>
+    </button>
+    <button mat-button class="menu-btn" (click)="menu()">
+      <div class="button">
+        <mat-icon>menu_book</mat-icon>
+        <div>Menu</div>
       </div>
-    </div>
-
-    <div class="section" *ngSwitchDefault>
-      <div class="header">
-        <h1 class="title">{{view|uppercase}}</h1>
+    </button>
+    <button mat-button class="menu-btn" (click)="random()">
+      <div class="button">
+        <mat-icon>lunch_dining</mat-icon>
+        <div>Random</div>
       </div>
-      <div class="main">
-        <h4 class="option" *ngFor="let item of ingredients" (click)="getDishes(item)">{{item | titlecase}}</h4>
-      </div>
-    </div>
+    </button>
   </div>
+  <router-outlet name="cookbook"></router-outlet>
 </div>

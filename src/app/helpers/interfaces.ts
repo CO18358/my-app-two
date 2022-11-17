@@ -99,3 +99,21 @@ interface SystemSpecs {
   graphics: string;
   storage: string;
 }
+
+export interface Meal {
+  idMeal: string;
+  strMeal: string;
+  strMealThumb: string;
+}
+
+export interface MealCategory {
+  strCategory: string;
+  strCategoryDescription: string;
+  strCategoryThumb: string;
+}
+
+export interface MealPopularIngredient {
+  strIngredient: string;
+  strDescription: string;
+  strType?: string;
+}

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { INGREDIENTS } from 'src/app/helpers/cookbook';
-import { CookbookService } from 'src/app/services/cookbook/cookbook.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cookbook',
@@ -8,34 +7,32 @@ import { CookbookService } from 'src/app/services/cookbook/cookbook.service';
   styleUrls: ['./cookbook.component.scss'],
 })
 export class CookbookComponent implements OnInit {
-  viewModes = {
-    category: 'categories',
-    dishes: 'dishes',
-    recipe: 'recipe',
-  };
-  view = this.viewModes.category;
+  query!: string;
 
-  ingredients = INGREDIENTS.sort();
-  query!: any;
-  dishes: any;
-  recipe!: any;
-
-  constructor(private cookbookService: CookbookService) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
-  async getDishes(ingredient: string) {
-    this.cookbookService.searchRecipes(ingredient).subscribe((res) => {
-      this.dishes = res;
-      this.view = this.viewModes.dishes;
-      this.query = ingredient;
-    });
+  home() {
+    this.router.navigate(['/about']);
+  }
+  search() {
+    this.router.navigate(['/cookbook/search', this.query]);
   }
 
-  getRecipe(id: string) {
-    this.cookbookService.getRecipe(id).subscribe((res: any) => {
-      this.recipe = res.recipe;
-      this.view = this.viewModes.recipe;
-    });
+  random() {
+    this.router.navigate(['/cookbook/random']);
+  }
+
+  category() {
+    this.router.navigate(['/cookbook/categories']);
+  }
+
+  ingredients() {
+    this.router.navigate(['/cookbook/ingredients']);
+  }
+
+  menu() {
+    this.router.navigate(['/cookbook/menu']);
   }
 }
