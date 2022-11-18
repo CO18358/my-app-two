@@ -35,4 +35,8 @@ export class CookbookComponent implements OnInit {
   menu() {
     this.router.navigate(['/cookbook/menu']);
   }
+
+  dictionary() {
+    this.router.navigate(['/cookbook/dictionary']);
+  }
 }
