@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { MealResultsRoutingModule } from './meal-results-routing.module';
 import { MealResultsComponent } from './meal-results.component';
-
+import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
+import { TrimTextModule } from 'src/app/shared/trim-text/trim-text.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [
-    MealResultsComponent
-  ],
+  declarations: [MealResultsComponent],
   imports: [
     CommonModule,
-    MealResultsRoutingModule
-  ]
+    MealResultsRoutingModule,
+    SpinnerModule,
+    TrimTextModule,
+    MatIconModule,
+  ],
 })
-export class MealResultsModule { }
+export class MealResultsModule {}

@@ -27,7 +27,6 @@ export class MealDictionaryComponent implements OnInit {
     this.cookbookService.mealDictionary(this.char).subscribe((res) => {
       this.results = res;
       this.showLoader = false;
-      console.log(this.results);
     });
   }
 
