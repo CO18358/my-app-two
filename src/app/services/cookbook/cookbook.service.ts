@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { forkJoin, map } from 'rxjs';
 import {
   Meal,
   MealCategory,
@@ -54,7 +54,7 @@ export class CookbookService {
     );
   }
 
-  listAreas() {
+  private listAreas() {
     return this.http.get(`${this.baseUrl}list.php?a=list`).pipe(
       map((res: any): string[] => {
         return res.meals.map((cat: any) => {
@@ -64,7 +64,7 @@ export class CookbookService {
     );
   }
 
-  listIngredients() {
+  private listIngredients() {
     return this.http.get(`${this.baseUrl}list.php?i=list`).pipe(
       map((res: any): string[] => {
         return res.meals.map((cat: any) => {
@@ -72,6 +72,14 @@ export class CookbookService {
         });
       })
     );
+  }
+
+  menu() {
+    return forkJoin({
+      categories: this.categories(),
+      areas: this.listAreas(),
+      ingredients: this.listIngredients(),
+    });
   }
 
   popularIngredients() {

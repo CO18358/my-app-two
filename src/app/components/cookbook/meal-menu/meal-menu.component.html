@@ -1,1 +1,26 @@
-<p>meal-menu works!</p>
+<div *ngIf="!showLoader; else loader">
+  <div class="header section-a">Categories ({{categories && categories.length}})</div>
+  <div class="flex-container">
+    <div class="item item-a" *ngFor="let category of categories" (click)="lookupCategory(category.strCategory)">
+      <div class="image"><img [src]="category.strCategoryThumb" alt=""></div>
+      <div class="name">{{category.strCategory}}</div>
+    </div>
+  </div>
+  <div class="header section-b">Origins ({{areas && areas.length}})</div>
+  <div class="flex-container">
+    <div class="item item-b" *ngFor="let area of areas" (click)="lookupArea(area)">
+      <div class="name">{{area}}</div>
+    </div>
+  </div>
+  <div class="header section-c">Ingredients ({{ingredients && ingredients.length}})</div>
+  <div class="flex-container">
+    <div class="item item-c" *ngFor="let ingredient of ingredients" (click)="lookupIngredient(ingredient)">
+      <div class="image"><img [src]="imagePath(ingredient)" alt=""></div>
+      <div class="name">{{ingredient}}</div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-spinner></app-spinner>
+</ng-template>

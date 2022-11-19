@@ -24,10 +24,6 @@ export class CookbookComponent implements OnInit {
     this.router.navigate(['/cookbook/random']);
   }
 
-  category() {
-    this.router.navigate(['/cookbook/categories']);
-  }
-
   ingredients() {
     this.router.navigate(['/cookbook/ingredients']);
   }

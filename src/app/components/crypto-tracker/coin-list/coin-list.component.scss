@@ -45,6 +45,8 @@
     &:hover,
     &:active {
       background-color: rgba(5, 72, 149, 0.4);
+      transform: scale(1.1);
+      transition: all 1s;
     }
   }
 

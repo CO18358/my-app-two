@@ -57,13 +57,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'categories',
-        loadChildren: () =>
-          import('./meal-categories/meal-categories.module').then(
-            (m) => m.MealCategoriesModule
-          ),
-      },
-      {
         path: 'ingredients',
         loadChildren: () =>
           import('./meal-ingredients/meal-ingredients.module').then(
