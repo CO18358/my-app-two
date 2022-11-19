@@ -1,1 +1,26 @@
-<p>meal-categories works!</p>
+<div *ngIf="!showLoader; else loader">
+  <div class="header">Categories</div>
+  <div class="flex-container">
+    <div class="left">
+      <button class="nav" mat-icon-button (click)="prev()">
+        <mat-icon class="icon">arrow_left</mat-icon>
+      </button>
+    </div>
+    <div class="category">
+      <div class="title">{{categories[index].strCategory | uppercase}}</div>
+      <img [src]="categories[index].strCategoryThumb" alt="">
+      <div class="link" (click)="searchRecipes(categories[index].strCategory)">
+        View {{categories[index].strCategory}} Recipes
+      </div>
+    </div>
+    <div class="right">
+      <button class="nav" mat-icon-button (click)="next()">
+        <mat-icon class="icon">arrow_right</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-spinner></app-spinner>
+</ng-template>

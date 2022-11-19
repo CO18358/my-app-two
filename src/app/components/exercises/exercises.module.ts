@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
 
 @NgModule({
   declarations: [ExercisesComponent],
@@ -18,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     ExercisesRoutingModule,
     TitlebarModule,
-    MatProgressSpinnerModule,
+    SpinnerModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,

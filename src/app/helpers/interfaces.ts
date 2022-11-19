@@ -115,5 +115,4 @@ export interface MealCategory {
 export interface MealPopularIngredient {
   strIngredient: string;
   strDescription: string;
-  strType?: string;
 }

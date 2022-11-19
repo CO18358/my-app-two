@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CoinDetailsRoutingModule } from './coin-details-routing.module';
 import { CoinDetailsComponent } from './coin-details.component';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
 
 @NgModule({
   declarations: [CoinDetailsComponent],
@@ -12,7 +12,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CommonModule,
     CoinDetailsRoutingModule,
     MatIconModule,
-    MatProgressSpinnerModule,
+    SpinnerModule,
   ],
 })
 export class CoinDetailsModule {}

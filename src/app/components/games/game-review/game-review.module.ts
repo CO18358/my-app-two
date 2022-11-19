@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { GameReviewRoutingModule } from './game-review-routing.module';
 import { GameReviewComponent } from './game-review.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
+import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
 
 @NgModule({
   declarations: [GameReviewComponent],
   imports: [
     CommonModule,
     GameReviewRoutingModule,
-    MatProgressSpinnerModule,
     MatIconModule,
+    SpinnerModule,
   ],
 })
 export class GameReviewModule {}

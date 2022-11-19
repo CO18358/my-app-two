@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 import { PoetryRoutingModule } from './poetry-routing.module';
 import { PoetryComponent } from './poetry.component';
 import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TrimTextModule } from 'src/app/shared/trim-text/trim-text.module';
 import { MatTabsModule } from '@angular/material/tabs';
+import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
 
 @NgModule({
   declarations: [PoetryComponent],
@@ -14,9 +14,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     CommonModule,
     PoetryRoutingModule,
     TitlebarModule,
-    MatProgressSpinnerModule,
     TrimTextModule,
     MatTabsModule,
+    SpinnerModule,
   ],
 })
 export class PoetryModule {}

@@ -15,10 +15,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'dishnary/:char',
+        path: 'dictionary',
         loadChildren: () =>
-          import('./meal-results/meal-results.module').then(
-            (m) => m.MealResultsModule
+          import('./meal-dictionary/meal-dictionary.module').then(
+            (m) => m.MealDictionaryModule
           ),
       },
       {

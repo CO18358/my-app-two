@@ -78,7 +78,7 @@ export class CookbookService {
     return this.http.get(`${this.baseUrl}list.php?i=list`).pipe(
       map((res: any): MealPopularIngredient[] => {
         return res.meals.filter((ingredient: any) => {
-          return ingredient.strDescription !== null;
+          return ingredient.strDescription;
         });
       })
     );

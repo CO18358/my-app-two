@@ -164,15 +164,3 @@
     }
   }
 }
-
-.loader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 4em);
-  h1 {
-    font-family: "Arima Madurai", cursive;
-    margin: 24px;
-  }
-}
