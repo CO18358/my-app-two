@@ -21,7 +21,6 @@ export class MealIngredientsComponent implements OnInit {
     this.cookbookService.popularIngredients().subscribe((res) => {
       this.ingredients = res;
       this.showLoader = false;
-      console.log(this.ingredients);
     });
   }
 
