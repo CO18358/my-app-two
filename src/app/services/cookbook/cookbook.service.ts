@@ -16,7 +16,7 @@ export class CookbookService {
 
   searchMeal(name: string) {
     return this.http.get(`${this.baseUrl}search.php?s=${name}`).pipe(
-      map((res: any) => {
+      map((res: any): Meal[] => {
         return res.meals;
       })
     );
@@ -24,7 +24,7 @@ export class CookbookService {
 
   mealDictionary(character: string) {
     return this.http.get(`${this.baseUrl}search.php?f=${character}`).pipe(
-      map((res: any) => {
+      map((res: any): Meal[] => {
         return res.meals;
       })
     );
