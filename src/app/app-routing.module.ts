@@ -8,6 +8,11 @@ const routes: Routes = [
       import('./components/about/about.module').then((m) => m.AboutModule),
   },
   {
+    path: '',
+    redirectTo: '/about',
+    pathMatch: 'full',
+  },
+  {
     path: 'anime-quote',
     loadChildren: () =>
       import('./components/anime-quote/anime-quote.module').then(
@@ -62,9 +67,11 @@ const routes: Routes = [
       ),
   },
   {
-    path: '',
-    redirectTo: '/about',
-    pathMatch: 'full',
+    path: 'cocktail',
+    loadChildren: () =>
+      import('./components/cocktail/cocktail.module').then(
+        (m) => m.CocktailModule
+      ),
   },
   {
     path: 'cookbook',

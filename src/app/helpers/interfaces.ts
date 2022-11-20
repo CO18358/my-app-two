@@ -127,8 +127,28 @@ export interface MealDetails {
   strMealThumb: string;
   strArea: string;
   strCategory: string;
-  strTags?: string;
   strInstructions: string;
   strYoutube: string;
   ingredients: MealIngredient[];
+}
+
+export interface Drink {
+  idDrink: string;
+  strDrink: string;
+  strDrinkThumb: string;
+}
+
+interface DrinkIngredient {
+  ingredient: string;
+  measure: string;
+}
+
+export interface DrinkDetails {
+  strDrink: string;
+  strDrinkThumb: string;
+  strAlcoholic: string;
+  strGlass: string;
+  strCategory: string;
+  strInstructions: string;
+  ingredients: DrinkIngredient[];
 }

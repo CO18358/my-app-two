@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
     SpinnerModule,
     TrimTextModule,
     MatIconModule,
+    TrimTextModule,
   ],
 })
 export class MealResultsModule {}

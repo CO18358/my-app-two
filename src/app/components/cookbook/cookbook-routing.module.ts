@@ -68,6 +68,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./meal-menu/meal-menu.module').then((m) => m.MealMenuModule),
       },
+      {
+        path: '',
+        redirectTo: '/cookbook/ingredients',
+        pathMatch: 'full',
+      },
     ],
   },
 ];

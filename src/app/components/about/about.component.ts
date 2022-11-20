@@ -28,6 +28,11 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/crypto.png',
     },
     {
+      title: 'Realtime Weather',
+      url: '/weather',
+      image: '/assets/thumbnails/weather.png',
+    },
+    {
       title: 'Exercise Suggestions',
       url: '/exercises',
       image: '/assets/thumbnails/exercises.png',
@@ -42,15 +47,16 @@ export class AboutComponent implements OnInit {
       url: '/horoscope',
       image: '/assets/thumbnails/horoscope.png',
     },
-    {
-      title: 'Realtime Weather',
-      url: '/weather',
-      image: '/assets/thumbnails/weather.png',
-    },
+
     {
       title: 'Cookbook',
       url: '/cookbook',
       image: '/assets/thumbnails/cookbook.png',
+    },
+    {
+      title: 'Cocktails',
+      url: '/cocktail',
+      image: '/assets/thumbnails/cocktail.png',
     },
     {
       title: 'Watch a Movie',

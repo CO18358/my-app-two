@@ -1,0 +1,16 @@
+<div *ngIf="!showLoader; else loader">
+  <div class="header">{{key}} : {{value}} ({{results && results.length}})</div>
+  <div class="meals">
+    <div class="card" *ngFor="let drink of results" (click)="gotoDrink(drink.idDrink)">
+      <img class="card_image" [src]="drink.strDrinkThumb" />
+      <div class="card_title title-white">
+        <div>{{drink.strDrink|trimText:25}}</div>
+        <mat-icon>trending_flat</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-spinner></app-spinner>
+</ng-template>
