@@ -16,7 +16,7 @@
     <div class="card" *ngFor="let meal of results" (click)="gotoMeal(meal.idMeal)">
       <img class="card_image" [src]="meal.strMealThumb" />
       <div class="card_title title-white">
-        <div>{{meal.strMeal|trimText:30}}</div>
+        <div>{{meal.strMeal|trimText:25}}</div>
         <mat-icon>trending_flat</mat-icon>
       </div>
     </div>

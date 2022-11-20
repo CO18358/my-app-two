@@ -1,1 +1,28 @@
-<p>meal-details works!</p>
+<div *ngIf="!showLoader; else loader">
+  <div class="header heading-a">Dish → {{meal.strMeal}}</div>
+  <div class="card">
+    <img class="card_image" [src]="meal.strMealThumb" />
+    <div class="card_title title-white">
+      <div>Category: {{meal.strCategory}}</div>
+      <div>Region: {{meal.strArea}}</div>
+    </div>
+  </div>
+
+  <div class="header heading-b">Ingredients</div>
+  <div class="ingredients">
+    <div class="ingredient" *ngFor="let ingredient of meal.ingredients">
+      <img class="image" [src]="imagePath(ingredient.ingredient)" alt="">
+      <div class="name">{{ingredient.ingredient}}</div>
+      <div class="measure">{{ingredient.measure}}</div>
+    </div>
+  </div>
+  <div class="header heading-c">Instructions</div>
+  <div class="instructions">{{meal.strInstructions}}</div>
+  <div *ngIf="meal.strYoutube">
+    <div class="header heading-d">Youtube</div>
+    <iframe class="youtube" [src]="getYoutubeURL(meal.strYoutube)" frameborder="0" allowfullscreen></iframe>
+  </div>
+</div>
+<ng-template #loader>
+  <app-spinner></app-spinner>
+</ng-template>

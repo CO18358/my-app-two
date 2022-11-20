@@ -116,3 +116,19 @@ export interface MealPopularIngredient {
   strIngredient: string;
   strDescription: string;
 }
+
+interface MealIngredient {
+  ingredient: string;
+  measure: string;
+}
+
+export interface MealDetails {
+  strMeal: string;
+  strMealThumb: string;
+  strArea: string;
+  strCategory: string;
+  strTags?: string;
+  strInstructions: string;
+  strYoutube: string;
+  ingredients: MealIngredient[];
+}

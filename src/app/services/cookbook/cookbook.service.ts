@@ -4,6 +4,7 @@ import { forkJoin, map } from 'rxjs';
 import {
   Meal,
   MealCategory,
+  MealDetails,
   MealPopularIngredient,
 } from 'src/app/helpers/interfaces';
 
@@ -32,16 +33,42 @@ export class CookbookService {
 
   mealById(id: string) {
     return this.http.get(`${this.baseUrl}lookup.php?i=${id}`).pipe(
-      map((res: any) => {
-        return res.meals[0];
+      map((res: any): MealDetails => {
+        const meal = res.meals[0];
+        const ingredients: any[] = [];
+        for (let i = 1; i <= 20; i++) {
+          if (`strIngredient${i}` in meal && meal[`strIngredient${i}`]) {
+            ingredients.push({
+              ingredient: meal[`strIngredient${i}`],
+              measure: meal[`strMeasure${i}`],
+            });
+          }
+          delete meal[`strIngredient${i}`];
+          delete meal[`strMeasure${i}`];
+        }
+        meal.ingredients = ingredients;
+        return meal;
       })
     );
   }
 
   randomMeal() {
     return this.http.get(`${this.baseUrl}random.php`).pipe(
-      map((res: any) => {
-        return res.meals[0];
+      map((res: any): MealDetails => {
+        const meal = res.meals[0];
+        const ingredients: any[] = [];
+        for (let i = 1; i <= 20; i++) {
+          if (`strIngredient${i}` in meal && meal[`strIngredient${i}`]) {
+            ingredients.push({
+              ingredient: meal[`strIngredient${i}`],
+              measure: meal[`strMeasure${i}`],
+            });
+          }
+          delete meal[`strIngredient${i}`];
+          delete meal[`strMeasure${i}`];
+        }
+        meal.ingredients = ingredients;
+        return meal;
       })
     );
   }

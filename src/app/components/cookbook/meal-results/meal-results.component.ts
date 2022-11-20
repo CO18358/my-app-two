@@ -48,7 +48,6 @@ export class MealResultsComponent implements OnInit {
         this.cookbookService.filterByIngredient(this.value).subscribe((res) => {
           this.results = res;
           this.showLoader = false;
-          console.log(this.results);
         });
         break;
       default:
