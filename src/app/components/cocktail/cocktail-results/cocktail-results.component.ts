@@ -38,8 +38,8 @@ export class CocktailResultsComponent implements OnInit {
           this.showLoader = false;
         });
         break;
-      case 'alcoholic':
-        this.cocktailService.filterByAlcoholic(this.value).subscribe((res) => {
+      case 'type':
+        this.cocktailService.filterByTpe(this.value).subscribe((res) => {
           this.results = res;
           this.showLoader = false;
         });
@@ -57,7 +57,7 @@ export class CocktailResultsComponent implements OnInit {
         });
         break;
       default:
-        this.router.navigate(['/cookbook']);
+        this.router.navigate(['/cocktail']);
     }
   }
 

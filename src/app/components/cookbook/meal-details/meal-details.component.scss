@@ -12,7 +12,6 @@
   border-left: 8px solid #a908ff;
 }
 .heading-b {
-  margin: 64px 32px 32px;
   border-left: 8px solid #ffbd08;
 }
 .heading-c {
@@ -42,9 +41,8 @@
     align-items: center;
     justify-content: space-around;
     border-radius: 0px 0px 40px 40px;
-    font-family: sans-serif;
     font-size: 24px;
-    margin: -40px auto;
+    margin: -40px auto 0;
     text-shadow: 4px 4px 7px rgba(0, 0, 0);
     font-family: "Koulen", cursive;
     line-height: 1;

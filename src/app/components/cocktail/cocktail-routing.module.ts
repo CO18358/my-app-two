@@ -22,7 +22,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'alcoholic/:alcoholic',
+        path: 'type/:type',
         loadChildren: () =>
           import('./cocktail-results/cocktail-results.module').then(
             (m) => m.CocktailResultsModule

@@ -20,7 +20,7 @@ export class CocktailService {
 
   drinkById(id: string) {
     return this.http.get(`${this.baseUrl}lookup.php?i=${id}`).pipe(
-      map((res: any): Drink => {
+      map((res: any): DrinkDetails => {
         const drink = res.drinks[0];
         const ingredients: any[] = [];
         for (let i = 1; i <= 20; i++) {
@@ -117,8 +117,8 @@ export class CocktailService {
     );
   }
 
-  filterByAlcoholic(alcoholic: string) {
-    return this.http.get(`${this.baseUrl}filter.php?a=${alcoholic}`).pipe(
+  filterByTpe(type: string) {
+    return this.http.get(`${this.baseUrl}filter.php?a=${type}`).pipe(
       map((res: any): Drink[] => {
         return res.drinks;
       })
