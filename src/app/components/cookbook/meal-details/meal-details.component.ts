@@ -38,7 +38,6 @@ export class MealDetailsComponent implements OnInit {
     this.cookbookService.mealById(id).subscribe((res) => {
       this.meal = res;
       this.showLoader = false;
-      console.log(this.meal);
     });
   }
 
@@ -47,7 +46,6 @@ export class MealDetailsComponent implements OnInit {
     this.cookbookService.randomMeal().subscribe((res) => {
       this.meal = res;
       this.showLoader = false;
-      console.log(this.meal);
     });
   }
 }

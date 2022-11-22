@@ -24,6 +24,7 @@
     "country-data-list": "^1.2.2",
     "file-saver": "^2.0.5",
     "fitness-calculator": "^1.1.0",
+    "genshin-db": "^4.3.2",
     "ngx-toastr": "^15.0.0",
     "pdfmake": "^0.2.5",
     "rxjs": "~7.5.0",

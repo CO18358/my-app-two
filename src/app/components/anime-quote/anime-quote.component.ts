@@ -37,7 +37,6 @@ export class AnimeQuoteComponent implements OnInit {
     this.loader = true;
     this.quoteService.news().subscribe((res) => {
       this.news = res;
-      console.log(this.news);
       this.loader = false;
     });
   }
@@ -54,7 +53,6 @@ export class AnimeQuoteComponent implements OnInit {
         .search(this.option.value, this.query, this.pageNum)
         .subscribe((res) => {
           this.quotesArray = res;
-          console.log(this.quotesArray);
           this.loader = false;
         });
     }

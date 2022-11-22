@@ -27,7 +27,6 @@ export class GameReviewComponent implements OnInit {
     this.gamesService.getGameById(id).subscribe((res) => {
       this.gameDetails = res;
       this.showLoader = false;
-      console.log(this.gameDetails);
     });
   }
 }

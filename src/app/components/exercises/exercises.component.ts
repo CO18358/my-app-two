@@ -53,7 +53,6 @@ export class ExercisesComponent implements OnInit {
             return ex;
           })
           .sort((a, b) => a.instructions.length - b.instructions.length);
-        console.log(this.exercises);
         this.showSpinner = false;
       });
   }

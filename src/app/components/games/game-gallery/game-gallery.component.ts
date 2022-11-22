@@ -31,7 +31,6 @@ export class GameGalleryComponent implements OnInit {
     this.showLoader = true;
     this.gamesService.getAllGames().subscribe((res) => {
       this.games = res;
-      console.log(this.games);
       this.showLoader = false;
     });
   }

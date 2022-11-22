@@ -30,7 +30,6 @@ export class CocktailDetailsComponent implements OnInit {
     this.cocktailService.drinkById(id).subscribe((res) => {
       this.drink = res;
       this.showLoader = false;
-      console.log(this.drink);
     });
   }
 
@@ -39,7 +38,6 @@ export class CocktailDetailsComponent implements OnInit {
     this.cocktailService.randomDrink().subscribe((res) => {
       this.drink = res;
       this.showLoader = false;
-      console.log(this.drink);
     });
   }
 }
