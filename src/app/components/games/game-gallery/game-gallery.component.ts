@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
-import { GAME_TAGS } from 'src/app/helpers/games';
-import { GameDetails } from 'src/app/helpers/interfaces';
+import { GameDetails, GAME_TAGS } from 'src/app/helpers/games';
 import { GamesService } from 'src/app/services/games/games.service';
 
 @Component({

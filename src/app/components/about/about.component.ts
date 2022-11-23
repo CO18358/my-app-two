@@ -17,9 +17,9 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/games.png',
     },
     {
-      title: 'Invoice Generator',
-      url: '/invoice',
-      image: '/assets/thumbnails/invoice.png',
+      title: 'Genshin Impact Database',
+      url: '/genshin',
+      image: '/assets/thumbnails/genshin.png',
     },
     {
       title: 'Cryptocurrency Tracker',
@@ -32,14 +32,14 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/weather.png',
     },
     {
-      title: 'Exercise Suggestions',
-      url: '/exercises',
-      image: '/assets/thumbnails/exercises.png',
-    },
-    {
       title: 'Fitness Calculator',
       url: '/fitness',
       image: '/assets/thumbnails/fitness.png',
+    },
+    {
+      title: 'Exercise Suggestions',
+      url: '/exercises',
+      image: '/assets/thumbnails/exercises.png',
     },
     {
       title: 'Horoscope',
@@ -73,6 +73,11 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/poetry.png',
     },
     { title: 'World News', url: '/news', image: '/assets/thumbnails/news.png' },
+    {
+      title: 'Invoice Generator',
+      url: '/invoice',
+      image: '/assets/thumbnails/invoice.png',
+    },
   ];
 
   constructor() {}

@@ -1,11 +1,3 @@
-export interface User {
-  _id: string;
-  name: string;
-  user_id: string;
-  email: string;
-  password: string;
-}
-
 export interface AnimeQuote {
   quote: string;
   anime: string;
@@ -66,40 +58,6 @@ export interface Poem {
   linecount: number;
 }
 
-export interface GameDetails {
-  id: number;
-  title: string;
-  thumbnail: string;
-  short_description: string;
-  game_url: string;
-  genre: string;
-  platform: string;
-  publisher: string;
-  developer: string;
-  release_date: string;
-  freetogame_profile_url: string;
-}
-
-export interface GameDetailsExtended extends GameDetails {
-  status: string;
-  description: string;
-  screenshots: Screenshort[];
-  minimum_system_requirements: SystemSpecs;
-}
-
-interface Screenshort {
-  id: number;
-  image: string;
-}
-
-interface SystemSpecs {
-  os: string;
-  processor: string;
-  memory: string;
-  graphics: string;
-  storage: string;
-}
-
 export interface Meal {
   idMeal: string;
   strMeal: string;
@@ -122,9 +80,7 @@ interface MealIngredient {
   measure: string;
 }
 
-export interface MealDetails {
-  strMeal: string;
-  strMealThumb: string;
+export interface MealDetails extends Meal {
   strArea: string;
   strCategory: string;
   strInstructions: string;
@@ -143,9 +99,7 @@ interface DrinkIngredient {
   measure: string;
 }
 
-export interface DrinkDetails {
-  strDrink: string;
-  strDrinkThumb: string;
+export interface DrinkDetails extends Drink {
   strAlcoholic: string;
   strGlass: string;
   strCategory: string;

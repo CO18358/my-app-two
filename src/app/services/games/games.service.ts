@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
-import { GameDetails, GameDetailsExtended } from 'src/app/helpers/interfaces';
+import { GameDetails, GameDetailsExtended } from 'src/app/helpers/games';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

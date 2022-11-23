@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GameDetailsExtended } from 'src/app/helpers/interfaces';
+import { GameDetailsExtended } from 'src/app/helpers/games';
 import { GamesService } from 'src/app/services/games/games.service';
 
 @Component({
