@@ -104,13 +104,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/games/games.module').then((m) => m.GamesModule),
   },
-  {
-    path: 'genshin',
-    loadChildren: () =>
-      import('./components/genshin-db/genshin-db.module').then(
-        (m) => m.GenshinDbModule
-      ),
-  },
 ];
 
 @NgModule({

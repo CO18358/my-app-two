@@ -17,11 +17,6 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/games.png',
     },
     {
-      title: 'Genshin Impact Database',
-      url: '/genshin',
-      image: '/assets/thumbnails/genshin.png',
-    },
-    {
       title: 'Cryptocurrency Tracker',
       url: '/crypto',
       image: '/assets/thumbnails/crypto.png',
