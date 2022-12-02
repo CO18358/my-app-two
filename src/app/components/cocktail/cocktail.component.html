@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="nav-bar">
+    <button mat-icon-button (click)="home()">
+      <mat-icon>west</mat-icon>
+    </button>
+    <div class="title">COCKTAILS</div>
+    <span class="spacer"></span>
+    <div class="search">
+      <input class="input" placeholder="Search Drink" [(ngModel)]="query">
+      <button mat-icon-button (click)="search()">
+        <mat-icon matSuffix>search</mat-icon>
+      </button>
+    </div>
+    <button mat-button class="menu-btn" (click)="menu()">
+      <div class="button">
+        <mat-icon>nightlife</mat-icon>
+        <div>Menu</div>
+      </div>
+    </button>
+    <button mat-button class="menu-btn" (click)="random()">
+      <div class="button">
+        <mat-icon>local_bar</mat-icon>
+        <div>Random</div>
+      </div>
+    </button>
+  </div>
+  <router-outlet name="cocktail"></router-outlet>
+</div>

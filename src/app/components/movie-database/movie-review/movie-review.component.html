@@ -1,0 +1,60 @@
+<div class="movie-box" *ngIf="show">
+  <div class="main">
+    <div class="left-content">
+      <img #img class="poster" [src]="show.Poster" alt="" (error)="img.src = '/assets/not_found.png'" />
+      <div *ngFor="let score of show.Ratings; let i = index">
+        <p class="rating">{{ score.Source }}</p>
+        <mat-progress-bar mode="determinate" [color]="i == 1 ? 'warn' : i == 2 ? 'accent' : 'primary'"
+          [value]="!i ? rating(score.Value, true) : rating(score.Value)"></mat-progress-bar>
+      </div>
+    </div>
+    <div class="right-content">
+      <p class="title text-right">
+        {{ show.Title + " (" + show.Year + ")" }}
+      </p>
+      <div class="space-between">
+        <p class="heading">{{ show.imdbRating + " | " + show.Rated }}</p>
+        <p class="heading">{{ show.Runtime + " | " + show.Country }}</p>
+      </div>
+
+      <p class="plot entry">{{ show.Plot }}</p>
+
+      <div class="space-between">
+        <div class="key text-center entry">Genre</div>
+        <div class="value text-center entry">{{ show.Genre }}</div>
+      </div>
+      <div class="space-between">
+        <div class="key text-center entry">Language</div>
+        <div class="value text-center entry">{{ show.Language }}</div>
+      </div>
+      <div class="space-between">
+        <div class="key text-center entry">Release Date</div>
+        <div class="value text-center entry">{{ show.Released }}</div>
+      </div>
+      <div class="space-between" *ngIf="show.Type == 'series'">
+        <div class="key text-center entry">Seasons</div>
+        <div class="value text-center entry">{{ show.totalSeasons }}</div>
+      </div>
+      <div class="space-between">
+        <div class="key text-center entry">Actors</div>
+        <div class="value text-center entry">{{ show.Actors }}</div>
+      </div>
+      <div class="space-between" *ngIf="show.Type == 'series'">
+        <div class="key text-center entry">Director</div>
+        <div class="value text-center entry">{{ show.Director }}</div>
+      </div>
+      <div class="space-between">
+        <div class="key text-center entry">Writers</div>
+        <div class="value text-center entry">{{ show.Writer }}</div>
+      </div>
+      <div class="space-between" *ngIf="show.Type == 'movie'">
+        <div class="key text-center entry">Box Office</div>
+        <div class="value text-center entry">{{ show.BoxOffice }}</div>
+      </div>
+      <div class="space-between">
+        <div class="key text-center entry">Awards</div>
+        <div class="value text-center entry">{{ show.Awards }}</div>
+      </div>
+    </div>
+  </div>
+</div>

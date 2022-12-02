@@ -1,0 +1,49 @@
+<div class="menu">
+  <mat-form-field class="filter" appearance="legacy">
+    <mat-label>Search Games</mat-label>
+    <input type="text" matInput [formControl]="search">
+  </mat-form-field>
+  <!-- <mat-form-field appearance="legacy">
+    <mat-label>Set Currency</mat-label>
+    <mat-select [(ngModel)]="curr" (selectionChange)="getCoinList()">
+      <mat-option *ngFor="let op of vsCurrencies" [value]="op">{{op.symbol + " " + op.value|uppercase}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+  <!-- <mat-form-field appearance="legacy">
+    <mat-label>Platform</mat-label>
+    <mat-select (selectionChange)="filterPlatform()">
+      <mat-option *ngFor="let op of platforms" [value]="op">{{op}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="legacy">
+    <mat-label>Sort By</mat-label>
+    <mat-select (selectionChange)="sortGames()">
+      <mat-option *ngFor="let op of sort" [value]="op">{{op}}</mat-option>
+    </mat-select>
+  </mat-form-field> -->
+</div>
+
+<div class="content" *ngIf="!showLoader; else spinner">
+  <div class="games">
+    <div class="card" *ngFor="let game of filteredGames | async" (click)="review(game.id)">
+      <img class="image" [src]="game.thumbnail" [alt]="game.title">
+      <div class="details">
+        <div class="title">{{game.title}}</div>
+        <div class="description">{{game.short_description}}</div>
+        <div class="meta">
+          <div>Released On {{game.release_date}}</div>
+          <div>{{game.genre + " | " + game.platform}}</div>
+        </div>
+        <div class="link">
+          <div>Explore Game</div>
+          <mat-icon>trending_flat</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

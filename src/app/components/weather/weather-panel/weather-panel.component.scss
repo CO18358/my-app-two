@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Concert+One&family=Khula&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arima+Madurai&family=Concert+One&family=Khula&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital@1&display=swap");
+
+.weather-panel {
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  .navigate {
+    font-family: "Arima Madurai", cursive;
+    margin: 1em 0 0;
+    font-size: 1.2rem;
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+  .current-weather {
+    width: 100%;
+    display: flex;
+    background-color: #f3f3f3;
+    color: #27334e;
+    margin: 1em;
+    border-radius: 2rem;
+    .main {
+      padding: 3em;
+      background-color: #dcdcdc;
+      text-align: center;
+      font-family: "Concert One", cursive;
+      line-height: 1;
+      border-radius: 2rem 0 0 2rem;
+      width: 25%;
+      .temperature {
+        font-weight: bold;
+        font-size: 8rem;
+      }
+      .date {
+        font-size: 1.6rem;
+      }
+    }
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      font-family: "Arima Madurai", cursive;
+      font-weight: 600;
+      gap: 20px;
+      align-items: center;
+      width: 75%;
+      padding: 1em;
+      .stat {
+        line-height: 1;
+        display: flex;
+        min-width: 30%;
+        padding: 0.4em;
+        border-radius: 0.5rem;
+        align-items: center;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+          rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        .icon {
+          width: 2.4em;
+          object-fit: contain;
+        }
+        .label {
+          font-size: 1.2rem;
+          margin: 0 0.5em;
+        }
+      }
+    }
+  }
+  .main-label {
+    text-align: center;
+    line-height: 1;
+    font-family: "Averia Serif Libre", cursive;
+    font-size: 2.5rem;
+    margin: 0.5em;
+  }
+  .hour-view {
+    display: flex;
+    overflow-x: scroll;
+    justify-content: space-between;
+    column-gap: 16px;
+    margin: 1em;
+    .hour-card {
+      color: #27334e;
+      min-width: 23%;
+      .hour-main {
+        background-color: #fafafa;
+        border-radius: 1.5em 1.5em 0 0;
+        padding: 1em;
+        text-align: center;
+        font-family: "Concert One", cursive;
+        line-height: 1;
+        .temperature {
+          font-weight: bold;
+          font-size: 4rem;
+        }
+        .time {
+          font-size: 1.6rem;
+        }
+      }
+      .hour-stats {
+        background-color: #bcbcbc;
+        font-family: "Arima Madurai", cursive;
+        border-radius: 0 0 1.5em 1.5em;
+        font-weight: 500;
+        padding: 0.5em;
+        .hour-stat {
+          display: flex;
+          padding: 0.5em;
+          margin: 0.5em;
+          background-color: #fafafa;
+          line-height: 1;
+          border-radius: 0.5rem;
+          align-items: center;
+          box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+            rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+          .label {
+            font-size: 1rem;
+            margin: 0 0.4em;
+            font-weight: 600;
+          }
+          .icon {
+            width: 2em;
+            object-fit: contain;
+          }
+        }
+      }
+      &:hover,
+      &:active {
+        cursor: pointer;
+        .hour-main,
+        .hour-stats > .hour-stat {
+          transition: all 0.5s ease-out;
+          color: #fafafa;
+          background-color: #363636;
+        }
+      }
+    }
+  }
+  .day-card {
+    display: block;
+    .main,
+    .stats {
+      width: 100%;
+    }
+    .main {
+      border-radius: 2rem 2rem 0 0;
+      padding: 2em 0;
+      .row {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 2em;
+        .icon-row {
+          display: flex;
+          align-items: center;
+          gap: 0 12px;
+          .main-icon {
+            width: 2.4em;
+            transform: scaleX(-1);
+          }
+        }
+      }
+    }
+  }
+}

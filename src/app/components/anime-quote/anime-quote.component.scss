@@ -1,45 +1,122 @@
-.loader {
-  display: flex;
-  height: calc(100vh - 4rem);
-  align-items: center;
-  justify-content: center;
-}
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amarante&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Germania+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Coda&display=swap");
 
-.search {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-top: 32px;
+.container {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: auto;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://wallpapercave.com/wp/wp4833734.jpg") no-repeat;
+  background-size: cover;
 
-  mat-form-field {
-    width: 80%;
-    margin-bottom: -1rem;
-  }
-}
+  .search-box {
+    width: 72%;
+    padding: 0.5em 2em;
+    border-radius: 1em;
+    background: rgb(255 255 255 / 14%);
+    backdrop-filter: blur(2px);
+    box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
+    display: flex;
+    margin: auto;
+    gap: 20px;
 
-.btn-group {
-  padding: 32px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  flex-flow: row wrap;
-
-  .btn {
-    background: none;
-    border: 2px solid;
-    font: inherit;
-    line-height: 1;
-    margin: 0.5rem;
-    padding: 1rem;
-    color: #4b78d2;
-    transition: 0.25s;
-
-    &:hover {
-      border-color: #f3f049;
-      color: #cbc772;
-      box-shadow: 0 0.5rem 0.5rem -0.4rem #f3f049;
-      transform: translateY(-0.25rem);
+    .search {
+      flex: 1;
     }
   }
 
+  .page-menu {
+    display: flex;
+    justify-content: center;
+    font-family: "Fira Sans Condensed", sans-serif;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  .quotes-container {
+    display: flex;
+    gap: 16px;
+    width: 80%;
+    margin: 1em auto;
+    overflow: scroll;
+    // flex-wrap: wrap;
+    // justify-content: center;
+    .card {
+      background: radial-gradient(#1fe4f5, #3fbafe);
+      border-radius: 1em;
+      min-width: 50%;
+      padding: 2em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      line-height: 1;
+      color: black;
+      .title {
+        font-size: 1.6rem;
+        font-family: "Bebas Neue", cursive;
+      }
+      .text {
+        font-size: 1rem;
+        text-align: center;
+        font-family: "Amarante", cursive;
+      }
+      .name {
+        font-style: italic;
+        font-size: 1.3rem;
+        text-align: end;
+        font-family: "Germania One", cursive;
+      }
+    }
+  }
+
+  .header {
+    font-family: "Coda", cursive;
+    line-height: 1;
+    font-size: 3rem;
+    border-left: solid greenyellow;
+    margin: 1.5rem auto;
+    width: 80%;
+    .text {
+      margin: 1rem;
+    }
+  }
+  .news-container {
+    width: 80%;
+    margin: 0 auto 1rem;
+    display: flex;
+    .left,
+    .right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .main {
+      flex: 8;
+      // background-color: #3fbafe;
+
+      background: radial-gradient(#c50e0e, #e81818);
+      border-radius: 1em;
+      min-width: 80%;
+      padding: 1em;
+      text-align: center;
+      .news {
+        line-height: 1;
+        color: white;
+        font-size: 1rem;
+        text-decoration: none;
+        &:hover,
+        &:active {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }

@@ -1,0 +1,31 @@
+<div *ngIf="!showLoader; else loader">
+  <div class="header">Popular Ingredients</div>
+  <div class="flex-container">
+    <div class="left">
+      <button class="nav" mat-icon-button (click)="prev()">
+        <mat-icon class="icon">arrow_left</mat-icon>
+      </button>
+    </div>
+    <div class="ingredient">
+      <div class="image">
+        <img [src]="imagePath(ingredients[index])" alt="">
+      </div>
+      <div class="details">
+        <div class="title">{{index+1 + ". " +ingredients[index].strIngredient}}</div>
+        <div class="description">{{ingredients[index].strDescription}}</div>
+        <div class="link" (click)="searchRecipes(ingredients[index].strIngredient)">
+          View {{ingredients[index].strIngredient}} Recipes
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <button class="nav" mat-icon-button (click)="next()">
+        <mat-icon class="icon">arrow_right</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-spinner></app-spinner>
+</ng-template>

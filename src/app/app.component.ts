@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'my-app-two';
-  constructor(public authService: AuthService) { }
+  title = 'My App';
 
-  logout() {
-    this.authService.doLogout();
+  constructor() {}
+
+  changeTitle(title: string) {
+    this.title = title;
   }
 }

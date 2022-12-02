@@ -1,59 +1,84 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { lastValueFrom, Observable } from 'rxjs';
-import { AnimeQuote } from 'src/app/models/interfaces';
+import { AnimeQuote } from 'src/app/helpers/interfaces';
 import { AnimeQuotesService } from 'src/app/services/anime-quotes/anime-quotes.service';
-import { ShowQuoteComponent } from './show-quote/show-quote.component';
-import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-anime-quote',
   templateUrl: './anime-quote.component.html',
-  styleUrls: ['./anime-quote.component.scss']
+  styleUrls: ['./anime-quote.component.scss'],
 })
 export class AnimeQuoteComponent implements OnInit {
+  options = [
+    { name: 'Anime', value: true },
+    { name: 'Character', value: false },
+  ];
+  option = this.options[0];
+  query!: string;
 
-  titles: string[] = [];
-  form = new FormControl();
-  filteredTitles!: Observable<string[]>
+  pageNum: number = 1;
 
-  constructor(
-    private quoteService: AnimeQuotesService,
-    public dialog: MatDialog
-  ) { }
+  loader!: boolean;
+  quotesArray!: AnimeQuote[];
+  news!: any[];
+  index = 0;
 
-  async ngOnInit() {
-    await this.getAnimeList();
-    this.filteredTitles = this.form.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
+  constructor(private quoteService: AnimeQuotesService) {}
+
+  ngOnInit() {
+    this.random();
+    this.newsToday();
   }
 
-  async getAnimeList() {
-    const titles = await lastValueFrom(this.quoteService.animeListUrl())
-    this.titles = titles.sort().filter((title: string) => title);
-    this.titles.unshift("Random")
+  // async getAnimeList() {
+  //   const titles = await lastValueFrom(this.quoteService.animeListUrl());
+  // }
+
+  newsToday() {
+    this.loader = true;
+    this.quoteService.news().subscribe((res) => {
+      this.news = res;
+      this.loader = false;
+    });
+  }
+  random() {
+    this.quoteService.randomQoutes(this.pageNum).subscribe((res) => {
+      this.quotesArray = res;
+    });
   }
 
-  async showQuote(name: string) {
-    let request = this.quoteService.animeQuotesUrl(name)
-    if (name == "Random") {
-      request = this.quoteService.randomQoutesUrl()
+  search() {
+    if (this.query && this.query != '') {
+      this.loader = true;
+      this.quoteService
+        .search(this.option.value, this.query, this.pageNum)
+        .subscribe((res) => {
+          this.quotesArray = res;
+          this.loader = false;
+        });
     }
-    const quotes: AnimeQuote[] = await lastValueFrom(request)
-    const quote = quotes[Math.floor(Math.random() * quotes.length)];
-    this.dialog.open(ShowQuoteComponent, {
-      data: quote,
-      maxHeight: "75vh"
-    })
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.titles.filter(option => option.toLowerCase().includes(filterValue));
+  prevPage() {
+    this.pageNum > 0 && this.pageNum--;
+    if (
+      this.query &&
+      this.query != '' &&
+      (this.quotesArray[0].anime.includes(this.query) ||
+        this.quotesArray[0].character.includes(this.query))
+    ) {
+      this.search();
+    } else this.random();
   }
 
+  nextPage() {
+    this.pageNum++;
+    if (
+      this.query &&
+      this.query != '' &&
+      (this.quotesArray[0].anime.includes(this.query) ||
+        this.quotesArray[0].character.includes(this.query))
+    ) {
+      this.search();
+    } else this.random();
+  }
 }

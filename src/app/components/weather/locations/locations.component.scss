@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arima+Madurai&display=swap");
+
+.search {
+  width: 50%;
+  margin: 2em auto;
+  padding: 1em 2em;
+  border-radius: 0.8em;
+  background: rgb(255 255 255 / 10%);
+  backdrop-filter: blur(2px);
+  box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+
+  .query {
+    flex: 1;
+  }
+}
+.result {
+  display: flex;
+  flex-wrap: wrap;
+  width: 60%;
+  margin: auto;
+  justify-content: center;
+  padding: 2em 0;
+  .area {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0.8em 0;
+    width: 33%;
+    font-family: "Staatliches", cursive;
+    text-shadow: 3px 0px 7px rgba(43, 43, 43, 0.8),
+      -3px 0px 7px rgba(85, 85, 85, 0.8), 0px 4px 7px rgba(16, 16, 16, 0.8);
+    &:hover,
+    &:active {
+      background-color: rgba(196, 26, 170, 0.6);
+      border: solid;
+      border-radius: 1rem;
+      cursor: pointer;
+    }
+  }
+}
+.no-result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  font-weight: 700;
+  font-size: 3rem;
+  font-family: "Arima Madurai", cursive;
+  text-shadow: 0 13.36px 8.896px #000000, 0 -2px 1px;
+}

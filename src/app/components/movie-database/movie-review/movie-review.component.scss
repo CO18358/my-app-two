@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif&display=swap");
+.movie-box {
+  width: 80%;
+  margin: 1em auto;
+  padding: 1em 2em;
+  border-radius: 0.8em;
+  background: rgb(255 255 255 / 14%);
+  backdrop-filter: blur(2px);
+  box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
+  font-family: "PT Serif", serif;
+
+  .main {
+    display: flex;
+    gap: 16px;
+
+    .left-content {
+      display: flex;
+      flex-direction: column;
+
+      .poster {
+        display: flex;
+        height: 25em;
+        margin: 8px auto;
+        object-fit: cover;
+      }
+
+      .rating {
+        margin: 0.2em 0;
+      }
+
+      .home {
+        width: 100%;
+        border-radius: 8px;
+        background: #129cd6;
+        color: black;
+      }
+    }
+
+    .right-content {
+      margin-top: 8px;
+
+      .title {
+        font-size: 2rem;
+        line-height: 36px;
+      }
+
+      .heading {
+        font-size: 1.2rem;
+      }
+
+      .plot {
+        padding: 1em;
+        font-size: 1rem;
+        line-height: 24px;
+      }
+    }
+  }
+}
+
+.text-right {
+  text-align: right;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.key {
+  flex: 1;
+}
+
+.value {
+  flex: 2;
+}
+
+.entry {
+  padding: 12px;
+  background: rgb(0, 0, 0, 0.4);
+  border: 1px solid;
+}

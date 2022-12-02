@@ -8,25 +8,27 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { SourcesComponent } from './sources/sources.component';
 import { HeadlinesComponent } from './headlines/headlines.component';
 import { MassComponent } from './mass/mass.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
 
 @NgModule({
   declarations: [
     NewsComponent,
     SourcesComponent,
     HeadlinesComponent,
-    MassComponent
+    MassComponent,
   ],
   imports: [
     CommonModule,
     NewsRoutingModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -35,7 +37,8 @@ import {MatCardModule} from '@angular/material/card';
     MatExpansionModule,
     MatButtonModule,
     MatTabsModule,
-    MatCardModule
-  ]
+    MatCardModule,
+    TitlebarModule,
+  ],
 })
-export class NewsModule { }
+export class NewsModule {}

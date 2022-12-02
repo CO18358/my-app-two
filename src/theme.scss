@@ -1,24 +1,44 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 @include mat-core();
 
-$light-app-theme: mat-light-theme((color: (primary: mat-palette($mat-red),
-                                accent: mat-palette($mat-light-blue, A200, A100, A400),
-                                warn: mat-palette($mat-lime),
-                        )));
+$light-app-theme: mat-light-theme(
+  (
+    color: (
+      primary: mat-palette($mat-red),
+      accent: mat-palette($mat-light-blue, A200, A100, A400),
+      warn: mat-palette($mat-lime),
+    ),
+  )
+);
 
-$dark-app-theme: mat-dark-theme((color: (primary: mat-palette($mat-amber),
-                                accent: mat-palette($mat-blue, A200, A100, A400),
-                                warn: mat-palette($mat-red),
-                        )));
+$dark-app-theme: mat-dark-theme(
+  (
+    color: (
+      primary: mat-palette($mat-amber),
+      accent: mat-palette($mat-blue, A200, A100, A400),
+      warn: mat-palette($mat-red),
+    ),
+  )
+);
 
 @include angular-material-theme($light-app-theme);
 
-
 .dark-theme {
+  mat-option {
+    background-color: #131313;
+    .option {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 8px;
+      img {
+        width: 32px;
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
 
-        mat-option {
-                background-color: #131313;
-        }
-
-        @include angular-material-color($dark-app-theme);
+  @include angular-material-color($dark-app-theme);
 }

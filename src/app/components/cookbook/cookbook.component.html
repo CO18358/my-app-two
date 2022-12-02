@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="nav-bar">
+    <button mat-icon-button (click)="home()">
+      <mat-icon>west</mat-icon>
+    </button>
+    <div class="title">COOKBOOK</div>
+    <span class="spacer"></span>
+    <div class="search">
+      <input class="input" placeholder="Search Dish" [(ngModel)]="query">
+      <button mat-icon-button (click)="search()">
+        <mat-icon matSuffix>search</mat-icon>
+      </button>
+    </div>
+    <button mat-button class="menu-btn" (click)="ingredients()">
+      <div class="button">
+        <mat-icon>egg</mat-icon>
+        <div>Ingredients</div>
+      </div>
+    </button>
+    <button mat-button class="menu-btn" (click)="dictionary()">
+      <div class="button">
+        <mat-icon>menu_book</mat-icon>
+        <div>Dictionary</div>
+      </div>
+    </button>
+    <button mat-button class="menu-btn" (click)="menu()">
+      <div class="button">
+        <mat-icon>restaurant</mat-icon>
+        <div>Menu</div>
+      </div>
+    </button>
+    <button mat-button class="menu-btn" (click)="random()">
+      <div class="button">
+        <mat-icon>fastfood</mat-icon>
+        <div>Random</div>
+      </div>
+    </button>
+  </div>
+  <router-outlet name="cookbook"></router-outlet>
+</div>

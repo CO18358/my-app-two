@@ -1,48 +1,129 @@
-.invoice {
-    // display: flex;
-    // justify-content: center;
-    min-height: calc(100vh - 4rem);
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: url("https://images.unsplash.com/photo-1593062096033-9a26b09da705?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d29yayUyMGRlc2t8ZW58MHx8MHx8&w=1000&q=80")
+    no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 
-    .dashboard-header {
-        display: flex;
-        justify-content: center;
+  .accordian {
+    margin: 1em;
+    .panel {
+      width: 75vw;
+      margin: auto;
 
-        .header {
+      .panel-container {
+        margin: auto;
+        width: 80%;
+
+        .form {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .multi {
             display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
             align-items: center;
-            padding: 12px;
-            margin: 12px;
-            border-radius: 8px;
-            border: 1px solid seashell;
-            height: fit-content;
-            min-width: 800px;
+            flex-wrap: wrap;
+
+            p {
+              flex: 1 1 auto;
+              margin: 0;
+
+              mat-form-field {
+                width: 100%;
+              }
+            }
+
+            margin-bottom: -8px;
+          }
+        }
+
+        .order {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          h3 {
+            margin: 0;
+          }
+
+          .file-upload {
+            display: none;
+          }
+        }
+
+        .orders-table {
+          width: 100%;
+          max-width: 800px;
+          margin: auto;
+        }
+
+        .bill-id {
+          font-size: 1rem;
+          text-align: end;
+        }
+
+        .dates {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+
+          .date {
+            flex: 1;
+            max-width: 320px;
 
             .title {
-                margin: 0;
+              margin-bottom: -8px;
+              color: white;
+              text-align: center;
+              font-size: 1rem;
             }
-
-            .spacer {
-                flex: 1 1 auto
-            }
-
-            .action {
-                margin: 0 4px;
-            }
+          }
         }
-    }
 
-    // .add-invoice {
-    //     position: absolute;
-    //     bottom: 0;
-    //     right: 0;
-    //     padding: 40px;
-    // }
+        .form-field {
+          display: flex;
+          align-items: center;
+          margin-top: 12px;
+
+          .label {
+            margin: 0;
+          }
+
+          .spacer {
+            flex: 1 1 auto;
+          }
+        }
+
+        .form-end {
+          margin-bottom: 8px;
+        }
+
+        .foot-notes {
+          width: 100%;
+        }
+      }
+
+      .action-btn {
+        margin: 0 1em;
+      }
+    }
+  }
 }
 
-.loader {
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    align-items: center;
-    min-height: calc(100vh - 4rem);
+::ng-deep .mat-expansion-panel {
+  background-color: rgb(23, 23, 23, 0.75) !important;
+}
+
+::ng-deep .mat-table,
+.mat-card {
+  background-color: #333 !important;
 }

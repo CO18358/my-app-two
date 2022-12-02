@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: auto;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("https://wallpaperaccess.com/full/3257696.png") no-repeat;
+  background-size: cover;
+}

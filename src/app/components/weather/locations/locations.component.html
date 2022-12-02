@@ -1,0 +1,19 @@
+<div class="search">
+  <mat-form-field class="query" appearance="legacy">
+    <mat-label>Enter Location</mat-label>
+    <input matInput [(ngModel)]="location" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="searchLocation()">
+    <mat-icon matSuffix>location_on</mat-icon>
+    Find Location
+  </button>
+</div>
+<div class="result" *ngIf="locationResult&&locationResult.length; else noResults">
+  <div class="area" *ngFor="let res of locationResult" (click)="weather(res.id)"> {{res.name }}</div>
+</div>
+
+<ng-template #noResults>
+  <div class="no-result">
+    <div>No Matching Results Found. Try Another Place.</div>
+  </div>
+</ng-template>

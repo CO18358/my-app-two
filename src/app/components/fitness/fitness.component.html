@@ -1,0 +1,287 @@
+<div class="container">
+     <app-titlebar title="fitness calculator"></app-titlebar>
+
+     <mat-tab-group mat-align-tabs="center" color="accent">
+
+          <mat-tab label="Basal Metabolic Rate">
+               <div class="calculator">
+                    <div class="input">
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Gender</mat-label>
+                              <mat-select [(ngModel)]="gender">
+                                   <mat-option *ngFor="let op of genders" [value]="op">{{op|titlecase}}</mat-option>
+                              </mat-select>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Age</mat-label>
+                              <input required matInput type="number" [(ngModel)]="age">
+                              <p matSuffix>years</p>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Height</mat-label>
+                              <input required matInput type="number" [(ngModel)]="height">
+                              <p matSuffix>cm</p>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Weight</mat-label>
+                              <p matSuffix>kg</p>
+                              <input required matInput type="number" [(ngModel)]="weight">
+                         </mat-form-field>
+                         <button mat-raised-button (click)="basalMetablicRate()"
+                              [disabled]="!age || !height || !weight">
+                              <mat-icon matPrefix>calculate</mat-icon>
+                              Calculate
+                         </button>
+                    </div>
+                    <div class="output">
+                         <app-counter [digit]="bmr" [duration]="3000"></app-counter>
+                    </div>
+               </div>
+          </mat-tab>
+
+          <mat-tab label="Body Mass Index">
+               <div class="calculator">
+                    <div class="input">
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Height</mat-label>
+                              <input required matInput type="number" [(ngModel)]="height">
+                              <p matSuffix>cm</p>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Weight</mat-label>
+                              <p matSuffix>kg</p>
+                              <input required matInput type="number" [(ngModel)]="weight">
+                         </mat-form-field>
+                         <button mat-raised-button (click)="bodyMassIndex()" [disabled]="!height || !weight">
+                              <mat-icon matPrefix>calculate</mat-icon>
+                              Calculate
+                         </button>
+                    </div>
+                    <div class="output">
+                         <app-counter [digit]="bmi" [duration]="3000"></app-counter>
+                    </div>
+               </div>
+          </mat-tab>
+
+          <mat-tab label="Body Fat Percentage">
+               <div class="calculator">
+                    <div class="input">
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Gender</mat-label>
+                              <mat-select [(ngModel)]="gender">
+                                   <mat-option *ngFor="let op of genders" [value]="op">{{op|titlecase}}</mat-option>
+                              </mat-select>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Height</mat-label>
+                              <input required matInput type="number" [(ngModel)]="height">
+                              <p matSuffix>cm</p>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Weight</mat-label>
+                              <p matSuffix>kg</p>
+                              <input required matInput type="number" [(ngModel)]="weight">
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Neck</mat-label>
+                              <input required matInput type="number" [(ngModel)]="neck">
+                              <p matSuffix>cm</p>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Waist</mat-label>
+                              <input required matInput type="number" [(ngModel)]="waist">
+                              <p matSuffix>cm</p>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy" *ngIf="gender=='female'">
+                              <mat-label>Hip</mat-label>
+                              <input matInput type="number" [(ngModel)]="hip">
+                              <p matSuffix>cm</p>
+                         </mat-form-field>
+                         <button mat-raised-button (click)="bodyFat()"
+                              [disabled]="!neck || !waist || !height || !weight">
+                              <mat-icon matPrefix>calculate</mat-icon>
+                              Calculate
+                         </button>
+                    </div>
+                    <div class="output">
+                         <app-counter [digit]="bfp" [duration]="3000"></app-counter>
+                    </div>
+               </div>
+          </mat-tab>
+
+          <mat-tab label="Ideal Body Weight">
+               <div class="calculator">
+                    <div class="input">
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Gender</mat-label>
+                              <mat-select [(ngModel)]="gender">
+                                   <mat-option *ngFor="let op of genders" [value]="op">{{op|titlecase}}</mat-option>
+                              </mat-select>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Height</mat-label>
+                              <input required matInput type="number" [(ngModel)]="height">
+                              <p matSuffix>cm</p>
+                         </mat-form-field>
+                         <button mat-raised-button (click)="bodyWeight()" [disabled]="!height">
+                              <mat-icon matPrefix>calculate</mat-icon>
+                              Calculate
+                         </button>
+                    </div>
+                    <div class="output">
+                         <app-counter [digit]="ibw" [duration]="3000"></app-counter>
+                    </div>
+               </div>
+          </mat-tab>
+
+          <mat-tab label="Total Daily Energy Expenditure">
+               <div class="calculator">
+                    <div class="input">
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Gender</mat-label>
+                              <mat-select [(ngModel)]="gender">
+                                   <mat-option *ngFor="let op of genders" [value]="op">{{op|titlecase}}</mat-option>
+                              </mat-select>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Age</mat-label>
+                              <input required matInput type="number" [(ngModel)]="age">
+                              <p matSuffix>years</p>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Height</mat-label>
+                              <input required matInput type="number" [(ngModel)]="height">
+                              <p matSuffix>cm</p>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Weight</mat-label>
+                              <p matSuffix>kg</p>
+                              <input required matInput type="number" [(ngModel)]="weight">
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Activity</mat-label>
+                              <mat-select [(ngModel)]="activity">
+                                   <mat-option *ngFor="let op of activities" [value]="op">{{op|titlecase}}</mat-option>
+                              </mat-select>
+                         </mat-form-field>
+                         <button mat-raised-button (click)="dailyEnergy()" [disabled]="!age || !height || !weight">
+                              <mat-icon matPrefix>calculate</mat-icon>
+                              Calculate
+                         </button>
+                    </div>
+                    <div class="output">
+                         <app-counter [digit]="tdee" [duration]="3000"></app-counter>
+                    </div>
+               </div>
+          </mat-tab>
+
+          <mat-tab label="Calorie Needs">
+               <div class="calculator">
+                    <div class="input">
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Gender</mat-label>
+                              <mat-select [(ngModel)]="gender">
+                                   <mat-option *ngFor="let op of genders" [value]="op">{{op|titlecase}}</mat-option>
+                              </mat-select>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Age</mat-label>
+                              <input required matInput type="number" [(ngModel)]="age">
+                              <p matSuffix>years</p>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Height</mat-label>
+                              <input required matInput type="number" [(ngModel)]="height">
+                              <p matSuffix>cm</p>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Weight</mat-label>
+                              <p matSuffix>kg</p>
+                              <input required matInput type="number" [(ngModel)]="weight">
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Activity</mat-label>
+                              <mat-select [(ngModel)]="activity">
+                                   <mat-option *ngFor="let op of activities" [value]="op">{{op|titlecase}}</mat-option>
+                              </mat-select>
+                         </mat-form-field>
+                         <button mat-raised-button (click)="calories()" [disabled]="!age || !height || !weight">
+                              <mat-icon matPrefix>calculate</mat-icon>
+                              Calculate
+                         </button>
+                    </div>
+                    <div class="output">
+                         <div class="cals" *ngIf="calorie">
+                              <div class="pair" *ngFor="let item of calorie | keyvalue">
+                                   <div class="entry">{{sentenceCase(item.key)}}</div>
+                                   <div class="entry">{{item.value + ' cal'}}</div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </mat-tab>
+
+          <mat-tab label="Macros">
+               <div class="calculator">
+                    <div class="input">
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Gender</mat-label>
+                              <mat-select [(ngModel)]="gender">
+                                   <mat-option *ngFor="let op of genders" [value]="op">{{op|titlecase}}</mat-option>
+                              </mat-select>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Age</mat-label>
+                              <input required matInput type="number" [(ngModel)]="age">
+                              <p matSuffix>years</p>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Height</mat-label>
+                              <input required matInput type="number" [(ngModel)]="height">
+                              <p matSuffix>cm</p>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Weight</mat-label>
+                              <p matSuffix>kg</p>
+                              <input required matInput type="number" [(ngModel)]="weight">
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Activity</mat-label>
+                              <mat-select [(ngModel)]="activity">
+                                   <mat-option *ngFor="let op of activities" [value]="op">{{op|titlecase}}</mat-option>
+                              </mat-select>
+                         </mat-form-field>
+                         <mat-form-field appearance="legacy">
+                              <mat-label>Activity</mat-label>
+                              <mat-select [(ngModel)]="goal">
+                                   <mat-option *ngFor="let op of goals" [value]="op">{{sentenceCase(op)}}</mat-option>
+                              </mat-select>
+                         </mat-form-field>
+                         <button mat-raised-button (click)="macros()" [disabled]="!age || !height || !weight">
+                              <mat-icon matPrefix>calculate</mat-icon>
+                              Calculate
+                         </button>
+                    </div>
+                    <div class="output">
+                         <div class="cals" *ngIf="macro">
+                              <h2>{{sentenceCase(macroKeys[index])}}</h2>
+                              <div class="pair" *ngFor="let item of macro[macroKeys[index]] | keyvalue">
+                                   <div class="entry">{{sentenceCase(item.key)}}</div>
+                                   <div class="entry">{{item.value + ' cal'}}</div>
+                              </div>
+                              <div class="cals-actions">
+                                   <button mat-icon-button (click)="indexDown()">
+                                        <mat-icon>navigate_before</mat-icon>
+                                   </button>
+                                   <button mat-icon-button (click)="indexDown()">
+                                        <mat-icon>navigate_next</mat-icon>
+                                   </button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </mat-tab>
+
+     </mat-tab-group>
+
+</div>

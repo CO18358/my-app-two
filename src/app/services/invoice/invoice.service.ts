@@ -2,96 +2,130 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { InvoiceCompany, InvoiceContent, Item } from 'src/app/models/interfaces';
-import { environment } from 'src/environments/environment';
+import pdfMake from 'pdfmake/build/pdfmake';
+import { saveAs } from 'file-saver';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class InvoiceService {
-
-  endpoint: string = environment.invoice_endpoint;
   company: any = {};
 
-  inv_data: InvoiceContent = {
-    address: {}, orders: [], t_n_c: '', notes: ''
-  };
-  address!: any;
-  orders!: Item[];
-  remark!: any;
-
-  constructor(
-    private http: HttpClient,
-    public router: Router,
-    private toastr: ToastrService
-  ) { }
-
-  get isRegistered(): boolean {
-    const company = localStorage.getItem('invoice_company')
-    return company !== null ? true : false;
-  }
+  constructor(public router: Router, private toastr: ToastrService) {}
 
   redirectTo(uri: string) {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
-      this.router.navigate([uri]));
+    this.router
+      .navigateByUrl('/', { skipLocationChange: true })
+      .then(() => this.router.navigate([uri]));
   }
 
-  getCompany(user_id: string) {
-    const api = `${this.endpoint}/get-company`;
-    return this.http.post(api, { user_id: user_id })
-  }
-
-  registerCompany(value: InvoiceCompany) {
-    const api = `${this.endpoint}/register-company`;
-    this.http.post(api, value).subscribe({
-      next: (value: any) => {
-        this.toastr.success(value.message)
-        this.redirectTo('invoice/')
+  createPdf(customer: any, company: any, orders: any[], bill: any) {
+    const docDefinition = {
+      content: [
+        {
+          columns: [
+            [
+              { text: company.name, bold: true },
+              { text: company.address },
+              { text: company.contact },
+              { text: company.email },
+            ],
+            [
+              {
+                text: 'INVOICE',
+                fontSize: 32,
+                bold: true,
+                alignment: 'right',
+                color: '#272727',
+              },
+            ],
+          ],
+        },
+        {
+          text: 'Customer Details',
+          style: 'sectionHeader',
+        },
+        {
+          columns: [
+            [
+              { text: customer.name },
+              { text: customer.address },
+              { text: customer.contact },
+              { text: customer.email },
+            ],
+            [
+              { text: `Bill ID: ${bill.id}`, alignment: 'right' },
+              { text: `Invoice Date: ${bill.gen_date}`, alignment: 'right' },
+              { text: `Due Date: ${bill.due_date}`, alignment: 'right' },
+            ],
+          ],
+        },
+        {
+          text: 'Order Details',
+          style: 'sectionHeader',
+        },
+        {
+          columns: [
+            { width: '*', text: '' },
+            {
+              width: 'auto',
+              table: {
+                headerRows: 1,
+                body: [
+                  Object.keys(orders[0]),
+                  orders.map(({ ...rest }) => Object.values(rest)),
+                ],
+              },
+            },
+            { width: '*', text: '' },
+          ],
+        },
+        {
+          columns: [
+            [
+              {
+                text: bill.subtotal,
+                alignment: 'right',
+                margin: [0, 15, 0, 0],
+              },
+              { text: `Subtotal: ${bill.discount}`, alignment: 'right' },
+              { text: `Discount: ${bill.discount}`, alignment: 'right' },
+              { text: `Tax: ${bill.tax}`, alignment: 'right' },
+              { text: `Shipping: ${bill.shipping}`, alignment: 'right' },
+              { text: `Total: ${bill.total}`, alignment: 'right' },
+            ],
+          ],
+        },
+        {
+          text: 'Foot Notes',
+          style: 'sectionHeader',
+        },
+        {
+          text: bill.notes,
+        },
+        {
+          text: 'Terms & Condition',
+          style: 'sectionHeader',
+        },
+        {
+          text: bill.terms,
+        },
+      ],
+      styles: {
+        sectionHeader: {
+          bold: true,
+          decoration: 'underline',
+          fontSize: 14,
+          margin: [0, 15, 0, 15],
+        },
       },
-      error: (err) => {
-        console.log(err);
-      }
-    })
-  }
-
-  updateCompany(id: string, value: InvoiceCompany) {
-    const api = `${this.endpoint}/company/${id}`;
-    this.http.patch(api, value).subscribe({
-      next: (value: any) => {
-        this.toastr.success("Company Profile Updated")
-        this.redirectTo('invoice/')
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
-  }
-
-  setClientOrder(items: any[]) {
-    this.clearOrders();
-    this.orders = items.map(order => {
-      order.subtotal = this.subtotal(order)
-      return order;
+    };
+    const invoice = pdfMake.createPdf(docDefinition);
+    invoice.getBuffer((buffer: BlobPart) => {
+      let blob = new Blob([buffer]);
+      saveAs(blob, `Invoice_${bill.id}.pdf`);
     });
-  }
-
-  clearOrders() {
-    this.orders = [];
-  }
-
-  uploadInvoice() {
-    this.inv_data.address = this.address;
-    this.inv_data.orders = this.orders;
-    this.inv_data.t_n_c = this.remark.t_n_c;
-    this.inv_data.notes = this.remark.notes;
-    // API POST CALL
-  }
-
-  subtotal(order: any) {
-    const price = parseInt(order.price);
-    const quantity = parseInt(order.quantity);
-    const discount = parseInt(order.discount) / 100;
-    const tax = parseInt(order.tax) / 100;
-    return Math.round(((((price * quantity) * (1 - discount)) * (1 + tax)) + Number.EPSILON) * 100) / 100
   }
 }

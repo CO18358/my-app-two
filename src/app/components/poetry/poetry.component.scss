@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Charm:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tangerine&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rancho&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Aboreto&display=swap");
+
+.container {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: auto;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("https://wallpaperaccess.com/full/1820822.png") no-repeat top;
+  background-size: cover;
+  .poetry {
+    height: calc(100vh - 3rem);
+    overflow: hidden;
+    display: flex;
+    .menu,
+    .poem {
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
+      height: 100%;
+    }
+    .menu {
+      flex: 2;
+      background: rgb(0 0 0 / 40%);
+      padding: 0 1em;
+      .author,
+      .title {
+        &:hover,
+        &:active {
+          font-weight: 800;
+          cursor: pointer;
+          color: rgb(81, 140, 213);
+        }
+      }
+    }
+    .poem {
+      flex: 8;
+      .name {
+        margin: 0.5em 1em;
+        line-height: 1;
+        font-size: 4rem;
+        font-family: "Tangerine", cursive;
+      }
+      .poet {
+        font-family: "Charm", cursive;
+        margin: 0 1em;
+        line-height: 1;
+        font-size: 2.4em;
+        text-align: end;
+      }
+      .lines {
+        margin: 0.7em 0;
+        font-size: 1.7rem;
+        font-family: "Rancho", cursive;
+        text-align: center;
+        font-weight: 100;
+        .line {
+          line-height: 1;
+          margin: 0.4em;
+        }
+      }
+    }
+    .active {
+      color: yellow;
+    }
+  }
+}
+
+::ng-deep.mat-tab-body {
+  padding: 1em;
+  font-family: "Aboreto", cursive;
+}
