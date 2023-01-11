@@ -1,98 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Ubuntu");
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Vollkorn&display=swap");
+.image-container {
+  margin-bottom: 16px;
+  .fit-image {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    border-radius: 16px;
+  }
+}
 
-.details {
-  margin: 3em;
-  .header {
-    display: flex;
-    .image {
-      flex: 3;
-      height: 100%;
-      border-radius: 1em;
-      box-shadow: rgba(0, 0, 0, 0.7) 0px 0px 0px 2px,
-        rgba(0, 0, 0, 0.9) 0px 4px 6px -1px,
-        rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-    }
-    .title {
-      flex: 7;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      align-items: center;
-      .name {
-        font-family: "Ubuntu", sans-serif;
-        font-size: 4rem;
-        line-height: 1;
-        color: black;
-        text-shadow: 0 2px 7px #747474, 1px 4px 10px #222, 0 3px 14px #474747,
-          0 8px 15px #747474, 0 5px 8px #565656, 0 8px 5px #343434,
-          0 10px 11px #171717;
-        font-weight: bold;
-      }
-      .link {
-        display: flex;
-        align-items: center;
-        padding: 1em;
-        font-size: 1.2rem;
-        background: linear-gradient(-90deg, #4b6cb7 0%, #182848 100%);
-        border-radius: 2em;
-        a {
-          color: white;
-          text-decoration: none;
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
-    }
+.info-cards {
+  gap: 16px;
+  flex-wrap: wrap;
+  .info-card {
+    backdrop-filter: blur(4px);
   }
-  .section-name {
-    font-family: "Bebas Neue", cursive;
-    padding: 0.2em;
-    margin: 0.5em 0;
-    line-height: 1;
-    font-size: 4rem;
-    text-align: center;
-    border: 5px solid #c49122;
-    text-shadow: 3px 4px 7px rgba(0, 0, 0, 0.8);
-  }
-  .description {
-    text-align: justify;
-    font-size: 1rem;
-    font-family: "Fira Sans", sans-serif;
-    border-radius: 1em;
-    padding: 1em;
-    border: 3px solid;
-    background: rgba(0, 0, 0, 0.525);
-    backdrop-filter: blur(2px);
+}
+
+.screenshots {
+  .image-container {
+    border-radius: 16px;
     box-shadow: rgb(0 0 0 / 45%) 0px 4px 12px 0px;
-  }
-  .table {
-    display: flex;
-    .section {
-      flex: 1;
+    .fit-image {
+      border-radius: 16px;
     }
-    .key {
-      padding: 12px;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid;
-      text-align: center;
-      backdrop-filter: blur(2px);
-      box-shadow: rgb(0 0 0 / 45%) 0px 4px 12px 0px;
-      font-family: "Vollkorn", serif;
-    }
-  }
-  .screenshots {
-    .snap {
-      margin: 1em;
-      img {
-        box-shadow: rgb(0 0 0 / 45%) 0px 4px 12px 0px;
-        width: 100%;
-        border-radius: 3em;
-      }
+    &:not(:last-child) {
+      margin-bottom: 16px;
     }
   }
 }

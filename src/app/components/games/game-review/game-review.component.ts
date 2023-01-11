@@ -29,4 +29,8 @@ export class GameReviewComponent implements OnInit {
       this.showLoader = false;
     });
   }
+
+  nav(url: string) {
+    window.open(url, '_blank');
+  }
 }

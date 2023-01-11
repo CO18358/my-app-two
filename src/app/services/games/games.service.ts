@@ -16,7 +16,7 @@ export class GamesService {
 
   constructor(private http: HttpClient) {}
 
-  getAllGames() {
+  allGames() {
     return this.http
       .get<GameDetails[]>(`${this.baseUrl}games`, {
         headers: this.headers,
@@ -27,6 +27,8 @@ export class GamesService {
         })
       );
   }
+
+  filterGames() {}
 
   getGameById(id: number) {
     return this.http

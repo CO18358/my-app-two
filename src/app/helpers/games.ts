@@ -1,4 +1,4 @@
-export const GAME_TAGS = [
+export const GENRES = [
   'mmorpg',
   'shooter',
   'strategy',
@@ -45,6 +45,15 @@ export const GAME_TAGS = [
   'horror',
   'mmorts',
 ];
+
+export const SORT_ORDERS = [
+  'release-date',
+  'popularity',
+  'alphabetical',
+  'relevance',
+];
+
+export const PLATFORMS = ['all', 'pc', 'browser'];
 
 export interface GameDetails {
   id: number;
