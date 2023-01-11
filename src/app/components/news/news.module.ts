@@ -16,6 +16,7 @@ import { HeadlinesComponent } from './headlines/headlines.component';
 import { MassComponent } from './mass/mass.component';
 import { MatCardModule } from '@angular/material/card';
 import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
+import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TitlebarModule } from 'src/app/shared/titlebar/titlebar.module';
     MatTabsModule,
     MatCardModule,
     TitlebarModule,
+    SpinnerModule,
   ],
 })
 export class NewsModule {}

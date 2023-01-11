@@ -14,15 +14,12 @@ import { NewsService } from 'src/app/services/news/news.service';
 })
 export class HeadlinesComponent implements OnInit {
   articles!: any[];
-
+  loader!: boolean;
   query = '';
-
   categories = NewsCategories;
   selectedCtg = '';
-
   countries = NewsCountries;
   selectedCty = '';
-
   languages = NewsLanguage;
   selectedLng = this.languages[0].iso;
 
@@ -33,6 +30,7 @@ export class HeadlinesComponent implements OnInit {
   }
 
   async searchHeadlines() {
+    this.loader = true;
     const headlines: any = await lastValueFrom(
       this.newsService.getHeadlines(
         this.query.trim(),
@@ -42,5 +40,6 @@ export class HeadlinesComponent implements OnInit {
       )
     );
     this.articles = headlines.articles;
+    this.loader = false;
   }
 }
