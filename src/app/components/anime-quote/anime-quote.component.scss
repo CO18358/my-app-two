@@ -1,122 +1,67 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Amarante&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Germania+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Coda&display=swap");
-
 .container {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  box-sizing: border-box;
-  overflow: auto;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("https://wallpapercave.com/wp/wp4833734.jpg") no-repeat;
-  background-size: cover;
+  min-height: 100vh;
+  background-image: url("/assets/backgrounds/anime.png");
 
-  .search-box {
-    width: 72%;
-    padding: 0.5em 2em;
-    border-radius: 1em;
-    background: rgb(255 255 255 / 14%);
-    backdrop-filter: blur(2px);
-    box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
-    display: flex;
-    margin: auto;
-    gap: 20px;
-
-    .search {
-      flex: 1;
-    }
-  }
-
-  .page-menu {
-    display: flex;
-    justify-content: center;
-    font-family: "Fira Sans Condensed", sans-serif;
-    align-items: center;
-    font-size: 1rem;
-  }
-
-  .quotes-container {
-    display: flex;
+  .cards {
     gap: 16px;
-    width: 80%;
-    margin: 1em auto;
-    overflow: scroll;
-    // flex-wrap: wrap;
-    // justify-content: center;
+    flex-wrap: wrap;
+
     .card {
-      background: radial-gradient(#1fe4f5, #3fbafe);
-      border-radius: 1em;
-      min-width: 50%;
-      padding: 2em;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 16px;
+      width: calc(50% - 48px);
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 16px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      -webkit-box-shadow: 16px 16px 64px 0px rgba(62, 66, 66, 0.24);
+      -moz-box-shadow: 16px 16px 64px 0px rgba(62, 66, 66, 0.24);
+      box-shadow: 16px 16px 64px 0px rgba(62, 66, 66, 0.24);
       line-height: 1;
-      color: black;
+
       .title {
-        font-size: 1.6rem;
-        font-family: "Bebas Neue", cursive;
+        font-size: 20px;
+        letter-spacing: 1px;
+        font-family: "Expletus Sans", sans-serif;
+        font-weight: 500;
+        color: red;
+        margin-bottom: 8px;
       }
-      .text {
-        font-size: 1rem;
-        text-align: center;
+      .quote {
         font-family: "Amarante", cursive;
+        line-height: 1.2;
       }
+
       .name {
+        letter-spacing: 1px;
         font-style: italic;
-        font-size: 1.3rem;
-        text-align: end;
-        font-family: "Germania One", cursive;
-      }
-    }
-  }
-
-  .header {
-    font-family: "Coda", cursive;
-    line-height: 1;
-    font-size: 3rem;
-    border-left: solid greenyellow;
-    margin: 1.5rem auto;
-    width: 80%;
-    .text {
-      margin: 1rem;
-    }
-  }
-  .news-container {
-    width: 80%;
-    margin: 0 auto 1rem;
-    display: flex;
-    .left,
-    .right {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .main {
-      flex: 8;
-      // background-color: #3fbafe;
-
-      background: radial-gradient(#c50e0e, #e81818);
-      border-radius: 1em;
-      min-width: 80%;
-      padding: 1em;
-      text-align: center;
-      .news {
-        line-height: 1;
-        color: white;
-        font-size: 1rem;
-        text-decoration: none;
-        &:hover,
-        &:active {
-          cursor: pointer;
-          text-decoration: underline;
+        font-family: "Nunito Sans", cursive;
+        margin-bottom: 4px;
+        h5 {
+          margin: 0;
+        }
+        .copy {
+          font-size: 14px;
+          width: 14px;
+          height: 14px;
+          &:active {
+            transform: scale(1.5);
+          }
         }
       }
     }
+  }
+
+  .mine {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container .cards .card {
+    width: calc(100% - 48px);
+  }
+  .mine {
+    bottom: 16px;
+    right: 16px;
   }
 }

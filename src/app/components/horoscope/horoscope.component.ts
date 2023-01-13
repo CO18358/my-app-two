@@ -10,11 +10,15 @@ import { HoroscopeService } from 'src/app/services/horoscope/horoscope.service';
 })
 export class HoroscopeComponent implements OnInit {
   signs = ZODIAC_DATA;
-  days = ['yesterday', 'today', 'tomorrow'];
-  querySign = 'libra';
-  queryDay = 'today';
-  result: Horoscope = { horoscope: '', signData: '' };
-  showFullText = false;
+  sign = 'libra';
+  loader!: boolean;
+  result!: {
+    yesterday: Horoscope;
+    today: Horoscope;
+    tomorrow: Horoscope;
+  };
+
+  signData!: any;
   constructor(private horoscopeService: HoroscopeService) {}
 
   ngOnInit(): void {
@@ -22,19 +26,19 @@ export class HoroscopeComponent implements OnInit {
   }
 
   checkHoroscope() {
-    this.horoscopeService
-      .fetchHoroscope(this.querySign, this.queryDay)
-      .subscribe({
-        next: (value) => {
-          this.result.horoscope = value;
-          this.getSignDetails(this.querySign);
-        },
-        error: (e) => {
-          console.log(e);
-        },
-      });
-  }
-  getSignDetails(sign: string) {
-    this.result.signData = this.signs.find((ob) => ob.zodiacName == sign);
+    this.loader = true;
+    this.horoscopeService.fetchHoroscope(this.sign).subscribe({
+      next: (value) => {
+        this.result = value;
+        console.log(value);
+
+        this.loader = false;
+        this.signData = this.signs.find((ob) => ob.zodiacName == this.sign);
+      },
+      error: (e) => {
+        console.log(e);
+        this.loader = false;
+      },
+    });
   }
 }

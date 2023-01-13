@@ -1,3 +1,7 @@
+export const BASE_URLS = {
+  animeQuotes: 'https://animechan.vercel.app/api/quotes',
+};
+
 export enum FormMethod {
   REGISTER = 0,
   UPDATE = 1,

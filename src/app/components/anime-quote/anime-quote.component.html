@@ -1,53 +1,27 @@
-<div class="container">
+<div class="container fix-background full-width">
   <app-titlebar title="anime quotes"></app-titlebar>
-  <div class="search-box">
-    <mat-form-field appearance="legacy" color="accent">
-      <mat-select [(ngModel)]="option">
-        <mat-option *ngFor="let op of options" [value]="op">{{op.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field class="search" appearance="legacy" color="accent">
-      <input matInput [(ngModel)]="query" />
-    </mat-form-field>
-    <button mat-button (click)="search()">
-      <mat-icon matPrefix>search</mat-icon>Search
+
+  <div *ngIf="!loader; else spinner">
+    <div class="cards pad-16 flex-stretch">
+      <mat-card class="card padding" *ngFor="let result of results">
+        <h4 class="title cursor" (click)="anime(result.anime)">
+          {{ result.character }}
+        </h4>
+        <div class="name flex-justify">
+          <h5 class="cursor" (click)="character(result.character)">
+            {{ result.anime }}
+          </h5>
+          <mat-icon class="copy" [cdkCopyToClipboard]="result.quote"
+            >content_copy</mat-icon
+          >
+        </div>
+        <p class="quote text-justify">{{ result.quote }}</p>
+      </mat-card>
+    </div>
+    <button class="mine" mat-mini-fab color="primary" (click)="random()">
+      <mat-icon>format_quote</mat-icon>
     </button>
   </div>
-  <div *ngIf="!loader; else spinner">
-    <div class="page-menu">
-      <button mat-icon-button (click)="prevPage()">
-        <mat-icon>navigate_before</mat-icon>
-      </button>
-      <div>Page {{pageNum}}</div>
-      <button mat-icon-button (click)="nextPage()">
-        <mat-icon>navigate_next</mat-icon>
-      </button>
-    </div>
-    <div class="quotes-container">
-      <div class="card" *ngFor="let q of quotesArray">
-        <div class="title">{{q.anime}}</div>
-        <div class="text">{{q.quote}}</div>
-        <div class="name">-{{q.character}}-</div>
-      </div>
-    </div>
-    <div class="header">
-      <div class="text">LATEST ANIME NEWS</div>
-    </div>
-    <div class="news-container">
-      <div class="left">
-        <button mat-icon-button (click)="index=index-1" [disabled]="index == 0">
-          <mat-icon>navigate_before</mat-icon>
-        </button>
-      </div>
-      <div class="main"><a class="news" [href]="news[index].url" target="_blank">{{news[index].title}}</a></div>
-      <div class="right">
-        <button mat-icon-button (click)="index=index+1" [disabled]="index == news.length - 1">
-          <mat-icon>navigate_next</mat-icon>
-        </button>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 <ng-template #spinner>

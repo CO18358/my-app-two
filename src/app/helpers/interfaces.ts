@@ -1,9 +1,11 @@
+// ANIME QUOTE
 export interface AnimeQuote {
   quote: string;
   anime: string;
   character: string;
 }
 
+// INVOICE
 export interface InvoiceCompany {
   _id: string;
   user_id: string;
@@ -23,11 +25,7 @@ export interface Item {
   tax?: string;
 }
 
-export interface Horoscope {
-  horoscope: any;
-  signData: any;
-}
-
+// CRYPTO
 export interface CoinData {
   id: string;
   name: string;
@@ -51,6 +49,53 @@ export interface CoinInfo {
   rank?: string;
 }
 
+// GAMES
+export interface GameDetails {
+  id: number;
+  title: string;
+  thumbnail: string;
+  short_description: string;
+  game_url: string;
+  genre: string;
+  platform: string;
+  publisher: string;
+  developer: string;
+  release_date: string;
+  freetogame_profile_url: string;
+}
+
+interface Screenshort {
+  id: number;
+  image: string;
+}
+
+interface SystemSpecs {
+  os: string;
+  processor: string;
+  memory: string;
+  graphics: string;
+  storage: string;
+}
+export interface GameDetailsExtended extends GameDetails {
+  status: string;
+  description: string;
+  screenshots: Screenshort[];
+  minimum_system_requirements: SystemSpecs;
+}
+
+// HOROSCOPE
+export interface Horoscope {
+  color: string;
+  compatibility: string;
+  current_date: string;
+  date_range: string;
+  description: string;
+  lucky_number: string;
+  lucky_time: string;
+  mood: string;
+}
+
+// POETRY
 export interface Poem {
   author: string;
   title: string;
@@ -58,6 +103,7 @@ export interface Poem {
   linecount: number;
 }
 
+// MEAL DB
 export interface Meal {
   idMeal: string;
   strMeal: string;
@@ -88,6 +134,7 @@ export interface MealDetails extends Meal {
   ingredients: MealIngredient[];
 }
 
+// COCKTAIL DB
 export interface Drink {
   idDrink: string;
   strDrink: string;

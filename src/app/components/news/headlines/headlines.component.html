@@ -1,73 +1,73 @@
-<section class="section">
+<section class="news-menu flex-center pad-16">
+  <mat-form-field class="menu-item" appearance="outline" color="accent">
+    <mat-label>Keywords</mat-label>
+    <input matInput [(ngModel)]="query" maxlength="30" />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" class="search" color="accent">
-        <mat-label>Keywords</mat-label>
-        <input matInput [(ngModel)]="query" maxlength="30">
-        <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
+  <mat-form-field class="menu-item" appearance="outline" color="accent">
+    <mat-label>Category</mat-label>
+    <mat-select [(ngModel)]="selectedCtg">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let category of categories" [value]="category">
+        {{ category | titlecase }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" color="accent">
-        <mat-label>Cateogries</mat-label>
-        <mat-select [(ngModel)]="selectedCtg">
-            <mat-option>None</mat-option>
-            <mat-option class="btn" *ngFor="let category of categories" [value]="category">
-                {{ category | uppercase}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+  <mat-form-field class="menu-item" appearance="outline" color="accent">
+    <mat-label>Country</mat-label>
+    <mat-select [(ngModel)]="selectedCty">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let country of countries" [value]="country.iso">
+        {{ country.name | titlecase }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" color="accent">
-        <mat-label>Countries</mat-label>
-        <mat-select [(ngModel)]="selectedCty">
-            <mat-option>None</mat-option>
-            <mat-option class="btn" *ngFor="let country of countries" [value]="country.iso">
-                {{ country.name | uppercase}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+  <mat-form-field class="menu-item" appearance="outline" color="accent">
+    <mat-label>Language</mat-label>
+    <mat-select [(ngModel)]="selectedLng">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let language of languages" [value]="language.iso">
+        {{ language.name | titlecase }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" color="accent">
-        <mat-label>Language</mat-label>
-        <mat-select [(ngModel)]="selectedLng">
-            <mat-option>None</mat-option>
-            <mat-option class="btn" *ngFor="let language of languages" [value]="language.iso">
-                {{ language.name | uppercase}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <div class="btn-container">
-        <button class="btn" (click)="searchHeadlines()">
-            <p>Search</p>
-            <mat-icon>search</mat-icon>
-        </button>
-    </div>
+  <button class="btn text-center flex-center" (click)="searchHeadlines()">
+    Search
+    <mat-icon>search</mat-icon>
+  </button>
 </section>
 
-<div class="article-container" *ngIf="articles && articles.length">
-    <div *ngFor="let article of articles">
-        <div *ngIf="article.urlToImage">
-            <mat-card class="article-card">
-                <mat-card-header>
-                    <mat-card-title class="title">{{article.title}}</mat-card-title>
-                    <mat-card-subtitle>{{article.source.name}}</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image class="img-article" src={{article.urlToImage}} alt="">
-                <mat-card-content>
-                    <p>
-                        {{article.description}}
-                    </p>
-                </mat-card-content>
-                <mat-card-actions class="action-buttons" align="end">
-                    <!-- <button mat-button color="accent">
-                        <mat-icon>date_range</mat-icon>{{ article.publishedAt | date: 'medium' }}
-                    </button> -->
-                    <a mat-button color="accent" href={{article.url}} target="_blank">
-                        <!-- <mat-icon>visibility</mat-icon> -->
-                        Read More
-                    </a>
-                </mat-card-actions>
-            </mat-card>
-        </div>
-    </div>
+<div
+  class="article-cards flex-stretch pad-16"
+  *ngIf="!loader || (articles && articles.length); else spinner"
+>
+  <mat-card class="article-card pad-16 cursor" *ngFor="let article of articles">
+    <mat-card-header>
+      <mat-card-title>{{ article.title }}</mat-card-title>
+      <mat-card-subtitle>{{ article.source.name }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      *ngIf="article.urlToImage"
+      mat-card-image
+      [src]="article.urlToImage"
+      alt=""
+    />
+    <mat-card-content>
+      {{ article.description }}
+    </mat-card-content>
+    <span class="spacer"></span>
+    <mat-card-actions class="action-buttons" align="end">
+      <a mat-button color="accent" [href]="article.url" target="_blank">
+        Read More
+      </a>
+    </mat-card-actions>
+  </mat-card>
 </div>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

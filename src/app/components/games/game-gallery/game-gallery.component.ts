@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { MatSelectChange } from '@angular/material/select';
 import { Router } from '@angular/router';
-import { map, Observable, startWith } from 'rxjs';
-import { GameDetails, GAME_TAGS } from 'src/app/helpers/games';
+import { GENRES, PLATFORMS, SORT_ORDERS } from 'src/app/helpers/games';
+import { GameDetails } from 'src/app/helpers/interfaces';
 import { GamesService } from 'src/app/services/games/games.service';
 
 @Component({
@@ -12,37 +12,60 @@ import { GamesService } from 'src/app/services/games/games.service';
 })
 export class GameGalleryComponent implements OnInit {
   showLoader!: boolean;
-  tags = GAME_TAGS;
   games!: GameDetails[];
+  filteredGames!: GameDetails[];
 
-  search = new FormControl();
-  filteredGames!: Observable<GameDetails[]>;
+  genres = GENRES;
+  orders = SORT_ORDERS;
+  platforms = PLATFORMS;
+
   constructor(private gamesService: GamesService, private router: Router) {}
 
   ngOnInit(): void {
     this.getGames();
-    this.filteredGames = this.search.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value || ''))
-    );
   }
   getGames() {
     this.showLoader = true;
-    this.gamesService.getAllGames().subscribe((res) => {
+    this.gamesService.allGames().subscribe((res) => {
       this.games = res;
+      this.filteredGames = res;
       this.showLoader = false;
     });
   }
 
-  private _filter(value: string): GameDetails[] {
-    const filterValue = value.toLowerCase();
-
-    return this.games.filter((game) =>
-      game.title.toLowerCase().includes(filterValue)
-    );
-  }
-
   review(id: number) {
     this.router.navigate(['/games', id]);
+  }
+
+  filterByTag(event: MatSelectChange) {
+    if (event.value == '') {
+      this.filteredGames = this.games;
+    } else {
+      this.showLoader = true;
+      this.gamesService.genre(event.value).subscribe((res) => {
+        this.filteredGames = res;
+        this.showLoader = false;
+      });
+    }
+  }
+
+  filterByPlatform(event: MatSelectChange) {
+    if (event.value == '') {
+      this.filteredGames = this.games;
+    } else {
+      this.showLoader = true;
+      this.gamesService.platform(event.value).subscribe((res) => {
+        this.filteredGames = res;
+        this.showLoader = false;
+      });
+    }
+  }
+
+  sort(event: MatSelectChange) {
+    this.showLoader = true;
+    this.gamesService.sort(event.value).subscribe((res) => {
+      this.filteredGames = res;
+      this.showLoader = false;
+    });
   }
 }

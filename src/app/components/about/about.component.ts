@@ -17,7 +17,7 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/games.png',
     },
     {
-      title: 'Cryptocurrency Tracker',
+      title: 'Cryptocurrency Tracker Realtime Wea',
       url: '/crypto',
       image: '/assets/thumbnails/crypto.png',
     },

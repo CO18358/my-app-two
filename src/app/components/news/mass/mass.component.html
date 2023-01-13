@@ -1,63 +1,61 @@
-<section class="section">
+<section class="news-menu flex-center pad-16">
+  <mat-form-field class="menu-item" appearance="outline" color="accent">
+    <mat-label>Keywords</mat-label>
+    <input matInput [(ngModel)]="query" maxlength="30" />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" class="search" color="accent">
-        <mat-label>Keywords</mat-label>
-        <input matInput [(ngModel)]="query" maxlength="30">
-        <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
+  <mat-form-field class="menu-item" appearance="outline" color="accent">
+    <mat-label>Language</mat-label>
+    <mat-select [(ngModel)]="selectedLng">
+      <mat-option *ngFor="let language of languages" [value]="language.iso">
+        {{ language.name | titlecase }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" color="accent">
-        <mat-label>Language</mat-label>
-        <mat-select [(ngModel)]="selectedLng">
-            <mat-option class="btn" *ngFor="let language of languages" [value]="language.iso">
-                {{ language.name | uppercase}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+  <mat-form-field class="menu-item" appearance="outline" color="accent">
+    <mat-label>Sort By</mat-label>
+    <mat-select [(ngModel)]="sortBy">
+      <mat-option *ngFor="let key of orderBy" [value]="key">
+        {{ key | titlecase }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" color="accent">
-        <mat-label>Sort By</mat-label>
-        <mat-select [(ngModel)]="sortBy">
-            <mat-option class="btn" *ngFor="let key of orderBy" [value]="key">
-                {{ key | uppercase}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
-
-    <div class="btn-container">
-        <button mat [class.btn]="query.trim()!==''" [class.mat-raised-button]="query.trim()==''"
-            [disabled]="query.trim()==''" (click)="searchMassNews()">
-            <p>Search</p>
-            <mat-icon>search</mat-icon>
-        </button>
-    </div>
+  <button class="btn text-center flex-center" (click)="searchMassNews()">
+    Search
+    <mat-icon>search</mat-icon>
+  </button>
 </section>
 
-<div class="article-container" *ngIf="articles && articles.length">
-    <div *ngFor="let article of articles">
-        <div *ngIf="article.urlToImage">
-            <mat-card class="article-card">
-                <mat-card-header>
-                    <mat-card-title class="title">{{article.title}}</mat-card-title>
-                    <mat-card-subtitle>{{article.source.name}}</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image class="img-article" src={{article.urlToImage}} alt="">
-                <mat-card-content>
-                    <p>
-                        {{article.description}}
-                    </p>
-                </mat-card-content>
-                <mat-card-actions class="action-buttons" align="end">
-                    <!-- <button mat-button color="accent">
-                        <mat-icon>date_range</mat-icon>{{ article.publishedAt | date: 'medium' }}
-                    </button> -->
-                    <a mat-button color="accent" href={{article.url}} target="_blank">
-                        <!-- <mat-icon>visibility</mat-icon> -->
-                        Read More
-                    </a>
-                </mat-card-actions>
-            </mat-card>
-        </div>
-    </div>
+<div
+  class="article-cards flex-stretch pad-16"
+  *ngIf="!loader || (articles && articles.length); else spinner"
+>
+  <mat-card class="article-card pad-16 cursor" *ngFor="let article of articles">
+    <mat-card-header>
+      <mat-card-title>{{ article.title }}</mat-card-title>
+      <mat-card-subtitle>{{ article.source.name }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      *ngIf="article.urlToImage"
+      mat-card-image
+      [src]="article.urlToImage"
+      alt=""
+    />
+    <mat-card-content>
+      {{ article.description }}
+    </mat-card-content>
+    <span class="spacer"></span>
+    <mat-card-actions class="action-buttons" align="end">
+      <a mat-button color="accent" [href]="article.url" target="_blank">
+        Read More
+      </a>
+    </mat-card-actions>
+  </mat-card>
 </div>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

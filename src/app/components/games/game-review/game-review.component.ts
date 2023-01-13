@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GameDetailsExtended } from 'src/app/helpers/games';
+import { GameDetailsExtended } from 'src/app/helpers/interfaces';
 import { GamesService } from 'src/app/services/games/games.service';
 
 @Component({
@@ -28,5 +28,9 @@ export class GameReviewComponent implements OnInit {
       this.gameDetails = res;
       this.showLoader = false;
     });
+  }
+
+  nav(url: string) {
+    window.open(url, '_blank');
   }
 }

@@ -44,4 +44,19 @@ export namespace Utils {
   export const uniqueArray = (array: any[]) => {
     return [...new Set(array)];
   };
+
+  export const isMobile = () => {
+    return /Mobi/i.test(window.navigator.userAgent);
+  };
+
+  export function delay(timeInMs: number): Promise<void> {
+    return new Promise((resolve, _) => {
+      setTimeout(() => resolve(), timeInMs);
+    });
+  }
+
+  export function isPdf(base64: string): boolean {
+    const str = base64.split(',')[0];
+    return str.indexOf('pdf') >= 0;
+  }
 }

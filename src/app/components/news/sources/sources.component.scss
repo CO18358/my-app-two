@@ -1,172 +1,119 @@
-.section {
-    font-weight: 400;
-    display: flex;
-    padding: 1rem;
-    width: 80vw;
-    text-align: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    color: #fff;
-    align-items: center;
-    margin: auto;
-
-    mat-form-field {
-        margin: 0 1rem;
-    }
-
-
-    .btn-container {
-        padding: 20px;
-        display: inline-flex;
-        text-align: center;
-        justify-content: center;
-        flex-flow: column;
-        margin-top: -20px;
-
-        button {
-
-            display: flex;
-            align-items: center;
-
-            p {
-                margin-bottom: 0;
-                margin-right: 0.4rem;
-            }
-        }
-
-        .btn {
-            background: none;
-            border: 2px solid;
-            font: inherit;
-            line-height: 1;
-            margin: 0.5rem;
-            padding: 0.6rem 1rem;
-            color: #3ada3fd4;
-            transition: 0.25s;
-
-            &:hover {
-                border-color: #f34949;
-                color: #f34949;
-                box-shadow: 0 0.5rem 0.5rem -0.4rem #f34949;
-                transform: translateY(-0.25rem);
-            }
-
-            &:active {
-                border-color: #f3eb49;
-                color: #f3eb49;
-                box-shadow: 0 0.5rem 0.5rem -0.4rem #f3eb49;
-                transform: translateY(-0.25rem);
-            }
-
-        }
-    }
+mat-form-field {
+  ::ng-deep.mat-form-field-wrapper {
+    padding: 0;
+  }
 }
 
-.source-cards {
-    display: flex;
-    margin: auto;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: 2em;
-    font-family: 'Open Sans', sans-serif;
+.cards {
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+  gap: 16px;
 
+  .card {
+    width: calc(25% - 48px);
+    flex-direction: column;
+    height: 16rem;
+    overflow: hidden;
+    border-radius: 16px;
+    align-items: flex-start;
 
-    .data-card {
-        display: flex;
-        flex-direction: column;
-        width: 12rem;
-        height: 16rem;
-        overflow: hidden;
-        border-radius: .5rem;
-        text-decoration: none;
-        background: #b83131;
-        margin: 1rem;
-        padding: 2rem;
-        box-shadow: 0 1.5em 2.5em -.5em rgba(#000000, .1);
-        transition: transform .45s ease, background .45s ease;
+    background: #b83131;
+    box-shadow: 0 1.5em 2.5em -0.5em rgba(#000000, 0.1);
+    transition: transform 0.45s ease, background 0.45s ease;
 
-        .card-name {
-            color: #000;
-            font-size: 1.5rem;
-            font-weight: 600;
-            line-height: 1;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #000;
-            transition: color .45s ease, border .45s ease;
-        }
-
-        .card-caption {
-            padding-top: 0.3rem;
-            color: #99a1ac;
-            text-transform: uppercase;
-            font-size: 1rem;
-            font-weight: 600;
-            line-height: 1;
-            letter-spacing: 0.1rem;
-            transition: color .45s ease;
-        }
-
-        .card-content {
-            opacity: 0;
-            color: #FFFFFF;
-            font-weight: 600;
-            font-size: 0.8rem;
-            line-height: 1.8;
-            transform: translateY(-1rem);
-            transition: opacity .45s ease, transform .5s ease;
-            max-height: 15vh;
-        }
-
-        .link-text {
-            display: block;
-            color: #000;
-            font-size: 1rem;
-            font-weight: 600;
-            line-height: 1.2;
-            margin: auto 0 0;
-            transition: color .45s ease;
-        }
-
-        &:hover {
-            background: #000;
-            transform: scale(1.02);
-
-            .card-name {
-                color: #b83131;
-                border-bottom-color: #b83131;
-            }
-
-            .card-caption {
-                color: #b83131;
-            }
-
-            .card-content {
-                opacity: 1;
-                transform: none;
-            }
-
-            .link-text {
-                color: #b83131;
-                opacity: 0;
-            }
-        }
+    .name,
+    .footer,
+    .caption {
+      font-weight: 600;
     }
 
-    @keyframes point {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(.125em);
-        }
+    .name,
+    .footer {
+      color: #000;
     }
+
+    .name {
+      font-size: 1.5rem;
+      line-height: 1;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #000;
+      transition: color 0.45s ease, border 0.45s ease;
+    }
+
+    .caption {
+      padding-top: 0.3rem;
+      color: #99a1ac;
+      font-size: 1rem;
+      line-height: 1;
+      letter-spacing: 0.1rem;
+      transition: color 0.45s ease;
+    }
+
+    .content {
+      opacity: 0;
+      color: #ffffff;
+      font-size: 0.8rem;
+      line-height: 1.8;
+      transform: translateY(-1rem);
+      transition: opacity 0.45s ease, transform 0.5s ease;
+      max-height: 15vh;
+    }
+
+    .footer {
+      display: block;
+      font-size: 1rem;
+      line-height: 1.2;
+      margin: auto 0 0;
+      transition: color 0.45s ease;
+    }
+
+    &:hover {
+      background: #000;
+      transform: scale(1.02);
+
+      .name,
+      .caption {
+        color: #b83131;
+      }
+      .name {
+        border-bottom-color: #b83131;
+      }
+      .content {
+        opacity: 1;
+        transform: none;
+      }
+      .footer {
+        opacity: 0;
+      }
+    }
+  }
+
+  @keyframes point {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(0.125em);
+    }
+  }
 }
 
 .loader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 800px) {
+  .cards .card {
+    width: calc(33.33% - 48px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cards .card {
+    width: calc(100% - 48px);
+  }
 }

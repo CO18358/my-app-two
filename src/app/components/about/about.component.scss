@@ -1,61 +1,46 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500&family=Noto+Serif:ital@1&display=swap");
 
-.titlebar {
-  height: 4rem;
-  background: rgb(35, 35, 35);
-  backdrop-filter: blur(2px);
-  color: #fff;
+.container {
+  background-image: url("/assets/backgrounds/dashboard.jpg");
+  min-height: 100vh;
 
-  .header {
-    font-family: "Noto Serif", serif;
-    font-weight: 500;
-    cursor: pointer;
-    font-size: 1.2rem;
+  .cards {
+    flex-wrap: wrap;
+    gap: 16px;
+
+    .card {
+      width: calc(16.66% - 48px);
+      background-color: rgba(50, 50, 50, 0.6);
+      border-radius: 16px;
+      box-shadow: 8px 8px 24px #000000, -8px -8px 24px #131313;
+
+      .title {
+        margin: 16px auto 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      &:hover {
+        background-color: rgb(255 255 255 / 0.2);
+        .image-container {
+          img {
+            transition: transform 0.7s ease-in-out;
+            transform: rotate(360deg);
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 800px) {
+    .cards .card {
+      width: calc(25% - 48px);
+    }
   }
 
-  .spacer {
-    flex: 1 1 auto;
-  }
-}
-
-.title {
-  margin-top: 1em;
-  font-size: 1.6rem;
-  text-align: center;
-  font-family: "Lora", serif;
-}
-
-.apps-container {
-  display: flex;
-  gap: 16px;
-  padding: 1em;
-  margin: auto;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-
-  .app-card {
-    flex: 0 1 calc(16% - 16px);
-    background-color: rgba(70, 70, 70, 0.5);
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-      rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
-      rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-
-    &:hover {
-      box-shadow: 0px 0px 4px 2px rgba(255, 255, 255, 0.8);
-      transition: all 0.2s ease-out;
-      transform: translateY(-12px);
-      cursor: pointer;
-    }
-
-    .thumbnail {
-      width: 100%;
-    }
-
-    .app-title {
-      text-align: center;
-      margin: 16px auto 0;
+  @media screen and (max-width: 600px) {
+    .cards .card {
+      width: calc(50% - 48px);
     }
   }
 }

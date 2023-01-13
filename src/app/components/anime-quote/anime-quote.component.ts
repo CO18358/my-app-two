@@ -8,77 +8,41 @@ import { AnimeQuotesService } from 'src/app/services/anime-quotes/anime-quotes.s
   styleUrls: ['./anime-quote.component.scss'],
 })
 export class AnimeQuoteComponent implements OnInit {
-  options = [
-    { name: 'Anime', value: true },
-    { name: 'Character', value: false },
-  ];
-  option = this.options[0];
   query!: string;
-
-  pageNum: number = 1;
-
   loader!: boolean;
-  quotesArray!: AnimeQuote[];
-  news!: any[];
-  index = 0;
+  results!: AnimeQuote[];
 
   constructor(private quoteService: AnimeQuotesService) {}
 
   ngOnInit() {
     this.random();
-    this.newsToday();
   }
 
   // async getAnimeList() {
   //   const titles = await lastValueFrom(this.quoteService.animeListUrl());
   // }
 
-  newsToday() {
+  random() {
     this.loader = true;
-    this.quoteService.news().subscribe((res) => {
-      this.news = res;
+    this.quoteService.random().subscribe((res) => {
+      this.results = res;
       this.loader = false;
     });
   }
-  random() {
-    this.quoteService.randomQoutes(this.pageNum).subscribe((res) => {
-      this.quotesArray = res;
+
+  character(name: string) {
+    this.loader = true;
+    this.quoteService.byCharacter(name).subscribe((res) => {
+      this.results = res;
+      this.loader = false;
     });
   }
 
-  search() {
-    if (this.query && this.query != '') {
-      this.loader = true;
-      this.quoteService
-        .search(this.option.value, this.query, this.pageNum)
-        .subscribe((res) => {
-          this.quotesArray = res;
-          this.loader = false;
-        });
-    }
-  }
-
-  prevPage() {
-    this.pageNum > 0 && this.pageNum--;
-    if (
-      this.query &&
-      this.query != '' &&
-      (this.quotesArray[0].anime.includes(this.query) ||
-        this.quotesArray[0].character.includes(this.query))
-    ) {
-      this.search();
-    } else this.random();
-  }
-
-  nextPage() {
-    this.pageNum++;
-    if (
-      this.query &&
-      this.query != '' &&
-      (this.quotesArray[0].anime.includes(this.query) ||
-        this.quotesArray[0].character.includes(this.query))
-    ) {
-      this.search();
-    } else this.random();
+  anime(title: string) {
+    this.loader = true;
+    this.quoteService.byAnime(title).subscribe((res) => {
+      this.results = res;
+      this.loader = false;
+    });
   }
 }

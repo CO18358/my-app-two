@@ -1,44 +1,52 @@
-<div class="menu">
-  <mat-form-field class="filter" appearance="legacy">
-    <mat-label>Search Games</mat-label>
-    <input type="text" matInput [formControl]="search">
-  </mat-form-field>
-  <!-- <mat-form-field appearance="legacy">
-    <mat-label>Set Currency</mat-label>
-    <mat-select [(ngModel)]="curr" (selectionChange)="getCoinList()">
-      <mat-option *ngFor="let op of vsCurrencies" [value]="op">{{op.symbol + " " + op.value|uppercase}}
+<section class="news-menu flex-center pad-16">
+  <mat-form-field class="menu-item" appearance="outline" color="accent">
+    <mat-label>Genre</mat-label>
+    <mat-select (selectionChange)="filterByTag($event)">
+      <mat-option value="">Any</mat-option>
+      <mat-option *ngFor="let tag of genres" [value]="tag">
+        {{ tag | titlecase }}
       </mat-option>
     </mat-select>
-  </mat-form-field> -->
-  <!-- <mat-form-field appearance="legacy">
-    <mat-label>Platform</mat-label>
-    <mat-select (selectionChange)="filterPlatform()">
-      <mat-option *ngFor="let op of platforms" [value]="op">{{op}}</mat-option>
+  </mat-form-field>
+
+  <mat-form-field class="menu-item" appearance="outline" color="accent">
+    <mat-label>Sort by</mat-label>
+    <mat-select (selectionChange)="sort($event)">
+      <mat-option *ngFor="let order of orders" [value]="order">
+        {{ order | titlecase }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field appearance="legacy">
-    <mat-label>Sort By</mat-label>
-    <mat-select (selectionChange)="sortGames()">
-      <mat-option *ngFor="let op of sort" [value]="op">{{op}}</mat-option>
-    </mat-select>
-  </mat-form-field> -->
-</div>
 
-<div class="content" *ngIf="!showLoader; else spinner">
-  <div class="games">
-    <div class="card" *ngFor="let game of filteredGames | async" (click)="review(game.id)">
-      <img class="image" [src]="game.thumbnail" [alt]="game.title">
-      <div class="details">
-        <div class="title">{{game.title}}</div>
-        <div class="description">{{game.short_description}}</div>
-        <div class="meta">
-          <div>Released On {{game.release_date}}</div>
-          <div>{{game.genre + " | " + game.platform}}</div>
-        </div>
-        <div class="link">
-          <div>Explore Game</div>
-          <mat-icon>trending_flat</mat-icon>
-        </div>
+  <mat-form-field class="menu-item" appearance="outline" color="accent">
+    <mat-label>Platform</mat-label>
+    <mat-select (selectionChange)="filterByPlatform($event)">
+      <mat-option value="">Any</mat-option>
+      <mat-option *ngFor="let plt of platforms" [value]="plt">
+        {{ plt | titlecase }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</section>
+
+<div class="cards flex-stretch pad-16" *ngIf="!showLoader; else spinner">
+  <div
+    class="card cursor"
+    *ngFor="let game of filteredGames"
+    (click)="review(game.id)"
+  >
+    <div class="image-container flex-center">
+      <img class="fit-image" [src]="game.thumbnail" [alt]="game.title" />
+    </div>
+    <div class="title text-center">{{ game.title }}</div>
+    <div class="details">
+      <div class="description">{{ game.short_description }}</div>
+      <div class="tags flex-justify">
+        <div class="tag">{{ game.genre }}</div>
+        <mat-icon>{{
+          game.platform == "Web Browser" ? "public" : "laptop_mac"
+        }}</mat-icon>
+        <div class="tag">{{ game.release_date }}</div>
       </div>
     </div>
   </div>

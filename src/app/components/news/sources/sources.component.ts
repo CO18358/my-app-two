@@ -63,4 +63,8 @@ export class SourcesComponent implements OnInit {
       );
     });
   }
+
+  visitSource(url: string) {
+    window.open(url, '_blank');
+  }
 }

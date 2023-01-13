@@ -1,76 +1,67 @@
-<div class="details" *ngIf="!showLoader">
-  <div class="header">
-    <img class="image" [src]="gameDetails.thumbnail" alt="">
-    <div class="title">
-      <div class="name"> {{gameDetails.title}} </div>
-      <div class="link">
-        <mat-icon>sports_esports</mat-icon>
-        <a [href]="gameDetails.game_url" target="_blank">
-          Visit {{gameDetails.title}}'s HomePage
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="section-name"> Game Description </div>
-  <div class="description">{{gameDetails.description}}</div>
-
-  <div class="table">
-    <div class="section">
-      <div class="section-name">Game Details</div>
-      <div class="table">
-        <div class="section key">Genre</div>
-        <div class="section key">{{gameDetails.genre}}</div>
-      </div>
-      <div class="table">
-        <div class="section key">Platform</div>
-        <div class="section key">{{gameDetails.platform}}</div>
-      </div>
-      <div class="table">
-        <div class="section key">Released On</div>
-        <div class="section key">{{gameDetails.release_date}}</div>
-      </div>
-      <div class="table">
-        <div class="section key">Status</div>
-        <div class="section key">{{gameDetails.status}}</div>
-      </div>
-      <div class="table">
-        <div class="section key">Developer</div>
-        <div class="section key">{{gameDetails.developer}}</div>
-      </div>
-      <div class="table">
-        <div class="section key">Publisher</div>
-        <div class="section key">{{gameDetails.publisher}}</div>
-      </div>
-    </div>
-    <div class="section" *ngIf="gameDetails.minimum_system_requirements">
-      <div class="section-name">Minimun System Requirements</div>
-      <div class="table">
-        <div class="section key">Operating System</div>
-        <div class="section key">{{gameDetails.minimum_system_requirements.os}}</div>
-      </div>
-      <div class="table">
-        <div class="section key">Processor</div>
-        <div class="section key">{{gameDetails.minimum_system_requirements.processor}}</div>
-      </div>
-      <div class="table">
-        <div class="section key">Memory</div>
-        <div class="section key">{{gameDetails.minimum_system_requirements.memory}}</div>
-      </div>
-      <div class="table">
-        <div class="section key">Graphics</div>
-        <div class="section key">{{gameDetails.minimum_system_requirements.graphics}}</div>
-      </div>
-      <div class="table">
-        <div class="section key">Storage Space</div>
-        <div class="section key">{{gameDetails.minimum_system_requirements.storage}}</div>
-      </div>
-    </div>
+<div class="pad-16" *ngIf="!showLoader">
+  <div class="game image-container flex-center">
+    <img class="fit-image" [src]="gameDetails.thumbnail" alt="" />
   </div>
 
-  <div class="section-name" *ngIf="gameDetails.screenshots.length">Gameplay Snapshots</div>
-  <div class="screenshots">
-    <div class="snap" *ngFor="let ss of gameDetails.screenshots">
-      <img [src]="ss.image" alt="">
+  <div class="info-cards flex-stretch">
+    <div class="info-card full-width">
+      <div class="info-card-title pad-16 flex-justify">
+        <div>{{ gameDetails.title }}</div>
+        <mat-icon class="cursor" (click)="nav(gameDetails.game_url)"
+          >open_in_new</mat-icon
+        >
+      </div>
+      <div class="info-card-data pad-16">
+        {{ gameDetails.description }}
+      </div>
+    </div>
+
+    <div class="info-card spacer">
+      <div class="info-card-title pad-16">Game Details</div>
+      <div class="info-card-data pad-16">
+        <ul>
+          <li>Genre: {{ gameDetails.genre }}</li>
+          <li>Platform: {{ gameDetails.platform }}</li>
+          <li>Released on: {{ gameDetails.release_date }}</li>
+          <li>Status: {{ gameDetails.status }}</li>
+          <li>Developer: {{ gameDetails.developer }}</li>
+          <li>Publisher: {{ gameDetails.publisher }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="info-card spacer"
+      *ngIf="gameDetails.minimum_system_requirements"
+    >
+      <div class="info-card-title pad-16">System Requirementss</div>
+      <div class="info-card-data pad-16">
+        <ul>
+          <li>
+            Operating System: {{ gameDetails.minimum_system_requirements.os }}
+          </li>
+          <li>
+            Processor:
+            {{ gameDetails.minimum_system_requirements.processor }}
+          </li>
+          <li>Memory: {{ gameDetails.minimum_system_requirements.memory }}</li>
+          <li>
+            Graphics: {{ gameDetails.minimum_system_requirements.graphics }}
+          </li>
+          <li>
+            Storage Space: {{ gameDetails.minimum_system_requirements.storage }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-card full-width" *ngIf="gameDetails.screenshots.length">
+      <div class="info-card-title pad-16">Gameplay Snapshots</div>
+      <div class="info-card-data flex-column screenshots pad-16">
+        <div class="image-container" *ngFor="let ss of gameDetails.screenshots">
+          <img class="fit-image" [src]="ss.image" alt="" />
+        </div>
+      </div>
     </div>
   </div>
 </div>
