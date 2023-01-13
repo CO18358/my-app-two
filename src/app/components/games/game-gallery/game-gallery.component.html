@@ -1,7 +1,7 @@
-<!-- <section class="news-menu flex-center pad-16">
+<section class="news-menu flex-center pad-16">
   <mat-form-field class="menu-item" appearance="outline" color="accent">
     <mat-label>Genre</mat-label>
-    <mat-select [(ngModel)]="genre">
+    <mat-select (selectionChange)="filterByTag($event)">
       <mat-option value="">Any</mat-option>
       <mat-option *ngFor="let tag of genres" [value]="tag">
         {{ tag | titlecase }}
@@ -11,7 +11,7 @@
 
   <mat-form-field class="menu-item" appearance="outline" color="accent">
     <mat-label>Sort by</mat-label>
-    <mat-select [(ngModel)]="sort_by">
+    <mat-select (selectionChange)="sort($event)">
       <mat-option *ngFor="let order of orders" [value]="order">
         {{ order | titlecase }}
       </mat-option>
@@ -20,16 +20,21 @@
 
   <mat-form-field class="menu-item" appearance="outline" color="accent">
     <mat-label>Platform</mat-label>
-    <mat-select [(ngModel)]="platform">
+    <mat-select (selectionChange)="filterByPlatform($event)">
+      <mat-option value="">Any</mat-option>
       <mat-option *ngFor="let plt of platforms" [value]="plt">
         {{ plt | titlecase }}
       </mat-option>
     </mat-select>
   </mat-form-field>
-</section> -->
+</section>
 
 <div class="cards flex-stretch pad-16" *ngIf="!showLoader; else spinner">
-  <div class="card cursor" *ngFor="let game of games" (click)="review(game.id)">
+  <div
+    class="card cursor"
+    *ngFor="let game of filteredGames"
+    (click)="review(game.id)"
+  >
     <div class="image-container flex-center">
       <img class="fit-image" [src]="game.thumbnail" [alt]="game.title" />
     </div>

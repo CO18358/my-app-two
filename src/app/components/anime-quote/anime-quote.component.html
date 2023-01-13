@@ -4,15 +4,23 @@
   <div *ngIf="!loader; else spinner">
     <div class="cards pad-16 flex-stretch">
       <mat-card class="card padding" *ngFor="let result of results">
-        <h3 class="title cursor" (click)="anime(result.anime)">
-          {{ result.anime }}
-        </h3>
+        <h4 class="title cursor" (click)="anime(result.anime)">
+          {{ result.character }}
+        </h4>
+        <div class="name flex-justify">
+          <h5 class="cursor" (click)="character(result.character)">
+            {{ result.anime }}
+          </h5>
+          <mat-icon class="copy" [cdkCopyToClipboard]="result.quote"
+            >content_copy</mat-icon
+          >
+        </div>
         <p class="quote text-justify">{{ result.quote }}</p>
-        <h5 class="name text-end cursor" (click)="character(result.character)">
-          -{{ result.character }}-
-        </h5>
       </mat-card>
     </div>
+    <button class="mine" mat-mini-fab color="primary" (click)="random()">
+      <mat-icon>format_quote</mat-icon>
+    </button>
   </div>
 </div>
 

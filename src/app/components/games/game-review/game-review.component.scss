@@ -1,4 +1,4 @@
-.image-container {
+.game {
   margin-bottom: 16px;
   .fit-image {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
@@ -15,14 +15,10 @@
 }
 
 .screenshots {
-  .image-container {
-    border-radius: 16px;
+  gap: 16px;
+
+  .fit-image {
     box-shadow: rgb(0 0 0 / 45%) 0px 4px 12px 0px;
-    .fit-image {
-      border-radius: 16px;
-    }
-    &:not(:last-child) {
-      margin-bottom: 16px;
-    }
+    border-radius: 16px;
   }
 }

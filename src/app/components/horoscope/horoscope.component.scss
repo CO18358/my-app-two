@@ -1,89 +1,117 @@
-@import url("https://fonts.googleapis.com/css2?family=PT+Serif&display=swap");
-
 .container {
-  width: 100vw;
-  min-height: calc(100vh - 4em);
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("https://i.pinimg.com/originals/ee/7d/bc/ee7dbc369fd1cf1cce4714002480a8ad.jpg")
-      no-repeat center;
-  background-size: cover;
-  background-attachment: fixed;
+  min-height: 100vh;
+  background-image: url("/assets/backgrounds/horoscope.jpg");
 
-  .search-box {
-    width: 80%;
-    margin: 1em auto;
-    padding: 0.5em 2em;
-    border-radius: 0.8em;
-    background: rgb(255 255 255 / 14%);
-    backdrop-filter: blur(2px);
-    box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+  .cards {
     gap: 16px;
+    flex-wrap: wrap;
+    font-family: "Righteous", cursive;
+    h2 {
+      font-family: "Righteous", cursive;
+    }
 
-    mat-form-field {
-      flex: 1;
+    .card {
+      position: relative;
+      width: calc(33.33% - 16px);
+      height: calc(75vh - 32px);
+      margin: 0 auto;
+      background: #000;
+      border-radius: 24px;
+      box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5);
+
+      .face {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.face1 {
+          box-sizing: border-box;
+          padding: 20px;
+
+          h2 {
+            margin: 4px;
+            padding: 0;
+          }
+        }
+
+        &.face2 {
+          transition: 0.5s;
+
+          h2 {
+            margin: 0;
+            padding: 0;
+            font-size: 4em;
+            color: #fff;
+            transition: 0.5s;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+          }
+        }
+      }
+    }
+
+    .card:hover .face.face2 {
+      height: 60px;
+      h2 {
+        font-size: 2em;
+      }
+    }
+
+    .card:nth-child(1) {
+      color: #fffc00;
+      .face.face2 {
+        background-image: linear-gradient(
+          40deg,
+          #fffc00 0%,
+          #fc00ff 45%,
+          #00fffc 100%
+        );
+        border-radius: 16px;
+      }
+    }
+
+    .card:nth-child(2) {
+      color: #00fffc;
+      .face.face2 {
+        background-image: linear-gradient(
+          40deg,
+          #fc00ff 0%,
+          #00fffc 45%,
+          #fffc00 100%
+        );
+        border-radius: 16px;
+      }
+    }
+
+    .card:nth-child(3) {
+      color: #fc00ff;
+      .face.face2 {
+        background-image: linear-gradient(
+          40deg,
+          #00fffc 0%,
+          #fc00ff 45%,
+          #fffc00 100%
+        );
+        border-radius: 16px;
+      }
     }
   }
+}
 
-  .card {
-    margin: auto;
-    padding: 2em;
-    border-radius: 0.8em;
-    background: rgb(0 0 0 / 24%);
-    backdrop-filter: blur(2px);
-    box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
-    width: 80%;
-    display: flex;
-    gap: 16px;
-    font-family: "PT Serif", serif;
+@media screen and (max-width: 800px) {
+  .container .cards .card .face.face2 h2 {
+    font-size: 3em;
+  }
+}
 
-    .left-panel {
-      flex: 1;
-
-      img {
-        object-fit: contain;
-        width: 80%;
-        margin: auto;
-      }
-    }
-
-    .right-panel {
-      flex: 2;
-    }
-
-    .title {
-      font-size: 1.5rem;
-      margin: 0.4rem 0;
-    }
-
-    .subtitle {
-      font-size: 1.2rem;
-    }
-
-    .content {
-      font-size: 1rem;
-      margin: 0.2rem;
-    }
-
-    .text-right {
-      text-align: end;
-    }
-
-    .caption {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .link {
-      display: inlne;
-      margin: 0.2rem;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
+@media screen and (max-width: 600px) {
+  .container .cards .card {
+    width: calc(100% - 16px);
+    height: 480px;
   }
 }

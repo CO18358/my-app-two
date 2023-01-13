@@ -1,93 +1,42 @@
-<div class="container">
-  <app-titlebar title="horoscope"></app-titlebar>
-  <div class="search-box">
-    <mat-form-field appearance="legacy">
+<div class="container fix-background full-width">
+  <app-titlebar title="anime quotes"></app-titlebar>
+
+  <section class="news-menu flex-center pad-16">
+    <mat-form-field class="menu-item" appearance="outline" color="accent">
+      <mat-label>Zodiad</mat-label>
       <mat-label>Zodiac Sign</mat-label>
-      <mat-select [(ngModel)]="querySign" (selectionChange)="checkHoroscope()">
-        <mat-option *ngFor="let sign of signs" [value]="sign.zodiacName">
-          <div class="option">
-            <img [src]="sign.icon" alt="" matPrefix />
-            <p>
-              {{ sign.zodiacName | uppercase }}
-            </p>
+      <mat-select [(ngModel)]="sign" (selectionChange)="checkHoroscope()">
+        <mat-option *ngFor="let s of signs" [value]="s.zodiacName">
+          <div class="option flex">
+            <img [src]="s.icon" alt="" matPrefix />
+            {{ s.zodiacName | uppercase }}
           </div>
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="legacy">
-      <mat-label>Day</mat-label>
-      <mat-select [(ngModel)]="queryDay" (selectionChange)="checkHoroscope()">
-        <mat-option *ngFor="let day of days" [value]="day">
-          {{ day | uppercase }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+  </section>
 
-  <div class="card" *ngIf="result.horoscope; else spinner">
-    <div class="left-panel">
-      <img [src]="'/assets/zodiac/' + result.signData.zodiacName + '.png'" alt="" />
-      <br /><br />
-      <div class="caption">
-        <p class="content" [style.color]="result.signData.color">Element</p>
-        <p class="content text-right">{{ result.signData.element }}</p>
+  <div class="cards flex-center pad-16" *ngIf="!loader; else spinner">
+    <div class="card" *ngFor="let horo of result | keyvalue">
+      <div class="face face1">
+        <div class="content">
+          <h2>{{ horo.value.current_date }}</h2>
+          <p class="text-justify">{{ horo.value.description }}</p>
+          <div class="text-center">
+            <div>Mood: {{ horo.value.mood }}</div>
+            <div>Compatibility: {{ horo.value.compatibility }}</div>
+            <div>Color: {{ horo.value.color }}</div>
+            <div>Number: {{ horo.value.lucky_number }}</div>
+            <div>Time: {{ horo.value.lucky_time }}</div>
+          </div>
+        </div>
       </div>
-      <div class="caption">
-        <p class="content" [style.color]="result.signData.color">Mood</p>
-        <p class="content text-right">{{ result.horoscope.mood }}</p>
+      <div class="face face2">
+        <h2>{{ horo.key | titlecase }}</h2>
       </div>
-      <div class="caption">
-        <p class="content" [style.color]="result.signData.color">
-          Compatibility
-        </p>
-        <p class="content text-right">{{ result.horoscope.compatibility }}</p>
-      </div>
-      <div class="caption">
-        <p class="content" [style.color]="result.signData.color">Lucky Time</p>
-        <p class="content text-right">{{ result.horoscope.lucky_time }}</p>
-      </div>
-      <div class="caption">
-        <p class="content" [style.color]="result.signData.color">
-          Lucky Number
-        </p>
-        <p class="content text-right">{{ result.horoscope.lucky_number }}</p>
-      </div>
-      <div class="caption">
-        <p class="content" [style.color]="result.signData.color">Lucky Color</p>
-        <p class="content text-right">
-          {{ result.horoscope.color }}
-        </p>
-      </div>
-    </div>
-    <div class="right-panel">
-      <p class="title text-right" [style.color]="result.signData.color">
-        {{
-        result.signData.zodiacName + " | " + result.signData.symbol
-        | uppercase
-        }}
-      </p>
-      <div class="caption">
-        <p class="subtitle" [style.color]="result.signData.color">
-          {{ "Date - " + result.horoscope.current_date }}
-        </p>
-        <p class="subtitle">{{ result.horoscope.date_range }}</p>
-      </div>
-      <br />
-      <p class="title" [style.color]="result.signData.color">HOROSCOPE</p>
-      <p class="content">{{ result.horoscope.description }}</p>
-      <br />
-      <p class="title" [style.color]="result.signData.color">ABOUT SIGN</p>
-      <span class="content">{{
-        showFullText
-        ? result.signData.description
-        : (result.signData.description | trimText: 900)
-        }}</span>
-      <span class="link" [style.color]="result.signData.color" (click)="showFullText = !showFullText">{{ showFullText ?
-        "Read Less" : "Read More" }}</span>
     </div>
   </div>
 </div>
-
 
 <ng-template #spinner>
   <app-spinner></app-spinner>

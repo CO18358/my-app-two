@@ -1,5 +1,5 @@
 <div class="pad-16" *ngIf="!showLoader">
-  <div class="image-container flex-center">
+  <div class="game image-container flex-center">
     <img class="fit-image" [src]="gameDetails.thumbnail" alt="" />
   </div>
 
@@ -57,7 +57,7 @@
 
     <div class="info-card full-width" *ngIf="gameDetails.screenshots.length">
       <div class="info-card-title pad-16">Gameplay Snapshots</div>
-      <div class="info-card-data screenshots pad-16">
+      <div class="info-card-data flex-column screenshots pad-16">
         <div class="image-container" *ngFor="let ss of gameDetails.screenshots">
           <img class="fit-image" [src]="ss.image" alt="" />
         </div>

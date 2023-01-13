@@ -16,12 +16,14 @@
       -moz-box-shadow: 16px 16px 64px 0px rgba(62, 66, 66, 0.24);
       box-shadow: 16px 16px 64px 0px rgba(62, 66, 66, 0.24);
       line-height: 1;
-      color: white;
 
       .title {
         font-size: 20px;
         letter-spacing: 1px;
-        font-family: "Bebas Neue", cursive;
+        font-family: "Expletus Sans", sans-serif;
+        font-weight: 500;
+        color: red;
+        margin-bottom: 8px;
       }
       .quote {
         font-family: "Amarante", cursive;
@@ -30,15 +32,36 @@
 
       .name {
         letter-spacing: 1px;
-        font-size: 16px;
         font-style: italic;
-        font-family: "Coda", cursive;
+        font-family: "Nunito Sans", cursive;
+        margin-bottom: 4px;
+        h5 {
+          margin: 0;
+        }
+        .copy {
+          font-size: 14px;
+          width: 14px;
+          height: 14px;
+          &:active {
+            transform: scale(1.5);
+          }
+        }
       }
     }
+  }
+
+  .mine {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
   }
 }
 @media screen and (max-width: 600px) {
   .container .cards .card {
     width: calc(100% - 48px);
+  }
+  .mine {
+    bottom: 16px;
+    right: 16px;
   }
 }

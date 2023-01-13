@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
-import { GameDetails, GameDetailsExtended } from 'src/app/helpers/games';
+import { GameDetails, GameDetailsExtended } from 'src/app/helpers/interfaces';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -28,7 +28,44 @@ export class GamesService {
       );
   }
 
-  filterGames() {}
+  genre(category: string) {
+    return this.http
+      .get<GameDetails[]>(`${this.baseUrl}games`, {
+        headers: this.headers,
+        params: { category },
+      })
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  sort(order: string) {
+    return this.http
+      .get<GameDetails[]>(`${this.baseUrl}games`, {
+        headers: this.headers,
+        params: { 'sort-by': order },
+      })
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
+
+  platform(platform: string) {
+    return this.http
+      .get<GameDetails[]>(`${this.baseUrl}games`, {
+        headers: this.headers,
+        params: { platform },
+      })
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
 
   getGameById(id: number) {
     return this.http

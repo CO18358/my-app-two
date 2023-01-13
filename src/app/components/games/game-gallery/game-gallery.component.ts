@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { MatSelectChange } from '@angular/material/select';
 import { Router } from '@angular/router';
-import {
-  GameDetails,
-  GENRES,
-  PLATFORMS,
-  SORT_ORDERS,
-} from 'src/app/helpers/games';
+import { GENRES, PLATFORMS, SORT_ORDERS } from 'src/app/helpers/games';
+import { GameDetails } from 'src/app/helpers/interfaces';
 import { GamesService } from 'src/app/services/games/games.service';
 
 @Component({
@@ -17,14 +13,11 @@ import { GamesService } from 'src/app/services/games/games.service';
 export class GameGalleryComponent implements OnInit {
   showLoader!: boolean;
   games!: GameDetails[];
+  filteredGames!: GameDetails[];
 
   genres = GENRES;
   orders = SORT_ORDERS;
   platforms = PLATFORMS;
-
-  platform = this.platforms[0];
-  genre = this.genres[0];
-  sort_by = this.orders[0];
 
   constructor(private gamesService: GamesService, private router: Router) {}
 
@@ -35,6 +28,7 @@ export class GameGalleryComponent implements OnInit {
     this.showLoader = true;
     this.gamesService.allGames().subscribe((res) => {
       this.games = res;
+      this.filteredGames = res;
       this.showLoader = false;
     });
   }
@@ -42,5 +36,36 @@ export class GameGalleryComponent implements OnInit {
   review(id: number) {
     this.router.navigate(['/games', id]);
   }
-  filter() {}
+
+  filterByTag(event: MatSelectChange) {
+    if (event.value == '') {
+      this.filteredGames = this.games;
+    } else {
+      this.showLoader = true;
+      this.gamesService.genre(event.value).subscribe((res) => {
+        this.filteredGames = res;
+        this.showLoader = false;
+      });
+    }
+  }
+
+  filterByPlatform(event: MatSelectChange) {
+    if (event.value == '') {
+      this.filteredGames = this.games;
+    } else {
+      this.showLoader = true;
+      this.gamesService.platform(event.value).subscribe((res) => {
+        this.filteredGames = res;
+        this.showLoader = false;
+      });
+    }
+  }
+
+  sort(event: MatSelectChange) {
+    this.showLoader = true;
+    this.gamesService.sort(event.value).subscribe((res) => {
+      this.filteredGames = res;
+      this.showLoader = false;
+    });
+  }
 }
