@@ -14,6 +14,7 @@
   <mat-sidenav-container [hasBackdrop]="isMobile">
     <mat-sidenav #drawer position="end" mode="over">
       <div class="drawer pad-16" *ngIf="showPoets; else poemList">
+        <h1 class="text-center">POETS</h1>
         <div
           class="title"
           [class.active]="author == poem.author"
@@ -43,6 +44,7 @@
 
 <ng-template #poemList>
   <div class="drawer pad-16">
+    <h1 class="text-center">POEMS</h1>
     <div
       *ngFor="let p of poems"
       class="title cursor"

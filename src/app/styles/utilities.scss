@@ -100,3 +100,8 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+.cursor:hover,
+.cursor:active {
+  cursor: pointer;
+}
