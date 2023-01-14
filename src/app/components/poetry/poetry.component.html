@@ -1,35 +1,55 @@
-<div class="container">
-  <app-titlebar title="Poetry"></app-titlebar>
-  <div class="poetry" *ngIf="!spinner; else loader">
-    <div class="menu">
-      <mat-tab-group mat-align-tabs="center" disablePagination="true">
-        <mat-tab label=" Authors">
-          <div class="author" [class.active]="author==poem.author" (click)="poemsByPoet(author)"
-            *ngFor="let author of authors">
-            {{author}}
-          </div>
-        </mat-tab>
-        <mat-tab label="Titles">
-          <div class="title" [class.active]="title.title==poem.title" (click)="poem=title" *ngFor="let title of titles">
-            {{title.title |
-            trimText:30}}
-          </div>
-        </mat-tab>
-      </mat-tab-group>
-    </div>
-    <div class="poem">
-      <div *ngIf="!poemSpinner; else loader">
-        <div class="name">{{poem.title}}</div>
-        <div class="poet"> ~ {{poem.author}}</div>
-        <div class="lines">
-          <div class="line" *ngFor="let line of poem.lines">{{line}}</div>
+<div class="container fix-background full-width">
+  <mat-toolbar class="nav flex-center">
+    <button mat-icon-button (click)="home()">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <div class="header">Poetry</div>
+    <span class="spacer"></span>
+    <button mat-icon-button (click)="toggleDrawer()">
+      <mat-icon>auto_stories</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container [hasBackdrop]="isMobile">
+    <mat-sidenav #drawer position="end" mode="over">
+      <div class="drawer pad-16" *ngIf="showPoets; else poemList">
+        <div
+          class="title"
+          [class.active]="author == poem.author"
+          (click)="poemsByPoet(author)"
+          *ngFor="let author of authors"
+        >
+          {{ author }}
         </div>
       </div>
-    </div>
-  </div>
-</div>
+    </mat-sidenav>
 
+    <mat-sidenav-content>
+      <div class="poem pad-16 text-center" *ngIf="!spinner; else loader">
+        <h1 class="name">{{ poem.title }}</h1>
+        <h2 class="poet">~ {{ poem.author }}</h2>
+        <div class="lines">
+          <p *ngFor="let line of poem.lines">{{ line }}</p>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
 
 <ng-template #loader>
   <app-spinner></app-spinner>
+</ng-template>
+
+<ng-template #poemList>
+  <div class="drawer pad-16">
+    <div
+      *ngFor="let p of poems"
+      class="title cursor"
+      [class.active]="p.title == poem.title"
+      (click)="getPoem(p.title)"
+    >
+      {{ p.title }}
+    </div>
+  </div>
 </ng-template>

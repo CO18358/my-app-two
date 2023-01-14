@@ -25,20 +25,6 @@ const routes: Routes = [
       import('./components/news/news.module').then((m) => m.NewsModule),
   },
   {
-    path: 'invoice',
-    loadChildren: () =>
-      import('./components/invoice/invoice.module').then(
-        (m) => m.InvoiceModule
-      ),
-  },
-  {
-    path: 'link-preview',
-    loadChildren: () =>
-      import('./components/link-preview/link-preview.module').then(
-        (m) => m.LinkPreviewModule
-      ),
-  },
-  {
     path: 'movie-db',
     loadChildren: () =>
       import('./components/movie-database/movie-database.module').then(

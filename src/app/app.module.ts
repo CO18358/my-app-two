@@ -10,7 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { ToastrModule } from 'ngx-toastr';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -26,12 +25,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSidenavModule,
     MatListModule,
     MatDialogModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true,
-      tapToDismiss: true,
-      progressBar: true,
-    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

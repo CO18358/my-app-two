@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { OmdbService } from 'src/app/services/omdb/omdb.service';
 
 @Component({
@@ -14,11 +13,7 @@ export class GalleryComponent implements OnInit {
   result!: any[];
   pages!: number;
   current = 1;
-  constructor(
-    private omdbService: OmdbService,
-    private toastr: ToastrService,
-    private router: Router
-  ) {}
+  constructor(private omdbService: OmdbService, private router: Router) {}
 
   ngOnInit(): void {
     this.query = 'One Piece';
@@ -33,12 +28,8 @@ export class GalleryComponent implements OnInit {
           this.result = value.Search;
           this.current = 1;
           this.pages = Math.ceil(+value.totalResults / this.result.length);
-        } else {
-          this.toastr.error('No Results Found. Try Again');
         }
       });
-    } else {
-      this.toastr.error("Value can't be empty");
     }
   }
 

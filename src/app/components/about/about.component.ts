@@ -58,21 +58,11 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/movie.png',
     },
     {
-      title: 'IP Lookup',
-      url: '/link-preview',
-      image: '/assets/thumbnails/ip-search.png',
-    },
-    {
       title: 'Poetry',
       url: '/poetry',
       image: '/assets/thumbnails/poetry.png',
     },
     { title: 'World News', url: '/news', image: '/assets/thumbnails/news.png' },
-    {
-      title: 'Invoice Generator',
-      url: '/invoice',
-      image: '/assets/thumbnails/invoice.png',
-    },
   ];
 
   constructor() {}

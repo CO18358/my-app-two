@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { Poem } from 'src/app/helpers/interfaces';
 import { PoetryService } from 'src/app/services/poetry/poetry.service';
+import { Utils } from 'src/app/shared/utilties';
 
 @Component({
   selector: 'app-poetry',
@@ -10,36 +13,56 @@ import { PoetryService } from 'src/app/services/poetry/poetry.service';
 })
 export class PoetryComponent implements OnInit {
   authors!: string[];
-  titles!: any[];
-
-  poem!: Poem;
   poems!: Poem[];
+  poem!: Poem;
+  poet!: string;
 
   spinner!: boolean;
-  poemSpinner!: boolean;
-
-  constructor(private poetryService: PoetryService) {}
+  isMobile = Utils.isMobile();
+  showPoets!: boolean;
+  @ViewChild('drawer') drawer!: MatSidenav;
+  constructor(private poetryService: PoetryService, private router: Router) {}
 
   ngOnInit(): void {
-    this.initiate();
+    this.random();
+    this.poetryService.getPoets().subscribe((res) => {
+      this.authors = res;
+    });
   }
 
-  async initiate() {
+  home() {
+    this.router.navigate(['/about']);
+  }
+
+  random() {
     this.spinner = true;
-    this.poem = await lastValueFrom(this.poetryService.getRandomPoem());
-    this.authors = await lastValueFrom(this.poetryService.getPoets());
-    this.titles = await lastValueFrom(
-      this.poetryService.getPoembyPoets(this.poem.author)
-    );
-    this.spinner = false;
+    this.poetryService.getRandomPoem().subscribe((res) => {
+      this.poem = res;
+      this.poet = res.author;
+      this.poemsByPoet(this.poet);
+      this.spinner = false;
+    });
   }
 
   async poemsByPoet(poet: string) {
-    this.poemSpinner = true;
-    this.poem = await lastValueFrom(
-      this.poetryService.getRandomPoemByPoet(poet)
-    );
-    this.titles = await lastValueFrom(this.poetryService.getPoembyPoets(poet));
-    this.poemSpinner = false;
+    this.poems = await lastValueFrom(this.poetryService.getPoembyPoets(poet));
+    this.showPoets = false;
+    console.log(this.poems);
+  }
+
+  getPoem(title: string) {
+    this.showPoets = false;
+    this.drawer.close();
+    this.spinner = true;
+    this.poetryService.getPoem(title).subscribe((res) => {
+      this.poem = res;
+      this.poet = res.author;
+      this.spinner = false;
+    });
+  }
+
+  toggleDrawer() {
+    this.showPoets = true;
+    this.drawer.toggle();
   }
 }

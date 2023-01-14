@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Poem } from 'src/app/helpers/interfaces';
 
 @Injectable({
@@ -19,40 +19,40 @@ export class PoetryService {
     );
   }
 
-  getPoembyPoets(poet: string) {
+  getPoembyPoets(poet: string): Observable<Poem[]> {
     return this.http
-      .get<any[]>(`${this.baseUrl}/author/${encodeURIComponent(poet)}`)
+      .get<Poem[]>(`${this.baseUrl}/author/${encodeURIComponent(poet)}`)
       .pipe(
-        map((res) => {
+        map((res: Poem[]) => {
           return res;
         })
       );
   }
 
-  getRandomPoem() {
+  getRandomPoem(): Observable<Poem> {
     return this.http.get<Poem[]>(`${this.baseUrl}/random`).pipe(
-      map((res) => {
+      map((res: Poem[]) => {
         return res.pop() as Poem;
       })
     );
   }
 
-  getRandomPoemByPoet(poet: string) {
+  searchPoem(title: string): Observable<Poem[]> {
     return this.http
-      .get<any[]>(`${this.baseUrl}/author,random/${encodeURIComponent(poet)};1`)
+      .get<Poem[]>(`${this.baseUrl}/title/${encodeURIComponent(title)}`)
       .pipe(
-        map((res) => {
-          return res.pop() as Poem;
+        map((res: Poem[]) => {
+          return res;
         })
       );
   }
 
-  searchPoem(title: string) {
+  getPoem(title: string): Observable<Poem> {
     return this.http
-      .get<any[]>(`${this.baseUrl}/title${encodeURIComponent(title)}`)
+      .get<Poem[]>(`${this.baseUrl}/title/${encodeURIComponent(title)}`)
       .pipe(
-        map((res) => {
-          return res;
+        map((res: Poem[]) => {
+          return res.pop() as Poem;
         })
       );
   }
