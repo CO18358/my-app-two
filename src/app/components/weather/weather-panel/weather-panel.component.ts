@@ -13,6 +13,7 @@ export class WeatherPanelComponent implements OnInit {
   currentWeather!: any;
   hourSeries!: any[];
   daySeries!: any[];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,

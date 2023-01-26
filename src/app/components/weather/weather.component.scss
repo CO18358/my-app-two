@@ -1,10 +1,4 @@
 .container {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  box-sizing: border-box;
-  overflow: auto;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("https://wallpapercave.com/wp/qQa5Pd7.jpg") no-repeat center;
-  background-size: cover;
+  min-height: 100vh;
+  background-image: url("/assets/backgrounds/weather.jpg");
 }

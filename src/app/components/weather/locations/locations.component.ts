@@ -8,7 +8,8 @@ import { WeatherService } from 'src/app/services/weather/weather.service';
   styleUrls: ['./locations.component.scss'],
 })
 export class LocationsComponent implements OnInit {
-  location: string = 'Chandigarh';
+  loader!: boolean;
+  location: string = 'india';
   locationResult!: any[];
   constructor(private weatherService: WeatherService, private router: Router) {}
 
@@ -16,8 +17,11 @@ export class LocationsComponent implements OnInit {
     this.searchLocation();
   }
   searchLocation() {
+    this.loader = true;
     this.weatherService.searchLocation(this.location).subscribe((res) => {
       this.locationResult = res;
+      this.loader = false;
+      console.log(res);
     });
   }
   weather(id: number) {

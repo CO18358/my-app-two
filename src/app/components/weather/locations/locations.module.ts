@@ -4,10 +4,9 @@ import { CommonModule } from '@angular/common';
 import { LocationsRoutingModule } from './locations-routing.module';
 import { LocationsComponent } from './locations.component';
 import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
 
 @NgModule({
   declarations: [LocationsComponent],
@@ -15,10 +14,9 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     LocationsRoutingModule,
     FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatIconModule,
     MatButtonModule,
+    SpinnerModule,
   ],
 })
 export class LocationsModule {}

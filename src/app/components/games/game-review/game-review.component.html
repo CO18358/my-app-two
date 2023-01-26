@@ -1,4 +1,4 @@
-<div class="pad-16" *ngIf="!showLoader">
+<div class="pad-16" *ngIf="!showLoader; else loader">
   <div class="game image-container flex-center">
     <img class="fit-image" [src]="gameDetails.thumbnail" alt="" />
   </div>
