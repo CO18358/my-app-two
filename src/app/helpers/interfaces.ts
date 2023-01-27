@@ -83,6 +83,41 @@ export interface GameDetailsExtended extends GameDetails {
   minimum_system_requirements: SystemSpecs;
 }
 
+// WEATHER
+export interface WeatherCity {
+  adminArea: string;
+  adminArea2: string;
+  adminArea3: string;
+  country: string;
+  id: number;
+  language: string;
+  lat: number;
+  lon: number;
+  name: string;
+  timezone: string;
+}
+
+export interface Weather {
+  cloudiness: number;
+  dewPoint: number;
+  feelsLikeTemp: number;
+  precipProb: number;
+  precipRate: number;
+  pressure: number;
+  relHumidity: number;
+  symbol: string;
+  symbolPhrase: string;
+  temperature: number;
+  thunderProb: number;
+  time: string;
+  uvIndex: number;
+  visibility: number;
+  windDir: number;
+  windDirString: string;
+  windGust: number;
+  windSpeed: number;
+}
+
 // HOROSCOPE
 export interface Horoscope {
   color: string;

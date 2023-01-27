@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, map } from 'rxjs';
+import { forkJoin, map, Observable } from 'rxjs';
+import { Weather, WeatherCity } from 'src/app/helpers/interfaces';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -15,31 +16,15 @@ export class WeatherService {
 
   constructor(private http: HttpClient) {}
 
-  searchLocation(query: string) {
+  searchLocation(query: string): Observable<WeatherCity[]> {
     return this.http
       .get(`${this.baseUrl}/location/search/${query}?lang=en`, {
         headers: this.headers,
       })
-      .pipe(
-        map((res: any) => {
-          return res.locations as any[];
-        })
-      );
+      .pipe(map((res: any) => res.locations as WeatherCity[]));
   }
 
-  private locationInfo(locationId: number) {
-    return this.http
-      .get(`${this.baseUrl}/location/${locationId}`, {
-        headers: this.headers,
-      })
-      .pipe(
-        map((res: any) => {
-          return { name: res.name, country: res.country };
-        })
-      );
-  }
-
-  private currentWeather(locationId: number) {
+  private currentWeather(locationId: number): Observable<Weather> {
     const params = {
       alt: '0',
       tempunit: 'C',
@@ -52,11 +37,7 @@ export class WeatherService {
         headers: this.headers,
         params,
       })
-      .pipe(
-        map((res: any) => {
-          return res.current;
-        })
-      );
+      .pipe(map((res: any) => res.current as Weather));
   }
 
   private hourlyWeather(locationId: number) {
@@ -103,7 +84,6 @@ export class WeatherService {
 
   getWeather(locationId: number) {
     return forkJoin({
-      location: this.locationInfo(locationId),
       current: this.currentWeather(locationId),
       hourly: this.hourlyWeather(locationId),
       daily: this.dailyWeather(locationId),
