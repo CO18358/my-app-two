@@ -53,16 +53,10 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/cocktail.png',
     },
     {
-      title: 'Watch a Movie',
-      url: '/movie-db',
-      image: '/assets/thumbnails/movie.png',
-    },
-    {
       title: 'Poetry',
       url: '/poetry',
       image: '/assets/thumbnails/poetry.png',
     },
-    { title: 'World News', url: '/news', image: '/assets/thumbnails/news.png' },
   ];
 
   constructor() {}

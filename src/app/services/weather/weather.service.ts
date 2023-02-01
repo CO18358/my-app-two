@@ -24,7 +24,7 @@ export class WeatherService {
       .pipe(map((res: any) => res.locations as WeatherCity[]));
   }
 
-  private currentWeather(locationId: number): Observable<Weather> {
+  currentWeather(locationId: number): Observable<Weather> {
     const params = {
       alt: '0',
       tempunit: 'C',
@@ -40,7 +40,7 @@ export class WeatherService {
       .pipe(map((res: any) => res.current as Weather));
   }
 
-  private hourlyWeather(locationId: number) {
+  hourlyWeather(locationId: number) {
     const params = {
       alt: '0',
       tempunit: 'C',
@@ -62,7 +62,7 @@ export class WeatherService {
       );
   }
 
-  private dailyWeather(locationId: number) {
+  dailyWeather(locationId: number) {
     const params = {
       alt: '0',
       tempunit: 'C',

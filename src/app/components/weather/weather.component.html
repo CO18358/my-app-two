@@ -49,6 +49,7 @@
     <div class="weather text-center">
       {{ currentWeather.symbolPhrase | titlecase }}
     </div>
+
     <hr />
     <div class="stats flex">
       <div class="stat flex">
@@ -102,129 +103,105 @@
         </div>
       </div>
     </div>
+
+    <!-- <mat-tab-group
+      dynamicHeight
+      fitInkBarToContent
+      mat-align-tabs="center"
+      mat-stretch-tabs
+    >
+      <mat-tab label="Weather Stats"> </mat-tab>
+      <mat-tab label="Upcoming Hours">
+        <div class="stats pad-16 flex">
+          <div *ngFor="let hour of hourSeries" class="flex-column">
+            <div>{{ hour.time | date : "shortTime" }}</div>
+            <div>{{ hour.temperature }}°C</div>
+            <div>{{ hour.symbolPhrase }}</div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Upcoming Days"></mat-tab>
+    </mat-tab-group> -->
   </div>
 
-  <!-- <div class="main-label">Upcoming Hours</div>
-    <div class="hour-view">
-      <div
-        class="hour-card"
-        *ngFor="let hour of hourSeries"
-        (click)="currentWeather = hour"
-      >
-        <div class="hour-main">
-          <div class="time">
-            {{ hour.time | date : "shortTime" }} | {{ hour.symbolPhrase }}
+  <!-- <div class="main-label">Upcoming Days</div>
+  <div *ngFor="let day of daySeries">
+    <div class="current-weather day-card">
+      <div class="main">
+        <div class="row">
+          <div class="date">{{ day.date | date : "fullDate" }}</div>
+          <div class="date">
+            {{
+              city.name + ", " + city.country + " | " + day.symbolPhrase
+                | titlecase
+            }}
           </div>
-          <div class="temperature">{{ hour.temperature }}°C</div>
         </div>
-        <div class="hour-stats">
-          <div class="hour-stat">
-            <img src="/assets/weather/thermometer.png" alt="" class="icon" />
-            <div class="label">Feels Like | {{ hour.feelsLikeTemp }}°C</div>
+        <div class="temperature">{{ day.minTemp }}°C ~ {{ day.maxTemp }}°C</div>
+        <div class="row">
+          <div class="icon-row">
+            <img src="/assets/weather/sunrise.png" alt="" class="main-icon" />
+            <div class="date">{{ day.sunrise }} |</div>
+            <div class="date">{{ day.sunset }}</div>
+            <img src="/assets/weather/sunset.png" alt="" class="main-icon" />
           </div>
-          <div class="hour-stat">
-            <img src="/assets/weather/humidity.png" alt="" class="icon" />
-            <div class="label">Humidity | {{ hour.relHumidity }}%</div>
+          <div class="icon-row">
+            <img src="/assets/weather/moonrise.png" alt="" class="main-icon" />
+            <div class="date">{{ day.moonset }} |</div>
+            <div class="date">{{ day.moonrise }}</div>
+            <img src="/assets/weather/moonset.png" alt="" class="main-icon" />
           </div>
-          <div class="hour-stat">
-            <img src="/assets/weather/wind.png" alt="" class="icon" />
-            <div class="label">
-              Wind | {{ hour.windSpeed + " kmph " + hour.windDirString }}
-            </div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <img src="/assets/weather/thermometer.png" alt="" class="icon" />
+          <div class="label">
+            Feels Like | {{ day.minFeelsLikeTemp }}°C ~
+            {{ day.maxFeelsLikeTemp }}°C
           </div>
-          <div class="hour-stat">
-            <img src="/assets/weather/precipitation.png" alt="" class="icon" />
-            <div class="label">
-              Precipitation | {{ hour.precipProb }}% {{ hour.precipType }}
-            </div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/humidity.png" alt="" class="icon" />
+          <div class="label">
+            Humidity | {{ day.minRelHumidity }}% ~ {{ day.maxRelHumidity }}%
           </div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/dew.png" alt="" class="icon" />
+          <div class="label">
+            Dew Point | {{ day.minDewPoint }}°C ~ {{ day.maxDewPoint }}°C
+          </div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/wind.png" alt="" class="icon" />
+          <div class="label">
+            Wind | {{ day.maxWindSpeed + " kmph " + day.windDir }}°
+          </div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/precipitation.png" alt="" class="icon" />
+          <div class="label">Precipitation | {{ day.precipProb }}%</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/cloudiness.png" alt="" class="icon" />
+          <div class="label">Cloudiness | {{ day.cloudiness }}%</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/ultraviolet.png" alt="" class="icon" />
+          <div class="label">UV Index | {{ day.uvIndex }}</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/pressure.png" alt="" class="icon" />
+          <div class="label">Pressure | {{ day.pressure }} hPa</div>
+        </div>
+        <div class="stat">
+          <img src="/assets/weather/visibility.png" alt="" class="icon" />
+          <div class="label">Visibility | {{ day.minVisibility }} metres</div>
         </div>
       </div>
     </div>
-    <div class="main-label">Upcoming Days</div>
-    <div *ngFor="let day of daySeries">
-      <div class="current-weather day-card">
-        <div class="main">
-          <div class="row">
-            <div class="date">{{ day.date | date : "fullDate" }}</div>
-            <div class="date">
-              {{
-                city.name + ", " + city.country + " | " + day.symbolPhrase
-                  | titlecase
-              }}
-            </div>
-          </div>
-          <div class="temperature">
-            {{ day.minTemp }}°C ~ {{ day.maxTemp }}°C
-          </div>
-          <div class="row">
-            <div class="icon-row">
-              <img src="/assets/weather/sunrise.png" alt="" class="main-icon" />
-              <div class="date">{{ day.sunrise }} |</div>
-              <div class="date">{{ day.sunset }}</div>
-              <img src="/assets/weather/sunset.png" alt="" class="main-icon" />
-            </div>
-            <div class="icon-row">
-              <img
-                src="/assets/weather/moonrise.png"
-                alt=""
-                class="main-icon"
-              />
-              <div class="date">{{ day.moonset }} |</div>
-              <div class="date">{{ day.moonrise }}</div>
-              <img src="/assets/weather/moonset.png" alt="" class="main-icon" />
-            </div>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat">
-            <img src="/assets/weather/thermometer.png" alt="" class="icon" />
-            <div class="label">
-              Feels Like | {{ day.minFeelsLikeTemp }}°C ~
-              {{ day.maxFeelsLikeTemp }}°C
-            </div>
-          </div>
-          <div class="stat">
-            <img src="/assets/weather/humidity.png" alt="" class="icon" />
-            <div class="label">
-              Humidity | {{ day.minRelHumidity }}% ~ {{ day.maxRelHumidity }}%
-            </div>
-          </div>
-          <div class="stat">
-            <img src="/assets/weather/dew.png" alt="" class="icon" />
-            <div class="label">
-              Dew Point | {{ day.minDewPoint }}°C ~ {{ day.maxDewPoint }}°C
-            </div>
-          </div>
-          <div class="stat">
-            <img src="/assets/weather/wind.png" alt="" class="icon" />
-            <div class="label">
-              Wind | {{ day.maxWindSpeed + " kmph " + day.windDir }}°
-            </div>
-          </div>
-          <div class="stat">
-            <img src="/assets/weather/precipitation.png" alt="" class="icon" />
-            <div class="label">Precipitation | {{ day.precipProb }}%</div>
-          </div>
-          <div class="stat">
-            <img src="/assets/weather/cloudiness.png" alt="" class="icon" />
-            <div class="label">Cloudiness | {{ day.cloudiness }}%</div>
-          </div>
-          <div class="stat">
-            <img src="/assets/weather/ultraviolet.png" alt="" class="icon" />
-            <div class="label">UV Index | {{ day.uvIndex }}</div>
-          </div>
-          <div class="stat">
-            <img src="/assets/weather/pressure.png" alt="" class="icon" />
-            <div class="label">Pressure | {{ day.pressure }} hPa</div>
-          </div>
-          <div class="stat">
-            <img src="/assets/weather/visibility.png" alt="" class="icon" />
-            <div class="label">Visibility | {{ day.minVisibility }} metres</div>
-          </div>
-        </div>
-      </div>
-    </div> -->
+  </div> -->
 </ng-template>
 
 <ng-template #noResults>

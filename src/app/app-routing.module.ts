@@ -20,18 +20,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'news',
-    loadChildren: () =>
-      import('./components/news/news.module').then((m) => m.NewsModule),
-  },
-  {
-    path: 'movie-db',
-    loadChildren: () =>
-      import('./components/movie-database/movie-database.module').then(
-        (m) => m.MovieDatabaseModule
-      ),
-  },
-  {
     path: 'horoscope',
     loadChildren: () =>
       import('./components/horoscope/horoscope.module').then(

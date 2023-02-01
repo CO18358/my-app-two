@@ -36,13 +36,11 @@ export class WeatherComponent implements OnInit {
     this.loader = true;
     this.city = city;
 
-    this.weatherService.getWeather(city.id).subscribe((res) => {
+    this.weatherService.currentWeather(city.id).subscribe((res) => {
       this.loader = false;
       console.log(res);
 
-      this.currentWeather = res.current;
-      this.hourSeries = res.hourly;
-      this.daySeries = res.daily;
+      this.currentWeather = res;
     });
   }
 }
