@@ -2,6 +2,11 @@
   min-height: 100vh;
   background-image: url("/assets/backgrounds/horoscope.jpg");
 
+  mat-form-field {
+    ::ng-deep.mat-form-field-wrapper {
+      padding: 0;
+    }
+  }
   .cards {
     gap: 16px;
     flex-wrap: wrap;

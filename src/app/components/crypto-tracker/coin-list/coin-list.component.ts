@@ -29,18 +29,6 @@ export class CoinListComponent implements OnInit {
       value: 'inr',
       symbol: '₹',
     },
-    {
-      value: 'btc',
-      symbol: '₿',
-    },
-    {
-      value: 'eth',
-      symbol: 'Ξ',
-    },
-    {
-      value: 'ltc',
-      symbol: 'Ł',
-    },
   ];
   curr = this.vsCurrencies[0];
   sizes = [50, 100, 150, 200, 250];
@@ -69,7 +57,6 @@ export class CoinListComponent implements OnInit {
   filter = new FormControl();
   filteredCoins!: Observable<CoinData[]>;
 
-  currencyMenu: boolean = false;
   symbolsList!: any[];
   fromSymbol!: string;
   toSymbol!: string;

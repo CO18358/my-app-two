@@ -9,8 +9,8 @@ import { CryptoService } from 'src/app/services/crypto/crypto.service';
   styleUrls: ['./coin-details.component.scss'],
 })
 export class CoinDetailsComponent implements OnInit {
-  showSpinner!: boolean;
-  coinData!: CoinInfo;
+  loader!: boolean;
+  coin!: CoinInfo;
   constructor(
     private cryptoService: CryptoService,
     private route: ActivatedRoute,
@@ -23,12 +23,16 @@ export class CoinDetailsComponent implements OnInit {
   ngOnInit(): void {}
 
   getCoinInfo(coinId: string) {
-    this.showSpinner = true;
-    this.cryptoService
-      .getCoinInfo(coinId)
-      .subscribe((res) => (this.coinData = res));
-    setTimeout(() => {
-      this.showSpinner = false;
-    }, 2000);
+    this.loader = true;
+    this.cryptoService.getCoinInfo(coinId).subscribe((res) => {
+      this.coin = res;
+      console.log(res);
+
+      this.loader = false;
+    });
+  }
+
+  viewCoin(url?: string) {
+    url && window.open(url, '_blank');
   }
 }

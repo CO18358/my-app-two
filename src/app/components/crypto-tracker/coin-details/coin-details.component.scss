@@ -1,70 +1,41 @@
-.coin-details {
-  font-family: "Montserrat", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 4em);
-  .coin-info {
-    width: 75%;
-    height: auto;
-    display: flex;
-    gap: 16px;
-    padding: 2em;
-    border-radius: 0.8em;
-    background: rgb(255 255 255 / 80%);
-    backdrop-filter: blur(2px);
-    box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
-    color: black;
-    .image {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .link {
-        text-decoration: none;
-        color: rgb(0, 101, 160);
-        font-size: 1rem;
-        font-weight: bold;
-        &:hover,
-        &:active {
-          text-decoration: underline;
-        }
-      }
+h1,
+h4,
+p {
+  margin: 0;
+}
+.coin-container {
+  background: rgb(0 0 0 / 0.4);
+  border-radius: 16px;
+  backdrop-filter: blur(2px);
+  box-shadow: #000 4px 4px 4px;
+  .title {
+    font-family: "Fira Sans Condensed", sans-serif;
+    text-decoration: none;
+    &:hover,
+    &:active {
+      text-decoration: underline;
     }
-    .details {
-      flex: 2;
-      .coin-name {
-        padding: 0.5em;
-        font-size: 2rem;
-        font-weight: bold;
-        font-style: italic;
-        text-align: end;
-      }
-      .tags {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        gap: 12px;
-        padding: 0.5em 0;
-        .spacer {
-          flex: 1 1 auto;
-        }
-        .up {
-          color: #00c247;
-        }
-        .down {
-          color: #d90000;
-        }
-        .rank {
-          font-size: 1.3rem;
-          font-weight: 600;
-        }
-      }
-      .description {
-        font-size: 1rem;
-        text-align: justify;
-      }
+  }
+  h4 {
+    color: #ababab;
+    font-weight: bold;
+  }
+
+  .rating {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    width: 100%;
+    margin: 8px;
+    gap: 8px;
+    .up {
+      color: #00c247;
     }
+    .down {
+      color: #d90000;
+    }
+  }
+  .description {
+    font-family: "Nunito Sans", cursive;
   }
 }
