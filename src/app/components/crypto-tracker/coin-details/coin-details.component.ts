@@ -11,6 +11,7 @@ import { CryptoService } from 'src/app/services/crypto/crypto.service';
 export class CoinDetailsComponent implements OnInit {
   loader!: boolean;
   coin!: CoinInfo;
+
   constructor(
     private cryptoService: CryptoService,
     private route: ActivatedRoute,
