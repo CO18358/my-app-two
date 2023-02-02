@@ -5,7 +5,7 @@ import {
   ExerciseType,
 } from 'src/app/helpers/exercise';
 import { ExercisesService } from 'src/app/services/exercises/exercises.service';
-import { Utils } from 'src/app/shared/utilties';
+import { Utils } from 'src/app/helpers/utilties';
 
 @Component({
   selector: 'app-exercises',

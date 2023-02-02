@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
 import { CoinData } from 'src/app/helpers/interfaces';
+import { Utils } from 'src/app/helpers/utilties';
 import { CryptoService } from 'src/app/services/crypto/crypto.service';
 
 @Component({
@@ -61,6 +62,8 @@ export class CoinListComponent implements OnInit {
   fromSymbol!: string;
   toSymbol!: string;
   conversionResult!: number;
+
+  isMobile: boolean = Utils.isMobile();
   constructor(private cryptoService: CryptoService, private router: Router) {}
 
   ngOnInit(): void {

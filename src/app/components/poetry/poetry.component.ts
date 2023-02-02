@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { Poem } from 'src/app/helpers/interfaces';
 import { PoetryService } from 'src/app/services/poetry/poetry.service';
-import { Utils } from 'src/app/shared/utilties';
+import { Utils } from 'src/app/helpers/utilties';
 
 @Component({
   selector: 'app-poetry',

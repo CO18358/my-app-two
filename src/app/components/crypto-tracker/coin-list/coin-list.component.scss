@@ -1,66 +1,67 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-.menu {
-  width: 80%;
-  margin: 1em auto;
-  padding: 1em 2em 0;
-  border-radius: 0.8em;
-  background: rgb(255 255 255 / 10%);
-  backdrop-filter: blur(2px);
-  box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-
-  .filter {
-    flex: 1;
+mat-form-field {
+  ::ng-deep.mat-form-field-wrapper {
+    padding: 0;
   }
 }
 
-.list-container {
-  max-width: 80%;
-  margin: auto;
+.menu {
+  padding: 16px 16px 0;
+  width: calc(100% - 32px);
+}
 
-  .row {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    margin: 4px 0;
-    padding: 12px;
-    span {
-      width: calc(100% / 7);
-      font-family: "Montserrat", sans-serif;
-      font-size: 1.1rem;
-      margin: auto;
-      .icon {
-        width: 40%;
-      }
-    }
-    .price {
-      color: #eeea1b;
-    }
-    .symbol {
-      font-size: 0.8rem;
-    }
-    &:hover,
-    &:active {
-      background-color: rgba(5, 72, 149, 0.4);
-      transform: scale(1.1);
-      transition: all 1s;
+.row {
+  gap: 8px;
+  margin: 12px 0;
+  padding: 0 12px;
+  width: calc(100% - 24px);
+
+  span {
+    width: calc(100% / 7);
+    font-family: "Montserrat", sans-serif;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    .icon {
+      width: 56px;
+      margin-left: 12px;
     }
   }
+  .price {
+    color: #eeea1b;
+  }
+  &:hover,
+  &:active {
+    background-color: rgba(5, 72, 149, 0.4);
+  }
+}
 
-  .headings {
-    font-style: bold;
-    border: 2px solid;
-    background: rgb(0 0 0 / 60%);
-    backdrop-filter: blur(2px);
-    span {
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-    &:hover {
-      background: rgba(0, 0, 0, 0);
+.headings {
+  font-style: bold;
+  border: 2px solid;
+  background: rgb(0 0 0 / 60%);
+  backdrop-filter: blur(2px);
+  padding: 12px;
+  width: calc(100% - 28px);
+
+  span {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  &:hover {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+.mobile-row {
+  span {
+    width: 50%;
+  }
+  .coin-symbol {
+    gap: 8px;
+    .icon {
+      width: 48px;
+      margin: 0;
     }
   }
 }
@@ -70,4 +71,12 @@
 }
 .down {
   color: #ef4040;
+}
+
+@media screen and (max-width: 799px) {
+  .row {
+    span {
+      font-size: 12px;
+    }
+  }
 }
