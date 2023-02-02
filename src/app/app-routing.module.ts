@@ -62,13 +62,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'exercises',
-    loadChildren: () =>
-      import('./components/exercises/exercises.module').then(
-        (m) => m.ExercisesModule
-      ),
-  },
-  {
     path: 'poetry',
     loadChildren: () =>
       import('./components/poetry/poetry.module').then((m) => m.PoetryModule),

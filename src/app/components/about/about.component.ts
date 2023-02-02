@@ -32,11 +32,6 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/fitness.png',
     },
     {
-      title: 'Exercise Suggestions',
-      url: '/exercises',
-      image: '/assets/thumbnails/exercises.png',
-    },
-    {
       title: 'Horoscope',
       url: '/horoscope',
       image: '/assets/thumbnails/horoscope.png',

@@ -69,7 +69,7 @@
 <ng-template #mobileList>
   <div class="headings row mobile-row flex">
     <span> Coin </span>
-    <span class="text-end"> Value </span>
+    <span class="text-end"> Price </span>
   </div>
   <div
     class="row mobile-row flex"
@@ -86,7 +86,7 @@
     <span class="text-end">
       <div class="price">{{ curr.symbol + " " + coin.price }}</div>
       <div class="up" [class.down]="roundUp(coin.priceChange) < 0">
-        {{ roundUp(coin.priceChange) + " %" }}
+        {{ roundUp(coin.priceChange) }} %
       </div>
       <div>Vol: {{ coin.volume }}</div>
     </span>

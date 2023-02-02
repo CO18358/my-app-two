@@ -1,36 +1,26 @@
 .container {
-  width: 100vw;
+  background-image: url("/assets/backgrounds/fitness.jpg");
   min-height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("https://images.alphacoders.com/692/692039.jpg") no-repeat center;
-  background-size: cover;
-  background-attachment: fixed;
-
   .calculator {
-    display: flex;
     width: 80%;
-    margin: 1em auto;
-    gap: 24px;
+    margin: 16px auto;
+    gap: 16px;
+    flex-wrap: wrap;
 
     .input,
     .output {
       box-sizing: border-box;
       width: 100%;
-      height: 64vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      margin: auto;
-      padding: 1em 2em;
-      border-radius: 0.8em;
+      max-width: 400px;
+      gap: 16px;
+      border-radius: 16px;
       background: rgb(0 0 0 / 24%);
-      backdrop-filter: blur(4px);
-      box-shadow: rgb(0 0 0 / 45%) 0px 12px 12px 0px;
+      backdrop-filter: blur(2px);
+      box-shadow: #000 4px 4px 12px;
     }
 
     .input {
+      min-height: calc(80vh - 40px);
       mat-form-field {
         width: 100%;
       }
