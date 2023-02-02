@@ -28,6 +28,7 @@ export class FitnessComponent implements OnInit {
 
   bmi = 0;
   bmr = 0;
+  lbm = 0;
   bfp = 0;
   ibw = 0;
   calorie: any;
@@ -48,6 +49,15 @@ export class FitnessComponent implements OnInit {
 
   basalMetablicRate() {
     this.bmr = this.fitnessService.metabolicRate(
+      this.gender,
+      this.age,
+      this.height,
+      this.weight
+    );
+  }
+
+  leanBodyMass() {
+    this.lbm = this.fitnessService.leanBodyMass(
       this.gender,
       this.age,
       this.height,

@@ -5,6 +5,13 @@
     <mat-tab label="Basal Metabolic Rate">
       <div class="calculator flex-center pad-16">
         <div class="input flex-column pad-16">
+          <div class="text-justify">
+            The basal metabolic rate (BMR) is the amount of energy a person
+            needs to maintain basic bodily functions, such as breathing and
+            circulation, while at rest.
+          </div>
+          <hr />
+
           <mat-form-field appearance="legacy">
             <mat-label>Gender</mat-label>
             <mat-select [(ngModel)]="gender">
@@ -36,7 +43,13 @@
             <mat-icon matPrefix>calculate</mat-icon>
             Calculate
           </button>
-          <app-counter [digit]="bmr" [duration]="3000"></app-counter>
+
+          <hr />
+          <div class="flex-center units">
+            <app-counter [digit]="bmr" [duration]="3000"></app-counter>
+            <div>KCAL/DAY</div>
+          </div>
+          <div>NOTE: Estimated value. Actual value may vary</div>
         </div>
       </div>
     </mat-tab>
@@ -44,6 +57,12 @@
     <mat-tab label="Body Mass Index">
       <div class="calculator flex-center pad-16">
         <div class="input flex-column pad-16">
+          <div class="text-justify">
+            The body mass index (BMI) is a measure of a person's weight in
+            relation to their height.
+          </div>
+          <hr />
+
           <mat-form-field appearance="legacy">
             <mat-label>Height</mat-label>
             <input required matInput type="number" [(ngModel)]="height" />
@@ -62,7 +81,13 @@
             <mat-icon matPrefix>calculate</mat-icon>
             Calculate
           </button>
-          <app-counter [digit]="bmi" [duration]="3000"></app-counter>
+
+          <hr />
+          <div class="flex-center units">
+            <app-counter [digit]="bmi" [duration]="3000"></app-counter>
+            <div>KG/CM<sup>2</sup></div>
+          </div>
+          <div>NOTE: Estimated value. Actual value may vary</div>
         </div>
       </div>
     </mat-tab>
@@ -70,6 +95,12 @@
     <mat-tab label="Body Fat Percentage">
       <div class="calculator flex-center pad-16">
         <div class="input flex-column pad-16">
+          <div>
+            The body fat percentage is a measure of the amount of body fat a
+            person has in relation to their total body weight.
+          </div>
+          <hr />
+
           <mat-form-field appearance="legacy">
             <mat-label>Gender</mat-label>
             <mat-select [(ngModel)]="gender">
@@ -111,7 +142,64 @@
             <mat-icon matPrefix>calculate</mat-icon>
             Calculate
           </button>
-          <app-counter [digit]="bfp" [duration]="3000"></app-counter>
+
+          <hr />
+          <div class="flex-center units">
+            <app-counter [digit]="bfp" [duration]="3000"></app-counter>
+            <div>%</div>
+          </div>
+          <div>NOTE: Estimated value. Actual value may vary</div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Lean Body Mass">
+      <div class="calculator flex-center pad-16">
+        <div class="input flex-column pad-16">
+          <div class="text-justify">
+            The Lean Body Mass Calculator computes a person's estimated lean
+            body mass (LBM) based on body weight, height, gender, and age.
+          </div>
+          <hr />
+
+          <mat-form-field appearance="legacy">
+            <mat-label>Gender</mat-label>
+            <mat-select [(ngModel)]="gender">
+              <mat-option *ngFor="let op of genders" [value]="op">{{
+                op | titlecase
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Age</mat-label>
+            <input required matInput type="number" [(ngModel)]="age" />
+            <p matSuffix>years</p>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Height</mat-label>
+            <input required matInput type="number" [(ngModel)]="height" />
+            <p matSuffix>cm</p>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Weight</mat-label>
+            <p matSuffix>kg</p>
+            <input required matInput type="number" [(ngModel)]="weight" />
+          </mat-form-field>
+          <button
+            mat-raised-button
+            (click)="leanBodyMass()"
+            [disabled]="!age || !height || !weight"
+          >
+            <mat-icon matPrefix>calculate</mat-icon>
+            Calculate
+          </button>
+
+          <hr />
+          <div class="flex-center units">
+            <app-counter [digit]="bmr" [duration]="3000"></app-counter>
+            <div>KG</div>
+          </div>
+          <div>NOTE: Estimated value. Actual value may vary</div>
         </div>
       </div>
     </mat-tab>
@@ -119,6 +207,13 @@
     <mat-tab label="Ideal Body Weight">
       <div class="calculator flex-center pad-16">
         <div class="input flex-column pad-16">
+          <div>
+            Ideal body weight is a term used to describe the weight that is
+            considered to be healthy and appropriate for a person based on their
+            height, age, and gender.
+          </div>
+          <hr />
+
           <mat-form-field appearance="legacy">
             <mat-label>Gender</mat-label>
             <mat-select [(ngModel)]="gender">
@@ -136,7 +231,13 @@
             <mat-icon matPrefix>calculate</mat-icon>
             Calculate
           </button>
-          <app-counter [digit]="ibw" [duration]="3000"></app-counter>
+
+          <hr />
+          <div class="flex-center units">
+            <app-counter [digit]="ibw" [duration]="3000"></app-counter>
+            <div>KG</div>
+          </div>
+          <div>NOTE: Estimated value. Actual value may vary</div>
         </div>
       </div>
     </mat-tab>
@@ -144,6 +245,13 @@
     <mat-tab label="Total Daily Energy Expenditure">
       <div class="calculator flex-center pad-16">
         <div class="input flex-column pad-16">
+          <div>
+            Total daily energy expenditure (TDEE) is the total amount of energy
+            a person burns in a day, including the energy expended through
+            physical activity, digestion, and metabolic processes.
+          </div>
+          <hr />
+
           <mat-form-field appearance="legacy">
             <mat-label>Gender</mat-label>
             <mat-select [(ngModel)]="gender">
@@ -183,7 +291,13 @@
             <mat-icon matPrefix>calculate</mat-icon>
             Calculate
           </button>
-          <app-counter [digit]="tdee" [duration]="3000"></app-counter>
+
+          <hr />
+          <div class="flex-center units">
+            <app-counter [digit]="tdee" [duration]="3000"></app-counter>
+            <div>KCAL</div>
+          </div>
+          <div>NOTE: Estimated value. Actual value may vary</div>
         </div>
       </div>
     </mat-tab>
@@ -238,6 +352,7 @@
               <div class="entry">{{ item.value + " cal" }}</div>
             </div>
           </div>
+          <div>NOTE: Estimated value. Actual value may vary</div>
         </div>
       </div>
     </mat-tab>
@@ -312,6 +427,7 @@
               </button>
             </div>
           </div>
+          <div>NOTE: Estimated value. Actual value may vary</div>
         </div>
       </div>
     </mat-tab>

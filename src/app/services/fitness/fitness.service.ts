@@ -8,11 +8,27 @@ export class FitnessService {
   constructor(private http: HttpClient) {}
 
   metabolicRate(gender: string, age: number, height: number, weight: number) {
-    return fitnessCalc.BMR(gender, age, height, weight);
+    if (gender == 'male') {
+      return 10 * weight + 6.25 * height - 5 * age + 5;
+    } else {
+      return 10 * weight + 6.25 * height - 5 * age - 161;
+    }
+  }
+
+  leanBodyMass(gender: string, age: number, height: number, weight: number) {
+    if (gender == 'male') {
+      return (
+        1.1 * weight - 128 * (weight / height / height - 24.9 * (age - 20))
+      );
+    } else {
+      return (
+        1.07 * weight - 148 * (weight / height / height - 24.9 * (age - 20))
+      );
+    }
   }
 
   bodyMassIndex(height: number, weight: number) {
-    return fitnessCalc.BMI(height, weight);
+    return weight / (height / 100) ** 2;
   }
 
   bodyFat(
@@ -27,7 +43,11 @@ export class FitnessService {
   }
 
   idealBodyWeight(gender: string, height: number) {
-    return fitnessCalc.idealBodyWeight(gender, height);
+    if (gender === 'male') {
+      return 50 + 2.3 * (height - 60);
+    } else {
+      return 45.5 + 2.3 * (height - 60);
+    }
   }
 
   calorieNeeds(
