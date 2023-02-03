@@ -1,28 +1,41 @@
-<div class="container">
-  <div class="nav-bar">
+<div class="container fix-background full-width">
+  <mat-toolbar class="nav flex-justify">
     <button mat-icon-button (click)="home()">
-      <mat-icon>west</mat-icon>
+      <mat-icon>keyboard_backspace</mat-icon>
     </button>
-    <div class="title">COCKTAILS</div>
-    <span class="spacer"></span>
-    <div class="search">
-      <input class="input" placeholder="Search Drink" [(ngModel)]="query">
-      <button mat-icon-button (click)="search()">
-        <mat-icon matSuffix>search</mat-icon>
+    <div class="header">Make A Cocktail</div>
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container [hasBackdrop]="isMobile">
+    <mat-sidenav #drawer position="end" mode="over">
+      <div class="search flex-center">
+        <input
+          class="input"
+          placeholder="Search Drink"
+          [(ngModel)]="query"
+          (keyup.enter)="search()"
+        />
+        <mat-icon matSuffix (click)="search()">search</mat-icon>
+      </div>
+      <button mat-button class="menu-btn" (click)="menu()">
+        <div class="button flex">
+          <mat-icon matPrefix>nightlife</mat-icon>
+          <div>Menu</div>
+        </div>
       </button>
-    </div>
-    <button mat-button class="menu-btn" (click)="menu()">
-      <div class="button">
-        <mat-icon>nightlife</mat-icon>
-        <div>Menu</div>
-      </div>
-    </button>
-    <button mat-button class="menu-btn" (click)="random()">
-      <div class="button">
-        <mat-icon>local_bar</mat-icon>
-        <div>Random</div>
-      </div>
-    </button>
-  </div>
-  <router-outlet name="cocktail"></router-outlet>
+      <button mat-button class="menu-btn" (click)="random()">
+        <div class="button flex">
+          <mat-icon matPrefix>local_bar</mat-icon>
+          <div>Random</div>
+        </div>
+      </button>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet name="cocktail"></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

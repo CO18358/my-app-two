@@ -1,27 +1,47 @@
 <div *ngIf="!showLoader; else loader">
-  <div class="header section-b">Types ({{types && types.length}})</div>
-  <div class="flex-container">
-    <div class="item item-b" *ngFor="let type of types" (click)="lookupType(type)">
-      <div class="name">{{type}}</div>
+  <div class="header header-a">Types ({{ types && types.length }})</div>
+  <div class="section flex-stretch margin-16">
+    <div
+      class="item pad-8 item-a cursor text-center"
+      *ngFor="let type of types"
+      (click)="lookupType(type)"
+    >
+      {{ type }}
     </div>
   </div>
-  <div class="header section-a">Categories ({{categories && categories.length}})</div>
-  <div class="flex-container">
-    <div class="item item-a" *ngFor="let category of categories" (click)="lookupCategory(category)">
-      <div class="name">{{category}}</div>
+  <div class="header header-b">
+    Categories ({{ categories && categories.length }})
+  </div>
+  <div class="section flex-stretch margin-16">
+    <div
+      class="item pad-8 item-b cursor text-center"
+      *ngFor="let category of categories"
+      (click)="lookupCategory(category)"
+    >
+      {{ category }}
     </div>
   </div>
-  <div class="header section-d">Glasses ({{glasses && glasses.length}})</div>
-  <div class="flex-container">
-    <div class="item item-d" *ngFor="let glass of glasses" (click)="lookupGlass(glass)">
-      <div class="name">{{glass}}</div>
+  <div class="header header-c">Glasses ({{ glasses && glasses.length }})</div>
+  <div class="section flex-stretch margin-16">
+    <div
+      class="item pad-8 item-c cursor text-center"
+      *ngFor="let glass of glasses"
+      (click)="lookupGlass(glass)"
+    >
+      {{ glass }}
     </div>
   </div>
-  <div class="header section-c">Ingredients ({{ingredients && ingredients.length}})</div>
-  <div class="flex-container">
-    <div class="item item-c" *ngFor="let ingredient of ingredients" (click)="lookupIngredient(ingredient)">
-      <div class="image"><img [src]="imagePath(ingredient)" alt=""></div>
-      <div class="name">{{ingredient}}</div>
+  <div class="header header-d">
+    Ingredients ({{ ingredients && ingredients.length }})
+  </div>
+  <div class="section flex-stretch margin-16">
+    <div
+      class="item pad-8 item-d cursor text-center"
+      *ngFor="let ingredient of ingredients"
+      (click)="lookupIngredient(ingredient)"
+    >
+      <div class="image"><img [src]="imagePath(ingredient)" alt="" /></div>
+      {{ ingredient }}
     </div>
   </div>
 </div>

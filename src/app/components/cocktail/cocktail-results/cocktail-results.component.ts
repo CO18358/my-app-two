@@ -9,7 +9,7 @@ import { CocktailService } from 'src/app/services/cocktail/cocktail.service';
   styleUrls: ['./cocktail-results.component.scss'],
 })
 export class CocktailResultsComponent implements OnInit {
-  key: string;
+  key!: string;
   value!: string;
   showLoader!: boolean;
   results!: Drink[];
@@ -18,12 +18,17 @@ export class CocktailResultsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.key = this.route.snapshot.paramMap.keys[0];
-    const value = this.route.snapshot.paramMap.get(this.key);
-    value ? (this.value = value) : this.router.navigate(['/cocktail']);
+    this.route.params.subscribe((res) => {
+      const [[key, value]] = Object.entries(res);
+      this.key = key;
+      this.value = value;
+      this.search();
+    });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  search() {
     this.showLoader = true;
     switch (this.key) {
       case 'drink':
