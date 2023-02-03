@@ -1,27 +1,32 @@
 <div *ngIf="!showLoader; else loader">
-  <div class="header">Popular Ingredients</div>
-  <div class="flex-container">
-    <div class="left">
-      <button class="nav" mat-icon-button (click)="prev()">
-        <mat-icon class="icon">arrow_left</mat-icon>
+  <div class="header margin-16">Popular Ingredients</div>
+
+  <div class="ingredient pad-16">
+    <div class="nav flex-justify">
+      <button mat-icon-button (click)="prev()">
+        <mat-icon class="icon">keyboard_double_arrow_left</mat-icon>
+      </button>
+      <div class="title text-center">
+        {{ ingredients[index].strIngredient | uppercase }}
+      </div>
+      <button mat-icon-button (click)="next()">
+        <mat-icon class="icon">keyboard_double_arrow_right</mat-icon>
       </button>
     </div>
-    <div class="ingredient">
+
+    <div class="content flex-center">
       <div class="image">
-        <img [src]="imagePath(ingredients[index])" alt="">
+        <img [src]="imagePath(ingredients[index])" alt="" loading="eager" />
       </div>
-      <div class="details">
-        <div class="title">{{index+1 + ". " +ingredients[index].strIngredient}}</div>
-        <div class="description">{{ingredients[index].strDescription}}</div>
-        <div class="link" (click)="searchRecipes(ingredients[index].strIngredient)">
-          View {{ingredients[index].strIngredient}} Recipes
+      <div class="description pad-16">
+        <div class="text-justify">{{ ingredients[index].strDescription }}</div>
+        <div
+          class="link text-center"
+          (click)="searchRecipes(ingredients[index].strIngredient)"
+        >
+          View {{ ingredients[index].strIngredient }} Recipes
         </div>
       </div>
-    </div>
-    <div class="right">
-      <button class="nav" mat-icon-button (click)="next()">
-        <mat-icon class="icon">arrow_right</mat-icon>
-      </button>
     </div>
   </div>
 </div>

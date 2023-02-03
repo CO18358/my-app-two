@@ -9,7 +9,7 @@ import { CookbookService } from 'src/app/services/cookbook/cookbook.service';
   styleUrls: ['./meal-results.component.scss'],
 })
 export class MealResultsComponent implements OnInit {
-  key: string;
+  key!: string;
   value!: string;
   showLoader!: boolean;
   results!: Meal[];
@@ -18,12 +18,16 @@ export class MealResultsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.key = this.route.snapshot.paramMap.keys[0];
-    const value = this.route.snapshot.paramMap.get(this.key);
-    value ? (this.value = value) : this.router.navigate(['/cookbook']);
+    this.route.params.subscribe((res) => {
+      const [[key, value]] = Object.entries(res);
+      this.key = key;
+      this.value = value;
+      this.search();
+    });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  search() {
     this.showLoader = true;
     switch (this.key) {
       case 'dish':
@@ -54,7 +58,6 @@ export class MealResultsComponent implements OnInit {
         this.router.navigate(['/cookbook']);
     }
   }
-
   gotoMeal(id: string) {
     this.router.navigate(['/cookbook/meal', id]);
   }

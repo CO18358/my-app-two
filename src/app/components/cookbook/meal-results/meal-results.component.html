@@ -1,11 +1,18 @@
 <div *ngIf="!showLoader; else loader">
-  <div class="header">{{key=='area'?'origin':key}} : {{value}} ({{results && results.length}})</div>
-  <div class="meals">
-    <div class="card" *ngFor="let meal of results" (click)="gotoMeal(meal.idMeal)">
-      <img class="card_image" [src]="meal.strMealThumb" />
-      <div class="card_title title-white">
-        <div>{{meal.strMeal|trimText:25}}</div>
-        <mat-icon>trending_flat</mat-icon>
+  <div class="header">
+    {{ key == "area" ? "origin" : key }} : {{ value }} ({{
+      results && results.length
+    }})
+  </div>
+  <div class="meals flex-stretch margin-16">
+    <div
+      class="card"
+      *ngFor="let meal of results"
+      (click)="gotoMeal(meal.idMeal)"
+    >
+      <img class="image" [src]="meal.strMealThumb" loading="lazy" />
+      <div class="title text-center">
+        <div>{{ meal.strMeal }}</div>
       </div>
     </div>
   </div>

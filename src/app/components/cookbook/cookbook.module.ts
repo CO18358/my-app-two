@@ -6,6 +6,8 @@ import { CookbookComponent } from './cookbook.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [CookbookComponent],
@@ -15,6 +17,8 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatButtonModule,
     FormsModule,
+    MatSidenavModule,
+    MatToolbarModule,
   ],
 })
 export class CookbookModule {}

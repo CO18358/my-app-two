@@ -1,28 +1,47 @@
 <div *ngIf="!showLoader; else loader">
-  <div class="header heading-a">Dish → {{meal.strMeal}}</div>
+  <div class="header heading-a">{{ meal.strMeal }}</div>
   <div class="card">
     <img class="card_image" [src]="meal.strMealThumb" />
-    <div class="card_title title-white">
-      <div>Category: {{meal.strCategory}}</div>
-      <div>Region: {{meal.strArea}}</div>
-    </div>
+  </div>
+
+  <div class="header heading-d">Details</div>
+  <div class="details margin-16 flex-stretch">
+    <div class="item pad-8">Name: {{ meal.strMeal }}</div>
+    <div class="item pad-8">Category: {{ meal.strCategory }}</div>
+    <div class="item pad-8">Region: {{ meal.strArea }}</div>
   </div>
 
   <div class="header heading-b">Ingredients</div>
-  <div class="ingredients">
-    <div class="ingredient" *ngFor="let ingredient of meal.ingredients">
-      <img class="image" [src]="imagePath(ingredient.ingredient)" alt="">
-      <div class="name">{{ingredient.ingredient}}</div>
-      <div class="measure">{{ingredient.measure}}</div>
+  <div class="ingredients margin-16 flex-stretch">
+    <div
+      class="ingredient text-center pad-16"
+      *ngFor="let ingredient of meal.ingredients"
+    >
+      <div class="image">
+        <img [src]="imagePath(ingredient.ingredient)" alt="" loading="lazy" />
+      </div>
+      <div class="name">{{ ingredient.ingredient }}</div>
+      <div class="measure">{{ ingredient.measure }}</div>
     </div>
   </div>
+
   <div class="header heading-c">Instructions</div>
-  <div class="instructions">{{meal.strInstructions}}</div>
+  <div class="instructions margin-16 text-justify pad-16">
+    {{ meal.strInstructions }}
+  </div>
+
   <div *ngIf="meal.strYoutube">
     <div class="header heading-d">Youtube</div>
-    <iframe class="youtube" [src]="getYoutubeURL(meal.strYoutube)" frameborder="0" allowfullscreen></iframe>
+    <iframe
+      class="youtube"
+      [src]="getYoutubeURL(meal.strYoutube)"
+      frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
   </div>
 </div>
+
 <ng-template #loader>
   <app-spinner></app-spinner>
 </ng-template>

@@ -40,7 +40,9 @@
       *ngFor="let ingredient of ingredients"
       (click)="lookupIngredient(ingredient)"
     >
-      <div class="image"><img [src]="imagePath(ingredient)" alt="" /></div>
+      <div class="image">
+        <img [src]="imagePath(ingredient)" alt="" loading="lazy" />
+      </div>
       {{ ingredient }}
     </div>
   </div>
