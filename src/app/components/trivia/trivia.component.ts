@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatSliderChange } from '@angular/material/slider';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { TriviaService } from 'src/app/services/trivia/trivia.service';
   templateUrl: './trivia.component.html',
   styleUrls: ['./trivia.component.scss'],
 })
-export class TriviaComponent implements OnInit {
+export class TriviaComponent implements OnInit, OnDestroy {
   // MENU
   amount: number = 1;
   difficulty!: string;
@@ -38,6 +38,9 @@ export class TriviaComponent implements OnInit {
   intervalId = 0;
 
   constructor(private trivia: TriviaService, private router: Router) {}
+  ngOnDestroy(): void {
+    this.clearTimer();
+  }
 
   ngOnInit() {}
 
