@@ -71,6 +71,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/games/games.module').then((m) => m.GamesModule),
   },
+  {
+    path: 'trivia',
+    loadChildren: () =>
+      import('./components/trivia/trivia.module').then((m) => m.TriviaModule),
+  },
 ];
 
 @NgModule({

@@ -22,14 +22,19 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/crypto.png',
     },
     {
-      title: 'Realtime Weather',
-      url: '/weather',
-      image: '/assets/thumbnails/weather.png',
+      title: 'Trivia',
+      url: '/trivia',
+      image: '/assets/thumbnails/trivia.png',
     },
     {
       title: 'Fitness Calculator',
       url: '/fitness',
       image: '/assets/thumbnails/fitness.png',
+    },
+    {
+      title: 'Realtime Weather',
+      url: '/weather',
+      image: '/assets/thumbnails/weather.png',
     },
     {
       title: 'Horoscope',
@@ -43,7 +48,7 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/cookbook.png',
     },
     {
-      title: 'Cocktails',
+      title: 'Make a Cocktail',
       url: '/cocktail',
       image: '/assets/thumbnails/cocktail.png',
     },

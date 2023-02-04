@@ -5,24 +5,28 @@ export interface AnimeQuote {
   character: string;
 }
 
-// INVOICE
-export interface InvoiceCompany {
-  _id: string;
-  user_id: string;
-  name: string;
-  address: string;
-  country: string;
-  pincode: string;
-  email: string;
-  contact: string;
+// Trivia
+
+export interface TriviaResponse {
+  response_code: number;
+  results: TriviaQuestion[];
+}
+export interface TriviaQuestion {
+  category: string;
+  type: string;
+  difficulty: string;
+  question: string;
+  correct_answer: string;
+  incorrect_answers: string[];
 }
 
-export interface Item {
-  name: string;
-  price: string;
-  quantity: string;
-  discount?: string;
-  tax?: string;
+export interface TriviaQuestionDecoded {
+  category: string;
+  type: string;
+  difficulty: string;
+  question: string;
+  answer: string;
+  options: string[];
 }
 
 // CRYPTO

@@ -1,0 +1,87 @@
+.container {
+  min-height: 100vh;
+  background-image: url("/assets/backgrounds/trivia.jpg");
+
+  .label {
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+  }
+  .btns {
+    gap: 8px;
+    button {
+      flex-grow: 1;
+    }
+  }
+
+  .card {
+    margin: 32px auto 0;
+    width: min(calc(100% - 96px), 320px);
+    min-height: 400px;
+    gap: 12px;
+    align-items: stretch;
+    background: rgb(0 0 0 / 0.5);
+    backdrop-filter: blur(2px);
+    border-radius: 16px;
+    box-shadow: #090909 4px 4px 12px;
+  }
+
+  .question-card {
+    .question {
+      font-family: "Fira Sans Condensed", sans-serif;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .category {
+      font-family: "Nunito Sans", sans-serif;
+      font-size: 14px;
+      color: #adadad;
+    }
+    .options {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .submit {
+      background: rgb(46, 176, 46);
+      color: #0f0f0f;
+    }
+    .note {
+      font-family: "Poppins", sans-serif;
+      font-size: 12px;
+    }
+  }
+
+  .quiz-menu {
+    justify-content: space-around;
+    .create {
+      background-color: rgb(163, 16, 48);
+      color: #0f0f0f;
+    }
+  }
+  .result {
+    justify-content: space-between;
+    min-height: 320px;
+
+    .btns {
+      margin-top: 8px;
+      .recreate {
+        background-color: rgb(33, 136, 219);
+        color: #0f0f0f;
+      }
+    }
+    .score {
+      font-family: "Coda", cursive;
+      font-size: 60px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .card .radio {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

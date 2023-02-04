@@ -1,0 +1,135 @@
+<div class="container fix-background full-width">
+  <app-titlebar title="Trivia"></app-titlebar>
+  <div *ngIf="!loader; else spinner">
+    <div *ngIf="!showResult; else result">
+      <div
+        class="question-card card flex-column pad-32"
+        *ngIf="questions && questions.length; else quizMenu"
+      >
+        <div>
+          <div class="flex-justify question">
+            <div>Time left:</div>
+            <div>
+              {{ minutes < 10 ? "0" : "" }}{{ minutes }} :
+              {{ seconds < 10 ? "0" : "" }}{{ seconds }}
+            </div>
+          </div>
+          <div class="question">
+            Q{{ index + 1 }}. {{ questions[index].question }}
+          </div>
+          <div class="category text-end">({{ questions[index].category }})</div>
+        </div>
+        <mat-radio-group
+          class="options flex-justify"
+          [(ngModel)]="selectedValue"
+        >
+          <mat-radio-button
+            *ngFor="let option of questions[index].options"
+            [value]="option"
+            >{{ option }}</mat-radio-button
+          >
+        </mat-radio-group>
+        <button mat-raised-button class="submit" (click)="matchAnswer()">
+          Submit
+        </button>
+        <div class="flex-center btns">
+          <button
+            mat-stroked-button
+            *ngIf="index > 0"
+            (click)="index = index - 1"
+          >
+            Prev
+          </button>
+          <button
+            mat-stroked-button
+            *ngIf="index < questions.length - 1"
+            (click)="index = index + 1"
+          >
+            Next
+          </button>
+        </div>
+        <span class="spacer"></span>
+        <hr class="full-width" />
+        <div class="note">
+          <div>Right answer = {{ POSITIVE }} points.</div>
+          <div>Wrong answer = -{{ NEGATIVE }} points.</div>
+          <div>To avoid Negative Marking, do not select any option.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #result>
+  <div class="result card flex-column pad-32 text-center">
+    <div class="label">Your Final Score is</div>
+
+    <div class="">
+      <div class="score">{{ score }} / {{ highestScore }}</div>
+      <div class="label">
+        You have achieved {{ score / highestScore | percent }}
+      </div>
+    </div>
+
+    <div>
+      <div class="label">Would you like to Try Again?</div>
+      <div class="flex-center btns">
+        <button mat-stroked-button>
+          <div (click)="home()">No</div>
+        </button>
+        <button class="recreate" mat-raised-button>
+          <div (click)="reset()">Yes</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #quizMenu>
+  <div class="card quiz-menu flex-column pad-32">
+    <div class="flex-justify">
+      <div class="label">No. of Questions</div>
+      <div class="label">{{ amount }}</div>
+    </div>
+    <mat-slider
+      color="primary"
+      max="50"
+      min="1"
+      step="1"
+      thumbLabel="true"
+      [value]="amount"
+      (change)="setAmount($event)"
+    >
+      <input matSliderThumb />
+    </mat-slider>
+
+    <div class="label">Question Type</div>
+    <mat-radio-group class="radio flex-justify" (change)="setType($event)">
+      <mat-radio-button>Any</mat-radio-button>
+      <mat-radio-button value="multiple">Multiple Choice</mat-radio-button>
+      <mat-radio-button value="boolean">True/False</mat-radio-button>
+    </mat-radio-group>
+
+    <div class="label">Difficulty Level</div>
+    <mat-radio-group
+      class="radio flex-justify"
+      (change)="setDifficulty($event)"
+    >
+      <mat-radio-button>Any</mat-radio-button>
+      <mat-radio-button value="easy">Easy</mat-radio-button>
+      <mat-radio-button value="medium">Medium</mat-radio-button>
+      <mat-radio-button value="hard">Hard</mat-radio-button>
+    </mat-radio-group>
+
+    <button class="create" mat-raised-button>
+      <div class="flex-center" (click)="getTrivia()">
+        <mat-icon>description</mat-icon>
+        Generate Quiz
+      </div>
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>
