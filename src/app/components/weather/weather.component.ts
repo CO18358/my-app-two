@@ -28,7 +28,6 @@ export class WeatherComponent implements OnInit {
       this.locationResult = res;
       this.loader = false;
       this.showLocations = true;
-      console.log(res);
     });
   }
   weather(city: WeatherCity) {
@@ -38,7 +37,6 @@ export class WeatherComponent implements OnInit {
 
     this.weatherService.currentWeather(city.id).subscribe((res) => {
       this.loader = false;
-      console.log(res);
 
       this.currentWeather = res;
     });

@@ -27,7 +27,6 @@ export class CoinDetailsComponent implements OnInit {
     this.loader = true;
     this.cryptoService.getCoinInfo(coinId).subscribe((res) => {
       this.coin = res;
-      console.log(res);
 
       this.loader = false;
     });

@@ -47,7 +47,6 @@ export class PoetryComponent implements OnInit {
   async poemsByPoet(poet: string) {
     this.poems = await lastValueFrom(this.poetryService.getPoembyPoets(poet));
     this.showPoets = false;
-    console.log(this.poems);
   }
 
   getPoem(title: string) {

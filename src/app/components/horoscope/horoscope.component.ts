@@ -30,7 +30,6 @@ export class HoroscopeComponent implements OnInit {
     this.horoscopeService.fetchHoroscope(this.sign).subscribe({
       next: (value) => {
         this.result = value;
-        console.log(value);
 
         this.loader = false;
         this.signData = this.signs.find((ob) => ob.zodiacName == this.sign);
