@@ -6,19 +6,27 @@
         class="question-card card flex-column pad-32"
         *ngIf="questions && questions.length; else quizMenu"
       >
-        <div>
-          <div class="flex-justify question">
-            <div>Time left:</div>
-            <div>
-              {{ minutes < 10 ? "0" : "" }}{{ minutes }} :
-              {{ seconds < 10 ? "0" : "" }}{{ seconds }}
-            </div>
+        <div class="flex-justify question">
+          <div>Time left:</div>
+          <div>
+            {{ minutes < 10 ? "0" : "" }}{{ minutes }} :
+            {{ seconds < 10 ? "0" : "" }}{{ seconds }}
           </div>
+        </div>
+        <mat-progress-bar
+          color="primary"
+          mode="determinate"
+          [value]="((index + 1) / amount) * 100"
+        >
+        </mat-progress-bar>
+
+        <div>
           <div class="question">
             Q{{ index + 1 }}. {{ questions[index].question }}
           </div>
           <div class="category text-end">({{ questions[index].category }})</div>
         </div>
+
         <mat-radio-group
           class="options flex-justify"
           [(ngModel)]="selectedValue"
@@ -26,34 +34,32 @@
           <mat-radio-button
             *ngFor="let option of questions[index].options"
             [value]="option"
+            (click)="unselect($event, option)"
             >{{ option }}</mat-radio-button
           >
         </mat-radio-group>
+
         <button mat-raised-button class="submit" (click)="matchAnswer()">
           Submit
         </button>
         <div class="flex-center btns">
-          <button
-            mat-stroked-button
-            *ngIf="index > 0"
-            (click)="index = index - 1"
-          >
+          <button mat-stroked-button *ngIf="index > 0" (click)="prevQue()">
             Prev
           </button>
           <button
             mat-stroked-button
             *ngIf="index < questions.length - 1"
-            (click)="index = index + 1"
+            (click)="nextQue()"
           >
             Next
           </button>
         </div>
+
         <span class="spacer"></span>
         <hr class="full-width" />
         <div class="note">
           <div>Right answer = {{ POSITIVE }} points.</div>
           <div>Wrong answer = -{{ NEGATIVE }} points.</div>
-          <div>To avoid Negative Marking, do not select any option.</div>
         </div>
       </div>
     </div>
@@ -94,7 +100,7 @@
     <mat-slider
       color="primary"
       max="50"
-      min="1"
+      min="5"
       step="1"
       thumbLabel="true"
       [value]="amount"

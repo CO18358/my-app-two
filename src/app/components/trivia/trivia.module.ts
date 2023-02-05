@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [TriviaComponent],
@@ -23,6 +24,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MatIconModule,
     MatRadioModule,
     MatSliderModule,
+    MatProgressBarModule,
   ],
 })
 export class TriviaModule {}

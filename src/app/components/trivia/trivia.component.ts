@@ -15,7 +15,7 @@ import { TriviaService } from 'src/app/services/trivia/trivia.service';
 })
 export class TriviaComponent implements OnInit, OnDestroy {
   // MENU
-  amount: number = 1;
+  amount: number = 10;
   difficulty!: string;
   type!: string;
 
@@ -27,7 +27,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
   NEGATIVE = 1;
 
   // SCORE
-  selectedValue!: string;
+  selectedValue!: string | null;
   highestScore: number = this.amount * this.POSITIVE;
   score: number = 0;
   showResult!: boolean;
@@ -44,6 +44,21 @@ export class TriviaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {}
 
+  unselect(event: any, value: string) {
+    event.preventDefault();
+    this.selectedValue = this.selectedValue === value ? null : value;
+  }
+
+  nextQue() {
+    this.index++;
+    this.selectedValue = null;
+  }
+
+  prevQue() {
+    this.index--;
+    this.selectedValue = null;
+  }
+
   home() {
     this.router.navigateByUrl('/about');
   }
@@ -54,6 +69,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
     this.difficulty = '';
     this.type = '';
     this.questions = [];
+    this.selectedValue = null;
     this.showResult = false;
     this.clearTimer();
   }
@@ -85,7 +101,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
           ? this.score + this.POSITIVE
           : this.score - this.NEGATIVE;
     }
-
+    this.selectedValue = null;
     if (this.index < this.questions.length - 1) {
       this.index++;
     } else {
@@ -135,6 +151,8 @@ export class TriviaComponent implements OnInit, OnDestroy {
         if (this.intervalId === 0) {
           this.countDown();
         }
+        console.log(this.questions);
+
         this.loader = false;
       });
   }
