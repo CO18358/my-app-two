@@ -1,9 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 import { AnimeQuote } from 'src/app/helpers/interfaces';
 import { Utils } from 'src/app/helpers/utilties';
-import { AnimeQuotesService } from 'src/app/services/anime-quotes/anime-quotes.service';
 
 @Component({
   selector: 'app-anime-quote',
@@ -12,6 +12,7 @@ import { AnimeQuotesService } from 'src/app/services/anime-quotes/anime-quotes.s
 })
 export class AnimeQuoteComponent implements OnInit {
   loader!: boolean;
+  quotesDb!: AnimeQuote[];
   results!: AnimeQuote[];
 
   query = new FormControl('');
@@ -19,7 +20,7 @@ export class AnimeQuoteComponent implements OnInit {
   showTitles: boolean = false;
   filteredTitles!: Observable<string[]>;
 
-  constructor(private aqs: AnimeQuotesService) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.initDb();
@@ -31,24 +32,26 @@ export class AnimeQuoteComponent implements OnInit {
 
   initDb() {
     this.loader = true;
-    this.aqs.getData().subscribe((res) => {
-      this.aqs.quotesDb = res;
-      this.random();
-      this.getTitles();
-      this.loader = false;
-    });
+    this.http
+      .get<AnimeQuote[]>('assets/data/animequotes.json')
+      .subscribe((res) => {
+        this.quotesDb = res;
+        this.random();
+        this.getTitles();
+        this.loader = false;
+      });
   }
 
   random() {
     this.showTitles = false;
-    this.results = Utils.shuffleArray(this.aqs.quotesDb)
+    this.results = Utils.shuffleArray(this.quotesDb)
       .slice(0, 50)
       .sort((a, b) => a.ID - b.ID);
   }
 
   getTitles() {
     this.titles = Utils.uniqueArray(
-      this.aqs.quotesDb.map((res) => {
+      this.quotesDb.map((res) => {
         return res.anime;
       })
     ).sort();
@@ -65,7 +68,7 @@ export class AnimeQuoteComponent implements OnInit {
 
   filterAnime(title: string) {
     this.showTitles = false;
-    this.results = this.aqs.quotesDb
+    this.results = this.quotesDb
       .filter((res) => res.anime == title)
       .sort((a, b) => a.ID - b.ID);
   }
