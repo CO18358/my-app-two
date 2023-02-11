@@ -2,27 +2,53 @@
   <app-titlebar title="anime quotes"></app-titlebar>
 
   <div *ngIf="!loader; else spinner">
-    <div class="cards pad-16 flex-stretch">
-      <mat-card class="card padding" *ngFor="let result of results">
-        <h4 class="title cursor" (click)="anime(result.anime)">
-          {{ result.character }}
-        </h4>
-        <div class="name flex-justify">
-          <h5 class="cursor" (click)="character(result.character)">
-            {{ result.anime }}
-          </h5>
-          <mat-icon class="copy" [cdkCopyToClipboard]="result.quote"
-            >content_copy</mat-icon
-          >
-        </div>
-        <p class="quote text-justify">{{ result.quote }}</p>
-      </mat-card>
+    <div *ngIf="!showTitles; else animeTitles">
+      <button
+        mat-stroked-button
+        class="toggle"
+        color="primary"
+        (click)="showTitles = true"
+      >
+        Explore Titles
+      </button>
+      <div class="cards pad-16 flex-stretch">
+        <mat-card class="card" *ngFor="let result of results">
+          <h4 class="title">
+            {{ result.character }}
+          </h4>
+          <div class="name flex-justify">
+            <h5 class="cursor" (click)="filterAnime(result.anime)">
+              {{ result.anime }}
+            </h5>
+            <mat-icon class="copy cursor" [cdkCopyToClipboard]="result.quote"
+              >content_copy</mat-icon
+            >
+          </div>
+          <p class="quote text-justify">{{ result.quote }}</p>
+        </mat-card>
+      </div>
     </div>
-    <button class="mine" mat-mini-fab color="primary" (click)="random()">
-      <mat-icon>format_quote</mat-icon>
+    <button class="random" mat-mini-fab color="primary" (click)="random()">
+      <mat-icon>shuffle</mat-icon>
     </button>
   </div>
 </div>
+
+<ng-template #animeTitles>
+  <div class="search-bar flex-justify">
+    <input [formControl]="query" placeholder="Enter Anime Title" />
+    <mat-icon matSuffix>search</mat-icon>
+  </div>
+  <div class="cards pad-16 flex-stretch">
+    <button
+      class="btn"
+      *ngFor="let title of filteredTitles | async"
+      (click)="filterAnime(title)"
+    >
+      {{ title == "" ? "-" : title }}
+    </button>
+  </div>
+</ng-template>
 
 <ng-template #spinner>
   <app-spinner></app-spinner>

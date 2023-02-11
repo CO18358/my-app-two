@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AnimeQuoteComponent],
@@ -21,6 +22,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     MatButtonModule,
     MatIconModule,
     ClipboardModule,
+    ReactiveFormsModule,
   ],
 })
 export class AnimeQuoteModule {}

@@ -3,6 +3,14 @@ export namespace Utils {
     return Math.random().toString(36).substring(2, 15);
   };
 
+  export function shuffleArray(array: any[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   export const numId = () => {
     return Math.floor(100000 + Math.random() * 900000);
   };

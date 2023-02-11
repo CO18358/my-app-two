@@ -1,42 +1,41 @@
 .container {
   min-height: 100vh;
-  background-image: url("/assets/backgrounds/anime.png");
+  background-image: url("/assets/backgrounds/anime.jpg");
 
   .cards {
     gap: 16px;
     flex-wrap: wrap;
 
     .card {
-      width: calc(50% - 48px);
+      width: calc(50% - 44px);
       background: rgba(0, 0, 0, 0.2);
       border-radius: 16px;
       backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      -webkit-box-shadow: 16px 16px 64px 0px rgba(62, 66, 66, 0.24);
-      -moz-box-shadow: 16px 16px 64px 0px rgba(62, 66, 66, 0.24);
-      box-shadow: 16px 16px 64px 0px rgba(62, 66, 66, 0.24);
+      border: 2px solid;
       line-height: 1;
 
       .title {
         font-size: 20px;
         letter-spacing: 1px;
-        font-family: "Expletus Sans", sans-serif;
+        font-family: "Righteous", cursive;
         font-weight: 500;
         color: red;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
       }
       .quote {
-        font-family: "Amarante", cursive;
-        line-height: 1.2;
+        line-height: 1.4;
+        letter-spacing: 1px;
+        font-family: "Poppins", sans-serif;
       }
 
       .name {
-        letter-spacing: 1px;
         font-style: italic;
-        font-family: "Nunito Sans", cursive;
+        font-family: "Open Sans", sans-serif;
+        letter-spacing: 1px;
         margin-bottom: 4px;
         h5 {
           margin: 0;
+          color: rgb(62, 235, 28);
         }
         .copy {
           font-size: 14px;
@@ -48,9 +47,51 @@
         }
       }
     }
+
+    .btn {
+      background: none;
+      border: 2px solid #1760e7;
+      line-height: 1;
+      color: #1760e7;
+      transition: 0.3s;
+      backdrop-filter: blur(8px);
+      padding: 8px 12px;
+      font-weight: bold;
+
+      &:hover,
+      &:active {
+        border-color: #f3eb49;
+        color: #f3eb49;
+        box-shadow: 0 8px 8px -4px #f3eb49;
+        transform: translateY(-4px);
+      }
+    }
   }
 
-  .mine {
+  .search-bar {
+    margin: 16px auto 0;
+    background: #f4f4f4;
+    border-radius: 32px;
+    padding: 4px 16px;
+    width: min(calc(100% - 64px), 600px);
+    input {
+      outline: none;
+      border: none;
+      background: transparent;
+      flex: 1;
+      font-weight: 600;
+    }
+    input,
+    mat-icon {
+      color: #060016;
+    }
+  }
+
+  .toggle {
+    margin: 16px 16px 0;
+  }
+
+  .random {
     position: fixed;
     bottom: 32px;
     right: 32px;
@@ -58,9 +99,9 @@
 }
 @media screen and (max-width: 600px) {
   .container .cards .card {
-    width: calc(100% - 48px);
+    width: calc(100% - 40px);
   }
-  .mine {
+  .random {
     bottom: 16px;
     right: 16px;
   }
