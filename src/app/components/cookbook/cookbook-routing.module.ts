@@ -70,7 +70,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/cookbook/menu',
+        redirectTo: '/cookbook/random',
         pathMatch: 'full',
       },
     ],

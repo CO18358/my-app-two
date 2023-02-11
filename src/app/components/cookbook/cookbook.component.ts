@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
@@ -12,13 +13,13 @@ export class CookbookComponent implements OnInit {
   query!: string;
   isMobile = Utils.isMobile();
   @ViewChild('drawer') drawer!: MatDrawer;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private location: Location) {}
 
   ngOnInit(): void {}
 
   home() {
     this.drawer.close();
-    this.router.navigate(['/about']);
+    this.location.back();
   }
   search() {
     this.drawer.close();

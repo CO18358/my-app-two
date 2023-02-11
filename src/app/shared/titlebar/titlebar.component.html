@@ -1,5 +1,8 @@
 <mat-toolbar class="titlebar flex-center">
-  <button mat-button (click)="home()" class="header">
-    {{ title | uppercase }}
+  <button *ngIf="!homepage" mat-icon-button (click)="home()">
+    <mat-icon>keyboard_backspace</mat-icon>
   </button>
+  <div class="header spacer text-center" [class.margin-left]="!homepage">
+    {{ title | uppercase }}
+  </div>
 </mat-toolbar>

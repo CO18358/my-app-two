@@ -60,7 +60,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
   }
 
   home() {
-    this.router.navigateByUrl('/about');
+    this.router.navigateByUrl('/dashboard');
   }
 
   reset() {
@@ -151,8 +151,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
         if (this.intervalId === 0) {
           this.countDown();
         }
-        console.log(this.questions);
-
+        // console.log(this.questions);
         this.loader = false;
       });
   }

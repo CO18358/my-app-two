@@ -1,21 +1,19 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-titlebar',
   templateUrl: './titlebar.component.html',
-  styleUrls: ['./titlebar.component.scss']
+  styleUrls: ['./titlebar.component.scss'],
 })
 export class TitlebarComponent implements OnInit {
+  @Input() title!: string;
+  @Input() homepage: boolean = false;
+  constructor(private location: Location) {}
 
-  @Input() title!: string
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   home() {
-    this.router.navigateByUrl('/about')
+    this.location.back();
   }
-
 }

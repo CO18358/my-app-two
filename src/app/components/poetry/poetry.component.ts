@@ -31,7 +31,7 @@ export class PoetryComponent implements OnInit {
   }
 
   home() {
-    this.router.navigate(['/about']);
+    this.router.navigate(['/dashboard']);
   }
 
   random() {
