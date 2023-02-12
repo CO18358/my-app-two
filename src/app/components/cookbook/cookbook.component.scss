@@ -2,18 +2,6 @@
   min-height: 100vh;
   background-image: url("/assets/backgrounds/meals.jpg");
 
-  .nav {
-    height: 3rem;
-    background-color: rgb(0 0 0 / 40%);
-    backdrop-filter: blur(2px);
-    color: #fff;
-    .header {
-      font-family: "Noto Serif", serif;
-      font-weight: 500;
-      font-size: 1.2rem;
-    }
-  }
-
   mat-sidenav-container {
     background: transparent;
     mat-sidenav {

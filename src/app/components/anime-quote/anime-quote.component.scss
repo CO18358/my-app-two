@@ -48,22 +48,15 @@
       }
     }
 
-    .btn {
-      background: none;
+    .neon-btn {
       border: 2px solid #1760e7;
-      line-height: 1;
       color: #1760e7;
-      transition: 0.3s;
-      backdrop-filter: blur(8px);
-      padding: 8px 12px;
-      font-weight: bold;
 
       &:hover,
       &:active {
         border-color: #f3eb49;
         color: #f3eb49;
         box-shadow: 0 8px 8px -4px #f3eb49;
-        transform: translateY(-4px);
       }
     }
   }
