@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable } from 'rxjs';
+import { baseUrls } from 'src/app/helpers/constants';
 import { Weather, WeatherCity } from 'src/app/helpers/interfaces';
 import { environment } from 'src/environments/environment';
 
@@ -8,7 +9,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class WeatherService {
-  baseUrl = 'https://foreca-weather.p.rapidapi.com';
   headers = new HttpHeaders({
     'X-RapidAPI-Key': environment.rapid_api_key,
     'X-RapidAPI-Host': 'foreca-weather.p.rapidapi.com',
@@ -18,7 +18,7 @@ export class WeatherService {
 
   searchLocation(query: string): Observable<WeatherCity[]> {
     return this.http
-      .get(`${this.baseUrl}/location/search/${query}?lang=en`, {
+      .get(`${baseUrls.weather}/location/search/${query}?lang=en`, {
         headers: this.headers,
       })
       .pipe(map((res: any) => res.locations as WeatherCity[]));
@@ -33,7 +33,7 @@ export class WeatherService {
       lang: 'en',
     };
     return this.http
-      .get(`${this.baseUrl}/current/${locationId}`, {
+      .get(`${baseUrls.weather}/current/${locationId}`, {
         headers: this.headers,
         params,
       })
@@ -51,7 +51,7 @@ export class WeatherService {
       history: '0',
     };
     return this.http
-      .get(`${this.baseUrl}/forecast/hourly/${locationId}`, {
+      .get(`${baseUrls.weather}/forecast/hourly/${locationId}`, {
         headers: this.headers,
         params,
       })
@@ -71,7 +71,7 @@ export class WeatherService {
       dataset: 'full',
     };
     return this.http
-      .get(`${this.baseUrl}/forecast/daily/${locationId}`, {
+      .get(`${baseUrls.weather}/forecast/daily/${locationId}`, {
         headers: this.headers,
         params,
       })

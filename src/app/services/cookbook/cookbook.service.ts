@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map } from 'rxjs';
+import { baseUrls } from 'src/app/helpers/constants';
 import {
   Meal,
   MealCategory,
@@ -12,11 +13,10 @@ import {
   providedIn: 'root',
 })
 export class CookbookService {
-  baseUrl = 'https://www.themealdb.com/api/json/v1/1/';
   constructor(private http: HttpClient) {}
 
   searchMeal(name: string) {
-    return this.http.get(`${this.baseUrl}search.php?s=${name}`).pipe(
+    return this.http.get(`${baseUrls.mealDb}search.php?s=${name}`).pipe(
       map((res: any): Meal[] => {
         return res.meals;
       })
@@ -24,7 +24,7 @@ export class CookbookService {
   }
 
   mealDictionary(character: string) {
-    return this.http.get(`${this.baseUrl}search.php?f=${character}`).pipe(
+    return this.http.get(`${baseUrls.mealDb}search.php?f=${character}`).pipe(
       map((res: any): Meal[] => {
         return res.meals;
       })
@@ -32,7 +32,7 @@ export class CookbookService {
   }
 
   mealById(id: string) {
-    return this.http.get(`${this.baseUrl}lookup.php?i=${id}`).pipe(
+    return this.http.get(`${baseUrls.mealDb}lookup.php?i=${id}`).pipe(
       map((res: any): MealDetails => {
         const meal = res.meals[0];
         const ingredients: any[] = [];
@@ -53,7 +53,7 @@ export class CookbookService {
   }
 
   randomMeal() {
-    return this.http.get(`${this.baseUrl}random.php`).pipe(
+    return this.http.get(`${baseUrls.mealDb}random.php`).pipe(
       map((res: any): MealDetails => {
         const meal = res.meals[0];
         const ingredients: any[] = [];
@@ -74,7 +74,7 @@ export class CookbookService {
   }
 
   categories() {
-    return this.http.get(`${this.baseUrl}categories.php`).pipe(
+    return this.http.get(`${baseUrls.mealDb}categories.php`).pipe(
       map((res: any): MealCategory[] => {
         return res.categories;
       })
@@ -82,7 +82,7 @@ export class CookbookService {
   }
 
   private listAreas() {
-    return this.http.get(`${this.baseUrl}list.php?a=list`).pipe(
+    return this.http.get(`${baseUrls.mealDb}list.php?a=list`).pipe(
       map((res: any): string[] => {
         return res.meals.map((cat: any) => {
           return cat.strArea;
@@ -92,7 +92,7 @@ export class CookbookService {
   }
 
   private listIngredients() {
-    return this.http.get(`${this.baseUrl}list.php?i=list`).pipe(
+    return this.http.get(`${baseUrls.mealDb}list.php?i=list`).pipe(
       map((res: any): string[] => {
         return res.meals.map((cat: any) => {
           return cat.strIngredient;
@@ -110,7 +110,7 @@ export class CookbookService {
   }
 
   popularIngredients() {
-    return this.http.get(`${this.baseUrl}list.php?i=list`).pipe(
+    return this.http.get(`${baseUrls.mealDb}list.php?i=list`).pipe(
       map((res: any): MealPopularIngredient[] => {
         return res.meals.filter((ingredient: any) => {
           return ingredient.strDescription;
@@ -120,7 +120,7 @@ export class CookbookService {
   }
 
   filterByCategory(category: string) {
-    return this.http.get(`${this.baseUrl}filter.php?c=${category}`).pipe(
+    return this.http.get(`${baseUrls.mealDb}filter.php?c=${category}`).pipe(
       map((res: any): Meal[] => {
         return res.meals;
       })
@@ -128,7 +128,7 @@ export class CookbookService {
   }
 
   filterByArea(area: string) {
-    return this.http.get(`${this.baseUrl}filter.php?a=${area}`).pipe(
+    return this.http.get(`${baseUrls.mealDb}filter.php?a=${area}`).pipe(
       map((res: any): Meal[] => {
         return res.meals;
       })
@@ -136,7 +136,7 @@ export class CookbookService {
   }
 
   filterByIngredient(ingredient: string) {
-    return this.http.get(`${this.baseUrl}filter.php?i=${ingredient}`).pipe(
+    return this.http.get(`${baseUrls.mealDb}filter.php?i=${ingredient}`).pipe(
       map((res: any): Meal[] => {
         return res.meals;
       })

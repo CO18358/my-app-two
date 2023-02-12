@@ -13,7 +13,12 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'anime-quote',
+    path: 'manga',
+    loadChildren: () =>
+      import('./components/manga/manga.module').then((m) => m.MangaModule),
+  },
+  {
+    path: 'quotes',
     loadChildren: () =>
       import('./components/anime-quote/anime-quote.module').then(
         (m) => m.AnimeQuoteModule

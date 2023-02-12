@@ -1,19 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
+import { baseUrls } from 'src/app/helpers/constants';
 import { CoinData, CoinInfo } from 'src/app/helpers/interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CryptoService {
-  coinListUrl =
-    'https://api.coingecko.com/api/v3/coins/markets?sparkline=false';
-
-  coinDetailsUrl = 'https://api.coingecko.com/api/v3/coins';
-
-  symbolsUrl = 'https://api.exchangerate.host/symbols';
-  coversionUrl = 'https://api.exchangerate.host/convert';
   constructor(private http: HttpClient) {}
 
   getCoinsArray(
@@ -22,7 +16,7 @@ export class CryptoService {
     limit: number,
     pageNum: number
   ) {
-    const url = `${this.coinListUrl}&vs_currency=${currency}&order=${orderBy}&per_page=${limit}&page=${pageNum}`;
+    const url = `${baseUrls.crypto}markets?sparkline=false&vs_currency=${currency}&order=${orderBy}&per_page=${limit}&page=${pageNum}`;
     return this.http.get<any[]>(url).pipe(
       map((coins): CoinData[] => {
         return coins.map((coin) => {
@@ -42,7 +36,7 @@ export class CryptoService {
   }
 
   getCoinInfo(coinId: string) {
-    const url = `${this.coinDetailsUrl}/${coinId}?tickers=false&market_data=false&developer_data=false&community_data=false`;
+    const url = `${baseUrls.crypto}coins/${coinId}?tickers=false&market_data=false&developer_data=false&community_data=false`;
     return this.http.get(url).pipe(
       map((coin: any): CoinInfo => {
         return {
@@ -61,7 +55,7 @@ export class CryptoService {
   }
 
   getSymbols() {
-    return this.http.get(this.symbolsUrl).pipe(
+    return this.http.get(`${baseUrls.forex}symbols`).pipe(
       map((res: any) => {
         return Object.keys(res.symbols).map((key) => {
           return res.symbols[key];
@@ -72,7 +66,7 @@ export class CryptoService {
 
   getExchangeRate(from: string, to: string) {
     return this.http
-      .get(`${this.coversionUrl}?from=${from}&to=${to}`)
+      .get(`${baseUrls.forex}convert?from=${from}&to=${to}`)
       .pipe(map((res: any) => res.result));
   }
 }

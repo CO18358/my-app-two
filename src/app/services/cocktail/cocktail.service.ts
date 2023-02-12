@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map } from 'rxjs';
+import { baseUrls } from 'src/app/helpers/constants';
 import { Drink, DrinkDetails } from 'src/app/helpers/interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CocktailService {
-  baseUrl = 'https://www.thecocktaildb.com/api/json/v1/1/';
   constructor(private http: HttpClient) {}
 
   searchDrink(name: string) {
-    return this.http.get(`${this.baseUrl}search.php?s=${name}`).pipe(
+    return this.http.get(`${baseUrls.cocktailDb}search.php?s=${name}`).pipe(
       map((res: any): Drink[] => {
         return res.drinks;
       })
@@ -19,7 +19,7 @@ export class CocktailService {
   }
 
   drinkById(id: string) {
-    return this.http.get(`${this.baseUrl}lookup.php?i=${id}`).pipe(
+    return this.http.get(`${baseUrls.cocktailDb}lookup.php?i=${id}`).pipe(
       map((res: any): DrinkDetails => {
         const drink = res.drinks[0];
         const ingredients: any[] = [];
@@ -40,7 +40,7 @@ export class CocktailService {
   }
 
   randomDrink() {
-    return this.http.get(`${this.baseUrl}random.php`).pipe(
+    return this.http.get(`${baseUrls.cocktailDb}random.php`).pipe(
       map((res: any): DrinkDetails => {
         const drink = res.drinks[0];
         const ingredients: any[] = [];
@@ -61,7 +61,7 @@ export class CocktailService {
   }
 
   private alcoholics() {
-    return this.http.get(`${this.baseUrl}list.php?a=list`).pipe(
+    return this.http.get(`${baseUrls.cocktailDb}list.php?a=list`).pipe(
       map((res: any): string[] => {
         return res.drinks.map((drink: any) => {
           return drink.strAlcoholic;
@@ -71,7 +71,7 @@ export class CocktailService {
   }
 
   private ingredients() {
-    return this.http.get(`${this.baseUrl}list.php?i=list`).pipe(
+    return this.http.get(`${baseUrls.cocktailDb}list.php?i=list`).pipe(
       map((res: any): string[] => {
         return res.drinks.map((drink: any) => {
           return drink.strIngredient1;
@@ -81,7 +81,7 @@ export class CocktailService {
   }
 
   private glasses() {
-    return this.http.get(`${this.baseUrl}list.php?g=list`).pipe(
+    return this.http.get(`${baseUrls.cocktailDb}list.php?g=list`).pipe(
       map((res: any): string[] => {
         return res.drinks.map((drink: any) => {
           return drink.strGlass;
@@ -91,7 +91,7 @@ export class CocktailService {
   }
 
   private categories() {
-    return this.http.get(`${this.baseUrl}list.php?c=list`).pipe(
+    return this.http.get(`${baseUrls.cocktailDb}list.php?c=list`).pipe(
       map((res: any): string[] => {
         return res.drinks.map((drink: any) => {
           return drink.strCategory;
@@ -110,7 +110,7 @@ export class CocktailService {
   }
 
   filterByCategory(category: string) {
-    return this.http.get(`${this.baseUrl}filter.php?c=${category}`).pipe(
+    return this.http.get(`${baseUrls.cocktailDb}filter.php?c=${category}`).pipe(
       map((res: any): Drink[] => {
         return res.drinks;
       })
@@ -118,7 +118,7 @@ export class CocktailService {
   }
 
   filterByTpe(type: string) {
-    return this.http.get(`${this.baseUrl}filter.php?a=${type}`).pipe(
+    return this.http.get(`${baseUrls.cocktailDb}filter.php?a=${type}`).pipe(
       map((res: any): Drink[] => {
         return res.drinks;
       })
@@ -126,15 +126,17 @@ export class CocktailService {
   }
 
   filterByIngredient(ingredient: string) {
-    return this.http.get(`${this.baseUrl}filter.php?i=${ingredient}`).pipe(
-      map((res: any): Drink[] => {
-        return res.drinks;
-      })
-    );
+    return this.http
+      .get(`${baseUrls.cocktailDb}filter.php?i=${ingredient}`)
+      .pipe(
+        map((res: any): Drink[] => {
+          return res.drinks;
+        })
+      );
   }
 
   filterByGlass(glass: string) {
-    return this.http.get(`${this.baseUrl}filter.php?g=${glass}`).pipe(
+    return this.http.get(`${baseUrls.cocktailDb}filter.php?g=${glass}`).pipe(
       map((res: any): Drink[] => {
         return res.drinks;
       })

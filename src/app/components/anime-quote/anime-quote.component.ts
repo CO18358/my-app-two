@@ -55,7 +55,6 @@ export class AnimeQuoteComponent implements OnInit {
         return res.anime;
       })
     ).sort();
-    console.log(this.titles);
   }
 
   private _filter(value: string): string[] {

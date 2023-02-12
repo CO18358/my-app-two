@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable } from 'rxjs';
+import { baseUrls } from 'src/app/helpers/constants';
 import { Horoscope } from 'src/app/helpers/interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HoroscopeService {
-  baseUrl = 'https://aztro.sameerkumar.website/';
-
   constructor(private http: HttpClient) {}
 
   fetchHoroscope(sign: string) {
@@ -29,21 +28,21 @@ export class HoroscopeService {
 
   today(sign: string): Observable<Horoscope> {
     return this.http.post<Horoscope>(
-      `${this.baseUrl}?sign=${sign}&day=today`,
+      `${baseUrls.horoscope}?sign=${sign}&day=today`,
       {}
     );
   }
 
   yesterday(sign: string): Observable<Horoscope> {
     return this.http.post<Horoscope>(
-      `${this.baseUrl}?sign=${sign}&day=yesterday`,
+      `${baseUrls.horoscope}?sign=${sign}&day=yesterday`,
       {}
     );
   }
 
   tomorrow(sign: string): Observable<Horoscope> {
     return this.http.post<Horoscope>(
-      `${this.baseUrl}?sign=${sign}&day=tomorrow`,
+      `${baseUrls.horoscope}?sign=${sign}&day=tomorrow`,
       {}
     );
   }

@@ -8,13 +8,18 @@ export class AboutComponent implements OnInit {
   apps = [
     {
       title: 'Anime Quotes',
-      url: '/anime-quote',
+      url: '/quotes',
       image: '/assets/thumbnails/anime-quote.png',
     },
     {
       title: 'Video Games',
       url: '/games',
       image: '/assets/thumbnails/games.png',
+    },
+    {
+      title: 'Manga Catalogue',
+      url: '/manga',
+      image: '/assets/thumbnails/manga.png',
     },
     {
       title: 'Cryptocurrency Tracker Realtime Wea',
