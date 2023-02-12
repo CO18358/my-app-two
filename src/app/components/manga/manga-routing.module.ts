@@ -8,6 +8,20 @@ const routes: Routes = [
     component: MangaComponent,
     children: [
       {
+        path: 'genre',
+        loadChildren: () =>
+          import('./manga-lists/manga-lists.module').then(
+            (m) => m.MangaListsModule
+          ),
+      },
+      {
+        path: 'magazine',
+        loadChildren: () =>
+          import('./manga-lists/manga-lists.module').then(
+            (m) => m.MangaListsModule
+          ),
+      },
+      {
         path: 'top',
         loadChildren: () =>
           import('./manga-results/manga-results.module').then(
@@ -15,7 +29,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'recommendations',
+        path: 'recommendation',
         loadChildren: () =>
           import('./manga-results/manga-results.module').then(
             (m) => m.MangaResultsModule
@@ -36,24 +50,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: ':id',
+        path: 'details/:id',
         loadChildren: () =>
           import('./manga-info/manga-info.module').then(
             (m) => m.MangaInfoModule
-          ),
-      },
-      {
-        path: 'genre',
-        loadChildren: () =>
-          import('./manga-lists/manga-lists.module').then(
-            (m) => m.MangaListsModule
-          ),
-      },
-      {
-        path: 'magazine',
-        loadChildren: () =>
-          import('./manga-lists/manga-lists.module').then(
-            (m) => m.MangaListsModule
           ),
       },
     ],

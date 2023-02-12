@@ -1,1 +1,12 @@
-<p>manga-lists works!</p>
+<div *ngIf="!loader; else spinner">
+  <div class="header">{{ title }}</div>
+  <div class="titles pad-16 flex-stretch">
+    <div class="title pad-8" *ngFor="let item of results">
+      {{ item.name }} ({{ item.count }})
+    </div>
+  </div>
+</div>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

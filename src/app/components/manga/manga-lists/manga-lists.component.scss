@@ -1,0 +1,33 @@
+.header {
+  margin: 32px 16px;
+  font-size: 32px;
+  line-height: 1;
+  padding-left: 16px;
+  text-transform: uppercase;
+  font-family: "Montserrat", cursive;
+  border-left: 4px solid #ff3508;
+}
+.titles {
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  .title {
+    width: calc(20% - 28px);
+    font-family: "Overlock", cursive;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 4px;
+    backdrop-filter: blur(16px);
+    box-shadow: 2px 2px 4px #333;
+    &:hover {
+      color: yellow;
+      transition: all 0.2s;
+    }
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .titles .title {
+    width: calc(50% - 28px);
+  }
+}
