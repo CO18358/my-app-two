@@ -18,7 +18,6 @@ export class CookbookComponent implements OnInit {
   ngOnInit(): void {}
 
   home() {
-    this.drawer.close();
     this.location.back();
   }
   search() {

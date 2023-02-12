@@ -16,7 +16,7 @@ export class CryptoService {
     limit: number,
     pageNum: number
   ) {
-    const url = `${baseUrls.crypto}markets?sparkline=false&vs_currency=${currency}&order=${orderBy}&per_page=${limit}&page=${pageNum}`;
+    const url = `${baseUrls.crypto}coins/markets?sparkline=false&vs_currency=${currency}&order=${orderBy}&per_page=${limit}&page=${pageNum}`;
     return this.http.get<any[]>(url).pipe(
       map((coins): CoinData[] => {
         return coins.map((coin) => {

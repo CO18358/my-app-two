@@ -1,1 +1,44 @@
-<p>manga works!</p>
+<div class="container fix-background full-width">
+  <mat-toolbar class="nav flex-justify">
+    <button mat-icon-button (click)="home()">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    <div class="header">Manga Catalogue</div>
+    <div class="flex-center">
+      <button mat-icon-button>
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>shuffle</mat-icon>
+      </button>
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container [hasBackdrop]="isMobile">
+    <mat-sidenav #drawer position="end" mode="over">
+      <button mat-button class="menu-btn" (click)="drawer.close()">
+        Top Manga
+      </button>
+      <button mat-button class="menu-btn" (click)="drawer.close()">
+        Genres
+      </button>
+      <button mat-button class="menu-btn" (click)="drawer.close()">
+        Magazines
+      </button>
+      <button mat-button class="menu-btn" (click)="drawer.close()">
+        Recommendations
+      </button>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet name="manga"></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<ng-template #loader>
+  <app-spinner></app-spinner>
+</ng-template>

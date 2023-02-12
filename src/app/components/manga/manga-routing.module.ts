@@ -2,7 +2,63 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MangaComponent } from './manga.component';
 
-const routes: Routes = [{ path: '', component: MangaComponent }];
+const routes: Routes = [
+  {
+    path: '',
+    component: MangaComponent,
+    children: [
+      {
+        path: 'top',
+        loadChildren: () =>
+          import('./manga-results/manga-results.module').then(
+            (m) => m.MangaResultsModule
+          ),
+      },
+      {
+        path: 'recommendations',
+        loadChildren: () =>
+          import('./manga-results/manga-results.module').then(
+            (m) => m.MangaResultsModule
+          ),
+      },
+      {
+        path: 'search',
+        loadChildren: () =>
+          import('./manga-search/manga-search.module').then(
+            (m) => m.MangaSearchModule
+          ),
+      },
+      {
+        path: 'random',
+        loadChildren: () =>
+          import('./manga-info/manga-info.module').then(
+            (m) => m.MangaInfoModule
+          ),
+      },
+      {
+        path: ':id',
+        loadChildren: () =>
+          import('./manga-info/manga-info.module').then(
+            (m) => m.MangaInfoModule
+          ),
+      },
+      {
+        path: 'genre',
+        loadChildren: () =>
+          import('./manga-lists/manga-lists.module').then(
+            (m) => m.MangaListsModule
+          ),
+      },
+      {
+        path: 'magazine',
+        loadChildren: () =>
+          import('./manga-lists/manga-lists.module').then(
+            (m) => m.MangaListsModule
+          ),
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
