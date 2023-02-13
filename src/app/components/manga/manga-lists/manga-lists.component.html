@@ -1,10 +1,50 @@
 <div *ngIf="!loader; else spinner">
-  <div class="header">{{ title }}</div>
+  <div class="custom-header margin-16">{{ title }}</div>
+
   <div class="titles pad-16 flex-stretch">
-    <div class="title pad-8" *ngFor="let item of results">
+    <button class="neon-btn" *ngFor="let item of results">
       {{ item.name }} ({{ item.count }})
-    </div>
+    </button>
   </div>
+
+  <ul class="pagination flex-center pad-8" *ngIf="showPagination">
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current > 1"
+      (click)="getMagazines(1)"
+    >
+      keyboard_double_arrow_left
+    </mat-icon>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current > 1"
+      (click)="getMagazines(current - 1)"
+    >
+      chevron_left
+    </mat-icon>
+    <li
+      class="page__num cursor"
+      *ngFor="let num of pageNumbers"
+      [class.active]="num == current"
+      (click)="getMagazines(num)"
+    >
+      {{ num }}
+    </li>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current < last"
+      (click)="getMagazines(current + 1)"
+    >
+      chevron_right
+    </mat-icon>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current < last"
+      (click)="getMagazines(last)"
+    >
+      keyboard_double_arrow_right
+    </mat-icon>
+  </ul>
 </div>
 
 <ng-template #spinner>

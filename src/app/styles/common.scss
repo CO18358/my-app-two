@@ -179,12 +179,42 @@
   transition: 0.3s;
   backdrop-filter: blur(8px);
   padding: 8px 12px;
-  font-weight: bold;
-
+  font-family: "Overlock", cursive;
+  font-weight: 600;
+  font-size: 16px;
   &:hover,
   &:active {
     transform: translateY(-4px);
   }
+}
+
+.pagination {
+  list-style-type: none;
+  background-color: #cbe0dd;
+  color: #2d4848;
+  margin: 0 auto 16px;
+  width: min(calc(100% - 48px), 320px);
+  gap: 8px;
+  border-radius: 8px;
+  .page__num {
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .page__btn {
+    color: #23adad;
+  }
+  .active {
+    background-color: #23adad;
+    color: #cbe0dd;
+  }
+}
+
+.custom-header {
+  font-size: 32px;
+  line-height: 1;
+  padding-left: 16px;
+  text-transform: uppercase;
+  font-family: "Montserrat", cursive;
 }
 @media screen and (max-width: 799px) {
   .meals .card {

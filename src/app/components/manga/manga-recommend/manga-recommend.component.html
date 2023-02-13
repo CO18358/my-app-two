@@ -1,0 +1,99 @@
+<div *ngIf="!loader; else spinner">
+  <div class="custom-header">Recommended Manga</div>
+
+  <ul class="pagination flex-center pad-8" *ngIf="showPagination">
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current > 1"
+      (click)="recommendationPage(1)"
+    >
+      keyboard_double_arrow_left
+    </mat-icon>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current > 1"
+      (click)="recommendationPage(current - 1)"
+    >
+      chevron_left
+    </mat-icon>
+    <li
+      class="page__num cursor"
+      *ngFor="let num of pageNumbers"
+      [class.active]="num == current"
+      (click)="recommendationPage(num)"
+    >
+      {{ num }}
+    </li>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current < last"
+      (click)="recommendationPage(current + 1)"
+    >
+      chevron_right
+    </mat-icon>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current < last"
+      (click)="recommendationPage(last)"
+    >
+      keyboard_double_arrow_right
+    </mat-icon>
+  </ul>
+
+  <div class="items pad-16 flex-stretch">
+    <div class="item flex-column" *ngFor="let item of results">
+      <h4 class="content">{{ item.content }}</h4>
+      <h4 class="date">Recommend on : {{ parseDate(item.date) }}</h4>
+      <span class="spacer"></span>
+      <div class="images">
+        <div class="image cursor" *ngFor="let image of item.entry">
+          <img [src]="image.images.jpg.large_image_url" alt="" loading="lazy" />
+          <h4 class="title text-center">{{ image.title }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="pagination flex-center pad-8 margin-bottom" *ngIf="showPagination">
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current > 1"
+      (click)="recommendationPage(1)"
+    >
+      keyboard_double_arrow_left
+    </mat-icon>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current > 1"
+      (click)="recommendationPage(current - 1)"
+    >
+      chevron_left
+    </mat-icon>
+    <li
+      class="page__num cursor"
+      *ngFor="let num of pageNumbers"
+      [class.active]="num == current"
+      (click)="recommendationPage(num)"
+    >
+      {{ num }}
+    </li>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current < last"
+      (click)="recommendationPage(current + 1)"
+    >
+      chevron_right
+    </mat-icon>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current < last"
+      (click)="recommendationPage(last)"
+    >
+      keyboard_double_arrow_right
+    </mat-icon>
+  </ul>
+</div>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

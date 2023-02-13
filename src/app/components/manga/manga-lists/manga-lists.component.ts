@@ -1,10 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import {
-  MangaGenre,
-  PaginatedResponse,
-} from 'src/app/helpers/jikan.interfaces';
+import { MangaCount } from 'src/app/helpers/jikan.interfaces';
+import { Utils } from 'src/app/helpers/utilties';
 import { MangaService } from 'src/app/services/manga/manga.service';
 
 @Component({
@@ -15,8 +13,12 @@ import { MangaService } from 'src/app/services/manga/manga.service';
 export class MangaListsComponent implements OnInit, OnDestroy {
   loader!: boolean;
   title!: string;
-  results!: MangaGenre[];
-  paginated?: PaginatedResponse;
+  results!: MangaCount[];
+
+  showPagination = false;
+  current!: number;
+  last!: number;
+  pageNumbers?: number[];
 
   currentRoute!: string;
   private destroy$ = new Subject();
@@ -46,16 +48,26 @@ export class MangaListsComponent implements OnInit, OnDestroy {
         },
       });
     } else if (route == 'magazine') {
-      this.loader = true;
-      this.manga.magazines().subscribe({
-        next: (res) => {
-          this.results = res.data;
-          this.paginated = res.pagination;
-          this.title = `Magazines (${this.paginated.items.total})`;
-          this.loader = false;
-        },
-      });
+      this.getMagazines();
     }
+  }
+
+  getMagazines(page?: number) {
+    this.loader = true;
+    this.manga.magazines(page).subscribe({
+      next: (res) => {
+        this.results = res.data;
+        this.title = `Magazines (${res.pagination.items.total})`;
+
+        this.showPagination = true;
+
+        this.current = res.pagination.current_page;
+        this.last = res.pagination.last_visible_page;
+        this.pageNumbers = Utils.paginationNumbers(this.last, this.current);
+
+        this.loader = false;
+      },
+    });
   }
 
   ngOnDestroy() {

@@ -3,13 +3,10 @@
     <button mat-icon-button (click)="home()">
       <mat-icon>keyboard_backspace</mat-icon>
     </button>
-    <div class="header">Manga Finder</div>
+    <div class="header">Manga Catalogue</div>
     <div class="flex-center">
       <button mat-icon-button routerLink="/manga/search">
         <mat-icon>search</mat-icon>
-      </button>
-      <button mat-icon-button routerLink="/manga/random">
-        <mat-icon>shuffle</mat-icon>
       </button>
       <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
@@ -50,6 +47,14 @@
         (click)="drawer.close()"
       >
         Recommendations
+      </button>
+      <button
+        mat-button
+        class="menu-btn"
+        routerLink="/manga/random"
+        (click)="drawer.close()"
+      >
+        Random
       </button>
     </mat-sidenav>
 

@@ -31,8 +31,8 @@ const routes: Routes = [
       {
         path: 'recommendation',
         loadChildren: () =>
-          import('./manga-results/manga-results.module').then(
-            (m) => m.MangaResultsModule
+          import('./manga-recommend/manga-recommend.module').then(
+            (m) => m.MangaRecommendModule
           ),
       },
       {

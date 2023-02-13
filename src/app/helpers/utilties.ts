@@ -67,4 +67,30 @@ export namespace Utils {
     const str = base64.split(',')[0];
     return str.indexOf('pdf') >= 0;
   }
+
+  export function paginationNumbers(last: number, current: number): number[] {
+    const first = 1; // The first page number
+    const displayCount = 5; // The number of page numbers to display
+    const halfDisplay = Math.floor(displayCount / 2);
+
+    let start = current - halfDisplay;
+    if (start < first) {
+      start = first;
+    } else if (start + displayCount - 1 > last) {
+      start = Math.max(first, last - displayCount + 1);
+    }
+    const end = Math.min(last, start + displayCount - 1);
+
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  }
+
+  export function filteredParams(...args: any[]): any {
+    const obj: any = {};
+    args.forEach((arg, index) => {
+      if (arg !== undefined) {
+        obj[arguments[index].name] = arg;
+      }
+    });
+    return obj;
+  }
 }
