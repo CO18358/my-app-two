@@ -5,6 +5,7 @@ import { MangaResultsRoutingModule } from './manga-results-routing.module';
 import { MangaResultsComponent } from './manga-results.component';
 import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [MangaResultsComponent],
@@ -13,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
     MangaResultsRoutingModule,
     SpinnerModule,
     MatIconModule,
+    MatTooltipModule,
   ],
 })
 export class MangaResultsModule {}

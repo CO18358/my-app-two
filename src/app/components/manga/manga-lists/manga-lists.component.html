@@ -2,7 +2,11 @@
   <div class="custom-header margin-16">{{ title }}</div>
 
   <div class="titles pad-16 flex-stretch">
-    <button class="neon-btn" *ngFor="let item of results">
+    <button
+      class="neon-btn cursor"
+      *ngFor="let item of results"
+      (click)="viewManga(item.mal_id)"
+    >
       {{ item.name }} ({{ item.count }})
     </button>
   </div>

@@ -29,6 +29,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'results',
+        loadChildren: () =>
+          import('./manga-results/manga-results.module').then(
+            (m) => m.MangaResultsModule
+          ),
+      },
+      {
         path: 'recommendation',
         loadChildren: () =>
           import('./manga-recommend/manga-recommend.module').then(
@@ -50,7 +57,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'details/:id',
+        path: 'id/:id',
         loadChildren: () =>
           import('./manga-info/manga-info.module').then(
             (m) => m.MangaInfoModule

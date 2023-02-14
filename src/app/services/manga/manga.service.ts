@@ -5,6 +5,7 @@ import { baseUrls } from 'src/app/helpers/constants';
 import {
   MangaCount,
   MangaInfo,
+  MangaShort,
   PaginatedResponse,
   RecommendManga,
 } from 'src/app/helpers/jikan.interfaces';
@@ -14,6 +15,22 @@ import {
 })
 export class MangaService {
   constructor(private http: HttpClient) {}
+
+  getMangas(params?: any): Observable<{
+    pagination: PaginatedResponse;
+    data: MangaShort[];
+  }> {
+    const url = `${baseUrls.jikan}manga`;
+    return this.http
+      .get<{ pagination: PaginatedResponse; data: MangaShort[] }>(url, {
+        params,
+      })
+      .pipe(
+        map((res) => {
+          return res;
+        })
+      );
+  }
 
   genres(): Observable<MangaCount[]> {
     return this.http
@@ -43,11 +60,11 @@ export class MangaService {
 
   topManga(params?: any): Observable<{
     pagination: PaginatedResponse;
-    data: MangaInfo[];
+    data: MangaShort[];
   }> {
     const url = `${baseUrls.jikan}top/manga`;
     return this.http
-      .get<{ pagination: PaginatedResponse; data: MangaInfo[] }>(url, {
+      .get<{ pagination: PaginatedResponse; data: MangaShort[] }>(url, {
         params,
       })
       .pipe(

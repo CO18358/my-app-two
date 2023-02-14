@@ -34,6 +34,14 @@ export interface RecommendManga {
   }[];
 }
 
+export interface MangaShort {
+  mal_id: number;
+  images: MangaImage;
+  title: string;
+  score: number;
+  rank: number;
+  favorites: number;
+}
 export interface MangaInfo {
   mal_id: number;
   url: string;
@@ -52,7 +60,6 @@ export interface MangaInfo {
     string: string;
   };
   score: number;
-  scored: number;
   scored_by: number;
   rank: number;
   popularity: number;

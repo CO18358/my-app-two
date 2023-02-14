@@ -58,16 +58,27 @@ export class MangaListsComponent implements OnInit, OnDestroy {
       next: (res) => {
         this.results = res.data;
         this.title = `Magazines (${res.pagination.items.total})`;
-
-        this.showPagination = true;
-
-        this.current = res.pagination.current_page;
-        this.last = res.pagination.last_visible_page;
-        this.pageNumbers = Utils.paginationNumbers(this.last, this.current);
-
+        this.showPagination = !(
+          !res.pagination.has_next_page && res.pagination.current_page == 1
+        );
+        if (this.showPagination) {
+          this.current = res.pagination.current_page;
+          this.last = res.pagination.last_visible_page;
+          this.pageNumbers = Utils.paginationNumbers(this.last, this.current);
+        }
         this.loader = false;
       },
     });
+  }
+
+  viewManga(id: number) {
+    let params;
+    if (this.currentRoute.includes('genre')) {
+      params = { genres: id };
+    } else if (this.currentRoute.includes('magazine')) {
+      params = { magazines: id };
+    }
+    this.router.navigate(['/manga/results'], { queryParams: params });
   }
 
   ngOnDestroy() {
