@@ -25,7 +25,6 @@ export interface MangaImage {
 }
 
 export interface RecommendManga {
-  date: string;
   content: string;
   entry: {
     images: MangaImage;

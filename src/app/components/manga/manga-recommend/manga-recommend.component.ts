@@ -44,14 +44,6 @@ export class MangaRecommendComponent implements OnInit, OnDestroy {
     this.getRecommendations({ page });
   }
 
-  parseDate(date: string): string {
-    return new Date(date).toLocaleDateString('en-US', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    });
-  }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

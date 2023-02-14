@@ -1,7 +1,7 @@
 <div *ngIf="!loader; else spinner">
-  <div class="custom-header">Recommended Manga</div>
+  <div class="custom-header margin-16">Recommended Manga</div>
 
-  <ul class="pagination flex-center pad-8" *ngIf="showPagination">
+  <ul class="pagination flex-center pad-8 no-margin" *ngIf="showPagination">
     <mat-icon
       class="page__btn cursor"
       *ngIf="current > 1"
@@ -41,16 +41,23 @@
   </ul>
 
   <div class="items pad-16 flex-stretch">
-    <div class="item flex-column" *ngFor="let item of results">
-      <h4 class="content">{{ item.content }}</h4>
-      <h4 class="date">Recommend on : {{ parseDate(item.date) }}</h4>
-      <span class="spacer"></span>
-      <div class="images">
-        <div class="image cursor" *ngFor="let image of item.entry">
-          <img [src]="image.images.jpg.large_image_url" alt="" loading="lazy" />
+    <div class="item flex-column pad-16" *ngFor="let item of results">
+      <div class="images flex-center">
+        <div
+          class="image cursor"
+          *ngFor="let image of item.entry"
+          [routerLink]="'/manga/' + image.mal_id"
+        >
           <h4 class="title text-center">{{ image.title }}</h4>
+          <img
+            class="fit-image"
+            [src]="image.images.jpg.large_image_url"
+            alt=""
+            loading="lazy"
+          />
         </div>
       </div>
+      <h4 class="content">{{ item.content }}</h4>
     </div>
   </div>
 
