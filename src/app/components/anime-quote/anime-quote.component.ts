@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { map, Observable, startWith } from 'rxjs';
+import { map, Observable, startWith, Subscription } from 'rxjs';
 import { AnimeQuote } from 'src/app/helpers/interfaces';
 import { Utils } from 'src/app/helpers/utilties';
 
@@ -10,7 +10,7 @@ import { Utils } from 'src/app/helpers/utilties';
   templateUrl: './anime-quote.component.html',
   styleUrls: ['./anime-quote.component.scss'],
 })
-export class AnimeQuoteComponent implements OnInit {
+export class AnimeQuoteComponent implements OnInit, OnDestroy {
   loader!: boolean;
   quotesDb!: AnimeQuote[];
   results!: AnimeQuote[];
@@ -19,8 +19,11 @@ export class AnimeQuoteComponent implements OnInit {
   titles!: string[];
   showTitles: boolean = false;
   filteredTitles!: Observable<string[]>;
-
+  private subscription!: Subscription;
   constructor(private http: HttpClient) {}
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit() {
     this.initDb();
@@ -32,7 +35,7 @@ export class AnimeQuoteComponent implements OnInit {
 
   initDb() {
     this.loader = true;
-    this.http
+    this.subscription = this.http
       .get<AnimeQuote[]>('assets/data/animequotes.json')
       .subscribe((res) => {
         this.quotesDb = res;

@@ -42,7 +42,7 @@ export class MangaListsComponent implements OnInit, OnDestroy {
       this.loader = true;
       this.manga.genres().subscribe({
         next: (res) => {
-          this.results = res;
+          this.results = res.sort();
           this.title = `Genres (${this.results.length})`;
           this.loader = false;
         },
@@ -56,11 +56,10 @@ export class MangaListsComponent implements OnInit, OnDestroy {
     this.loader = true;
     this.manga.magazines(page).subscribe({
       next: (res) => {
-        this.results = res.data;
+        this.results = res.data.sort();
         this.title = `Magazines (${res.pagination.items.total})`;
-        this.showPagination = !(
-          !res.pagination.has_next_page && res.pagination.current_page == 1
-        );
+        this.showPagination =
+          res.pagination.has_next_page || res.pagination.current_page !== 1;
         if (this.showPagination) {
           this.current = res.pagination.current_page;
           this.last = res.pagination.last_visible_page;

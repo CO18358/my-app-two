@@ -31,6 +31,8 @@
         text-overflow: ellipsis;
       }
       .info {
+        justify-content: space-around;
+        flex-wrap: wrap;
         .score,
         .favorite {
           margin-right: 8px;
@@ -61,13 +63,13 @@
   }
 }
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 699px) {
   .cards .card {
     width: calc(33.33% - 16px);
   }
 }
 
-@media screen and (max-width: 449px) {
+@media screen and (max-width: 499px) {
   .cards .card {
     width: calc(50% - 16px);
   }

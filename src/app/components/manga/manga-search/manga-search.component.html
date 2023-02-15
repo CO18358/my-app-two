@@ -1,1 +1,7 @@
-<p>manga-search works!</p>
+<div *ngIf="!loader; else spinner">
+  <div class="custom-header margin-16">Search Manga</div>
+</div>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

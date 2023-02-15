@@ -29,12 +29,13 @@ export class MangaRecommendComponent implements OnInit, OnDestroy {
     this.loader = true;
     this.subscription = this.manga.recommendations(params).subscribe({
       next: (res) => {
-        this.results = res.data;
+        this.results = res.data.sort(
+          (a, b) => b.content.length - a.content.length
+        );
         this.showPagination = true;
         this.last = res.pagination.last_visible_page;
         this.pageNumbers = Utils.paginationNumbers(this.last, this.current);
         this.loader = false;
-        console.log(res);
       },
     });
   }
