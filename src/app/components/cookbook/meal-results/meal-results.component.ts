@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Meal } from 'src/app/helpers/interfaces';
 import { CookbookService } from 'src/app/services/cookbook/cookbook.service';
 
@@ -8,11 +9,12 @@ import { CookbookService } from 'src/app/services/cookbook/cookbook.service';
   templateUrl: './meal-results.component.html',
   styleUrls: ['./meal-results.component.scss'],
 })
-export class MealResultsComponent implements OnInit {
+export class MealResultsComponent implements OnInit, OnDestroy {
   key!: string;
   value!: string;
   showLoader!: boolean;
   results!: Meal[];
+  meals$!: Subscription;
   constructor(
     private cookbookService: CookbookService,
     private router: Router,
@@ -22,37 +24,50 @@ export class MealResultsComponent implements OnInit {
       const [[key, value]] = Object.entries(res);
       this.key = key;
       this.value = value;
-      this.search();
     });
   }
 
-  ngOnInit(): void {}
+  ngOnDestroy(): void {
+    this.meals$.unsubscribe();
+  }
+
+  ngOnInit(): void {
+    this.search();
+  }
   search() {
     this.showLoader = true;
     switch (this.key) {
       case 'dish':
-        this.cookbookService.searchMeal(this.value).subscribe((res) => {
-          this.results = res;
-          this.showLoader = false;
-        });
+        this.meals$ = this.cookbookService
+          .searchMeal(this.value)
+          .subscribe((res) => {
+            this.results = res;
+            this.showLoader = false;
+          });
         break;
       case 'category':
-        this.cookbookService.filterByCategory(this.value).subscribe((res) => {
-          this.results = res;
-          this.showLoader = false;
-        });
+        this.meals$ = this.cookbookService
+          .filterByCategory(this.value)
+          .subscribe((res) => {
+            this.results = res;
+            this.showLoader = false;
+          });
         break;
       case 'area':
-        this.cookbookService.filterByArea(this.value).subscribe((res) => {
-          this.results = res;
-          this.showLoader = false;
-        });
+        this.meals$ = this.cookbookService
+          .filterByArea(this.value)
+          .subscribe((res) => {
+            this.results = res;
+            this.showLoader = false;
+          });
         break;
       case 'ingredient':
-        this.cookbookService.filterByIngredient(this.value).subscribe((res) => {
-          this.results = res;
-          this.showLoader = false;
-        });
+        this.meals$ = this.cookbookService
+          .filterByIngredient(this.value)
+          .subscribe((res) => {
+            this.results = res;
+            this.showLoader = false;
+          });
         break;
       default:
         this.router.navigate(['/cookbook']);

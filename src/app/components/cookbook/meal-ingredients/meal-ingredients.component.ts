@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { MealPopularIngredient } from 'src/app/helpers/interfaces';
 import { CookbookService } from 'src/app/services/cookbook/cookbook.service';
 
@@ -8,9 +9,10 @@ import { CookbookService } from 'src/app/services/cookbook/cookbook.service';
   templateUrl: './meal-ingredients.component.html',
   styleUrls: ['./meal-ingredients.component.scss'],
 })
-export class MealIngredientsComponent implements OnInit {
+export class MealIngredientsComponent implements OnInit, OnDestroy {
   showLoader!: boolean;
   ingredients!: MealPopularIngredient[];
+  ingredients$!: Subscription;
   index: number = 0;
 
   constructor(
@@ -18,10 +20,15 @@ export class MealIngredientsComponent implements OnInit {
     private router: Router
   ) {
     this.showLoader = true;
-    this.cookbookService.popularIngredients().subscribe((res) => {
-      this.ingredients = res;
-      this.showLoader = false;
-    });
+    this.ingredients$ = this.cookbookService
+      .popularIngredients()
+      .subscribe((res) => {
+        this.ingredients = res;
+        this.showLoader = false;
+      });
+  }
+  ngOnDestroy(): void {
+    this.ingredients$.unsubscribe();
   }
 
   ngOnInit(): void {}

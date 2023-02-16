@@ -1,8 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import {
-  MangaInfo,
   MangaShort,
   PaginatedResponse,
 } from 'src/app/helpers/jikan.interfaces';
@@ -10,11 +7,11 @@ import { Utils } from 'src/app/helpers/utilties';
 import { MangaService } from 'src/app/services/manga/manga.service';
 
 @Component({
-  selector: 'app-manga-results',
-  templateUrl: './manga-results.component.html',
-  styleUrls: ['./manga-results.component.scss'],
+  selector: 'app-manga-top',
+  templateUrl: './manga-top.component.html',
+  styleUrls: ['./manga-top.component.scss'],
 })
-export class MangaResultsComponent implements OnInit {
+export class MangaTopComponent implements OnInit {
   loader!: boolean;
   title!: string;
   results!: MangaShort[];
@@ -23,30 +20,18 @@ export class MangaResultsComponent implements OnInit {
   current!: number;
   last!: number;
   pageNumbers?: number[];
-
   constructor(private manga: MangaService) {}
 
   ngOnInit(): void {
-    this.getData();
+    this.getTopManga();
   }
 
-  getData(obj?: any) {
-    // const sampleURL = 'https://example.com';
-    // const url = new URL(`${sampleURL}${this.currentRoute}`);
-    // const queryParams: any = {};
-    // url.searchParams.forEach((value, key) => {
-    //   queryParams[key] = value;
-    // });
-    // this.getMangas(Object.assign({}, queryParams, obj));
-  }
-
-  getMangas(params?: any) {
+  getTopManga(params?: any) {
     this.loader = true;
-    this.manga.getMangas(params).subscribe({
+    this.manga.topManga(params).subscribe({
       next: (res) => {
         this.setValues(res);
-        this.title = `Results (${res.pagination.items.total})`;
-        console.log(res, this.current, this.last);
+        this.title = `Top (${res.pagination.items.total})`;
       },
     });
   }

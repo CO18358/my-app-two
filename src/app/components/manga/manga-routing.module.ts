@@ -24,9 +24,7 @@ const routes: Routes = [
       {
         path: 'top',
         loadChildren: () =>
-          import('./manga-results/manga-results.module').then(
-            (m) => m.MangaResultsModule
-          ),
+          import('./manga-top/manga-top.module').then((m) => m.MangaTopModule),
       },
       {
         path: 'results',

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Drink } from 'src/app/helpers/interfaces';
 import { CocktailService } from 'src/app/services/cocktail/cocktail.service';
 
@@ -8,11 +9,12 @@ import { CocktailService } from 'src/app/services/cocktail/cocktail.service';
   templateUrl: './cocktail-results.component.html',
   styleUrls: ['./cocktail-results.component.scss'],
 })
-export class CocktailResultsComponent implements OnInit {
+export class CocktailResultsComponent implements OnInit, OnDestroy {
   key!: string;
   value!: string;
   showLoader!: boolean;
   results!: Drink[];
+  drink$!: Subscription;
   constructor(
     private cocktailService: CocktailService,
     private router: Router,
@@ -25,6 +27,9 @@ export class CocktailResultsComponent implements OnInit {
       this.search();
     });
   }
+  ngOnDestroy(): void {
+    this.drink$.unsubscribe();
+  }
 
   ngOnInit(): void {}
 
@@ -32,34 +37,44 @@ export class CocktailResultsComponent implements OnInit {
     this.showLoader = true;
     switch (this.key) {
       case 'drink':
-        this.cocktailService.searchDrink(this.value).subscribe((res) => {
-          this.results = res;
-          this.showLoader = false;
-        });
+        this.drink$ = this.cocktailService
+          .searchDrink(this.value)
+          .subscribe((res) => {
+            this.results = res;
+            this.showLoader = false;
+          });
         break;
       case 'category':
-        this.cocktailService.filterByCategory(this.value).subscribe((res) => {
-          this.results = res;
-          this.showLoader = false;
-        });
+        this.drink$ = this.cocktailService
+          .filterByCategory(this.value)
+          .subscribe((res) => {
+            this.results = res;
+            this.showLoader = false;
+          });
         break;
       case 'type':
-        this.cocktailService.filterByTpe(this.value).subscribe((res) => {
-          this.results = res;
-          this.showLoader = false;
-        });
+        this.drink$ = this.cocktailService
+          .filterByTpe(this.value)
+          .subscribe((res) => {
+            this.results = res;
+            this.showLoader = false;
+          });
         break;
       case 'ingredient':
-        this.cocktailService.filterByIngredient(this.value).subscribe((res) => {
-          this.results = res;
-          this.showLoader = false;
-        });
+        this.drink$ = this.cocktailService
+          .filterByIngredient(this.value)
+          .subscribe((res) => {
+            this.results = res;
+            this.showLoader = false;
+          });
         break;
       case 'glass':
-        this.cocktailService.filterByGlass(this.value).subscribe((res) => {
-          this.results = res;
-          this.showLoader = false;
-        });
+        this.drink$ = this.cocktailService
+          .filterByGlass(this.value)
+          .subscribe((res) => {
+            this.results = res;
+            this.showLoader = false;
+          });
         break;
       default:
         this.router.navigate(['/cocktail']);

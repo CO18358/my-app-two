@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatSliderChange } from '@angular/material/slider';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import {
   TriviaQuestion,
   TriviaQuestionDecoded,
@@ -37,9 +38,11 @@ export class TriviaComponent implements OnInit, OnDestroy {
   seconds!: number;
   intervalId = 0;
 
+  trivia$!: Subscription;
   constructor(private trivia: TriviaService, private router: Router) {}
   ngOnDestroy(): void {
     this.clearTimer();
+    this.trivia$.unsubscribe();
   }
 
   ngOnInit() {}
@@ -128,7 +131,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
   getTrivia() {
     this.loader = true;
 
-    this.trivia
+    this.trivia$ = this.trivia
       .getQuestions(this.amount, this.difficulty, this.type)
       .subscribe((res) => {
         this.questions = res.map((obj: TriviaQuestion) => {

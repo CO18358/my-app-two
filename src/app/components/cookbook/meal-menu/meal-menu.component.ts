@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map, Observable, startWith } from 'rxjs';
+import { map, Observable, startWith, Subscription } from 'rxjs';
 import { MealCategory } from 'src/app/helpers/interfaces';
 import { CookbookService } from 'src/app/services/cookbook/cookbook.service';
 
@@ -10,19 +10,22 @@ import { CookbookService } from 'src/app/services/cookbook/cookbook.service';
   templateUrl: './meal-menu.component.html',
   styleUrls: ['./meal-menu.component.scss'],
 })
-export class MealMenuComponent implements OnInit {
+export class MealMenuComponent implements OnInit, OnDestroy {
   showLoader: boolean = false;
   categories!: MealCategory[];
   areas!: string[];
   ingredients!: string[];
-
+  menu$!: Subscription;
   constructor(
     private cookbookService: CookbookService,
     private router: Router
   ) {}
+  ngOnDestroy(): void {
+    this.menu$.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.cookbookService.menu().subscribe((res) => {
+    this.menu$ = this.cookbookService.menu().subscribe((res) => {
       this.categories = res.categories;
       this.areas = res.areas;
       this.ingredients = res.ingredients;

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Meal } from 'src/app/helpers/interfaces';
 import { CookbookService } from 'src/app/services/cookbook/cookbook.service';
 
@@ -8,15 +9,18 @@ import { CookbookService } from 'src/app/services/cookbook/cookbook.service';
   templateUrl: './meal-dictionary.component.html',
   styleUrls: ['./meal-dictionary.component.scss'],
 })
-export class MealDictionaryComponent implements OnInit {
+export class MealDictionaryComponent implements OnInit, OnDestroy {
   showLoader!: boolean;
   results!: Meal[];
   char: string = 'a';
-
+  meals$!: Subscription;
   constructor(
     private cookbookService: CookbookService,
     private router: Router
   ) {}
+  ngOnDestroy(): void {
+    this.meals$.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.getRecipes();
@@ -24,10 +28,12 @@ export class MealDictionaryComponent implements OnInit {
 
   getRecipes() {
     this.showLoader = true;
-    this.cookbookService.mealDictionary(this.char).subscribe((res) => {
-      this.results = res;
-      this.showLoader = false;
-    });
+    this.meals$ = this.cookbookService
+      .mealDictionary(this.char)
+      .subscribe((res) => {
+        this.results = res;
+        this.showLoader = false;
+      });
   }
 
   nextChar() {

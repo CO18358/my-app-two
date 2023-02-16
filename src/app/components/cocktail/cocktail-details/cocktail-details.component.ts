@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { DrinkDetails } from 'src/app/helpers/interfaces';
 import { CocktailService } from 'src/app/services/cocktail/cocktail.service';
 
@@ -8,15 +9,20 @@ import { CocktailService } from 'src/app/services/cocktail/cocktail.service';
   templateUrl: './cocktail-details.component.html',
   styleUrls: ['./cocktail-details.component.scss'],
 })
-export class CocktailDetailsComponent implements OnInit {
+export class CocktailDetailsComponent implements OnInit, OnDestroy {
   showLoader!: boolean;
   drink!: DrinkDetails;
+
+  drink$!: Subscription;
   constructor(
     private cocktailService: CocktailService,
     private route: ActivatedRoute
   ) {
     const id = this.route.snapshot.paramMap.get('drinkId');
     id ? this.getDrink(id) : this.getRandomDrink();
+  }
+  ngOnDestroy(): void {
+    this.drink$.unsubscribe();
   }
 
   ngOnInit(): void {}
@@ -27,7 +33,7 @@ export class CocktailDetailsComponent implements OnInit {
 
   getDrink(id: string) {
     this.showLoader = true;
-    this.cocktailService.drinkById(id).subscribe((res) => {
+    this.drink$ = this.cocktailService.drinkById(id).subscribe((res) => {
       this.drink = res;
       this.showLoader = false;
     });
@@ -35,7 +41,7 @@ export class CocktailDetailsComponent implements OnInit {
 
   getRandomDrink() {
     this.showLoader = true;
-    this.cocktailService.randomDrink().subscribe((res) => {
+    this.drink$ = this.cocktailService.randomDrink().subscribe((res) => {
       this.drink = res;
       this.showLoader = false;
     });

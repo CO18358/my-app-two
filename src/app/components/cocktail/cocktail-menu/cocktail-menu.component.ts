@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CocktailService } from 'src/app/services/cocktail/cocktail.service';
 
 @Component({
@@ -7,19 +8,23 @@ import { CocktailService } from 'src/app/services/cocktail/cocktail.service';
   templateUrl: './cocktail-menu.component.html',
   styleUrls: ['./cocktail-menu.component.scss'],
 })
-export class CocktailMenuComponent implements OnInit {
+export class CocktailMenuComponent implements OnInit, OnDestroy {
   showLoader: boolean = false;
   categories!: string[];
   types!: string[];
   glasses!: string[];
   ingredients!: string[];
+  menu$!: Subscription;
   constructor(
     private cocktailService: CocktailService,
     private router: Router
   ) {}
+  ngOnDestroy(): void {
+    this.menu$.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.cocktailService.menu().subscribe((res) => {
+    this.menu$ = this.cocktailService.menu().subscribe((res) => {
       this.categories = res.categories;
       this.types = res.alcoholics;
       this.ingredients = res.ingredients;

@@ -19,10 +19,10 @@ export class AnimeQuoteComponent implements OnInit, OnDestroy {
   titles!: string[];
   showTitles: boolean = false;
   filteredTitles!: Observable<string[]>;
-  private subscription!: Subscription;
+  private quote$!: Subscription;
   constructor(private http: HttpClient) {}
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.quote$.unsubscribe();
   }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class AnimeQuoteComponent implements OnInit, OnDestroy {
 
   initDb() {
     this.loader = true;
-    this.subscription = this.http
+    this.quote$ = this.http
       .get<AnimeQuote[]>('assets/data/animequotes.json')
       .subscribe((res) => {
         this.quotesDb = res;

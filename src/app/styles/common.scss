@@ -208,6 +208,50 @@
     color: #cbe0dd;
   }
 }
+.mangas {
+  gap: 16px;
+  flex-wrap: wrap;
+  .manga {
+    width: calc(16.67% - 16px);
+    line-height: 0;
+    background-color: black;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 16px;
+    border: 1px solid;
+    .image {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+    .title {
+      line-height: 1.5;
+      font-family: "Poppins", sans-serif;
+      width: calc(100% - 16px);
+      .name,
+      .info {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .info {
+        justify-content: space-around;
+        flex-wrap: wrap;
+        .score,
+        .favorite {
+          margin-right: 8px;
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+        }
+        .score {
+          color: rgb(255, 230, 0);
+        }
+        .favorite {
+          color: rgb(255, 0, 68);
+        }
+      }
+    }
+  }
+}
 
 .custom-header {
   font-size: 32px;
@@ -216,7 +260,18 @@
   text-transform: uppercase;
   font-family: "Montserrat", cursive;
 }
-@media screen and (max-width: 799px) {
+
+@media screen and (max-width: 1099px) {
+  .mangas .manga {
+    width: calc(20% - 16px);
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .mangas .manga {
+    width: calc(25% - 16px);
+  }
+
   .meals .card {
     width: calc(33% - 28px);
   }
@@ -232,19 +287,29 @@
     }
   }
 }
-@media screen and (max-width: 499px) {
-  .meals .card {
-    width: calc(50% - 28px);
+
+@media screen and (max-width: 699px) {
+  .mangas .manga {
+    width: calc(33.33% - 16px);
   }
-  .recipe {
-    .ingredients .ingredient {
-      width: calc(50% - 48px);
-    }
-    .details .item {
-      width: calc(100% - 28px);
-    }
-    .section .item {
+}
+
+@media screen and (max-width: 499px) {
+  .mangas .manga {
+    width: calc(50% - 16px);
+    .meals .card {
       width: calc(50% - 28px);
+    }
+    .recipe {
+      .ingredients .ingredient {
+        width: calc(50% - 48px);
+      }
+      .details .item {
+        width: calc(100% - 28px);
+      }
+      .section .item {
+        width: calc(50% - 28px);
+      }
     }
   }
 }

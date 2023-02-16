@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CoinInfo } from 'src/app/helpers/interfaces';
 import { CryptoService } from 'src/app/services/crypto/crypto.service';
 
@@ -8,26 +9,32 @@ import { CryptoService } from 'src/app/services/crypto/crypto.service';
   templateUrl: './coin-details.component.html',
   styleUrls: ['./coin-details.component.scss'],
 })
-export class CoinDetailsComponent implements OnInit {
+export class CoinDetailsComponent implements OnInit, OnDestroy {
   loader!: boolean;
   coin!: CoinInfo;
-
+  coinId: string | null;
+  coin$!: Subscription;
   constructor(
     private cryptoService: CryptoService,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    const coinId = this.route.snapshot.paramMap.get('coinId');
-    coinId ? this.getCoinInfo(coinId) : this.router.navigate(['/crypto/coins']);
+    this.coinId = this.route.snapshot.paramMap.get('coinId');
+  }
+  ngOnDestroy(): void {
+    this.coin$.unsubscribe();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.coinId
+      ? this.getCoinInfo(this.coinId)
+      : this.router.navigate(['/crypto/coins']);
+  }
 
   getCoinInfo(coinId: string) {
     this.loader = true;
-    this.cryptoService.getCoinInfo(coinId).subscribe((res) => {
+    this.coin$ = this.cryptoService.getCoinInfo(coinId).subscribe((res) => {
       this.coin = res;
-
       this.loader = false;
     });
   }

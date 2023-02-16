@@ -37,14 +37,14 @@
     <mat-icon
       class="page__btn cursor"
       *ngIf="current > 1"
-      (click)="getData({ page: 1 })"
+      (click)="getTopManga({ page: 1 })"
     >
       keyboard_double_arrow_left
     </mat-icon>
     <mat-icon
       class="page__btn cursor"
       *ngIf="current > 1"
-      (click)="getData({ page: current - 1 })"
+      (click)="getTopManga({ page: current - 1 })"
     >
       chevron_left
     </mat-icon>
@@ -52,21 +52,21 @@
       class="page__num cursor"
       *ngFor="let num of pageNumbers"
       [class.active]="num == current"
-      (click)="getData({ page: num })"
+      (click)="getTopManga({ page: num })"
     >
       {{ num }}
     </li>
     <mat-icon
       class="page__btn cursor"
       *ngIf="current < last"
-      (click)="getData({ page: current + 1 })"
+      (click)="getTopManga({ page: current + 1 })"
     >
       chevron_right
     </mat-icon>
     <mat-icon
       class="page__btn cursor"
       *ngIf="current < last"
-      (click)="getData({ page: last })"
+      (click)="getTopManga({ page: last })"
     >
       keyboard_double_arrow_right
     </mat-icon>
