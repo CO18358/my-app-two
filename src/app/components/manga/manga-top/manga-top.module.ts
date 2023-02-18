@@ -6,6 +6,8 @@ import { MangaTopComponent } from './manga-top.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MangaTopComponent],
@@ -15,6 +17,8 @@ import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
     SpinnerModule,
     MatIconModule,
     MatTooltipModule,
+    MatSelectModule,
+    FormsModule,
   ],
 })
 export class MangaTopModule {}

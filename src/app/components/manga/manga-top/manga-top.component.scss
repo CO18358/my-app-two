@@ -1,3 +1,19 @@
 .custom-header {
-  border-left: 4px solid #e1177f;
+  border-left: 4px solid #17e15a;
+}
+.filters {
+  gap: 16px;
+  .filter {
+    width: min(calc(50% - 40px), 200px);
+    border: 1px solid;
+    padding: 8px;
+    gap: 4px;
+    border-radius: 8px;
+    background: rgba(47, 4, 78, 0.7);
+    mat-select {
+      ::ng-deep.mat-select-placeholder {
+        color: whitesmoke;
+      }
+    }
+  }
 }

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatSelectChange } from '@angular/material/select';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Manga } from 'src/app/helpers/jikan';
 import {
   MangaShort,
   PaginatedResponse,
@@ -11,24 +15,41 @@ import { MangaService } from 'src/app/services/manga/manga.service';
   templateUrl: './manga-top.component.html',
   styleUrls: ['./manga-top.component.scss'],
 })
-export class MangaTopComponent implements OnInit {
+export class MangaTopComponent implements OnInit, OnDestroy {
   loader!: boolean;
   title!: string;
   results!: MangaShort[];
 
   showPagination = false;
-  current!: number;
   last!: number;
   pageNumbers?: number[];
-  constructor(private manga: MangaService) {}
 
-  ngOnInit(): void {
-    this.getTopManga();
+  filters = Manga.Filter;
+  types = Manga.Type;
+  queryParams!: any;
+
+  manga$!: Subscription;
+  constructor(
+    private manga: MangaService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe((queryParams: Params) => {
+      this.queryParams = Object.fromEntries(Object.entries(queryParams));
+      console.log(queryParams);
+
+      this.getTopManga(queryParams);
+    });
   }
+  ngOnDestroy(): void {
+    this.manga$.unsubscribe();
+  }
+
+  ngOnInit(): void {}
 
   getTopManga(params?: any) {
     this.loader = true;
-    this.manga.topManga(params).subscribe({
+    this.manga$ = this.manga.topManga(params).subscribe({
       next: (res) => {
         this.setValues(res);
         this.title = `Top (${res.pagination.items.total})`;
@@ -45,10 +66,26 @@ export class MangaTopComponent implements OnInit {
       !res.pagination.has_next_page && res.pagination.current_page == 1
     );
     if (this.showPagination) {
-      this.current = res.pagination.current_page;
+      this.queryParams.page = res.pagination.current_page;
       this.last = res.pagination.last_visible_page;
-      this.pageNumbers = Utils.paginationNumbers(this.last, this.current);
+      this.pageNumbers = Utils.paginationNumbers(
+        this.last,
+        this.queryParams.page
+      );
     }
     this.loader = false;
+  }
+
+  mangaPage(page: number) {
+    this.queryParams.page = page;
+    this.navigate();
+  }
+
+  navigate() {
+    const queryParams = Utils.removeEmptyValues(this.queryParams);
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams,
+    });
   }
 }

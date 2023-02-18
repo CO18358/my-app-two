@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import {
   MangaInfo,
@@ -24,21 +24,20 @@ export class MangaResultsComponent implements OnInit {
   last!: number;
   pageNumbers?: number[];
 
-  constructor(private manga: MangaService) {}
+  params!: any;
 
-  ngOnInit(): void {
-    this.getData();
+  constructor(
+    private manga: MangaService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe((queryParams: Params) => {
+      this.params = Object.fromEntries(Object.entries(queryParams));
+      this.getMangas(queryParams);
+    });
   }
 
-  getData(obj?: any) {
-    // const sampleURL = 'https://example.com';
-    // const url = new URL(`${sampleURL}${this.currentRoute}`);
-    // const queryParams: any = {};
-    // url.searchParams.forEach((value, key) => {
-    //   queryParams[key] = value;
-    // });
-    // this.getMangas(Object.assign({}, queryParams, obj));
-  }
+  ngOnInit(): void {}
 
   getMangas(params?: any) {
     this.loader = true;
@@ -65,5 +64,18 @@ export class MangaResultsComponent implements OnInit {
       this.pageNumbers = Utils.paginationNumbers(this.last, this.current);
     }
     this.loader = false;
+  }
+
+  mangaPage(page: number) {
+    this.params.page = page;
+    this.navigate();
+  }
+
+  navigate() {
+    const queryParams = Utils.removeEmptyValues(this.params);
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams,
+    });
   }
 }

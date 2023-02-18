@@ -1,5 +1,35 @@
-<div *ngIf="!loader; else spinner">
+<ng-container *ngIf="!loader; else spinner">
   <div class="custom-header margin-16">{{ title }}</div>
+
+  <div class="filters flex-center">
+    <div class="filter flex-center">
+      <mat-label>Type:</mat-label>
+      <mat-select
+        [(ngModel)]="queryParams.type"
+        placeholder="All"
+        (selectionChange)="navigate()"
+      >
+        <mat-option value="">All</mat-option>
+        <mat-option *ngFor="let type of types" [value]="type">
+          {{ type | titlecase }}
+        </mat-option>
+      </mat-select>
+    </div>
+
+    <div class="filter flex-center">
+      <mat-label>Filter: </mat-label>
+      <mat-select
+        [(ngModel)]="queryParams.filter"
+        placeholder="Default"
+        (selectionChange)="navigate()"
+      >
+        <mat-option value="">Default</mat-option>
+        <mat-option *ngFor="let filter of filters" [value]="filter">
+          {{ filter | titlecase }}
+        </mat-option>
+      </mat-select>
+    </div>
+  </div>
 
   <div class="mangas pad-16 flex-stretch">
     <div
@@ -36,42 +66,42 @@
   <ul class="pagination flex-center pad-8" *ngIf="showPagination">
     <mat-icon
       class="page__btn cursor"
-      *ngIf="current > 1"
-      (click)="getTopManga({ page: 1 })"
+      *ngIf="queryParams.page > 1"
+      (click)="mangaPage(1)"
     >
       keyboard_double_arrow_left
     </mat-icon>
     <mat-icon
       class="page__btn cursor"
-      *ngIf="current > 1"
-      (click)="getTopManga({ page: current - 1 })"
+      *ngIf="queryParams.page > 1"
+      (click)="mangaPage(queryParams.page - 1)"
     >
       chevron_left
     </mat-icon>
     <li
       class="page__num cursor"
       *ngFor="let num of pageNumbers"
-      [class.active]="num == current"
-      (click)="getTopManga({ page: num })"
+      [class.active]="num == queryParams.page"
+      (click)="mangaPage(num)"
     >
       {{ num }}
     </li>
     <mat-icon
       class="page__btn cursor"
-      *ngIf="current < last"
-      (click)="getTopManga({ page: current + 1 })"
+      *ngIf="queryParams.page < last"
+      (click)="mangaPage(queryParams.page + 1)"
     >
       chevron_right
     </mat-icon>
     <mat-icon
       class="page__btn cursor"
-      *ngIf="current < last"
-      (click)="getTopManga({ page: last })"
+      *ngIf="queryParams.page < last"
+      (click)="mangaPage(last)"
     >
       keyboard_double_arrow_right
     </mat-icon>
   </ul>
-</div>
+</ng-container>
 
 <ng-template #spinner>
   <app-spinner></app-spinner>

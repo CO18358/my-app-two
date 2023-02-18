@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { RecommendManga } from 'src/app/helpers/jikan.interfaces';
 import { Utils } from 'src/app/helpers/utilties';
@@ -17,17 +18,23 @@ export class MangaRecommendComponent implements OnInit, OnDestroy {
   last!: number;
   pageNumbers?: number[];
 
-  private subscription!: Subscription;
-  constructor(private manga: MangaService) {}
-
-  ngOnInit(): void {
-    this.current = 1;
-    this.getRecommendations();
+  private manga$!: Subscription;
+  constructor(
+    private manga: MangaService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe((queryParams: Params) => {
+      this.current = queryParams['page'] || 1;
+      this.getRecommendations(queryParams);
+    });
   }
+
+  ngOnInit(): void {}
 
   getRecommendations(params?: any) {
     this.loader = true;
-    this.subscription = this.manga.recommendations(params).subscribe({
+    this.manga$ = this.manga.recommendations(params).subscribe({
       next: (res) => {
         this.results = res.data.sort(
           (a, b) => b.content.length - a.content.length
@@ -41,11 +48,13 @@ export class MangaRecommendComponent implements OnInit, OnDestroy {
   }
 
   recommendationPage(page: number) {
-    this.current = page;
-    this.getRecommendations({ page });
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page },
+    });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.manga$.unsubscribe();
   }
 }

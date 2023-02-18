@@ -194,7 +194,7 @@
   color: #2d4848;
   margin: 0 auto 16px;
   width: min(calc(100% - 48px), 320px);
-  gap: 8px;
+  gap: 4px;
   border-radius: 8px;
   .page__num {
     padding: 2px 8px;
@@ -296,20 +296,20 @@
 
 @media screen and (max-width: 499px) {
   .mangas .manga {
-    width: calc(50% - 16px);
-    .meals .card {
-      width: calc(50% - 28px);
+    width: calc(50% - 12px);
+  }
+  .meals .card {
+    width: calc(50% - 28px);
+  }
+  .recipe {
+    .ingredients .ingredient {
+      width: calc(50% - 48px);
     }
-    .recipe {
-      .ingredients .ingredient {
-        width: calc(50% - 48px);
-      }
-      .details .item {
-        width: calc(100% - 28px);
-      }
-      .section .item {
-        width: calc(50% - 28px);
-      }
+    .details .item {
+      width: calc(100% - 28px);
+    }
+    .section .item {
+      width: calc(50% - 28px);
     }
   }
 }

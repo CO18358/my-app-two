@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { MangaCount } from 'src/app/helpers/jikan.interfaces';
 import { Utils } from 'src/app/helpers/utilties';
 import { MangaService } from 'src/app/services/manga/manga.service';
@@ -22,6 +22,7 @@ export class MangaListsComponent implements OnInit, OnDestroy {
 
   currentRoute!: string;
   private destroy$ = new Subject();
+  private list$!: Subscription;
 
   constructor(private router: Router, private manga: MangaService) {}
 
@@ -40,7 +41,7 @@ export class MangaListsComponent implements OnInit, OnDestroy {
     const route = this.currentRoute.split('/').pop();
     if (route == 'genre') {
       this.loader = true;
-      this.manga.genres().subscribe({
+      this.list$ = this.manga.genres().subscribe({
         next: (res) => {
           this.results = res.sort();
           this.title = `Genres (${this.results.length})`;
@@ -54,7 +55,7 @@ export class MangaListsComponent implements OnInit, OnDestroy {
 
   getMagazines(page?: number) {
     this.loader = true;
-    this.manga.magazines(page).subscribe({
+    this.list$ = this.manga.magazines(page).subscribe({
       next: (res) => {
         this.results = res.data.sort();
         this.title = `Magazines (${res.pagination.items.total})`;
@@ -81,6 +82,7 @@ export class MangaListsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.list$.unsubscribe();
     this.destroy$.next(0);
     this.destroy$.complete();
   }

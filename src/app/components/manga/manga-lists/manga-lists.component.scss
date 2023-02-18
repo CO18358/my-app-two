@@ -7,16 +7,12 @@
   flex-wrap: wrap;
   .neon-btn {
     width: calc(20% - 40px);
-    border: 2px solid rgb(4, 2, 65);
-    color: #fff987;
+    border: 2px solid #f0f0f0;
+    color: #f0f0f0;
     background-color: rgba(4, 2, 65, 0.5);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    &:hover,
-    &:active {
-      box-shadow: 0 8px 8px -4px rgb(4, 2, 65);
-    }
   }
 }
 
