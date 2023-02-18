@@ -84,16 +84,6 @@ export namespace Utils {
     return Array.from({ length: end - start + 1 }, (_, i) => start + i);
   }
 
-  // export function filteredParams(...args: any[]): any {
-  //   const obj: any = {};
-  //   args.forEach((arg, index) => {
-  //     if (arg !== undefined) {
-  //       obj[arguments[index].name] = arg;
-  //     }
-  //   });
-  //   return obj;
-  // }
-
   export function removeEmptyValues(
     obj: Record<string, any>
   ): Record<string, any> {
@@ -101,4 +91,8 @@ export namespace Utils {
       Object.entries(obj).filter(([_, value]) => value !== '')
     );
   }
+
+  export const alphabetArray = Array.from({ length: 26 }, (_, index) =>
+    String.fromCharCode(97 + index)
+  );
 }

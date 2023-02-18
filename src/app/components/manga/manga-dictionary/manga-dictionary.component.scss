@@ -1,0 +1,32 @@
+.custom-header {
+  border-left: 4px solid #a9dd39;
+}
+
+.letters {
+  margin: 0 16px;
+  gap: 8px;
+  width: calc(100% - 32px);
+  flex-wrap: wrap;
+  .letter {
+    text-transform: uppercase;
+    overflow: auto;
+    background-color: black;
+    border: 2px solid;
+    border-radius: 50%;
+    min-width: 24px;
+    height: 24px;
+    &:hover {
+      color: #f0f0f0;
+      background-color: #0269a4;
+    }
+  }
+
+  .active,
+  .active:hover,
+  .active:active {
+    background-color: #f0f0f0;
+    color: #0269a4;
+    font-weight: bold;
+    border: 2px solid #f0f0f0;
+  }
+}

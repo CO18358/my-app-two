@@ -41,6 +41,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'dictionary',
+        loadChildren: () =>
+          import('./manga-dictionary/manga-dictionary.module').then(
+            (m) => m.MangaDictionaryModule
+          ),
+      },
+      {
         path: 'search',
         loadChildren: () =>
           import('./manga-search/manga-search.module').then(
@@ -60,6 +67,11 @@ const routes: Routes = [
           import('./manga-info/manga-info.module').then(
             (m) => m.MangaInfoModule
           ),
+      },
+      {
+        path: '',
+        redirectTo: '/manga/top',
+        pathMatch: 'full',
       },
     ],
   },

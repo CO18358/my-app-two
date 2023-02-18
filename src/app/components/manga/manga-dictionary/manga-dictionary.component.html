@@ -1,0 +1,85 @@
+<ng-container *ngIf="!loader; else spinner">
+  <div class="custom-header margin-16">{{ title }}</div>
+
+  <div class="letters flex-center">
+    <div
+      class="letter flex-center cursor"
+      *ngFor="let char of letters"
+      [class.active]="char == letter"
+      (click)="switchChar(char)"
+    >
+      {{ char }}
+    </div>
+  </div>
+
+  <div class="mangas pad-16 flex-stretch">
+    <div
+      class="manga flex-column cursor"
+      *ngFor="let item of results"
+      [routerLink]="'/manga/id/' + item.mal_id"
+    >
+      <img
+        class="image"
+        [src]="item.images.jpg.large_image_url"
+        alt=""
+        loading="lazy"
+      />
+      <span class="spacer"></span>
+      <div class="title pad-8">
+        <div class="name text-center" [matTooltip]="item.title">
+          {{ item.title }}
+        </div>
+        <hr />
+        <div class="info flex-justify">
+          <div class="flex">
+            <mat-icon class="score">grade</mat-icon>
+            {{ item.score || "nil" }}
+          </div>
+          <div class="flex">
+            <mat-icon class="favorite">favorite</mat-icon>
+            {{ item.favorites }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="pagination flex-center pad-8" *ngIf="showPagination">
+    <mat-icon class="page__btn cursor" *ngIf="page > 1" (click)="mangaPage(1)">
+      keyboard_double_arrow_left
+    </mat-icon>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="page > 1"
+      (click)="mangaPage(page - 1)"
+    >
+      chevron_left
+    </mat-icon>
+    <li
+      class="page__num cursor"
+      *ngFor="let num of pageNumbers"
+      [class.active]="num == page"
+      (click)="mangaPage(num)"
+    >
+      {{ num }}
+    </li>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="page < last"
+      (click)="mangaPage(page + 1)"
+    >
+      chevron_right
+    </mat-icon>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="page < last"
+      (click)="mangaPage(last)"
+    >
+      keyboard_double_arrow_right
+    </mat-icon>
+  </ul>
+</ng-container>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>
