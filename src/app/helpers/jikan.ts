@@ -37,7 +37,6 @@ export namespace Manga {
     'discontinued',
     'upcoming',
   ];
-  export const OrderBy = ['name', 'count'];
   export const Genre = ['genres', 'explicit_genres', 'themes', 'demographics'];
   export const Filter = ['publishing', 'upcoming', 'bypopularity', 'favorite'];
   export const Type = [
@@ -48,6 +47,19 @@ export namespace Manga {
     'doujin',
     'manhwa',
     'manhua',
+  ];
+  export const OrderBy = [
+    'title',
+    'start_date',
+    'end_date',
+    'chapters',
+    'volumes',
+    'score',
+    'scored_by',
+    'rank',
+    'popularity',
+    'members',
+    'favorites',
   ];
 }
 

@@ -1,3 +1,62 @@
 .custom-header {
   border-left: 4px solid #17e1cd;
 }
+
+.adv-search-item {
+  margin: 16px auto;
+  width: min(calc(100% - 48px), 400px);
+  font-family: "Overlock", cursive;
+  gap: 16px;
+  .half-width {
+    width: calc(50% - 16px);
+  }
+  .label {
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 2px 2px #000;
+  }
+  .select {
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(12, 2, 19, 0.7);
+    mat-select {
+      ::ng-deep.mat-select-placeholder {
+        color: white;
+      }
+    }
+  }
+  .toggle {
+    width: 50%;
+    border: none;
+    border-radius: 16px;
+    mat-button-toggle {
+      background: #000;
+      width: 100%;
+      ::ng-deep.mat-button-toggle-label-content {
+        padding: 4px;
+        margin: 0;
+        line-height: 24px;
+      }
+    }
+    .active {
+      background: white;
+      color: black;
+    }
+  }
+}
+
+.search {
+  width: min(calc(100% - 48px), 800px);
+  padding: 2px 8px;
+  background: white;
+  color: black;
+  border-radius: 16px;
+  .input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+  }
+}
