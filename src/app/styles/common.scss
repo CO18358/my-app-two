@@ -214,12 +214,13 @@
   .manga {
     width: calc(33% - 40px);
     line-height: 0;
-    background-color: #f0f0f0;
     color: black;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 16px;
-    font-weight: bold;
     border-radius: 16px;
     gap: 16px;
+    background: #8e9eab; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #8e9eab, #eef2f3);
+    background: linear-gradient(to bottom, #8e9eab, #eef2f3);
     .image-container {
       width: 30%;
       box-shadow: 0px 0px 8px rgb(170, 170, 170);
@@ -232,6 +233,13 @@
       line-height: 1.5;
       font-family: "Poppins", sans-serif;
       width: calc(70% - 16px);
+      hr {
+        border: 1px solid white;
+      }
+      .title {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
       .title,
       .info {
         overflow: hidden;
@@ -242,6 +250,7 @@
         margin-top: 8px;
         justify-content: space-around;
         flex-wrap: wrap;
+
         .score,
         .favorite,
         .people {
@@ -270,7 +279,6 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-weight: 400;
       }
       .subtext {
         margin-top: 8px;
