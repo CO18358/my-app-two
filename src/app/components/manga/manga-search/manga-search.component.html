@@ -1,5 +1,5 @@
 <div *ngIf="!loader; else spinner">
-  <div class="custom-header margin-16">Search Manga</div>
+  <div class="custom-header margin-16">Search</div>
 
   <div class="flex search adv-search-item">
     <input type="text" class="input spacer" placeholder="Search Manga Here" />
@@ -68,6 +68,15 @@
         >{{ val | titlecase }}</mat-button-toggle
       >
     </mat-button-toggle-group>
+  </div>
+
+  <div class="flex-center adv-search-item">
+    <button mat-raised-button color="primary" (click)="navigate()">
+      <div class="flex-center">
+        <mat-icon>search</mat-icon>
+        <div>SEARCH</div>
+      </div>
+    </button>
   </div>
 </div>
 

@@ -3,31 +3,42 @@
 
   <div class="mangas pad-16 flex-stretch">
     <div
-      class="manga flex-column cursor"
+      class="manga flex-stretch cursor pad-16"
       *ngFor="let item of results"
       [routerLink]="'/manga/id/' + item.mal_id"
     >
-      <img
-        class="image"
-        [src]="item.images.jpg.large_image_url"
-        alt=""
-        loading="lazy"
-      />
-      <span class="spacer"></span>
-      <div class="title pad-8">
-        <div class="name text-center" [matTooltip]="item.title">
+      <div class="image-container">
+        <img
+          class="fit-image"
+          [src]="item.images.jpg.large_image_url"
+          alt=""
+          loading="lazy"
+        />
+      </div>
+      <div class="meta">
+        <div class="title text-center" [matTooltip]="item.title">
           {{ item.title }}
         </div>
         <hr />
-        <div class="info flex-justify">
+        <div class="synopsis">
+          {{ item.synopsis }}
+        </div>
+        <div class="info flex">
           <div class="flex">
             <mat-icon class="score">grade</mat-icon>
             {{ item.score || "nil" }}
           </div>
           <div class="flex">
+            <mat-icon class="people">people</mat-icon>
+            {{ item.scored_by }}
+          </div>
+          <div class="flex">
             <mat-icon class="favorite">favorite</mat-icon>
             {{ item.favorites }}
           </div>
+        </div>
+        <div class="subtext text-center">
+          {{ item.type }} • {{ item.status }}
         </div>
       </div>
     </div>

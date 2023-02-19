@@ -39,8 +39,11 @@ export interface MangaShort {
   images: MangaImage;
   title: string;
   score: number;
-  rank: number;
+  scored_by: number;
   favorites: number;
+  type: string;
+  synopsis: string;
+  status: string;
 }
 export interface MangaInfo {
   mal_id: number;

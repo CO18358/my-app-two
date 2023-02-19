@@ -5,7 +5,11 @@
     </button>
     <div class="header">Manga Catalogue</div>
     <div class="flex-center">
-      <button mat-icon-button routerLink="/manga/search">
+      <button
+        mat-icon-button
+        routerLink="/manga/search"
+        (click)="drawer.close()"
+      >
         <mat-icon>search</mat-icon>
       </button>
       <button mat-icon-button (click)="drawer.toggle()">

@@ -36,8 +36,6 @@ export class MangaTopComponent implements OnInit, OnDestroy {
   ) {
     this.route.queryParams.subscribe((queryParams: Params) => {
       this.queryParams = Object.fromEntries(Object.entries(queryParams));
-      console.log(queryParams);
-
       this.getTopManga(queryParams);
     });
   }
@@ -51,6 +49,8 @@ export class MangaTopComponent implements OnInit, OnDestroy {
     this.loader = true;
     this.manga$ = this.manga.topManga(params).subscribe({
       next: (res) => {
+        console.log(res.data);
+
         this.setValues(res);
         this.title = `Top (${res.pagination.items.total})`;
       },
