@@ -5,7 +5,6 @@ import { MangaDictionaryRoutingModule } from './manga-dictionary-routing.module'
 import MangaDictionaryComponent from './manga-dictionary.component';
 import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [MangaDictionaryComponent],
@@ -14,7 +13,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MangaDictionaryRoutingModule,
     SpinnerModule,
     MatIconModule,
-    MatTooltipModule,
   ],
 })
 export class MangaDictionaryModule {}

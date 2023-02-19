@@ -20,18 +20,14 @@
         />
         <mat-icon matSuffix (click)="search()">search</mat-icon>
       </div>
-      <button mat-button class="menu-btn" (click)="menu()">
-        <div class="button flex">
-          <mat-icon matPrefix>nightlife</mat-icon>
-          <div>Menu</div>
-        </div>
-      </button>
-      <button mat-button class="menu-btn" (click)="random()">
-        <div class="button flex">
-          <mat-icon matPrefix>local_bar</mat-icon>
-          <div>Random</div>
-        </div>
-      </button>
+      <div class="menu flex" (click)="menu()">
+        <mat-icon matPrefix>nightlife</mat-icon>
+        <div>Menu</div>
+      </div>
+      <div class="menu flex" (click)="random()">
+        <mat-icon matPrefix>local_bar</mat-icon>
+        <div>Random</div>
+      </div>
     </mat-sidenav>
 
     <mat-sidenav-content>

@@ -20,30 +20,22 @@
         />
         <mat-icon matSuffix (click)="search()">search</mat-icon>
       </div>
-      <button mat-button class="menu-btn" (click)="ingredients()">
-        <div class="button flex">
-          <mat-icon matPrefix>egg</mat-icon>
-          <div>Ingredients</div>
-        </div>
-      </button>
-      <button mat-button class="menu-btn" (click)="dictionary()">
-        <div class="button flex">
-          <mat-icon matPrefix>menu_book</mat-icon>
-          <div>Dictionary</div>
-        </div>
-      </button>
-      <button mat-button class="menu-btn" (click)="menu()">
-        <div class="button flex">
-          <mat-icon matPrefix>restaurant</mat-icon>
-          <div>Menu</div>
-        </div>
-      </button>
-      <button mat-button class="menu-btn" (click)="random()">
-        <div class="button flex">
-          <mat-icon matPrefix>fastfood</mat-icon>
-          <div>Random</div>
-        </div>
-      </button>
+      <div class="menu flex" (click)="ingredients()">
+        <mat-icon matPrefix>egg</mat-icon>
+        <div>Ingredients</div>
+      </div>
+      <div class="menu flex" (click)="dictionary()">
+        <mat-icon matPrefix>menu_book</mat-icon>
+        <div>Dictionary</div>
+      </div>
+      <div class="menu flex" (click)="menu()">
+        <mat-icon matPrefix>restaurant</mat-icon>
+        <div>Menu</div>
+      </div>
+      <div class="menu flex" (click)="random()">
+        <mat-icon matPrefix>fastfood</mat-icon>
+        <div>Random</div>
+      </div>
     </mat-sidenav>
 
     <mat-sidenav-content>

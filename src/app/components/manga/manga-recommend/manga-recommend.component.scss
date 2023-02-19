@@ -12,10 +12,10 @@
   .item {
     width: calc(33% - 48px);
     border-radius: 16px;
-    background: rgb(0 0 0 / 75%);
     box-shadow: 4px 4px 8px rgb(0 0 0 / 50%);
-    border: 4px solid #e11717;
-
+    background: #200122;
+    background: -webkit-linear-gradient(to right, #6f0000, #200122);
+    background: linear-gradient(to right, #6f0000, #200122);
     .images {
       gap: 16px;
       align-items: baseline;
@@ -24,15 +24,15 @@
       }
 
       .title {
-        font-family: "Fira Sans Condensed", sans-serif;
+        font-family: "Montserrat", cursive;
         color: yellow;
         margin-bottom: 4px;
       }
     }
 
     .content {
-      font-family: "Noto Serif", serif;
-      color: #35c0ff;
+      font-family: "Overlock", cursive;
+
       margin: 0;
     }
   }

@@ -5,7 +5,7 @@
   mat-sidenav-container {
     background: transparent;
     mat-sidenav {
-      background-color: black;
+      background-color: rgb(32, 32, 32);
       position: fixed;
       margin-top: 3rem;
       width: 240px;
@@ -14,7 +14,19 @@
       height: calc(100vh - 3rem);
     }
   }
-
+  .menu {
+    text-transform: uppercase;
+    text-align: center;
+    padding: 16px;
+    font-family: "Montserrat", cursive;
+    &:hover {
+      background-color: rgb(48, 48, 48);
+      border-right: 4px solid rgba(226, 106, 2, 0.893);
+      color: rgb(6, 196, 22);
+      cursor: pointer;
+      // transition: all ease-in-out 0.5s;
+    }
+  }
   .search {
     gap: 8px;
     background: whitesmoke;
@@ -31,16 +43,6 @@
       font-size: 20px;
       width: 20px;
       height: 20px;
-    }
-  }
-  .menu-btn {
-    margin: auto;
-    background-color: whitesmoke;
-    color: #2d2d2d;
-    width: calc(100% - 32px);
-    margin: 8px 16px;
-    .button {
-      gap: 8px;
     }
   }
 }

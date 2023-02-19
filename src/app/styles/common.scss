@@ -218,9 +218,11 @@
     box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 16px;
     border-radius: 16px;
     gap: 16px;
-    background: #8e9eab; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #8e9eab, #eef2f3);
-    background: linear-gradient(to bottom, #8e9eab, #eef2f3);
+    background-image: linear-gradient(
+      109.6deg,
+      rgba(204, 228, 247, 1) 11.2%,
+      rgba(237, 246, 250, 1) 100.2%
+    );
     .image-container {
       width: 30%;
       box-shadow: 0px 0px 8px rgb(170, 170, 170);

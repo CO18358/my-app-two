@@ -20,10 +20,8 @@
       <mat-label>Filter: </mat-label>
       <mat-select
         [(ngModel)]="queryParams.filter"
-        placeholder="Default"
         (selectionChange)="queryParams.page = 1; navigate()"
       >
-        <mat-option value="">Default</mat-option>
         <mat-option *ngFor="let filter of filters" [value]="filter">
           {{ filter | titlecase }}
         </mat-option>
@@ -46,7 +44,7 @@
         />
       </div>
       <div class="meta">
-        <div class="title text-center" [matTooltip]="item.title">
+        <div class="title text-center">
           {{ item.title }}
         </div>
         <hr />

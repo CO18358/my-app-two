@@ -20,56 +20,29 @@
 
   <mat-sidenav-container [hasBackdrop]="isMobile">
     <mat-sidenav #drawer position="end" mode="over">
-      <button
-        mat-button
-        class="menu-btn"
-        routerLink="/manga/top"
-        (click)="drawer.close()"
-      >
+      <div class="menu" routerLink="/manga/top" (click)="drawer.close()">
         Top Manga
-      </button>
-      <button
-        mat-button
-        class="menu-btn"
-        routerLink="/manga/genre"
-        (click)="drawer.close()"
-      >
+      </div>
+      <div class="menu" routerLink="/manga/genre" (click)="drawer.close()">
         Genres
-      </button>
-      <button
-        mat-button
-        class="menu-btn"
-        routerLink="/manga/magazine"
-        (click)="drawer.close()"
-      >
+      </div>
+      <div class="menu" routerLink="/manga/magazine" (click)="drawer.close()">
         Magazines
-      </button>
-      <button
-        mat-button
-        class="menu-btn"
+      </div>
+      <div
+        class="menu"
         routerLink="/manga/recommendation"
         (click)="drawer.close()"
       >
         Recommendations
-      </button>
-      <button
-        mat-button
-        class="menu-btn"
-        routerLink="/manga/dictionary"
-        (click)="drawer.close()"
-      >
+      </div>
+      <div class="menu" routerLink="/manga/dictionary" (click)="drawer.close()">
         Dictionary
-      </button>
-      <button
-        mat-button
-        class="menu-btn"
-        routerLink="/manga/random"
-        (click)="drawer.close()"
-      >
+      </div>
+      <div class="menu" routerLink="/manga/random" (click)="drawer.close()">
         Random
-      </button>
+      </div>
     </mat-sidenav>
-
     <mat-sidenav-content>
       <router-outlet name="manga"></router-outlet>
     </mat-sidenav-content>
