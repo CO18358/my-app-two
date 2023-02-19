@@ -1,0 +1,57 @@
+<div class="container fix-background full-width">
+  <mat-toolbar class="nav flex-justify">
+    <button mat-icon-button (click)="home()">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    <div class="header">Anime Catalogue</div>
+    <div class="flex-center">
+      <button
+        mat-icon-button
+        routerLink="/anime/search"
+        (click)="drawer.close()"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container [hasBackdrop]="isMobile">
+    <mat-sidenav #drawer position="end" mode="over">
+      <div class="menu" routerLink="/anime/top" (click)="drawer.close()">
+        Top Anime
+      </div>
+      <div class="menu" routerLink="/anime/seasons" (click)="drawer.close()">
+        Seasons
+      </div>
+      <div class="menu" routerLink="/anime/genre" (click)="drawer.close()">
+        Genres
+      </div>
+      <div class="menu" routerLink="/anime/magazine" (click)="drawer.close()">
+        Producers
+      </div>
+      <div
+        class="menu"
+        routerLink="/anime/recommendation"
+        (click)="drawer.close()"
+      >
+        Recommendations
+      </div>
+      <div class="menu" routerLink="/anime/dictionary" (click)="drawer.close()">
+        Dictionary
+      </div>
+      <div class="menu" routerLink="/anime/random" (click)="drawer.close()">
+        Random
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet name="anime"></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<ng-template #loader>
+  <app-spinner></app-spinner>
+</ng-template>

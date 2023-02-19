@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { RecommendManga } from 'src/app/helpers/jikan.interfaces';
+import { Recommended } from 'src/app/helpers/jikan.interfaces';
 import { Utils } from 'src/app/helpers/utilties';
 import { MangaService } from 'src/app/services/manga/manga.service';
 
@@ -12,7 +12,7 @@ import { MangaService } from 'src/app/services/manga/manga.service';
 })
 export class MangaRecommendComponent implements OnInit, OnDestroy {
   loader!: boolean;
-  results!: RecommendManga[];
+  results!: Recommended[];
   showPagination = false;
   current!: number;
   last!: number;

@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Manga } from 'src/app/helpers/jikan';
 import {
-  MangaShort,
+  ResultCard,
   PaginatedResponse,
 } from 'src/app/helpers/jikan.interfaces';
 import { Utils } from 'src/app/helpers/utilties';
@@ -18,7 +18,7 @@ import { MangaService } from 'src/app/services/manga/manga.service';
 export class MangaTopComponent implements OnInit, OnDestroy {
   loader!: boolean;
   title!: string;
-  results!: MangaShort[];
+  results!: ResultCard[];
 
   showPagination = false;
   last!: number;
@@ -59,7 +59,7 @@ export class MangaTopComponent implements OnInit, OnDestroy {
 
   private setValues(res: {
     pagination: PaginatedResponse;
-    data: MangaShort[];
+    data: ResultCard[];
   }) {
     this.results = res.data;
     this.showPagination = !(

@@ -5,38 +5,51 @@ export interface PaginatedResponse {
   last_visible_page: number;
 }
 
-export interface MangaCount {
+export interface ItemCount {
   count: number;
   mal_id: number;
   name: string;
   url: string;
 }
 
-export interface MangaType {
+export interface ItemType {
   type: string;
   mal_id: number;
   name: string;
   url: string;
 }
 
-export interface MangaImage {
+export interface Image {
   jpg: { image_url: string; small_image_url: string; large_image_url: string };
   webp: { image_url: string; small_image_url: string; large_image_url: string };
 }
 
-export interface RecommendManga {
+export interface Recommended {
   content: string;
   entry: {
-    images: MangaImage;
+    images: Image;
     mal_id: string;
     title: string;
     url: string;
   }[];
 }
 
-export interface MangaShort {
+export interface Producer {
   mal_id: number;
-  images: MangaImage;
+  url: string;
+  titles: {
+    type: string;
+    title: string;
+  }[];
+  images: Image;
+  favorites: number;
+  established: string;
+  about: string;
+  count: number;
+}
+export interface ResultCard {
+  mal_id: number;
+  images: Image;
   title: string;
   score: number;
   scored_by: number;
@@ -48,7 +61,7 @@ export interface MangaShort {
 export interface MangaInfo {
   mal_id: number;
   url: string;
-  images: MangaImage;
+  images: Image;
   approved: boolean;
   title: string;
   title_english: string;
@@ -70,10 +83,10 @@ export interface MangaInfo {
   favorites: number;
   synopsis: string;
   background: string;
-  authors: MangaType[];
-  serializations: MangaType[];
-  genres: MangaType[];
-  explicit_genres: MangaType[];
-  themes: MangaType[];
-  demographics: MangaType[];
+  authors: ItemType[];
+  serializations: ItemType[];
+  genres: ItemType[];
+  explicit_genres: ItemType[];
+  themes: ItemType[];
+  demographics: ItemType[];
 }

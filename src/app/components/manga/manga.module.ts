@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { MangaRoutingModule } from './manga-routing.module';
 import { MangaComponent } from './manga.component';
-import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -15,7 +14,6 @@ import { SpinnerModule } from 'src/app/shared/spinner/spinner.module';
   imports: [
     CommonModule,
     MangaRoutingModule,
-    FormsModule,
     SpinnerModule,
     MatToolbarModule,
     MatButtonModule,

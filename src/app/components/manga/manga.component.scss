@@ -1,6 +1,6 @@
 .container {
   min-height: 100vh;
-  background-image: url("/assets/backgrounds/movies.jpg");
+  background-image: url("/assets/backgrounds/manga.jpg");
 
   mat-sidenav-container {
     background: transparent;
@@ -24,7 +24,6 @@
       border-right: 4px solid rgba(33, 181, 250, 0.893);
       color: rgb(241, 252, 29);
       cursor: pointer;
-      // transition: all ease-in-out 0.5s;
     }
   }
 }

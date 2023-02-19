@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {
-  MangaShort,
+  ResultCard,
   PaginatedResponse,
 } from 'src/app/helpers/jikan.interfaces';
 import { Utils } from 'src/app/helpers/utilties';
@@ -18,10 +18,10 @@ interface DictParams {
   templateUrl: './manga-dictionary.component.html',
   styleUrls: ['./manga-dictionary.component.scss'],
 })
-export default class MangaDictionaryComponent implements OnInit, OnDestroy {
+export class MangaDictionaryComponent implements OnInit, OnDestroy {
   loader!: boolean;
   title!: string;
-  results!: MangaShort[];
+  results!: ResultCard[];
 
   showPagination = false;
   last!: number;
@@ -62,7 +62,7 @@ export default class MangaDictionaryComponent implements OnInit, OnDestroy {
 
   private setValues(res: {
     pagination: PaginatedResponse;
-    data: MangaShort[];
+    data: ResultCard[];
   }) {
     this.results = res.data;
     this.showPagination = !(

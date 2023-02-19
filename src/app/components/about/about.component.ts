@@ -17,6 +17,11 @@ export class AboutComponent implements OnInit {
       image: '/assets/thumbnails/games.png',
     },
     {
+      title: 'Anime Catalogue',
+      url: '/anime',
+      image: '/assets/thumbnails/anime.png',
+    },
+    {
       title: 'Manga Catalogue',
       url: '/manga',
       image: '/assets/thumbnails/manga.png',

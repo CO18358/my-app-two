@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subject, Subscription, takeUntil } from 'rxjs';
-import { MangaCount } from 'src/app/helpers/jikan.interfaces';
+import { ItemCount } from 'src/app/helpers/jikan.interfaces';
 import { Utils } from 'src/app/helpers/utilties';
 import { MangaService } from 'src/app/services/manga/manga.service';
 
@@ -13,7 +13,7 @@ import { MangaService } from 'src/app/services/manga/manga.service';
 export class MangaListsComponent implements OnInit, OnDestroy {
   loader!: boolean;
   title!: string;
-  results!: MangaCount[];
+  results!: ItemCount[];
 
   showPagination = false;
   current!: number;

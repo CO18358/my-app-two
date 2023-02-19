@@ -1,0 +1,96 @@
+<ng-container *ngIf="!loader; else spinner">
+  <div class="custom-header margin-16">{{ title }}</div>
+
+  <div class="letters flex-center">
+    <div
+      class="letter flex-center cursor"
+      *ngFor="let char of letters"
+      [class.active]="char == letter"
+      (click)="switchChar(char)"
+    >
+      {{ char }}
+    </div>
+  </div>
+
+  <div class="mangas pad-16 flex-stretch">
+    <div
+      class="manga flex-stretch cursor pad-16"
+      *ngFor="let item of results"
+      [routerLink]="'/anime/id/' + item.mal_id"
+    >
+      <div class="image-container">
+        <img
+          class="fit-image"
+          [src]="item.images.jpg.large_image_url"
+          alt=""
+          loading="lazy"
+        />
+      </div>
+      <div class="meta">
+        <div class="title text-center">
+          {{ item.title }}
+        </div>
+        <hr />
+        <div class="synopsis">
+          {{ item.synopsis }}
+        </div>
+        <div class="info flex">
+          <div class="flex">
+            <mat-icon class="score">grade</mat-icon>
+            {{ item.score || "nil" }}
+          </div>
+          <div class="flex">
+            <mat-icon class="people">people</mat-icon>
+            {{ item.scored_by }}
+          </div>
+          <div class="flex">
+            <mat-icon class="favorite">favorite</mat-icon>
+            {{ item.favorites }}
+          </div>
+        </div>
+        <div class="subtext text-center">
+          {{ item.type }} • {{ item.status }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="pagination flex-center pad-8" *ngIf="showPagination">
+    <mat-icon class="page__btn cursor" *ngIf="page > 1" (click)="animePage(1)">
+      keyboard_double_arrow_left
+    </mat-icon>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="page > 1"
+      (click)="animePage(page - 1)"
+    >
+      chevron_left
+    </mat-icon>
+    <li
+      class="page__num cursor"
+      *ngFor="let num of pageNumbers"
+      [class.active]="num == page"
+      (click)="animePage(num)"
+    >
+      {{ num }}
+    </li>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="page < last"
+      (click)="animePage(page + 1)"
+    >
+      chevron_right
+    </mat-icon>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="page < last"
+      (click)="animePage(last)"
+    >
+      keyboard_double_arrow_right
+    </mat-icon>
+  </ul>
+</ng-container>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

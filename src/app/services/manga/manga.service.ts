@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { baseUrls } from 'src/app/helpers/constants';
 import {
-  MangaCount,
+  ItemCount,
   MangaInfo,
-  MangaShort,
+  ResultCard,
   PaginatedResponse,
-  RecommendManga,
+  Recommended,
 } from 'src/app/helpers/jikan.interfaces';
 
 @Injectable({
@@ -18,11 +18,11 @@ export class MangaService {
 
   getMangas(params?: any): Observable<{
     pagination: PaginatedResponse;
-    data: MangaShort[];
+    data: ResultCard[];
   }> {
     const url = `${baseUrls.jikan}manga`;
     return this.http
-      .get<{ pagination: PaginatedResponse; data: MangaShort[] }>(url, {
+      .get<{ pagination: PaginatedResponse; data: ResultCard[] }>(url, {
         params,
       })
       .pipe(
@@ -32,9 +32,9 @@ export class MangaService {
       );
   }
 
-  genres(): Observable<MangaCount[]> {
+  genres(): Observable<ItemCount[]> {
     return this.http
-      .get<{ data: MangaCount[] }>(`${baseUrls.jikan}genres/manga`)
+      .get<{ data: ItemCount[] }>(`${baseUrls.jikan}genres/manga`)
       .pipe(
         map((res) => {
           return res.data;
@@ -44,13 +44,13 @@ export class MangaService {
 
   magazines(page?: number): Observable<{
     pagination: PaginatedResponse;
-    data: MangaCount[];
+    data: ItemCount[];
   }> {
     const url = page
       ? `${baseUrls.jikan}magazines?page=${page}`
       : `${baseUrls.jikan}magazines`;
     return this.http
-      .get<{ pagination: PaginatedResponse; data: MangaCount[] }>(url)
+      .get<{ pagination: PaginatedResponse; data: ItemCount[] }>(url)
       .pipe(
         map((res) => {
           return res;
@@ -60,11 +60,11 @@ export class MangaService {
 
   topManga(params?: any): Observable<{
     pagination: PaginatedResponse;
-    data: MangaShort[];
+    data: ResultCard[];
   }> {
     const url = `${baseUrls.jikan}top/manga`;
     return this.http
-      .get<{ pagination: PaginatedResponse; data: MangaShort[] }>(url, {
+      .get<{ pagination: PaginatedResponse; data: ResultCard[] }>(url, {
         params,
       })
       .pipe(
@@ -76,13 +76,13 @@ export class MangaService {
 
   recommendations(params?: any): Observable<{
     pagination: { has_next_page: boolean; last_visible_page: number };
-    data: RecommendManga[];
+    data: Recommended[];
   }> {
     const url = `${baseUrls.jikan}recommendations/manga`;
     return this.http
       .get<{
         pagination: { has_next_page: boolean; last_visible_page: number };
-        data: RecommendManga[];
+        data: Recommended[];
       }>(url, {
         params,
       })

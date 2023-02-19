@@ -13,6 +13,11 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'anime',
+    loadChildren: () =>
+      import('./components/anime/anime.module').then((m) => m.AnimeModule),
+  },
+  {
     path: 'manga',
     loadChildren: () =>
       import('./components/manga/manga.module').then((m) => m.MangaModule),
