@@ -42,7 +42,7 @@ export class TriviaComponent implements OnInit, OnDestroy {
   constructor(private trivia: TriviaService, private router: Router) {}
   ngOnDestroy(): void {
     this.clearTimer();
-    this.trivia$.unsubscribe();
+    this.trivia$ && this.trivia$.unsubscribe();
   }
 
   ngOnInit() {}

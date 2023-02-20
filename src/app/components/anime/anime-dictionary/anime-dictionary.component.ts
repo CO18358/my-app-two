@@ -52,7 +52,7 @@ export class AnimeDictionaryComponent implements OnInit, OnDestroy {
     const params: DictParams = { letter: this.letter };
     this.page > 1 && (params.page = this.page);
     this.loader = true;
-    this.anime$ = this.anime.getAnime(params).subscribe({
+    this.anime$ = this.anime.getAnimes(params).subscribe({
       next: (res) => {
         this.setValues(res);
         this.title = `Animes (${this.letter}: ${res.pagination.items.total})`;

@@ -52,6 +52,6 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.location$.unsubscribe();
-    this.current$.unsubscribe();
+    this.current$ && this.current$.unsubscribe();
   }
 }

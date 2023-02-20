@@ -16,7 +16,7 @@ import {
 export class AnimeService {
   constructor(private http: HttpClient) {}
 
-  getAnime(params?: any): Observable<{
+  getAnimes(params?: any): Observable<{
     pagination: PaginatedResponse;
     data: ResultCard[];
   }> {
