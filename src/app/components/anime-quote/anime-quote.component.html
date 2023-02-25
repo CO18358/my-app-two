@@ -1,16 +1,28 @@
 <div class="container fix-background full-width">
-  <app-titlebar title="anime quotes"></app-titlebar>
+  <mat-toolbar class="nav flex-justify">
+    <button mat-icon-button (click)="home()">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    <div class="header">AnimeQuotes</div>
+    <div class="flex">
+      <button mat-icon-button (click)="getTitles()">
+        <mat-icon>tv</mat-icon>
+      </button>
+      <button mat-icon-button (click)="getCharacters()">
+        <mat-icon>face</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
 
-  <div *ngIf="!loader; else spinner">
-    <div *ngIf="!showTitles; else animeTitles">
-      <div class="toggle" (click)="showTitles = true">Explore Titles</div>
-      <div class="cards pad-16 flex-stretch">
+  <ng-container *ngIf="!loader; else spinner">
+    <ng-container [ngSwitch]="view">
+      <div class="cards pad-16 flex-stretch" *ngSwitchCase="views.Quotes">
         <mat-card class="card" *ngFor="let result of results">
-          <h4 class="title">
+          <h4 class="title cursor" (click)="getCharQuotes(result.character)">
             {{ result.character }}
           </h4>
           <div class="name flex-justify">
-            <h5 class="cursor" (click)="filterAnime(result.anime)">
+            <h5 class="cursor" (click)="getTitleQuotes(result.anime)">
               {{ result.anime }}
             </h5>
             <mat-icon class="copy cursor" [cdkCopyToClipboard]="result.quote"
@@ -19,29 +31,33 @@
           </div>
           <p class="quote text-justify">{{ result.quote }}</p>
         </mat-card>
+        <button class="random" mat-mini-fab color="primary" (click)="random()">
+          <mat-icon>shuffle</mat-icon>
+        </button>
       </div>
-    </div>
-    <button class="random" mat-mini-fab color="primary" (click)="random()">
-      <mat-icon>shuffle</mat-icon>
-    </button>
-  </div>
-</div>
 
-<ng-template #animeTitles>
-  <div class="search-bar flex-justify">
-    <input [formControl]="query" placeholder="Enter Anime Title" />
-    <mat-icon matSuffix>search</mat-icon>
-  </div>
-  <div class="cards pad-16 flex-stretch">
-    <button
-      class="neon-btn"
-      *ngFor="let title of filteredTitles | async"
-      (click)="filterAnime(title)"
-    >
-      {{ title == "" ? "-" : title }}
-    </button>
-  </div>
-</ng-template>
+      <div class="cards flex-center pad-16" *ngSwitchCase="views.Titles">
+        <div
+          class="neon-btn cursor"
+          *ngFor="let title of filteredTitles | async"
+          (click)="getTitleQuotes(title)"
+        >
+          {{ title == "" ? "-" : title }}
+        </div>
+      </div>
+
+      <div class="cards flex-center pad-16" *ngSwitchCase="views.Characters">
+        <div
+          class="neon-btn cursor"
+          *ngFor="let title of filteredTitles | async"
+          (click)="getCharQuotes(title)"
+        >
+          {{ title == "" ? "-" : title }}
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
 
 <ng-template #spinner>
   <app-spinner></app-spinner>

@@ -10,8 +10,15 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  overflow-x: hidden;
   color: white;
+  overflow-x: hidden;
+}
+* {
+  scrollbar-width: auto;
+  -ms-overflow-style: none; /* Hide scrollbar in IE */
+}
+*::-webkit-scrollbar {
+  display: none;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

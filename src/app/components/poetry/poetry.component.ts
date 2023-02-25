@@ -77,7 +77,7 @@ export class PoetryComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.random$.unsubscribe();
     this.poets$.unsubscribe();
-    this.poem$.unsubscribe();
+    this.poem$ && this.poem$.unsubscribe();
     this.poems$ && this.poems$.unsubscribe();
   }
 }

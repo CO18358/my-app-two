@@ -1,5 +1,5 @@
 export const baseUrls = {
-  // animeQuotes: 'https://animechan.vercel.app/api/quotes',
+  quotes: 'https://animechan.vercel.app/api/',
   cocktailDb: 'https://www.thecocktaildb.com/api/json/v1/1/',
   mealDb: 'https://www.themealdb.com/api/json/v1/1/',
   crypto: 'https://api.coingecko.com/api/v3/',

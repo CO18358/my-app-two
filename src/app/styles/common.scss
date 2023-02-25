@@ -177,11 +177,9 @@
   background: none;
   line-height: 1;
   transition: 0.3s;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
   padding: 8px 12px;
   font-family: "Overlock", cursive;
-  font-weight: 600;
-  font-size: 16px;
   &:hover,
   &:active {
     transform: translateY(-4px);

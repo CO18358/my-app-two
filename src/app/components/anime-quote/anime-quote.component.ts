@@ -1,9 +1,16 @@
-import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, Observable, startWith, Subscription } from 'rxjs';
 import { AnimeQuote } from 'src/app/helpers/interfaces';
 import { Utils } from 'src/app/helpers/utilties';
+import { QuotesService } from 'src/app/services/quotes/quotes.service';
+
+enum View {
+  Quotes = 'quotes',
+  Titles = 'titles',
+  Characters = 'characters',
+}
 
 @Component({
   selector: 'app-anime-quote',
@@ -12,66 +19,83 @@ import { Utils } from 'src/app/helpers/utilties';
 })
 export class AnimeQuoteComponent implements OnInit, OnDestroy {
   loader!: boolean;
-  quotesDb!: AnimeQuote[];
   results!: AnimeQuote[];
+
+  views = View;
+  view!: string;
 
   query = new FormControl('');
   titles!: string[];
-  showTitles: boolean = false;
   filteredTitles!: Observable<string[]>;
+
+  isMobile = Utils.isMobile();
   private quote$!: Subscription;
-  constructor(private http: HttpClient) {}
+
+  constructor(private quotes: QuotesService, private location: Location) {}
+
   ngOnDestroy(): void {
     this.quote$.unsubscribe();
   }
-
-  ngOnInit() {
-    this.initDb();
-    this.filteredTitles = this.query.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value || ''))
-    );
+  home() {
+    this.location.back();
   }
 
-  initDb() {
-    this.loader = true;
-    this.quote$ = this.http
-      .get<AnimeQuote[]>('assets/data/animequotes.json')
-      .subscribe((res) => {
-        this.quotesDb = res;
-        this.random();
-        this.getTitles();
-        this.loader = false;
-      });
+  ngOnInit() {
+    this.random();
+    this.filteredTitles = this.query.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filter(value || '', this.titles))
+    );
   }
 
   random() {
-    this.showTitles = false;
-    this.results = Utils.shuffleArray(this.quotesDb)
-      .slice(0, 50)
-      .sort((a, b) => a.ID - b.ID);
+    this.loader = true;
+    this.quote$ = this.quotes.random().subscribe((res) => {
+      this.results = res;
+      this.view = this.views.Quotes;
+      this.loader = false;
+    });
   }
 
   getTitles() {
-    this.titles = Utils.uniqueArray(
-      this.quotesDb.map((res) => {
-        return res.anime;
-      })
-    ).sort();
+    this.loader = true;
+    this.quote$ = this.quotes.titles().subscribe((res) => {
+      this.titles = res.sort();
+      this.view = this.views.Titles;
+      this.loader = false;
+    });
   }
 
-  private _filter(value: string): string[] {
+  getCharacters() {
+    this.loader = true;
+    this.quote$ = this.quotes.characters().subscribe((res) => {
+      this.titles = res.sort();
+      this.view = this.views.Characters;
+      this.loader = false;
+    });
+  }
+
+  getTitleQuotes(title: string, page?: number) {
+    this.loader = true;
+    this.quote$ = this.quotes.animeQuotes(title, page).subscribe((res) => {
+      this.results = res.sort();
+      this.view = this.views.Quotes;
+      this.loader = false;
+    });
+  }
+
+  getCharQuotes(name: string, page?: number) {
+    this.loader = true;
+    this.quote$ = this.quotes.characterQuotes(name, page).subscribe((res) => {
+      this.results = res.sort();
+      this.view = this.views.Quotes;
+      this.loader = false;
+    });
+  }
+
+  private _filter(value: string, array: string[]): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.titles.filter((option) =>
-      option.toLowerCase().includes(filterValue)
-    );
-  }
-
-  filterAnime(title: string) {
-    this.showTitles = false;
-    this.results = this.quotesDb
-      .filter((res) => res.anime == title)
-      .sort((a, b) => a.ID - b.ID);
+    return array.filter((option) => option.toLowerCase().includes(filterValue));
   }
 }

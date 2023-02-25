@@ -5,15 +5,12 @@
   .cards {
     gap: 16px;
     flex-wrap: wrap;
-
     .card {
       width: calc(50% - 44px);
       background: rgba(0, 0, 0, 0.2);
       border-radius: 16px;
-      backdrop-filter: blur(4px);
-      border: 2px solid;
       line-height: 1;
-
+      box-shadow: 4px 4px 8px #222;
       .title {
         font-size: 20px;
         letter-spacing: 1px;
@@ -35,7 +32,7 @@
         margin-bottom: 4px;
         h5 {
           margin: 0;
-          color: rgb(62, 235, 28);
+          color: rgb(148 205 255);
         }
         .copy {
           font-size: 14px;
@@ -46,15 +43,18 @@
           }
         }
       }
+      &:hover,
+      &:active {
+        background-color: rgb(255 255 255 / 0.05);
+      }
     }
 
     .neon-btn {
-      border: 2px solid #8214f0;
-      color: #14f0e1;
-
+      border: 2px solid #476490;
+      color: #eff7f6;
       &:hover,
       &:active {
-        box-shadow: 0 8px 8px -4px #8214f0;
+        box-shadow: 0 8px 8px -4px #476490;
       }
     }
   }
