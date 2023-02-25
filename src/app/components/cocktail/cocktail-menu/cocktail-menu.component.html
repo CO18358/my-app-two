@@ -41,7 +41,7 @@
       (click)="lookupIngredient(ingredient)"
     >
       <div class="image">
-        <img [src]="imagePath(ingredient)" alt="" loading="lazy" />
+        <img [src]="imagePath(ingredient)" alt="" loading="eager" />
       </div>
       {{ ingredient }}
     </div>

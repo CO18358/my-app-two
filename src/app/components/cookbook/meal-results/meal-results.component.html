@@ -10,7 +10,7 @@
       *ngFor="let meal of results"
       (click)="gotoMeal(meal.idMeal)"
     >
-      <img class="image" [src]="meal.strMealThumb" loading="lazy" />
+      <img class="image" [src]="meal.strMealThumb" loading="eager" />
       <div class="title text-center">
         <div>{{ meal.strMeal }}</div>
       </div>

@@ -8,7 +8,9 @@
       *ngFor="let category of categories"
       (click)="lookupCategory(category.strCategory)"
     >
-      <div class="image"><img [src]="category.strCategoryThumb" alt="" /></div>
+      <div class="image">
+        <img [src]="category.strCategoryThumb" alt="" loading="eager" />
+      </div>
       {{ category.strCategory }}
     </div>
   </div>
@@ -31,7 +33,9 @@
       *ngFor="let ingredient of ingredients"
       (click)="lookupIngredient(ingredient)"
     >
-      <div class="image"><img [src]="imagePath(ingredient)" alt="" /></div>
+      <div class="image">
+        <img [src]="imagePath(ingredient)" alt="" loading="eager" />
+      </div>
       {{ ingredient }}
     </div>
   </div>

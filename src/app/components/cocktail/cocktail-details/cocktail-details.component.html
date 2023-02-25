@@ -1,7 +1,7 @@
 <div class="recipe" *ngIf="!showLoader; else loader">
   <div class="header heading-a">{{ drink.strDrink }}</div>
   <div class="card">
-    <img class="card_image" [src]="drink.strDrinkThumb" />
+    <img class="card_image" [src]="drink.strDrinkThumb" loading="eager" />
   </div>
 
   <div class="header heading-d">Details</div>
@@ -19,7 +19,7 @@
       *ngFor="let ingredient of drink.ingredients"
     >
       <div class="image">
-        <img [src]="imagePath(ingredient.ingredient)" alt="" />
+        <img [src]="imagePath(ingredient.ingredient)" alt="" loading="eager" />
       </div>
       <div class="name">{{ ingredient.ingredient }}</div>
       <div class="measure">{{ ingredient.measure }}</div>

@@ -9,7 +9,12 @@
       *ngFor="let drink of results"
       (click)="gotoDrink(drink.idDrink)"
     >
-      <img class="image" [src]="drink.strDrinkThumb" />
+      <img
+        class="image"
+        [src]="drink.strDrinkThumb"
+        loading="eager
+      "
+      />
       <div class="title text-center">
         {{ drink.strDrink }}
       </div>
