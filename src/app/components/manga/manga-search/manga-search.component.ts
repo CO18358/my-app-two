@@ -26,7 +26,7 @@ export class MangaSearchComponent implements OnInit {
   statuses = Manga.Status;
   scores = [6, 7, 8, 9, 10];
   orders = Manga.OrderBy;
-  params: SearchParams = { score: 8 };
+  params: SearchParams = { q: '' };
   sorts = Sort;
   constructor(private router: Router) {}
 

@@ -55,13 +55,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'random',
-        loadChildren: () =>
-          import('./manga-info/manga-info.module').then(
-            (m) => m.MangaInfoModule
-          ),
-      },
-      {
         path: 'id/:id',
         loadChildren: () =>
           import('./manga-info/manga-info.module').then(

@@ -1,1 +1,80 @@
-<p>manga-info works!</p>
+<div class="pad-16" *ngIf="!loader; else spinner">
+  <div class="game image-container flex-center">
+    <img class="fit-image" [src]="result.images.jpg.image_url" alt="" />
+  </div>
+
+  <div class="info-cards flex-stretch">
+    <div class="info-card">
+      <div class="info-card-title pad-16">
+        <div>{{ result.title }}</div>
+      </div>
+      <div class="info-card-data pad-16">
+        <ul>
+          <li>Type: {{ result.type }}</li>
+          <li>Status: {{ result.status }}</li>
+          <li>Publishment: {{ result.published.string }}</li>
+          <li>Rank: {{ result.rank || "-" }}</li>
+          <li *ngIf="result.score">
+            Score: {{ result.score }} ({{ result.scored_by }})
+          </li>
+          <li>Favourites: {{ result.favorites || "-" }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-title pad-16">
+        <div>{{ result.title }}</div>
+      </div>
+      <div class="info-card-data pad-16">
+        <ul>
+          <li>
+            Authors:
+            <span *ngFor="let item of result.authors">
+              {{ item.name.replace(",", "") }}
+            </span>
+          </li>
+          <li>
+            Genres:
+            <span
+              class="link"
+              *ngFor="let item of genres"
+              (click)="genre(item.mal_id)"
+            >
+              {{ item.name }}
+            </span>
+          </li>
+          <li>
+            Serialization:
+            <span
+              class="link"
+              *ngFor="let item of result.serializations"
+              (click)="magazine(item.mal_id)"
+            >
+              {{ item.name }}
+            </span>
+          </li>
+          <li>Volumes: {{ result.volumes || "-" }}</li>
+          <li>Chapters: {{ result.chapters || "-" }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-card" *ngIf="result.synopsis">
+      <div class="info-card-title pad-16">Synopsis</div>
+      <div class="info-card-data pad-16">
+        {{ result.synopsis }}
+      </div>
+    </div>
+
+    <div class="info-card" *ngIf="result.background">
+      <div class="info-card-title pad-16">Background</div>
+      <div class="info-card-data pad-16">
+        {{ result.background }}
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

@@ -25,10 +25,12 @@ export class MealMenuComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.showLoader = true;
     this.menu$ = this.cookbookService.menu().subscribe((res) => {
       this.categories = res.categories;
       this.areas = res.areas;
       this.ingredients = res.ingredients;
+      this.showLoader = false;
     });
   }
 

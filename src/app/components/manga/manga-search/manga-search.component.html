@@ -2,7 +2,12 @@
   <div class="custom-header margin-16">Search</div>
 
   <div class="flex search adv-search-item">
-    <input type="text" class="input spacer" placeholder="Search Manga Here" />
+    <input
+      type="text"
+      class="input spacer"
+      placeholder="Search Manga Here"
+      [(ngModel)]="params.q"
+    />
     <button mat-icon-button (click)="navigate()">
       <mat-icon>search</mat-icon>
     </button>

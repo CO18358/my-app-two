@@ -92,4 +92,9 @@ export class MangaService {
         })
       );
   }
+
+  getManga(id: number) {
+    const url = `${baseUrls.jikan}manga/${id}/full`;
+    return this.http.get<{ data: MangaInfo }>(url).pipe(map((res) => res.data));
+  }
 }

@@ -233,6 +233,7 @@
       line-height: 1.5;
       font-family: "Poppins", sans-serif;
       width: calc(70% - 16px);
+      font-size: 12px;
       hr {
         border: 1px solid white;
       }
@@ -275,7 +276,7 @@
         max-width: 400px;
         margin: 0 auto;
         line-height: 1.2;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;

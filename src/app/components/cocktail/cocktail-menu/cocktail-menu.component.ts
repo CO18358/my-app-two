@@ -24,11 +24,13 @@ export class CocktailMenuComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.showLoader = true;
     this.menu$ = this.cocktailService.menu().subscribe((res) => {
       this.categories = res.categories;
       this.types = res.alcoholics;
       this.ingredients = res.ingredients;
       this.glasses = res.glasses;
+      this.showLoader = false;
     });
   }
 
