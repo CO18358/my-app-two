@@ -42,15 +42,15 @@ export class AnimeService {
       );
   }
 
-  producers(params?: any): Observable<{
+  producers(page?: number): Observable<{
     pagination: PaginatedResponse;
     data: Producer[];
   }> {
-    const url = `${baseUrls.jikan}producers`;
+    const url = page
+      ? `${baseUrls.jikan}producers?page=${page}`
+      : `${baseUrls.jikan}producers`;
     return this.http
-      .get<{ pagination: PaginatedResponse; data: Producer[] }>(url, {
-        params,
-      })
+      .get<{ pagination: PaginatedResponse; data: Producer[] }>(url)
       .pipe(
         map((res) => {
           return res;

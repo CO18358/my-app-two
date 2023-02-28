@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Manga } from 'src/app/helpers/jikan';
+import { Anime } from 'src/app/helpers/jikan';
 import {
   ResultCard,
   PaginatedResponse,
@@ -23,8 +23,8 @@ export class AnimeTopComponent implements OnInit, OnDestroy {
   last!: number;
   pageNumbers?: number[];
 
-  filters = Manga.Filter;
-  types = Manga.Type;
+  filters = Anime.Filter;
+  types = Anime.Type;
   queryParams!: any;
 
   anime$!: Subscription;

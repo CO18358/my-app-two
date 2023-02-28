@@ -1,1 +1,17 @@
-<p>anime-genres works!</p>
+<div *ngIf="!loader; else spinner">
+  <div class="custom-header margin-16">{{ title }}</div>
+
+  <div class="titles pad-16 flex-stretch">
+    <div
+      class="neon-btn text-center cursor"
+      *ngFor="let item of results"
+      (click)="viewAnime(item.mal_id)"
+    >
+      {{ item.name }} ({{ item.count }})
+    </div>
+  </div>
+</div>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

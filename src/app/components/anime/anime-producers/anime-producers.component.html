@@ -1,1 +1,57 @@
-<p>anime-producers works!</p>
+<div *ngIf="!loader; else spinner">
+  <div class="custom-header margin-16">{{ title }}</div>
+
+  <div class="titles pad-16 flex-stretch">
+    <div
+      class="neon-btn text-center cursor"
+      *ngFor="let item of results"
+      (click)="viewAnime(item.mal_id)"
+    >
+      <img class="fit-image" [src]="item.images.jpg.image_url" alt="" />
+      <div class="name">{{ item.titles[0].title }} ({{ item.count }})</div>
+    </div>
+  </div>
+
+  <ul class="pagination flex-center pad-8" *ngIf="showPagination">
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current > 1"
+      (click)="getAnime(1)"
+    >
+      keyboard_double_arrow_left
+    </mat-icon>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current > 1"
+      (click)="getAnime(current - 1)"
+    >
+      chevron_left
+    </mat-icon>
+    <li
+      class="page__num cursor"
+      *ngFor="let num of pageNumbers"
+      [class.active]="num == current"
+      (click)="getAnime(num)"
+    >
+      {{ num }}
+    </li>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current < last"
+      (click)="getAnime(current + 1)"
+    >
+      chevron_right
+    </mat-icon>
+    <mat-icon
+      class="page__btn cursor"
+      *ngIf="current < last"
+      (click)="getAnime(last)"
+    >
+      keyboard_double_arrow_right
+    </mat-icon>
+  </ul>
+</div>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

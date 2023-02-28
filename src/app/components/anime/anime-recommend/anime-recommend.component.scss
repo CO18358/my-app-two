@@ -13,20 +13,24 @@
     width: calc(33% - 48px);
     border-radius: 16px;
     box-shadow: 4px 4px 8px rgb(0 0 0 / 50%);
-    background: #200122;
-    background: -webkit-linear-gradient(to right, #6f0000, #200122);
-    background: linear-gradient(to right, #6f0000, #200122);
+    color: #200122;
+    background-color: #8ec5fc;
+    background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+
     .images {
       gap: 16px;
       align-items: baseline;
+      width: 100%;
       .image {
-        width: 50%;
-      }
-
-      .title {
-        font-family: "Montserrat", cursive;
-        color: yellow;
-        margin-bottom: 4px;
+        width: calc(50% - 16px);
+        .title {
+          font-family: "Montserrat", cursive;
+          color: rgb(170 15 15);
+          margin-bottom: 4px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
       }
     }
 

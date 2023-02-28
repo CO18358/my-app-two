@@ -8,7 +8,6 @@
 .items {
   gap: 16px;
   flex-wrap: wrap;
-
   .item {
     width: calc(33% - 48px);
     border-radius: 16px;
@@ -19,14 +18,17 @@
     .images {
       gap: 16px;
       align-items: baseline;
+      width: 100%;
       .image {
-        width: 50%;
-      }
-
-      .title {
-        font-family: "Montserrat", cursive;
-        color: yellow;
-        margin-bottom: 4px;
+        width: calc(50% - 16px);
+        .title {
+          font-family: "Montserrat", cursive;
+          color: yellow;
+          margin-bottom: 4px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
       }
     }
 

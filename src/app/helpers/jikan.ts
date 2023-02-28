@@ -1,32 +1,8 @@
 export namespace Anime {
-  export enum AnimeType {
-    TV = 'tv',
-    Movie = 'movie',
-    OVA = 'ova',
-    Special = 'special',
-    ONA = 'ona',
-    Music = 'music',
-  }
-
-  export enum AnimeFilter {
-    Airing = 'airing',
-    Upcoming = 'upcoming',
-    Popular = 'bypopularity',
-    Favorite = 'favorite',
-  }
-  export enum AnimeStatus {
-    Airing = 'airing',
-    Complete = 'complete',
-    Upcoming = 'upcoming',
-  }
-  export enum AnimeRating {
-    All = 'g',
-    Childer = 'pg',
-    Teen = 'pg13',
-    AdultLang = 'r17',
-    Adult = 'r',
-    Hentai = 'rx',
-  }
+  export const Type = ['tv', 'movie', 'ova', 'special', 'ona', 'music'];
+  export const Filter = ['airing', 'upcoming', 'bypopularity', 'favorite'];
+  export const Status = ['airing', 'complete', 'upcoming'];
+  export const Rating = ['g', 'pg', 'pg13', 'r17', 'r', 'rx'];
 }
 
 export namespace Manga {
@@ -37,7 +13,6 @@ export namespace Manga {
     'discontinued',
     'upcoming',
   ];
-  export const Genre = ['genres', 'explicit_genres', 'themes', 'demographics'];
   export const Filter = ['publishing', 'upcoming', 'bypopularity', 'favorite'];
   export const Type = [
     'manga',
@@ -64,3 +39,4 @@ export namespace Manga {
 }
 
 export const Sort = ['desc', 'asc'];
+export const Genre = ['genres', 'explicit_genres', 'themes', 'demographics'];

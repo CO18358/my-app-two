@@ -43,7 +43,6 @@ export interface Producer {
   }[];
   images: Image;
   favorites: number;
-  established: string;
   about: string;
   count: number;
 }

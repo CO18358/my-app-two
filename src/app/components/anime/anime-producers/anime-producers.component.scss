@@ -1,0 +1,32 @@
+.custom-header {
+  border-left: 4px solid #e23ab5;
+}
+
+.titles {
+  gap: 16px;
+  flex-wrap: wrap;
+  .neon-btn {
+    width: calc(20% - 40px);
+    border: 2px solid #f0f0f0;
+    color: #f0f0f0;
+    background-color: rgba(4, 2, 65, 0.5);
+    .name {
+      margin-top: 4px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .titles .neon-btn {
+    width: calc(33.33% - 40px);
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .titles .neon-btn {
+    width: calc(50% - 40px);
+  }
+}
