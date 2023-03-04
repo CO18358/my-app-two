@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { forkJoin, map, Observable } from 'rxjs';
 import { baseUrls } from 'src/app/helpers/constants';
 import {
   ItemCount,
@@ -8,6 +8,9 @@ import {
   ResultCard,
   PaginatedResponse,
   Recommended,
+  Character,
+  Score,
+  Recommendation,
 } from 'src/app/helpers/jikan.interfaces';
 
 @Injectable({
@@ -93,8 +96,29 @@ export class MangaService {
       );
   }
 
-  getManga(id: number) {
+  mangaDetails(id: number): Observable<MangaInfo> {
     const url = `${baseUrls.jikan}manga/${id}/full`;
     return this.http.get<{ data: MangaInfo }>(url).pipe(map((res) => res.data));
+  }
+
+  mangaRecommendations(id: number): Observable<Recommendation[]> {
+    const url = `${baseUrls.jikan}manga/${id}/recommendations`;
+    return this.http
+      .get<{ data: { entry: Recommendation }[] }>(url)
+      .pipe(map((res) => res.data.map((d) => d.entry)));
+  }
+
+  mangaCharacters(id: number): Observable<Character[]> {
+    const url = `${baseUrls.jikan}manga/${id}/characters`;
+    return this.http
+      .get<{ data: Character[] }>(url)
+      .pipe(map((res) => res.data));
+  }
+
+  mangaStatistics(id: number): Observable<Score[]> {
+    const url = `${baseUrls.jikan}manga/${id}/statistics`;
+    return this.http
+      .get<{ data: { scores: Score[] } }>(url)
+      .pipe(map((res) => res.data.scores.sort((a, b) => b.score - a.score)));
   }
 }

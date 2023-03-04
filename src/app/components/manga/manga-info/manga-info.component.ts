@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Subject, Subscription, takeUntil } from 'rxjs';
-import { ItemType, MangaInfo } from 'src/app/helpers/jikan.interfaces';
+import { lastValueFrom, Subject, Subscription, takeUntil } from 'rxjs';
+import {
+  ItemType,
+  MangaInfo,
+  Recommendation,
+} from 'src/app/helpers/jikan.interfaces';
 import { MangaService } from 'src/app/services/manga/manga.service';
 
 @Component({
@@ -15,6 +19,7 @@ export class MangaInfoComponent implements OnInit {
   result!: MangaInfo;
   currentRoute!: string;
   genres!: ItemType[];
+  recommendations!: Recommendation[];
   private manga$!: Subscription;
   constructor(
     private manga: MangaService,
@@ -28,9 +33,12 @@ export class MangaInfoComponent implements OnInit {
     });
   }
 
-  getManga(id: number) {
+  async getManga(id: number) {
     this.loader = true;
-    this.manga$ = this.manga.getManga(id).subscribe({
+    this.recommendations = await lastValueFrom(
+      this.manga.mangaRecommendations(id)
+    );
+    this.manga$ = this.manga.mangaDetails(id).subscribe({
       next: (res) => {
         this.result = res;
         this.title = res.title;
@@ -41,7 +49,6 @@ export class MangaInfoComponent implements OnInit {
           ...this.result.demographics,
           ...this.result.themes,
         ];
-        console.log(res);
       },
     });
   }

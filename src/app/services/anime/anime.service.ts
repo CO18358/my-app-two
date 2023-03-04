@@ -8,6 +8,7 @@ import {
   ItemCount,
   Recommended,
   Producer,
+  Season,
 } from 'src/app/helpers/jikan.interfaces';
 
 @Injectable({
@@ -25,21 +26,13 @@ export class AnimeService {
       .get<{ pagination: PaginatedResponse; data: ResultCard[] }>(url, {
         params,
       })
-      .pipe(
-        map((res) => {
-          return res;
-        })
-      );
+      .pipe(map((res) => res));
   }
 
   genres(): Observable<ItemCount[]> {
     return this.http
       .get<{ data: ItemCount[] }>(`${baseUrls.jikan}genres/anime`)
-      .pipe(
-        map((res) => {
-          return res.data;
-        })
-      );
+      .pipe(map((res) => res.data));
   }
 
   producers(page?: number): Observable<{
@@ -51,11 +44,7 @@ export class AnimeService {
       : `${baseUrls.jikan}producers`;
     return this.http
       .get<{ pagination: PaginatedResponse; data: Producer[] }>(url)
-      .pipe(
-        map((res) => {
-          return res;
-        })
-      );
+      .pipe(map((res) => res));
   }
 
   topAnime(params?: any): Observable<{
@@ -67,11 +56,7 @@ export class AnimeService {
       .get<{ pagination: PaginatedResponse; data: ResultCard[] }>(url, {
         params,
       })
-      .pipe(
-        map((res) => {
-          return res;
-        })
-      );
+      .pipe(map((res) => res));
   }
 
   recommendations(params?: any): Observable<{
@@ -86,10 +71,39 @@ export class AnimeService {
       }>(url, {
         params,
       })
-      .pipe(
-        map((res) => {
-          return res;
-        })
-      );
+      .pipe(map((res) => res));
+  }
+
+  seasonList(): Observable<Season[]> {
+    const url = `${baseUrls.jikan}seasons`;
+    return this.http.get<{ data: Season[] }>(url).pipe(map((res) => res.data));
+  }
+
+  seasonAnime(
+    year: string,
+    season: string,
+    page?: number
+  ): Observable<{
+    pagination: PaginatedResponse;
+    data: ResultCard[];
+  }> {
+    const url = page
+      ? `${baseUrls.jikan}seasons/${year}/${season}?page=${page}`
+      : `${baseUrls.jikan}seasons/${year}/${season}`;
+    return this.http
+      .get<{ pagination: PaginatedResponse; data: ResultCard[] }>(url)
+      .pipe(map((res) => res));
+  }
+
+  seasonNow(page?: number): Observable<{
+    pagination: PaginatedResponse;
+    data: ResultCard[];
+  }> {
+    const url = page
+      ? `${baseUrls.jikan}seasons/now?page=${page}`
+      : `${baseUrls.jikan}seasons/now`;
+    return this.http
+      .get<{ pagination: PaginatedResponse; data: ResultCard[] }>(url)
+      .pipe(map((res) => res));
   }
 }

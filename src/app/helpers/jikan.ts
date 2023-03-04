@@ -3,6 +3,12 @@ export namespace Anime {
   export const Filter = ['airing', 'upcoming', 'bypopularity', 'favorite'];
   export const Status = ['airing', 'complete', 'upcoming'];
   export const Rating = ['g', 'pg', 'pg13', 'r17', 'r', 'rx'];
+  export enum Season {
+    WINTER = 'winter',
+    SPRING = 'spring',
+    SUMMER = 'summer',
+    FALL = 'fall',
+  }
 }
 
 export namespace Manga {

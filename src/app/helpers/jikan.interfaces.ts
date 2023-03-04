@@ -46,6 +46,12 @@ export interface Producer {
   about: string;
   count: number;
 }
+
+export interface Season {
+  year: string;
+  seasons: string[];
+}
+
 export interface ResultCard {
   mal_id: number;
   images: Image;
@@ -57,16 +63,13 @@ export interface ResultCard {
   synopsis: string;
   status: string;
 }
-export interface MangaInfo {
-  mal_id: number;
+
+export interface MangaInfo extends ResultCard {
   url: string;
-  images: Image;
   approved: boolean;
-  title: string;
   title_english: string;
   title_japanese: string;
   title_synonyms: string[];
-  type: string;
   chapters?: number;
   volumes?: number;
   status: string;
@@ -74,13 +77,9 @@ export interface MangaInfo {
   published: {
     string: string;
   };
-  score: number;
-  scored_by: number;
   rank: number;
   popularity: number;
   members: number;
-  favorites: number;
-  synopsis: string;
   background: string;
   authors: ItemType[];
   serializations: ItemType[];
@@ -88,4 +87,24 @@ export interface MangaInfo {
   explicit_genres: ItemType[];
   themes: ItemType[];
   demographics: ItemType[];
+}
+
+export interface Character {
+  role: string;
+  character: {
+    name: string;
+    images: Image;
+  };
+}
+
+export interface Score {
+  score: number;
+  vote: number;
+  percentage: number;
+}
+
+export interface Recommendation {
+  mal_id: string;
+  images: Image;
+  title: string;
 }

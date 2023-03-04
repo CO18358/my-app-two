@@ -24,7 +24,7 @@
 
     <div class="info-card">
       <div class="info-card-title pad-16">
-        <div>{{ result.title }}</div>
+        <div>Details</div>
       </div>
       <div class="info-card-data pad-16">
         <ul>
@@ -74,6 +74,24 @@
       </div>
     </div>
   </div>
+
+  <ng-container *ngIf="recommendations && recommendations.length">
+    <div class="custom-header margin-16">
+      Similar ({{ recommendations.length }})
+    </div>
+    <div class="cards flex-stretch">
+      <div
+        class="card text-center cursor"
+        *ngFor="let card of recommendations"
+        [routerLink]="'/manga/id/' + card.mal_id"
+      >
+        <img [src]="card.images.jpg.image_url" alt="" />
+        <div class="title">
+          {{ card.title }}
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </div>
 <ng-template #spinner>
   <app-spinner></app-spinner>
