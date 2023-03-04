@@ -9,6 +9,10 @@ import {
   Recommended,
   Producer,
   Season,
+  AnimeInfo,
+  Recommendation,
+  Character,
+  Score,
 } from 'src/app/helpers/jikan.interfaces';
 
 @Injectable({
@@ -105,5 +109,31 @@ export class AnimeService {
     return this.http
       .get<{ pagination: PaginatedResponse; data: ResultCard[] }>(url)
       .pipe(map((res) => res));
+  }
+
+  animeDetails(id: number): Observable<AnimeInfo> {
+    const url = `${baseUrls.jikan}anime/${id}/full`;
+    return this.http.get<{ data: AnimeInfo }>(url).pipe(map((res) => res.data));
+  }
+
+  animeRecommendations(id: number): Observable<Recommendation[]> {
+    const url = `${baseUrls.jikan}anime/${id}/recommendations`;
+    return this.http
+      .get<{ data: { entry: Recommendation }[] }>(url)
+      .pipe(map((res) => res.data.map((d) => d.entry)));
+  }
+
+  animeCharacters(id: number): Observable<Character[]> {
+    const url = `${baseUrls.jikan}anime/${id}/characters`;
+    return this.http
+      .get<{ data: Character[] }>(url)
+      .pipe(map((res) => res.data));
+  }
+
+  animeStatistics(id: number): Observable<Score[]> {
+    const url = `${baseUrls.jikan}anime/${id}/statistics`;
+    return this.http
+      .get<{ data: { scores: Score[] } }>(url)
+      .pipe(map((res) => res.data.scores.sort((a, b) => b.score - a.score)));
   }
 }

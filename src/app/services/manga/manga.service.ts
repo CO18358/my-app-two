@@ -28,21 +28,13 @@ export class MangaService {
       .get<{ pagination: PaginatedResponse; data: ResultCard[] }>(url, {
         params,
       })
-      .pipe(
-        map((res) => {
-          return res;
-        })
-      );
+      .pipe(map((res) => res));
   }
 
   genres(): Observable<ItemCount[]> {
     return this.http
       .get<{ data: ItemCount[] }>(`${baseUrls.jikan}genres/manga`)
-      .pipe(
-        map((res) => {
-          return res.data;
-        })
-      );
+      .pipe(map((res) => res.data));
   }
 
   magazines(page?: number): Observable<{
@@ -54,11 +46,7 @@ export class MangaService {
       : `${baseUrls.jikan}magazines`;
     return this.http
       .get<{ pagination: PaginatedResponse; data: ItemCount[] }>(url)
-      .pipe(
-        map((res) => {
-          return res;
-        })
-      );
+      .pipe(map((res) => res));
   }
 
   topManga(params?: any): Observable<{
@@ -70,11 +58,7 @@ export class MangaService {
       .get<{ pagination: PaginatedResponse; data: ResultCard[] }>(url, {
         params,
       })
-      .pipe(
-        map((res) => {
-          return res;
-        })
-      );
+      .pipe(map((res) => res));
   }
 
   recommendations(params?: any): Observable<{
@@ -89,11 +73,7 @@ export class MangaService {
       }>(url, {
         params,
       })
-      .pipe(
-        map((res) => {
-          return res;
-        })
-      );
+      .pipe(map((res) => res));
   }
 
   mangaDetails(id: number): Observable<MangaInfo> {

@@ -63,23 +63,57 @@ export interface ResultCard {
   synopsis: string;
   status: string;
 }
+export interface AnimeInfo extends ResultCard {
+  url: string;
+  approved: boolean;
+  trailer: {
+    embed_url: string;
+    images: {
+      image_url: string;
+      medium_image_url: string;
+      maximum_image_url: string;
+    };
+  };
+  titles: { type: string; title: string }[];
+  title_english: string;
+  title_japanese: string;
+  source: string;
+  episodes?: number;
+  status: string;
+  airing: boolean;
+  aired: {
+    string: string;
+  };
+  duration: string;
+  rating: string;
+  rank: number;
+  popularity: number;
+  members: number;
+  background: string;
+  season: string;
+  year: string;
+  producers: ItemType[];
+  licensors: ItemType[];
+  studios: ItemType[];
+  genres: ItemType[];
+  explicit_genres: ItemType[];
+  themes: ItemType[];
+  demographics: ItemType[];
+}
 
 export interface MangaInfo extends ResultCard {
   url: string;
-  approved: boolean;
   title_english: string;
   title_japanese: string;
   title_synonyms: string[];
   chapters?: number;
   volumes?: number;
   status: string;
-  publishing: boolean;
   published: {
     string: string;
   };
   rank: number;
   popularity: number;
-  members: number;
   background: string;
   authors: ItemType[];
   serializations: ItemType[];
