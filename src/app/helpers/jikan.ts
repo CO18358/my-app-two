@@ -9,6 +9,20 @@ export namespace Anime {
     SUMMER = 'summer',
     FALL = 'fall',
   }
+  export const OrderBy = [
+    'title',
+    'type',
+    'rating',
+    'start_date',
+    'end_date',
+    'episodes',
+    'score',
+    'scored_by',
+    'rank',
+    'popularity',
+    'members',
+    'favorites',
+  ];
 }
 
 export namespace Manga {

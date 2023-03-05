@@ -71,6 +71,11 @@
     </div>
   </div>
 
+  <!-- <ng-container *ngIf="result.trailer.embed_url">
+    <div class="custom-header margin-16">Trailer</div>
+    <video class="youtube" [src]="safe(result.trailer.embed_url)"></video>
+  </ng-container> -->
+
   <ng-container *ngIf="recommendations && recommendations.length">
     <div class="custom-header margin-16">
       Similar ({{ recommendations.length }})

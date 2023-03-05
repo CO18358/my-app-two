@@ -7,6 +7,7 @@
       class="input spacer"
       placeholder="Search Manga Here"
       [(ngModel)]="params.q"
+      (keyup.enter)="navigate()"
     />
     <button mat-icon-button (click)="navigate()">
       <mat-icon>search</mat-icon>

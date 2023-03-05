@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, lastValueFrom } from 'rxjs';
 import {
@@ -26,7 +27,8 @@ export class AnimeInfoComponent implements OnInit {
   constructor(
     private anime: AnimeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
@@ -35,11 +37,8 @@ export class AnimeInfoComponent implements OnInit {
     });
   }
 
-  async getAnime(id: number) {
+  getAnime(id: number) {
     this.loader = true;
-    this.recommendations = await lastValueFrom(
-      this.anime.animeRecommendations(id)
-    );
     this.anime$ = this.anime.animeDetails(id).subscribe({
       next: (res) => {
         this.result = res;
@@ -56,7 +55,11 @@ export class AnimeInfoComponent implements OnInit {
           ...this.result.licensors,
           ...this.result.studios,
         ];
+        console.log(this.result);
       },
+    });
+    this.anime.animeRecommendations(id).subscribe((res) => {
+      this.recommendations = res;
     });
   }
 
@@ -68,6 +71,10 @@ export class AnimeInfoComponent implements OnInit {
     this.router.navigate(['/anime/results'], {
       queryParams: { producers: id },
     });
+  }
+
+  safe(url: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   ngOnDestroy() {

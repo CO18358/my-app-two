@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Manga, Sort } from 'src/app/helpers/jikan';
 import { Utils } from 'src/app/helpers/utilties';
 
@@ -10,9 +10,6 @@ interface SearchParams {
   status?: string;
   order_by?: string;
   sort?: string;
-  start_date?: string;
-  end_date?: string;
-  genres?: string;
 }
 
 @Component({

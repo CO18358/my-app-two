@@ -1,1 +1,105 @@
-<p>anime-search works!</p>
+<div *ngIf="!loader; else spinner">
+  <div class="custom-header margin-16">Search</div>
+
+  <div class="flex search adv-search-item">
+    <input
+      type="text"
+      class="input spacer"
+      placeholder="Search Manga Here"
+      [(ngModel)]="params.q"
+      (keyup.enter)="navigate()"
+    />
+    <button mat-icon-button (click)="navigate()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+
+  <div class="flex adv-search-item">
+    <div class="label half-width">Type</div>
+    <mat-select
+      class="select half-width"
+      [(ngModel)]="params.type"
+      placeholder="All"
+    >
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let type of types" [value]="type">
+        {{ type | titlecase }}
+      </mat-option>
+    </mat-select>
+  </div>
+
+  <div class="flex adv-search-item">
+    <div class="label half-width">Score</div>
+    <mat-select class="select half-width" [(ngModel)]="params.score">
+      <mat-option *ngFor="let score of scores" [value]="score">
+        {{ score }}
+      </mat-option>
+    </mat-select>
+  </div>
+
+  <div class="flex adv-search-item">
+    <div class="label half-width">Status</div>
+    <mat-select
+      class="select half-width"
+      [(ngModel)]="params.status"
+      placeholder="All"
+    >
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let status of statuses" [value]="status">
+        {{ status | titlecase }}
+      </mat-option>
+    </mat-select>
+  </div>
+
+  <div class="flex adv-search-item">
+    <div class="label half-width">Rating</div>
+    <mat-select
+      class="select half-width"
+      [(ngModel)]="params.rating"
+      placeholder="All"
+    >
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let rating of ratings" [value]="rating">
+        {{ rating | titlecase }}
+      </mat-option>
+    </mat-select>
+  </div>
+
+  <div class="flex adv-search-item">
+    <div class="label half-width">Order by</div>
+    <mat-select
+      class="select half-width"
+      [(ngModel)]="params.order_by"
+      placeholder="--"
+    >
+      <mat-option *ngFor="let order of orders" [value]="order">
+        {{ order | titlecase }}
+      </mat-option>
+    </mat-select>
+  </div>
+
+  <div class="flex adv-search-item">
+    <div class="label half-width">Sort By</div>
+    <mat-button-toggle-group class="toggle" [(ngModel)]="params.sort">
+      <mat-button-toggle
+        *ngFor="let val of sorts"
+        [class.active]="val == params.sort"
+        [value]="val"
+        >{{ val | titlecase }}</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+  </div>
+
+  <div class="flex-center adv-search-item">
+    <button mat-raised-button color="primary" (click)="navigate()">
+      <div class="flex-center">
+        <mat-icon>search</mat-icon>
+        <div>SEARCH</div>
+      </div>
+    </button>
+  </div>
+</div>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

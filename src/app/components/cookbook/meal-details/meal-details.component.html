@@ -30,7 +30,7 @@
     {{ meal.strInstructions }}
   </div>
 
-  <div *ngIf="meal.strYoutube">
+  <ng-container *ngIf="meal.strYoutube">
     <div class="header heading-d">Youtube</div>
     <iframe
       class="youtube"
@@ -39,7 +39,7 @@
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
     ></iframe>
-  </div>
+  </ng-container>
 </div>
 
 <ng-template #loader>

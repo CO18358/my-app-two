@@ -53,6 +53,16 @@
   }
 }
 
+.youtube {
+  width: calc(100% - 32px);
+  height: 400px;
+  max-width: 560px;
+  margin-bottom: 16px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 @media screen and (max-width: 999px) {
   .cards .card {
     width: calc(20% - 24px);
@@ -62,6 +72,9 @@
 @media screen and (max-width: 899px) {
   .cards .card {
     width: calc(25% - 24px);
+  }
+  .youtube {
+    height: 320px;
   }
 }
 
@@ -77,5 +90,8 @@
 @media screen and (max-width: 499px) {
   .cards .card {
     width: calc(50% - 18px);
+  }
+  .youtube {
+    height: 240px;
   }
 }
