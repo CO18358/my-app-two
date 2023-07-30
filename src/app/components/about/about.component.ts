@@ -46,12 +46,11 @@ export class AboutComponent implements OnInit {
       url: '/weather',
       image: '/assets/thumbnails/weather.png',
     },
-    {
-      title: 'Horoscope',
-      url: '/horoscope',
-      image: '/assets/thumbnails/horoscope.png',
-    },
-
+    // {
+    //   title: 'Horoscope',
+    //   url: '/horoscope',
+    //   image: '/assets/thumbnails/horoscope.png',
+    // },
     {
       title: 'Cookbook',
       url: '/cookbook',

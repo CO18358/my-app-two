@@ -29,13 +29,13 @@ const routes: Routes = [
         (m) => m.AnimeQuoteModule
       ),
   },
-  {
-    path: 'horoscope',
-    loadChildren: () =>
-      import('./components/horoscope/horoscope.module').then(
-        (m) => m.HoroscopeModule
-      ),
-  },
+  // {
+  //   path: 'horoscope',
+  //   loadChildren: () =>
+  //     import('./components/horoscope/horoscope.module').then(
+  //       (m) => m.HoroscopeModule
+  //     ),
+  // },
   {
     path: 'fitness',
     loadChildren: () =>
